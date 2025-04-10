@@ -4,29 +4,39 @@
       <MyHeader />
 
       <main class="main-content">
-        <router-view /> <!-- 여기서 페이지 컴포넌트가 렌더링 됨 -->
+        <router-view />
       </main>
 
-      <MyFooter />
+      <!-- 프로젝트 페이지일 땐 푸터 숨기기 -->
+      <MyFooter v-if="!hideFooter" />
     </div>
   </v-app>
 </template>
 
-
 <script setup>
-  import MyHeader from './components/MyHeader.vue'
-  import MyFooter from './components/MyFooter.vue'
+import MyHeader from './components/MyHeader.vue'
+import MyFooter from './components/MyFooter.vue'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+// 현재 라우트 정보
+const route = useRoute()
+
+// 푸터를 숨길 경로들
+const hideFooter = computed(() => {
+  return route.path.startsWith('/project')
+})
 </script>
 
 <style scoped>
-  .layout-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* 전체 화면 높이 기준 */
-  }
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  .main-content {
-    flex: 1; /* 남는 영역 모두 차지 → 푸터가 맨 아래로 밀림 */
-    min-height:100vh;
-  }
+.main-content {
+  flex: 1;
+  min-height: 600px;
+}
 </style>
