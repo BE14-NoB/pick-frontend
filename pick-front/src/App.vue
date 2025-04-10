@@ -7,11 +7,9 @@
         <router-view />
       </main>
 
-      <!-- 푸터와 메인 콘텐츠를 구분하는 선 -->
-      <v-divider class="footer-divider" thickness="2" color="#1a1a1a"></v-divider>
+      <v-divider class="footer-divider" />
 
-      <!-- 프로젝트 페이지일 땐 푸터 숨기기 -->
-      <MyFooter v-if="!hideFooter" />
+      <MyFooter />
     </div>
   </v-app>
 </template>
@@ -19,16 +17,6 @@
 <script setup>
 import MyHeader from './components/MyHeader.vue'
 import MyFooter from './components/MyFooter.vue'
-import { useRoute } from 'vue-router'
-import { computed } from 'vue'
-
-// 현재 라우트 정보
-const route = useRoute()
-
-// 푸터를 숨길 경로들
-const hideFooter = computed(() => {
-  return route.path.startsWith('/project')
-})
 </script>
 
 <style scoped>
@@ -40,6 +28,10 @@ const hideFooter = computed(() => {
 
 .main-content {
   flex: 1;
-  min-height: calc(100vh - 50px);
+  padding-bottom: 32px; /* 선택: 푸터와 여백 */
+}
+
+.footer-divider {
+  margin: 0;
 }
 </style>
