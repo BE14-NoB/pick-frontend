@@ -7,6 +7,9 @@
         <router-view />
       </main>
 
+      <!-- 푸터와 메인 콘텐츠를 구분하는 선 -->
+      <v-divider class="footer-divider" thickness="2" color="#1a1a1a"></v-divider>
+
       <!-- 프로젝트 페이지일 땐 푸터 숨기기 -->
       <MyFooter v-if="!hideFooter" />
     </div>
