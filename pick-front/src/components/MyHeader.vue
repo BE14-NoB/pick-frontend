@@ -12,6 +12,7 @@
         :key="index"
         :to="item.path"
         class="menu-item"
+        active-class="active"
       >
         {{ item.label }}
       </RouterLink>
@@ -27,7 +28,7 @@
 <script setup>
 const menus = [
   { label: '프로젝트 매칭', path: '/match' },
-  { label: '전체 프로젝트', path: '/projects' },
+  { label: '전체 프로젝트', path: '/project' },
   { label: '게시판', path: '/board' },
   { label: '뱃지', path: '/badge' },
 ]
@@ -69,5 +70,8 @@ const menus = [
 
 .profile {
   font-size: 16px;
+}
+.active {
+  color: red;
 }
 </style>
