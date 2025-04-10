@@ -37,6 +37,6 @@ const hideFooter = computed(() => {
 
 .main-content {
   flex: 1;
-  min-height: 600px;
+  min-height: calc(100vh - 50px);
 }
 </style>

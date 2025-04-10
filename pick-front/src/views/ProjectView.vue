@@ -1,42 +1,34 @@
 <template>
     <div>프로젝트 페이지</div>
-  
-    <div class="card-list">
-      <ProjectCard
-        v-for="(card, index) in cardData"
-        :key="index"
-        :title="card.name"
-        :subtitle="card.duration_time"
-        :imgSrc="defaultImage"
-        :detail="card.content"
-      />
+
+    <div class="project-layout">
+        <aside class="sidebar">
+        <router-link to="/project/dashboard">대시보드</router-link>
+        <router-link to="/project/info">프로젝트 정보</router-link>
+        <!-- <router-link to="/project/meeting">회의록</router-link>
+        <router-link to="/project/members">팀원</router-link>
+        <router-link to="/project/reviews">프로젝트 후기</router-link>
+        <router-link to="/project/issues">이슈</router-link>
+        <router-link to="/project/pr">PR</router-link>
+        <router-link to="/project/commit">커밋</router-link> --> 
+        </aside>
+
+        <section class="main-content">
+        <router-view /> <!-- 🔥 핑크색 영역 (children이 여기에 렌더링됨) -->
+        </section>
     </div>
+
+
+
+
+  
+
+
 </template>
   
-
-
 <script setup>
-  import { ref, onMounted } from 'vue'
-  import ProjectCard from '@/components/ProjectCard.vue'
-  
-  // 썸네일이 없는 경우 쓸 기본 이미지
-  const defaultImage = new URL('@/assets/img/pick_title.png', import.meta.url).href
-  
-  const cardData = ref([])
-  
-  onMounted(async () => {
-    try {
-      const response = await fetch('http://localhost:8080/project_room', {
-        method: 'GET',
-      })
-      const result = await response.json()
-  
-      // 서버 응답 구조에 따라 파싱
-      cardData.value = result.project_room
-    } catch (error) {
-      console.error('프로젝트 목록을 불러오는 중 오류 발생:', error)
-    }
-  })
+
+
 </script>
   
 <style scoped>

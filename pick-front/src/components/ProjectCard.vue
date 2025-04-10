@@ -1,41 +1,60 @@
 <template>
-    <v-card class="mx-auto" max-width="344">
+    <v-card
+      class="project-card"
+      flat
+      rounded="lg"
+    >
       <v-img
-        height="200px"
         :src="imgSrc"
-        alt="프로젝트 이미지"
+        height="200"
         cover
-      ></v-img>
+        alt="프로젝트 이미지"
+      />
   
-      <v-card-title>{{ title }}</v-card-title>
+      <v-card-text class="py-4 px-6">
+        <h3 class="text-h6 font-weight-bold mb-1">{{ title }}</h3>
+        <div class="text-body-2 text-grey-darken-1">{{ subtitle }}</div>
+      </v-card-text>
   
-      <v-card-subtitle>{{ subtitle }}</v-card-subtitle>
-  
-      <v-card-actions>
-        <v-btn color="orange-lighten-2" text="Explore" />
-        <v-spacer />
-        <v-btn :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'" @click="show = !show" />
+      <v-card-actions class="px-6 pb-4 pt-0 justify-start">
+        <v-btn variant="flat" class="hashtag" size="small" icon>
+          <span># 상위</span>
+        </v-btn>
+        <v-btn variant="flat" class="hashtag" size="small" icon>
+          <span># 하위</span>
+        </v-btn>
       </v-card-actions>
-  
-      <v-expand-transition>
-        <div v-show="show">
-          <v-divider />
-          <v-card-text>{{ detail }}</v-card-text>
-        </div>
-      </v-expand-transition>
     </v-card>
   </template>
   
   <script setup>
-  import { ref } from 'vue'
-  
-  const show = ref(false)
-  
   defineProps({
     title: String,
     subtitle: String,
     imgSrc: String,
-    detail: String,
   })
   </script>
+  
+  <style scoped>
+  .project-card {
+    width: 353px;
+    height: 408px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  .hashtag {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    text-transform: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 8px;
+  }
+  </style>
   
