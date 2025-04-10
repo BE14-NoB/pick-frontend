@@ -7,6 +7,9 @@
         <router-view /> <!-- 여기서 페이지 컴포넌트가 렌더링 됨 -->
       </main>
 
+      <!-- 푸터와 메인 콘텐츠를 구분하는 선 -->
+      <v-divider class="footer-divider" thickness="2" color="#1a1a1a"></v-divider>
+
       <MyFooter />
     </div>
   </v-app>
