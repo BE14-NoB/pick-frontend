@@ -52,7 +52,7 @@
       <template v-else>
         <button class="btn login" @click="loginClick">로그인</button>
         <!-- 로그인 창 띄우기 -->
-        <RouterLink to="/signup">
+        <RouterLink to="member/signup">
           <button class="btn signup">회원가입</button>
         </RouterLink>
       </template>
