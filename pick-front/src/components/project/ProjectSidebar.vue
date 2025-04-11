@@ -32,13 +32,14 @@ const isActive = (matchList) =>
     width: 200px;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     margin: 3% 3% 0% 3%;
     border: 1px solid #eee;
     overflow: hidden;
+    height: auto;
+    align-self: flex-start;
 }
 
 .sidebar-list {
