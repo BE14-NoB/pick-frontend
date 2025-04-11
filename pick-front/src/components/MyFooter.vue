@@ -92,9 +92,9 @@ defineProps({
   board: {
     type: Array,
     default: () => [
-      { label: "자유게시판", path: "/board/free" },
-      { label: "Q&A 게시판", path: "/board/qna" },
-      { label: "모집게시판", path: "/board/recruit" },
+      { label: "자유게시판", path: "/post/list/free" },
+      { label: "Q&A 게시판", path: "/post/list/qna" },
+      { label: "모집게시판", path: "/post/list/recruit" },
     ],
   },
   badges: {
