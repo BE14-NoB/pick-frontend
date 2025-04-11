@@ -71,6 +71,11 @@ const router = createRouter({
       component: () => import('@/project/views/ProjectListView.vue'),
     },
     {
+      path: '/project/:id/detail',
+      name: 'ProjectDetail',
+      component: () => import('@/project/views/ProjectDetailView.vue'),
+    },
+    {
       // <------------------ 프로젝트 페이지 ------------------>
       // path: '/project/:id',
       path: '/project',
@@ -96,7 +101,7 @@ const router = createRouter({
         {
           path: 'commits',
           component: () => import('@/views/project/commit/CommitListView.vue')
-        }
+        },
       ]
     },
     {
@@ -105,7 +110,7 @@ const router = createRouter({
       component: () => import('@/views/PostView.vue'),
       children: [
         {
-          path: 'list',
+          path: 'list/:category',
           component: () => import('@/components/post/PostList.vue')
         },
         {
@@ -135,6 +140,16 @@ const router = createRouter({
     //   name: 'SignUp',
     //   component: SignUp
     // },
+    {
+      path: '/issueList',
+      name: 'IssueList',
+      component: () => import('@/components/git/views/IssueList.vue')
+    },
+    {
+      path: '/dailymission',
+      name: 'DailyMission',
+      component: () => import('@/components/dailymission/views/DailyMission.vue')
+    }
   ]
 })
 

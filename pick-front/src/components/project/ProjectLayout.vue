@@ -1,8 +1,6 @@
 <template>
         <div class="page-header">
-            <div class="page-header-inner">
                 <h1 class="page-header-title">PICK</h1>
-            </div>
         </div>
 
         <div class="content-wrapper">
@@ -56,25 +54,21 @@ watchEffect(() => {
 
 .page-header {
     background-color: #cfe3f2;
-    padding: 20px 0;
-}
-
-.page-header-inner {
-    max-width: 100%;
+    padding: 20px 0px 0px 200px;
     margin: 0;
-    padding: 0 24px;
 }
 
 .page-header-title {
     font-size: 32px;
     font-weight: bold;
-
-    border: 80% 80% 10% 10%;
+    border: 60% 80% 10% 10%;
+    margin: 80px 0px 30px 0px;
 }
 
 .content-wrapper {
     display: flex;
     flex: 1;
+    
 }
 
 .main-content {

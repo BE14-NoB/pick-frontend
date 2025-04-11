@@ -7,11 +7,12 @@
             <ProjectCard
               v-for="(card, idx) in chunk"
               :key="idx"
-              :id="card.id"
+              :id="Number(card.id)"
               :title="card.name"
               :subtitle="card.introduction"
               :imgSrc="card.imgSrc || defaultImage"
-              :category="card.category"
+              :mainCategory="card.main_category"
+              :subCategory="card.sub_category"
             />
           </div>
         </v-carousel-item>
@@ -40,11 +41,12 @@
         <ProjectCard
           v-for="(card, index) in paginatedData"
           :key="index"
-          :id="card.id"
+          :id="Number(card.id)"
           :title="card.name"
           :subtitle="card.introduction"
           :imgSrc="defaultImage"
-          :category="card.category"
+          :mainCategory="card.main_category"
+          :subCategory="card.sub_category"
         />
       </div>
   
@@ -52,33 +54,15 @@
       <div class="text-center my-6">
         <!-- 페이지가 있을 때만 렌더링 -->
         <v-pagination
-        v-if="pageCount > 1"
-        v-model="page"
-        :length="pageCount"
-        :total-visible="Math.min(5, pageCount)"
-        next-icon="mdi-menu-right"
-        prev-icon="mdi-menu-left"
-        @update:model-value="handlePageChange"
-        />
-
-
-            <!-- <v-pagination
-            v-if="pageCount > 1"
-            v-model="page"
-            :length="pageCount"
-            :total-visible="7"
-            next-icon="mdi-menu-right"
-            prev-icon="mdi-menu-left"
-            @update:model-value="handlePageChange"
-            /> -->
-        <!-- <v-pagination
+          v-if="pageCount > 1"
           v-model="page"
-          :length="pageCount || 1"
-          :total-visible="7"
+          :length="pageCount"
+          :total-visible="Math.min(5, pageCount)"
           next-icon="mdi-menu-right"
           prev-icon="mdi-menu-left"
           @update:model-value="handlePageChange"
-        /> -->
+        />
+
       </div>
     </div>
   </template>
@@ -101,7 +85,8 @@
     id: 'placeholder',
     name: '프로젝트 준비 중',
     introduction: '곧 멋진 프로젝트가 등록될 예정입니다!',
-    category: '기타',
+    mainCategory: 'main',
+    subCategory: 'sub',
     imgSrc: defaultImage
   }
   
@@ -137,7 +122,7 @@
   // 데이터 fetch
   onMounted(async () => {
     try {
-      const res = await fetch('http://localhost:8080/project_room')
+      const res = await fetch('http://localhost:8080/project_list')
       const result = await res.json()
       cardData.value = Array.isArray(result) ? result : []
     } catch (err) {
@@ -148,6 +133,8 @@
   
   <style scoped>
   .grid-wrapper {
+    max-width: 60%;
+    margin:0 auto;
     justify-content: center;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -178,7 +165,7 @@
     /* 캐러셀 좌우 버튼 반투명 처리 + 아이콘 하얗게 */
     ::v-deep(.v-carousel .v-btn) {
     opacity: 0.5;
-    color: white; /* ✅ 아이콘을 흰색으로 */
+    color: white;
     transition: opacity 0.3s ease;
     }
 

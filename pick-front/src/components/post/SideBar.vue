@@ -1,20 +1,20 @@
 <template>
     <div class="sideBar">
         <div class="sideBarTitle">게시판</div>
-        <RouterLink to="/post/category/free" active-class="active" replace>
-            <div class="sideBarSection">자유 게시판</div>
-        </RouterLink>
-        <RouterLink to="/post/category/recruit" active-class="active" replace>
-            <div class="sideBarSection">모집 게시판</div>
-        </RouterLink>
-        <RouterLink to="/post/category/qna" active-class="active" replace>
-            <div class="sideBarSection">Q&A 게시판</div>
-        </RouterLink>
+        <button @click="changeRouter('free')"><div class="sideBarSection">자유 게시판</div></button>
+        <button @click="changeRouter('recruit')"><div class="sideBarSection">모집 게시판</div></button>
+        <button @click="changeRouter('qna')"><div class="sideBarSection">Q&A 게시판</div></button>
     </div>
 </template>
 
 <script setup>
+    import {useRouter} from 'vue-router';
 
+    const router = useRouter();
+
+    function changeRouter(path) {
+        router.push(`/post/list/${path}`);
+    }
 </script>
 
 <style scoped>
@@ -53,5 +53,8 @@
     #last {
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
+    }
+    button {
+        width: 250px;
     }
 </style>
