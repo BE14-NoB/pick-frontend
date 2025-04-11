@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-import ProjectLayout from '@/project/components/ProjectLayout.vue'
+import ProjectLayout from '@/components/project/ProjectLayout.vue'
 </script>
