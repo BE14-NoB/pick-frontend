@@ -129,6 +129,12 @@ const router = createRouter({
         },
       ]
     },
+    // 회원가입
+    // {
+    //   path: 'signup',
+    //   name: 'SignUp',
+    //   component: SignUp
+    // },
   ]
 })
 

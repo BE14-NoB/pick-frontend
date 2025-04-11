@@ -20,13 +20,17 @@
             />
           </v-carousel-item>
         </v-carousel>
+        <!-- MatchingSearch 컴포넌트를 절대 위치로 배치 -->
+        <div class="search-overlay">
+          <MatchingSearch />
+        </div>
       </section>
     </div>
 </template>
   
 <script setup>
   import { ref } from 'vue'
-  
+  import MatchingSearch from '@/components/matching/MatchingSearch.vue';
   const currentSlide = ref(0)
   
   const carouselImages = [
@@ -52,6 +56,7 @@
 <style scoped>
   .carousel-section {
     height: 693px;
+    position: relative;
   }
   .carousel-slide {
     height: 424px;
@@ -60,5 +65,12 @@
   .carousel-slide >>> .v-img__img {
     object-fit: contain !important;
     background-color: transparent;
+  }
+  .search-overlay {
+    position: absolute;
+    bottom: 140px; /* 캐러셀 하단에서 아래로 겹치게 */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
   }
 </style>  
