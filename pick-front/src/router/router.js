@@ -16,7 +16,7 @@ const projectChildren = [
   {
     path: 'detail',
     name: 'ProjectDetail',
-    component: () => import('@/project/views/ProjectDetailView.vue'),
+    component: () => import('@/views/project/finished/ProjectDetailView.vue'),
   },
   // {
   //   path: 'meeting',
@@ -73,7 +73,7 @@ const router = createRouter({
     {
       path: '/project/:id/detail',
       name: 'ProjectDetail',
-      component: () => import('@/project/views/ProjectDetailView.vue'),
+      component: () => import('@/views/project/finished/ProjectDetailView.vue'),
     },
     {
       // <------------------ 프로젝트 페이지 ------------------>

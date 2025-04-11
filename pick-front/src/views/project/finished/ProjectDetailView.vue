@@ -111,9 +111,9 @@
     import {ref, computed, onMounted, watch} from 'vue';
     import { useRoute } from 'vue-router';
     import CategoryChips from '@/components/project/CategoryChip.vue';
-    import ThumbNailMockup from '../../components/project/ThumbNailMockup.vue';
+    import ThumbNailMockup from '@/components/project/ThumbNailMockup.vue';
     import LinkChip from '@/components/project/LinkChip.vue';
-    import ProjectReviewCard from '../../components/project/ProjectReviewCard.vue';
+    import ProjectReviewCard from '@/components/project/ProjectReviewCard.vue';
     import { mdiLink } from '@mdi/js'
 
     //아바타
