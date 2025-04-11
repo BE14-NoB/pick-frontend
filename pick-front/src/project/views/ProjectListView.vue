@@ -69,7 +69,7 @@
   
   <script setup>
   import { ref, computed, onMounted, watch } from 'vue'
-  import ProjectCard from '@/common/ProjectCard.vue'
+  import ProjectCard from '@/components/common/ProjectCard.vue'
   
   const cardData = ref([])
   const search = ref('')
