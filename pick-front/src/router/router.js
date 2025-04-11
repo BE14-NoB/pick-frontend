@@ -113,21 +113,6 @@ const router = createRouter({
           component: () => import('@/components/post/Write.vue')
         }
       ]
-    },
-    {
-      path: '/badge',
-      name: 'Badge',
-      component: () => import('@/views/BadgeView.vue'),
-    },
-    {
-      path: '/dailymission',
-      name: 'DailyMission',
-      component: () => import('@/dailymission/views/DailyMissionView.vue'),
-    },
-    {
-      path: '/issueList',
-      name: 'IssueList',
-      component: () => import('@/views/IssueList.vue'),
     }
   ]
 })
