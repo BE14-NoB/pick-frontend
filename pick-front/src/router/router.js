@@ -35,6 +35,12 @@ const router = createRouter({
       name: 'Badge',
       component: BadgeView
     },
+    // 회원가입
+    // {
+    //   path: 'signup',
+    //   name: 'SignUp',
+    //   component: SignUp
+    // },
   ]
 });
 
