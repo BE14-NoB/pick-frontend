@@ -1,14 +1,18 @@
 <template>
-    <div class="project-layout">
+        <div class="page-header">
+            <div class="page-header-inner">
+                <h1 class="page-header-title">PICK</h1>
+            </div>
+        </div>
+
         <div class="content-wrapper">
-            <Sidebar />
+            <Sidebar :menu-items="menuItems" />
             <main class="main-content">
-                <h1 class="page-title">{{ pageTitle }}</h1>
+                <h2 class="page-title">{{ pageTitle }}</h2>
                 <p class="page-desc">{{ pageDescription }}</p>
                 <slot />
             </main>
         </div>
-    </div>
 </template>
 
 <script setup>
@@ -48,6 +52,24 @@ watchEffect(() => {
     display: flex;
     flex-direction: column;
     height: 100vh;
+}
+
+.page-header {
+    background-color: #cfe3f2;
+    padding: 20px 0;
+}
+
+.page-header-inner {
+    max-width: 100%;
+    margin: 0;
+    padding: 0 24px;
+}
+
+.page-header-title {
+    font-size: 32px;
+    font-weight: bold;
+
+    border: 80% 80% 10% 10%;
 }
 
 .content-wrapper {

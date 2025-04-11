@@ -10,18 +10,14 @@ export const menuItems = [
     {
         to: '/project/commits',
         label: 'COMMIT',
-        title: '커밋 내역',
-        description: 'Git 커밋 기록을 조회할 수 있습니다.',
-        match: ['/project/commits'],
-        type: 'menu'
+        type: 'menu',
+        match: ['/project/commits']
     },
     {
         to: '/project/pull-requests',
         label: 'PR',
-        title: 'PR 목록',
-        description: '진행 중인 PR을 확인할 수 있습니다.',
-        match: ['/project/pull-requests'],
-        type: 'menu'
+        type: 'menu',
+        match: ['/project/pull-requests', '/project/create-pull-request']
     },
 
     // 페이지별 정보
@@ -42,11 +38,11 @@ export const menuItems = [
         type: 'page'
     },
     {
-        to: '/project/pull-request',
+        to: '/project/pull-requests',
         label: 'PR',
         title: 'PR 목록',
         description: '혜민바보',
-        match: ['/project/create-pull-request'],
+        match: ['/project/pull-requests'],
         type: 'page'
     },
     {
@@ -57,6 +53,13 @@ export const menuItems = [
         match: ['/project/create-pull-request'],
         type: 'page'
     },
-
+    {
+        to: '/project/commits',
+        label: 'COMMIT',
+        title: '커밋 내역',
+        description: 'Git 커밋 기록을 조회할 수 있습니다.',
+        match: ['/project/commits'],
+        type: 'page'
+      }
 
 ]

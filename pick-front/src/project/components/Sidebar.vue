@@ -1,7 +1,7 @@
 <template>
     <aside class="sidebar">
         <ul>
-            <li class = "item" v-for="item in menuItems.filter(i => i.type === 'menu')" :key="item.to">
+            <li v-for="item in props.menuItems.filter(i => i.type === 'menu')" :key="item.to">
                 <RouterLink :to="item.to" class="sidebar-link" :class="{ active: isActive(item.match || [item.to]) }">
                     {{ item.label }}
                 </RouterLink>
@@ -11,8 +11,11 @@
 </template>
 
 <script setup>
-import { menuItems } from '@/project/data/MenuData.js'
 import { useRoute } from 'vue-router'
+
+const props = defineProps({
+    menuItems: Array
+})
 
 const route = useRoute()
 
@@ -20,12 +23,13 @@ const isActive = (matchList) =>
     matchList?.some(path => route.path.startsWith(path))
 </script>
 
+
 <style scoped>
 .sidebar {
     width: 180px;
     height: 300px;
 
-    margin-top: 200px;
+    margin-top: 10px;
     border: 1px solid black;
 }
 

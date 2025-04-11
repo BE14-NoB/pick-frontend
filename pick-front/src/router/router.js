@@ -72,7 +72,8 @@ const router = createRouter({
     },
     {
       // <------------------ 프로젝트 페이지 ------------------>
-      path: '/project/:id',
+      // path: '/project/:id',
+      path: '/project',
       name: 'Project',
       component: () => import('@/project/views/ProjectView.vue'),
       children: [
