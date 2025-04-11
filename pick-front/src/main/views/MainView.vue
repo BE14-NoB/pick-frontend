@@ -27,7 +27,7 @@
   
 <script setup>
   import { ref } from 'vue'
-  import MatchingSearch from '@/matching/components/MatchingSearch.vue';
+  import MatchingSearch from '@/components/matching/MatchingSearch.vue';
   const currentSlide = ref(0)
   
   const carouselImages = [
