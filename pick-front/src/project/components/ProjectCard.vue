@@ -19,7 +19,7 @@
         <v-tooltip location="top">
           <template #activator="{ props }">
             <h3
-              class="text-h7 font-weight-bold mb-1 ellipsis"
+              class="text-h8 font-weight-bold mb-1 ellipsis"
               v-bind="props"
             >
               {{ title }}
