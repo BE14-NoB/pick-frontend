@@ -13,7 +13,7 @@
 
 <script setup>
   import { ref } from 'vue'
-  import MatchingResult from '@/matching/components/MatchingResult.vue'
+  import MatchingResult from '@/components/matching/MatchingResult.vue'
 
   const items = ref(Array.from({ length: 30 }, (k, v) => v + 1))
 
