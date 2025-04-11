@@ -14,6 +14,7 @@
 
 <script setup>
     import SideBar from '@/components/post/SideBar.vue';
+    import {RouterView} from 'vue-router';
 </script>
 
 <style scoped>
