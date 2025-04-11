@@ -63,7 +63,7 @@ const router = createRouter({
     {
       path: '/match',
       name: 'Match',
-      component: () => import('@/views/MatchView.vue')
+      component: () => import('@/views/Matching/MatchView.vue')
     },
     {
       path: '/project-list',

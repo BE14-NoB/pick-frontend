@@ -1,19 +1,14 @@
 <template>
     <div>매칭 페이지</div>
     <MatchingResult/>
-    <!-- <v-infinite-scroll :height="300" :items="items" @load="load">
-        <template v-for="(item, index) in items" :key="item">
-            <div :class="['pa-2', index % 2 === 0 ? 'bg-grey-lighten-2' : '']">
-                Item number #{{ item }}
-            </div>
-        </template>
-    </v-infinite-scroll> -->
+    <MatchingSideBar/>
 </template>
   
 
 <script setup>
   import { ref } from 'vue'
   import MatchingResult from '@/components/matching/MatchingResult.vue'
+  import MatchingSideBar from '@/components/matching/MatchingSideBar.vue'
 
   const items = ref(Array.from({ length: 30 }, (k, v) => v + 1))
 
