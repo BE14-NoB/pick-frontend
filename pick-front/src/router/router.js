@@ -1,10 +1,5 @@
 // src/router/router.js
 import { createRouter, createWebHistory } from 'vue-router'
-import MainView from '@/views/MainView.vue';
-import ProjectView from '@/views/ProjectView.vue';
-import BoardView from '@/views/BoardView.vue';
-import MatchView from '@/views/MatchView.vue';
-import BadgeView from '@/views/BadgeView.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -13,27 +8,27 @@ const router = createRouter({
     {
       path: '/',
       name: 'Main',
-      component: MainView
+      component: () => import('@/views/MainView.vue'),
     },
     {
       path: '/match',
       name: 'Match',
-      component: MatchView
+      component: () => import('@/views/MatchView.vue'),
     },
     {
       path: '/project',
       name: 'Project',
-      component: ProjectView
+      component: () => import('@/views/ProjectView.vue'),
     },
     {
       path: '/board',
       name: 'Board',
-      component: BoardView
+      component: () => import('@/views/BoardView.vue'),
     },
     {
       path: '/badge',
       name: 'Badge',
-      component: BadgeView
+      component: () => import('@/views/BadgeView.vue'),
     },
     // 회원가입
     // {
@@ -42,6 +37,6 @@ const router = createRouter({
     //   component: SignUp
     // },
   ]
-});
+})
 
 export default router;
