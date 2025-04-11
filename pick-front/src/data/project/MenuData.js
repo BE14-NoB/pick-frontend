@@ -39,8 +39,8 @@ export const menuItems = [
     {
         to: '/project/create-issue',
         label: 'ISSUE',
-        title: '이슈 생성',
-        description: '새로운 이슈를 등록할 수 있습니다.',
+        title: '이슈 생성하기',
+        description: '작성한 이슈는 프로젝트 레포지토리에 자동으로 등록됩니다.',
         match: ['/project/create-issue'],
         type: 'page'
     },

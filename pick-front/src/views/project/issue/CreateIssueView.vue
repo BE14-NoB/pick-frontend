@@ -1,7 +1,7 @@
 <template>
     <section class="page-wrapper">
-        <FormEditor title-placeholder="이슈 제목" v-model:titleModel="issueTitle"
-            v-model:contentModel="issueBody" button-text="생성하기" @submit="createIssue" />
+        <FormEditor v-model:titleModel="issueTitle" v-model:contentModel="issueContent" titleLabel="이슈 제목"
+            contentLabel="이슈 설명" />
     </section>
 </template>
 
@@ -21,7 +21,11 @@ function createIssue() {
 <style scoped>
 .page-wrapper {
     width: 100%;
-    margin: 60px auto;
-    padding: 0 20px;
+    padding: 0px;
+    margin-top: 50px;
+}
+
+.title {
+    margin-bottom: 0;
 }
 </style>

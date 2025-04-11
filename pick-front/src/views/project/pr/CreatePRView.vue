@@ -1,7 +1,7 @@
 <template>
     <section class="page-wrapper">
-        <FormEditor page-title="PR 생성" title-placeholder="PR 제목" v-model:titleModel="prTitle"
-            v-model:contentModel="prBody" button-text="생성하기" @submit="createPR" />
+        <FormEditor v-model:titleModel="prTitle" v-model:contentModel="prContent" titleLabel="PR 제목"
+            contentLabel="PR 설명" />
     </section>
 </template>
 
@@ -9,19 +9,23 @@
 import { ref } from 'vue'
 import FormEditor from '@/components/project/FormEditor.vue'
 
-const prTitle = ref('')
-const prBody = ref('')
+const issueTitle = ref('')
+const issueBody = ref('')
 
-function createPR() {
-    // TODO: 실제 API 연동
-    console.log('✅ PR 생성:', prTitle.value, prBody.value)
+function createIssue() {
+    // TODO: 실제 API 연결
+    console.log('✅ PR 생성:', issueTitle.value, issueBody.value)
 }
 </script>
 
 <style scoped>
 .page-wrapper {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 0 20px;
+    width: 100%;
+    padding: 0px;
+    margin-top: 50px;
+}
+
+.title {
+    margin-bottom: 0;
 }
 </style>
