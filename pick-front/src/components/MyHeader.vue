@@ -20,12 +20,38 @@
 
     <!-- 오른쪽: 프로필 영역 -->
     <div class="profile">
-      프로필영역
+      <v-menu location="bottom">
+        <template v-slot:activator="{ props }">
+          <v-img
+            :width="40"
+            aspect-ratio="1/1"
+            cover
+            src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+            class="profile-img"
+            v-bind="props"
+          ></v-img>
+        </template>
+
+        <v-list>
+          <v-list-item>
+            <RouterLink to="/member/info" class="menu-link">
+              <v-list-item-title>내정보 수정</v-list-item-title>
+            </RouterLink>
+          </v-list-item>
+          <v-list-item>
+            <RouterLink to="/member/profile" class="menu-link">
+              <v-list-item-title>마이페이지</v-list-item-title>
+            </RouterLink>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </div>
   </div>
 </template>
 
 <script setup>
+import { VImg, VMenu, VList, VListItem, VListItemTitle } from 'vuetify/components';
+
 const menus = [
   { label: '프로젝트 매칭', path: '/match' },
   { label: '전체 프로젝트', path: '/project-list' },
@@ -75,4 +101,27 @@ const menus = [
 .active {
   color: red;
 }
+
+.profile-img {
+
+width: 40px;
+height: 40px;
+border-radius: 50%; /* 동그란 이미지 */
+overflow: hidden; /* 이미지가 영역을 넘치지 않도록 */
+cursor: pointer; /* 클릭 가능 커서 */
+}
+
+.active {
+  color: red;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: #333;
+}
+
+.menu-link:hover {
+  color: #1976d2;
+}
+
 </style>

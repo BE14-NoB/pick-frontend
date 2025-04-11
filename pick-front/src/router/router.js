@@ -113,7 +113,22 @@ const router = createRouter({
           component: () => import('@/components/post/Write.vue')
         }
       ]
-    }
+    },
+    { 
+      path: '/member',
+      name: 'Member',
+      component: () => import('@/views/MemberView.vue'),
+      children: [
+        {
+          path: 'info',
+          component: () => import('@/components/member/MemberInfo.vue'),
+        },
+        {
+          path: 'profile',
+          component: () => import('@/components/member/MemberProfile.vue'),
+        },
+      ]
+    },
   ]
 })
 
