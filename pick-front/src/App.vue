@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-import MyHeader from '@/common/MyHeader.vue'
-import MyFooter from '@/common/MyFooter.vue'
+import MyHeader from '@/components/common/MyHeader.vue'
+import MyFooter from '@/components/common/MyFooter.vue'
 </script>
 
 <style scoped>
