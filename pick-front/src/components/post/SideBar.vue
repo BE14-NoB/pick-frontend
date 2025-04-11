@@ -1,20 +1,20 @@
 <template>
     <div class="sideBar">
         <div class="sideBarTitle">게시판</div>
-        <RouterLink to="/post/category/free" active-class="active" replace>
+        <RouterLink to="/post/list/free" active-class="active" replace>
             <div class="sideBarSection">자유 게시판</div>
         </RouterLink>
-        <RouterLink to="/post/category/recruit" active-class="active" replace>
+        <RouterLink to="/post/list/recruit" active-class="active" replace>
             <div class="sideBarSection">모집 게시판</div>
         </RouterLink>
-        <RouterLink to="/post/category/qna" active-class="active" replace>
+        <RouterLink to="/post/list/qna" active-class="active" replace>
             <div class="sideBarSection">Q&A 게시판</div>
         </RouterLink>
     </div>
 </template>
 
 <script setup>
-
+    import {RouterLink} from 'vue-router';
 </script>
 
 <style scoped>

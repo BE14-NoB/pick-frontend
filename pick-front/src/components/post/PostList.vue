@@ -1,31 +1,35 @@
 <template>
-    <article style="border:1px solid black; margin-left:300px">
+    <article style="margin-left:300px">
         <div v-if="!singlePost">
             <!-- 게시판 제목 -->
             <h2>{{ categoryKor }} 게시판</h2>
             <!-- 게시판 짧은 설명 -->
             <p>{{ categoryDescription }}</p>
         </div>
-        <div v-else>
-            <!-- 단일 게시글 조회 -->
-        </div>
         <!-- 검색창 + 글쓰기 버튼 -->
         <div style="display:flex; flex-direction: row; align-items: center;">
-            <SearchBox/>
+            <SearchBox @return-result="showSearchResult"/>
             <div style="width:200px;"></div>
             <button class="blue" onclick="location.href='/post/write'">글쓰기</button>
         </div>
         <!-- 게시글 목록 -->
+        
         <!-- 페이지네이션 + 페이지 목록 수 콤보박스 -->
     </article>
 </template>
 
 <script setup>
     import SearchBox from '@/components/post/SearchBox.vue';
+    import SinglePost from '@/components/post/SinglePost.vue';
 
     import { ref, reactive } from 'vue';
+    import { useRoute } from 'vue-router';
 
-    const category = ref('free');
+    const currentRoute = useRoute();
+    // console.log('currentRoute:', currentRoute);
+    const category = ref('');
+    category.value = currentRoute.params.category;
+
     const categoryKor = ref('');
     switch (category.value) {
         case 'free':
@@ -60,8 +64,14 @@
             categoryDescription.value = categoryDesc[i].desc;
         }
     }
-
     const singlePost = ref(false);
+    function togglePost(category) {
+        
+    }
+
+    function showSearchResult(result) {
+        // 게시글 목록에 전달
+    }
 </script>
 
 <style scoped>
