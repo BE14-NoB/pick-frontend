@@ -1,21 +1,27 @@
 <template>
-    <ProjectTabs v-model="selectedTab" :tabs="[
-        { label: '커밋', value: 'commit', icon: 'mdi-source-branch' },
-        { label: '파일 변경', value: 'file', icon: 'mdi-file-document' }
-    ]">
-        <template #commit>
-            <!-- 커밋 내용 -->
-        </template>
-        <template #file>
-            <!-- 파일 변경 내용 -->
-        </template>
-    </ProjectTabs>
+    <section class="page-wrapper">
+        <FormEditor page-title="PR 생성" title-placeholder="PR 제목" v-model:titleModel="prTitle"
+            v-model:contentModel="prBody" button-text="생성하기" @submit="createPR" />
+    </section>
 </template>
-
 
 <script setup>
 import { ref } from 'vue'
-import ProjectTabs from '@/components/project/ProjectTabs.vue'
+import FormEditor from '@/components/project/FormEditor.vue'
 
-const selectedTab = ref('commit')
+const prTitle = ref('')
+const prBody = ref('')
+
+function createPR() {
+    // TODO: 실제 API 연동
+    console.log('✅ PR 생성:', prTitle.value, prBody.value)
+}
 </script>
+
+<style scoped>
+.page-wrapper {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+</style>
