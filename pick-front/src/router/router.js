@@ -110,7 +110,7 @@ const router = createRouter({
       component: () => import('@/views/PostView.vue'),
       children: [
         {
-          path: 'list',
+          path: 'list/:category',
           component: () => import('@/components/post/PostList.vue')
         },
         {
@@ -134,6 +134,12 @@ const router = createRouter({
         },
       ]
     },
+    // 회원가입
+    // {
+    //   path: 'signup',
+    //   name: 'SignUp',
+    //   component: SignUp
+    // },
   ]
 })
 

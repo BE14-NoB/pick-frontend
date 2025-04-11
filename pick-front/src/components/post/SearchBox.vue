@@ -11,13 +11,22 @@
 <script setup>
     import SearchComboBox from '@/components/post/SearchComboBox.vue';
 
-    import {ref} from 'vue';
+    import {ref, defineEmits} from 'vue';
 
     const keyword = ref('');
+    const result = ref([]);
+    const emit = defineEmits(['returnResult']);
 
-    function search(keyword) {
+    const search = async() => {
+        console.log(keyword.value);
         // 백엔드의 검색 기능 호출
-    }
+        const response = await fetch(`http://localhost:8000/pick-service/post/search/${keyword.value}`);
+        console.log('response',response);
+        const data = await response.json();
+        console.log('data:', data);
+        result.value = data;
+        emit('returnResult', result);
+    };
 </script>
 
 <style scoped>
