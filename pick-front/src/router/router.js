@@ -83,19 +83,19 @@ const router = createRouter({
         },
         {
           path: 'create-issue',
-          component: () => import('@/project/views/CreateIssueView.vue')
+          component: () => import('@/views/project/issue/CreateIssueView.vue')
         },
         {
           path: 'pull-requests',
-          component: () => import('@/project/views/PRListView.vue')
+          component: () => import('@/views/project/pr/PRListView.vue')
         },
         {
           path: 'create-pull-request',
-          component: () => import('@/project/views/CreatePRView.vue')
+          component: () => import('@/views/project/pr/CreatePRView.vue')
         },
         {
           path: 'commits',
-          component: () => import('@/project/views/CommitListView.vue')
+          component: () => import('@/views/project/commit/CommitListView.vue')
         }
       ]
     },
