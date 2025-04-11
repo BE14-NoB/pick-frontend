@@ -46,6 +46,11 @@
                 <v-list-item-title>마이페이지</v-list-item-title>
               </RouterLink>
             </v-list-item>
+            <v-list-item @click.prevent="handleLogout">
+              <RouterLink to="/" class="menu-link" @click.prevent>
+                <v-list-item-title>로그아웃</v-list-item-title>
+              </RouterLink>
+            </v-list-item>
           </v-list>
         </v-menu>
       </template>
@@ -76,8 +81,12 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { VImg, VMenu, VList, VListItem, VListItemTitle, VBtn } from 'vuetify/components'
 import MemberLogin from '@/components/member/MemberLogin.vue'
+
+// 라우터 인스턴스 가져오기
+const router = useRouter()
 
 // 로그인 여부
 const isLogin = ref(false)
@@ -106,6 +115,12 @@ const closeLoginModal = () => {
 const handleLogin = () => {
   isLogin.value = true
   closeLoginModal()
+}
+
+// 로그아웃 처리
+const handleLogout = () => {
+  isLogin.value = false
+  router.push('/') // 로그아웃 후 홈으로 이동
 }
 </script>
 
@@ -226,12 +241,12 @@ const handleLogin = () => {
 
 .modal-content {
   position: relative;
-  background-color: white; /* 투명에서 흰색으로 변경 */
+  background-color: white;
   max-width: 500px;
   width: 100%;
   padding: 20px;
-  border-radius: 12px; /* 모서리 둥글게 */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .close-btn {
