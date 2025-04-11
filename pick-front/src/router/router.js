@@ -139,7 +139,7 @@ const router = createRouter({
         },
         {
           path: 'signup',
-          component: () => import('@/components/member/MemberSignUp.vue'),
+          component: () => import('@/components/member/MemberLogin.vue'),
         },
       ]
     },
