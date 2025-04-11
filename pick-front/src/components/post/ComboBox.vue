@@ -1,7 +1,9 @@
+<!-- 콤보 박스 템플릿 -->
 <template>
-    <div>게시판 페이지</div>
+    <div>
+
+    </div>
 </template>
-  
 
 <script setup>
 

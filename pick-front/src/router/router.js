@@ -77,9 +77,19 @@ const router = createRouter({
       children: projectChildren
     },
     {
-      path: '/board',
-      name: 'Board',
-      component: () => import('@/views/BoardView.vue'),
+      path: '/post',
+      name: 'Post',
+      component: () => import('@/views/PostView.vue'),
+      children: [
+        {
+          path: 'list',
+          component: () => import('@/components/post/PostList.vue')
+        },
+        {
+          path: 'write',
+          component: () => import('@/components/post/Write.vue')
+        }
+      ]
     },
     {
       path: '/badge',
