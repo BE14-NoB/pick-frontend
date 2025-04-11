@@ -20,13 +20,14 @@
             />
           </v-carousel-item>
         </v-carousel>
+        <MatchingSearch/>
       </section>
     </div>
 </template>
   
 <script setup>
   import { ref } from 'vue'
-  
+  import MatchingSearch from '@/matching/components/MatchingSearch.vue';
   const currentSlide = ref(0)
   
   const carouselImages = [

@@ -277,6 +277,7 @@ const setActiveTab = (tab) => {
         background: white;
         border-radius: 8px;
         white-space: nowrap;
+        margin: 0;
     }
     
     .input-group {
