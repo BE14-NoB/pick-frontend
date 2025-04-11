@@ -21,31 +21,20 @@
     <!-- 오른쪽: 로그인 상태에 따른 버튼/프로필 -->
     <div class="profile">
       <template v-if="isLogin">
-        <p>프로필 사진</p>
-        <!-- <img src="/profile.png" alt="프로필" class="profile-img" /> -->
-        <!-- 사진 클릭시 메뉴창 토글 -->
-      </template>
-      <template v-else>
-        <button class="btn login" @click="loginClick">로그인</button>
-        <!-- 로그인 창 띄우기 -->
-        <RouterLink to="/signup">
-          <button class="btn signup">회원가입</button>
-        </RouterLink>
-      </template>
-
-      <template v-if="isLogin">
       <v-menu location="bottom">
         <template v-slot:activator="{ props }">
+          <div class="profile-img-wrapper">
           <v-img
             :width="40"
+            :height="40"
             aspect-ratio="1/1"
             cover
             src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
             class="profile-img"
             v-bind="props"
-          ></v-img>
+          />
+          </div>
         </template>
-
         <v-list>
           <v-list-item>
             <RouterLink to="/member/info" class="menu-link">
@@ -59,6 +48,13 @@
           </v-list-item>
         </v-list>
       </v-menu>
+      </template>
+      <template v-else>
+        <button class="btn login" @click="loginClick">로그인</button>
+        <!-- 로그인 창 띄우기 -->
+        <RouterLink to="/signup">
+          <button class="btn signup">회원가입</button>
+        </RouterLink>
       </template>
     </div>
   </div>
@@ -169,26 +165,21 @@
   .signup:hover {
     background-color: #020715;
   }
+  .profile-img {
 
-.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* 동그란 이미지 */
+  overflow: hidden; /* 이미지가 영역을 넘치지 않도록 */
+  cursor: pointer; /* 클릭 가능 커서 */
+  }
 
-width: 40px;
-height: 40px;
-border-radius: 50%; /* 동그란 이미지 */
-overflow: hidden; /* 이미지가 영역을 넘치지 않도록 */
-cursor: pointer; /* 클릭 가능 커서 */
-}
+  .menu-link {
+    text-decoration: none;
+    color: #333;
+  }
 
-/* .active {
-  color: red;
-} */
-
-.menu-link {
-  text-decoration: none;
-  color: #333;
-}
-
-.menu-link:hover {
-  color: #1976d2;
-}
+  .menu-link:hover {
+    color: #1976d2;
+  }
 </style>
