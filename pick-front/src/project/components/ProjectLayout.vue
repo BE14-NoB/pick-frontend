@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import Sidebar from '@/project/components/Sidebar.vue'
+import Sidebar from '@/project/components/ProjectSidebar.vue'
 import { menuItems } from '@/project/data/MenuData.js'
 import { useRoute } from 'vue-router'
 import { computed, watchEffect } from 'vue'

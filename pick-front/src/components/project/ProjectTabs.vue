@@ -1,39 +1,55 @@
 <template>
-    <v-container class="pa-0">
-        <v-tabs v-model="tab" background-color="white" color="primary" grow slider-color="primary" class="border-b">
-            <v-tab value="commit" class="text-h6 font-weight-bold">{{ commitLabel }}</v-tab>
-            <v-tab value="file" class="text-h6 font-weight-bold">{{ fileLabel }}</v-tab>
+    <div>
+        <v-tabs v-model="model" background-color="transparent" class="custom-tabs" slider-color="#003366">
+            <v-tab v-for="(tab, index) in tabs" :key="index" :value="tab.value" class="custom-tab"
+                :class="{ 'selected-tab': model === tab.value }">
+                <v-icon start v-if="tab.icon">{{ tab.icon }}</v-icon>
+                {{ tab.label }}
+            </v-tab>
         </v-tabs>
 
-        <v-window v-model="tab">
-            <v-window-item value="commit">
-                <slot name="commit" />
-            </v-window-item>
-            <v-window-item value="file">
-                <slot name="file" />
+        <v-window v-model="model" class="mt-4">
+            <v-window-item v-for="(tab, index) in tabs" :key="index" :value="tab.value">
+                <slot :name="tab.value" />
             </v-window-item>
         </v-window>
-    </v-container>
+    </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-defineProps({
-    commitLabel: {
-        type: String,
-        default: '커밋',
-    },
-    fileLabel: {
-        type: String,
-        default: '파일 변경',
-    },
-})
+import { computed } from 'vue'
 
-const tab = ref('commit')
+const props = defineProps({
+    modelValue: String,
+    tabs: Array,
+})
+const emit = defineEmits(['update:modelValue'])
+
+const model = computed({
+    get: () => props.modelValue || props.tabs[0]?.value,
+    set: (val) => emit('update:modelValue', val),
+})
 </script>
 
 <style scoped>
-.border-b {
-    border-bottom: 1px solid #cbd5e1;
+.custom-tabs {
+    border-bottom: 1px solid #dce5f3;
+}
+
+.custom-tab {
+    font-weight: bold;
+    color: rgba(0, 51, 102, 0.3);
+    /* 연한 파랑 */
+    text-transform: none;
+}
+
+.custom-tab.selected-tab {
+    color: #003366;
+    /* 진한 파랑 */
+}
+
+/* Vuetify 기본 slider 두께는 얇기 때문에 커스터마이징 필요하면 아래처럼: */
+::v-deep(.v-tabs-slider) {
+    height: 3px;
 }
 </style>
