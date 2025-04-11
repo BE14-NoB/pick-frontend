@@ -75,7 +75,7 @@
 
   const menus = [
     { label: '프로젝트 매칭', path: '/match' },
-    { label: '전체 프로젝트', path: '/project' },
+    { label: '전체 프로젝트', path: '/project-list' },
     { label: '게시판', path: '/post' },
     { label: '뱃지', path: '/badge' },
   ]

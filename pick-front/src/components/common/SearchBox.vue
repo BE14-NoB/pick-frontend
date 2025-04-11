@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-    import SearchComboBox from '@/components/post/SearchComboBox.vue';
+    import SearchComboBox from './SearchComboBox.vue';
 
     import {ref, defineEmits} from 'vue';
 

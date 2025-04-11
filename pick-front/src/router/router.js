@@ -6,7 +6,7 @@ const projectChildren = [
   {
     path: 'dashboard',
     name: 'ProjectDashboard',
-    component: () => import('@/project/views/DashboardView.vue'),
+    component: () => import('@/views/project/dashboard/DashboardView.vue'),
   },
   {
     path: 'info',
@@ -102,10 +102,15 @@ const router = createRouter({
           path: 'commits',
           component: () => import('@/views/project/commit/CommitListView.vue')
         },
+        {
+          path: 'dashboard',
+          component: () => import('@/views/project/commit/CommitListView.vue')
+        },
       ]
     },
     {
       path: '/post',
+      redirect: '/post/list/free',
       name: 'Post',
       component: () => import('@/views/PostView.vue'),
       children: [

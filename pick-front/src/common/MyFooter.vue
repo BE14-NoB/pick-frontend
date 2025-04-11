@@ -86,7 +86,7 @@ defineProps({
     type: Object,
     default: () => ({
       label: "전체 프로젝트",
-      path: "/project",
+      path: "/project-list",
     }),
   },
   board: {
