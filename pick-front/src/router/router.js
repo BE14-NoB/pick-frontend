@@ -71,6 +71,11 @@ const router = createRouter({
       component: () => import('@/project/views/ProjectListView.vue'),
     },
     {
+      path: '/project/:id/detail',
+      name: 'ProjectDetail',
+      component: () => import('@/project/views/ProjectDetailView.vue'),
+    },
+    {
       // <------------------ 프로젝트 페이지 ------------------>
       // path: '/project/:id',
       path: '/project',
@@ -96,7 +101,7 @@ const router = createRouter({
         {
           path: 'commits',
           component: () => import('@/views/project/commit/CommitListView.vue')
-        }
+        },
       ]
     },
     {

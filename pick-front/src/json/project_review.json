@@ -1,0 +1,32 @@
+{ "project_review_list": [
+    {
+        "id": 1,
+        "content": "프론트엔드 기술이 향상되었습니다.",
+        "reviewerId": "석키키키키"
+    },
+    {
+        "id": 2,
+        "content": "프론트엔드 기술이 향상되었습니다.",
+        "reviewerId": "꼼꼼꼼보"
+    },
+    {
+        "id": 3,
+        "content": "프론트엔드 기술이 향상되었습니다.",
+        "reviewerId": "혬혬혬혬혬"
+    },
+    {
+        "id": 4,
+        "content": "프론트엔드 기술이 향상되었습니다.",
+        "reviewerId": "민선"
+    },
+    {
+        "id": 5,
+        "content": "프론트엔드 기술이 향상되었습니다.",
+        "reviewerId": "시냥주"
+    },
+    {
+        "id": 6,
+        "content": "프론트엔드 기술이 향상되었습니다.",
+        "reviewerId": "BlueSky"
+    }
+]}
