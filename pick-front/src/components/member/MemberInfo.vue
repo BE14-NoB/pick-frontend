@@ -1,4 +1,5 @@
 <template>
+    <!-- test -->
     <div class="layout-container">
       <!-- Sidebar 컴포넌트 임포트하여 사용 -->
       <MemberSideBar />

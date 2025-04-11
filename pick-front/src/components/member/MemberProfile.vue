@@ -1,4 +1,5 @@
 <template>
+    <!-- test -->
     <div class="member-profile-container">
       <div class="mypage-main">
         <h1>꼼곰보</h1>
