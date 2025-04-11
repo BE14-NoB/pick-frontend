@@ -10,7 +10,7 @@
                             <path d="M15 12H12M12 12H9M12 12V15M12 12V9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </span>
-                    <label>Random Matching</label>
+                    Random Matching
                 </button>
                 <button class="tab-button" :class="{ active: activeTab === 'private' }" @click="setActiveTab('private')">
                     <span class="icon">
@@ -20,7 +20,7 @@
                             <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </span>
-                    <label>Private Matching</label>
+                    Private Matching
                 </button>
             </div>
             <button class="create-project-button">프로젝트 생성</button>
@@ -206,13 +206,13 @@ const setActiveTab = (tab) => {
 
 <style scoped>
     .search-container {
-        padding: 30px;
+        padding: 20px;
         border-radius: 12px;
         max-width: fit-content;
         min-width: fit-content;
         margin: 0 auto;
         flex-direction: column;
-        background-color: rgba(222, 222, 222, 0.7);
+        background-color: rgba(255, 255, 255, 0.7);
     }
 
     .header {
@@ -226,18 +226,25 @@ const setActiveTab = (tab) => {
         gap: 0;
     }
 
+    label {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        color: #020725;
+    }
+
     .tab-button {
         display: flex;
         align-items: center;
         gap: 10px;
         padding: 16px;
-        background: rgba(2, 7, 37, 0.1);
+        background: rgba(111, 111, 111, 0.3);
         border: none;
         cursor: pointer;
         font-family: 'Open Sans', sans-serif;
         font-weight: 600;
         font-size: 18px;
-        color: rgba(2, 7, 37, 0.4);
+        color: rgba(255, 255, 255, 0.7);
     }
     
     .tab-button:first-child {
@@ -309,13 +316,6 @@ const setActiveTab = (tab) => {
         width: 1px;
         height: 40px;
         background: rgba(2, 7, 37, 0.1);
-    }
-    
-    label {
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 600;
-        font-size: 18px;
-        color: #020725;
     }
     
     .select-wrapper {
