@@ -137,6 +137,10 @@ const router = createRouter({
           path: 'profile',
           component: () => import('@/components/member/MemberProfile.vue'),
         },
+        {
+          path: 'signup',
+          component: () => import('@/components/member/MemberSignUp.vue'),
+        },
       ]
     },
     // 회원가입

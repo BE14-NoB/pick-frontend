@@ -3,7 +3,7 @@
       <v-img
         class="mx-auto my-6"
         max-width="228"
-        src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-light.svg"
+        src="http://www.everydayart.co.kr/wp-content/plugins/katalyst-timthumb/timthumb.php?src=http://www.everydayart.co.kr/wp-content/uploads/2013/04/Pooh_and_Piglet_Thinking.jpg&w=886&h=590&zc=1"
       ></v-img>
   
       <v-card
@@ -12,7 +12,7 @@
         max-width="448"
         rounded="lg"
       >
-        <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+        <div class="text-subtitle-1 text-medium-emphasis">이메일</div>
   
         <v-text-field
           density="compact"
@@ -22,7 +22,7 @@
         ></v-text-field>
   
         <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-          Password
+          비밀번호
   
           <a
             class="text-caption text-decoration-none text-blue"
@@ -30,7 +30,7 @@
             rel="noopener noreferrer"
             target="_blank"
           >
-            Forgot login password?</a>
+            로그인 비밀번호를 잊으셨나요?</a>
         </div>
   
         <v-text-field
@@ -49,7 +49,7 @@
           variant="tonal"
         >
           <v-card-text class="text-medium-emphasis text-caption">
-            Warning: After 3 consecutive failed login attempts, you account will be temporarily locked for three hours. If you must login now, you can also click "Forgot login password?" below to reset the login password.
+            주의: 3번 이상 아이디, 비밀번호 입력 실패 시 계정이 잠길 수 있습니다.
           </v-card-text>
         </v-card>
   
@@ -60,7 +60,7 @@
           variant="tonal"
           block
         >
-          Log In
+          로그인
         </v-btn>
   
         <v-card-text class="text-center">
@@ -70,7 +70,7 @@
             rel="noopener noreferrer"
             target="_blank"
           >
-            Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
+            회원가입 <v-icon icon="mdi-chevron-right"></v-icon>
           </a>
         </v-card-text>
       </v-card>
