@@ -6,7 +6,7 @@ const projectChildren = [
   {
     path: 'dashboard',
     name: 'ProjectDashboard',
-    component: () => import('@/project/views/DashboardView.vue'),
+    component: () => import('@/views/project/dashboard/DashboardView.vue'),
   },
   {
     path: 'info',
