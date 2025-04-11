@@ -3,9 +3,9 @@
         <div class="content-wrapper">
             <Sidebar />
             <main class="main-content">
-                <h1 class="page-title">{{ title }}</h1>
-                <p class="page-desc">{{ description }}</p>
-                <router-view />
+                <h1 class="page-title">{{ pageTitle }}</h1>
+                <p class="page-desc">{{ pageDescription }}</p>
+                <slot />
             </main>
         </div>
     </div>
@@ -13,26 +13,33 @@
 
 <script setup>
 import Sidebar from '@/project/components/Sidebar.vue'
-import { menuItems } from '@/project/data/menuData.js'
+import { menuItems } from '@/project/data/MenuData.js'
 import { useRoute } from 'vue-router'
 import { computed, watchEffect } from 'vue'
 
 const route = useRoute()
 
-// 경로가 일치하는 메뉴 찾기
-const currentMenu = computed(() => {
-  const matched = menuItems.filter(item => route.path.startsWith(item.to))
-  return matched.sort((a, b) => b.to.length - a.to.length)[0]
-})
+const currentMenu = computed(() =>
+    menuItems.find(item =>
+        item.type === 'menu' &&
+        (item.match || [item.to]).some(path => route.path.startsWith(path))
+    )
+)
 
-const title = computed(() => currentMenu.value?.label || '페이지')
-const description = computed(() => currentMenu.value?.description || '')
+const currentPageMeta = computed(() =>
+    menuItems.find(item =>
+        item.type === 'page' &&
+        (item.match || [item.to]).includes(route.path)
+    )
+)
 
-// 브라우저 탭 제목도 변경
+const pageTitle = computed(() => currentPageMeta.value?.title || '페이지')
+const pageDescription = computed(() => currentPageMeta.value?.description || '')
+
 watchEffect(() => {
-  if (title.value) {
-    document.title = `PICK | ${title.value}`
-  }
+    if (pageTitle.value) {
+        document.title = `PICK | ${pageTitle.value}`
+    }
 })
 </script>
 

@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(),
 
-  routes : [
+  routes: [
     {
       path: '/',
       name: 'Main',
@@ -16,17 +16,30 @@ const router = createRouter({
       component: () => import('@/views/MatchView.vue'),
     },
     {
+      // <------------------ 프로젝트 페이지 ------------------>
       path: '/project',
       name: 'Project',
       component: () => import('@/project/views/ProjectView.vue'),
       children: [
         {
+          path: 'issues',
+          component: () => import('@/project/views/IssueListView.vue')
+        },
+        {
           path: 'create-issue',
           component: () => import('@/project/views/CreateIssueView.vue')
         },
         {
-          path: 'create-PR',
+          path: 'pull-requests',
+          component: () => import('@/project/views/PRListView.vue')
+        },
+        {
+          path: 'create-pull-request',
           component: () => import('@/project/views/CreatePRView.vue')
+        },
+        {
+          path: 'commits',
+          component: () => import('@/project/views/CommitListView.vue')
         }
       ]
     },

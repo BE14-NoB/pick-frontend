@@ -1,6 +1,62 @@
+// src/project/data/MenuData.js
 export const menuItems = [
-    { to: '/project/dashboard', label: '대시보드', description: '대시보드 페이지입니다' },
-    { to: '/project/create-issue', label: 'ISSUE 생성하기', description: '작성한 이슈는 프로젝트 레포지토리에 자동으로 등록됩니다.' },
-    { to: '/project/pull-requests', label: 'PR', description: '풀 리퀘스트 목록을 확인하세요' },
-    { to: '/project/commits', label: 'COMMIT', description: 'Git 커밋 내역을 확인할 수 있습니다' },
+    // 사이드바용 메뉴
+    {
+        to: '/project/issues',
+        label: 'ISSUE',
+        type: 'menu',
+        match: ['/project/issues', '/project/create-issue']
+    },
+    {
+        to: '/project/commits',
+        label: 'COMMIT',
+        title: '커밋 내역',
+        description: 'Git 커밋 기록을 조회할 수 있습니다.',
+        match: ['/project/commits'],
+        type: 'menu'
+    },
+    {
+        to: '/project/pull-requests',
+        label: 'PR',
+        title: 'PR 목록',
+        description: '진행 중인 PR을 확인할 수 있습니다.',
+        match: ['/project/pull-requests'],
+        type: 'menu'
+    },
+
+    // 페이지별 정보
+    {
+        to: '/project/issues',
+        label: 'ISSUE',
+        title: '이슈 목록',
+        description: 'gPalsqkqh',
+        match: ['/project/issues'],
+        type: 'page'
+    },
+    {
+        to: '/project/create-issue',
+        label: 'ISSUE',
+        title: '이슈 생성',
+        description: '새로운 이슈를 등록할 수 있습니다.',
+        match: ['/project/create-issue'],
+        type: 'page'
+    },
+    {
+        to: '/project/pull-request',
+        label: 'PR',
+        title: 'PR 목록',
+        description: '혜민바보',
+        match: ['/project/create-pull-request'],
+        type: 'page'
+    },
+    {
+        to: '/project/create-pull-request',
+        label: 'PR',
+        title: 'PR 생성',
+        description: '브랜치를 선택해 PR을 생성할 수 있습니다.',
+        match: ['/project/create-pull-request'],
+        type: 'page'
+    },
+
+
 ]
