@@ -2,6 +2,12 @@
 export const menuItems = [
     // 사이드바용 메뉴
     {
+        to: '/project/dashboard',
+        label: 'DASHBOARD',
+        type: 'menu',
+        match: ['/project/dashboard', '/project/dashboard']
+    },
+    {
         to: '/project/issues',
         label: 'ISSUE',
         type: 'menu',
@@ -19,12 +25,7 @@ export const menuItems = [
         type: 'menu',
         match: ['/project/pull-requests', '/project/create-pull-request']
     },
-    {
-        to: '/project/dashboard',
-        label: 'DASHBOARD',
-        type: 'menu',
-        match: ['/project/dashboard', '/project/dashboard']
-    },
+
 
     // 페이지별 정보
     {
