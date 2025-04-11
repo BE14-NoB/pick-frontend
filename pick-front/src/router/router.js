@@ -40,6 +40,21 @@ const router = createRouter({
       name: 'Badge',
       component: () => import('@/views/BadgeView.vue'),
     },
+    { 
+      path: '/member',
+      name: 'Member',
+      component: () => import('@/views/MemberView.vue'),
+      children: [
+        {
+          path: 'info',
+          component: () => import('@/components/member/MemberInfo.vue'),
+        },
+        {
+          path: 'profile',
+          component: () => import('@/components/member/MemberProfile.vue'),
+        },
+      ]
+    },
   ]
 })
 
