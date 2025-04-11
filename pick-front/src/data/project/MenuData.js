@@ -19,6 +19,12 @@ export const menuItems = [
         type: 'menu',
         match: ['/project/pull-requests', '/project/create-pull-request']
     },
+    {
+        to: '/project/dashboard',
+        label: 'DASHBOARD',
+        type: 'menu',
+        match: ['/project/dashboard', '/project/dashboard']
+    },
 
     // 페이지별 정보
     {
