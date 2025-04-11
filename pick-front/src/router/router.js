@@ -106,6 +106,7 @@ const router = createRouter({
     },
     {
       path: '/post',
+      redirect: '/post/list/free',
       name: 'Post',
       component: () => import('@/views/PostView.vue'),
       children: [
