@@ -102,6 +102,10 @@ const router = createRouter({
           path: 'commits',
           component: () => import('@/views/project/commit/CommitListView.vue')
         },
+        {
+          path: 'dashboard',
+          component: () => import('@/views/project/commit/CommitListView.vue')
+        },
       ]
     },
     {
