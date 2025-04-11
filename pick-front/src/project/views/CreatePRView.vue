@@ -1,7 +1,8 @@
 <template>
-    <div>프로젝트 페이지</div>
+    <div>
+        PR
+    </div>
 </template>
-  
 
 <script setup>
 

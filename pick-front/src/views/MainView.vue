@@ -4,7 +4,6 @@
         <MatchingSearch/>
     </div>
 </template>
-  
 
 <script setup>
     import MatchingSearch from '@/matching/components/MatchingSearch.vue';
