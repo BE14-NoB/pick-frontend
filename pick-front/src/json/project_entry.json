@@ -1,5 +1,4 @@
-{
-  "project_room": [
+[
     {
       "id": 1,
       "name": "AI 프로젝트",
@@ -272,5 +271,4 @@
       "project_url": "https://pick-project.com/project/16",
       "repo_url": "https://github.com/sample/project-16"
     }
-  ]
-}
+]
