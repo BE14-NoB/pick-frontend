@@ -65,6 +65,7 @@
     height: 50px;
     border-bottom: 1px solid #e0e0e0;
     background-color: white;
+    min-width:0vmax
   }
 
   .logo {
@@ -77,6 +78,7 @@
   .menu-list {
     display: flex;
     gap: 40px;
+    min-width: fit-content;
   }
 
   .menu-item {
