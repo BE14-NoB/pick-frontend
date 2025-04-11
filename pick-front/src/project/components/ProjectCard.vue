@@ -29,7 +29,6 @@
         </v-tooltip>
   
         <!-- 서브타이틀 툴팁 -->
-        <v-tooltip location="top">
           <template #activator="{ props }">
             <div
               class="text-body-2 text-grey-darken-1 ellipsis"
@@ -40,7 +39,6 @@
             </div>
           </template>
           <span>{{ subtitle }}</span>
-        </v-tooltip>
       </v-card-text>
   
       <v-spacer />

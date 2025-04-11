@@ -6,17 +6,17 @@ const projectChildren = [
   {
     path: 'dashboard',
     name: 'ProjectDashboard',
-    component: () => import('@/views/project/DashboardView.vue'),
+    component: () => import('@/project/views/DashboardView.vue'),
   },
   {
     path: 'info',
     name: 'ProjectInfo',
-    component: () => import('@/views/project/ProjectInfoView.vue'),
+    component: () => import('@/project/views/ProjectInfoView.vue'),
   },
   {
     path: 'detail',
     name: 'ProjectDetail',
-    component: () => import('@/views/project/ProjectDetailView.vue'),
+    component: () => import('@/project/views/ProjectDetailView.vue'),
   },
   // {
   //   path: 'meeting',
@@ -58,7 +58,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'Main',
-      component: () => import('@/views/MainView.vue'),
+      component: () => import('@/main/views/MainView.vue')
     },
     {
       path: '/match',
@@ -68,12 +68,12 @@ const router = createRouter({
     {
       path: '/project-list',
       name: 'ProjectList',
-      component: () => import('@/views/ProjectListView.vue'),
+      component: () => import('@/project/views/ProjectListView.vue'),
     },
     {
       path: '/project/:id',
       name: 'Project',
-      component: () => import('@/views/project/ProjectView.vue'),
+      component: () => import('@/project/views/ProjectRootView.vue'),
       children: projectChildren
     },
     {

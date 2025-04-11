@@ -9,7 +9,7 @@
               :key="idx"
               :id="card.id"
               :title="card.name"
-              :subtitle="card.content"
+              :subtitle="card.introduction"
               :imgSrc="card.imgSrc || defaultImage"
               :category="card.category"
             />
@@ -18,9 +18,12 @@
       </v-carousel>
     </section>
   
-    <div class="project-page">
+    <div class="project-page" >
+      <div style="background-color: yellow;">
+        검색 & 필터 영역
+      </div>
       <!-- 검색 & 필터 -->
-      <section class="search-section">
+      <!-- <section class="search-section">
         <v-text-field
           v-model="search"
           placeholder="검색어를 입력하세요."
@@ -30,7 +33,7 @@
         />
         <v-btn icon><v-icon>mdi-view-grid</v-icon></v-btn>
         <v-btn icon><v-icon>mdi-filter-variant</v-icon></v-btn>
-      </section>
+      </section> -->
   
       <!-- 프로젝트 카드 리스트 -->
       <div class="grid-wrapper">
@@ -39,7 +42,7 @@
           :key="index"
           :id="card.id"
           :title="card.name"
-          :subtitle="card.content"
+          :subtitle="card.introduction"
           :imgSrc="defaultImage"
           :category="card.category"
         />
@@ -82,7 +85,7 @@
   
   <script setup>
   import { ref, computed, onMounted, watch } from 'vue'
-  import ProjectCard from '@/components/ProjectCard.vue'
+  import ProjectCard from '@/project/components/ProjectCard.vue'
   
   const cardData = ref([])
   const search = ref('')
@@ -97,7 +100,7 @@
   const placeholderCard = {
     id: 'placeholder',
     name: '프로젝트 준비 중',
-    content: '곧 멋진 프로젝트가 등록될 예정입니다!',
+    introduction: '곧 멋진 프로젝트가 등록될 예정입니다!',
     category: '기타',
     imgSrc: defaultImage
   }
