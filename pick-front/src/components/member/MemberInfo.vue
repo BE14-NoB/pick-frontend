@@ -1,102 +1,95 @@
 <template>
-    <div class="member-info-container">
-      <div class="member-info-container-item">
-        <!-- 프로필 이미지 -->
-        <v-avatar size="120" class="avatar">
-          <img :src="userData.profileImage" alt="Profile" />
-        </v-avatar>
+    <div class="layout-container">
+      <Sidebar :menu-items="menuItems" />
   
-        <!-- 이름과 닉네임 -->
-        <span class="value name">{{ userData.name }}</span>
-        <span class="value nickname">{{ userData.nickname }}</span>
-      </div>
+      <div class="member-info-container">
+        <div class="member-info-container-item">
+          <!-- 프로필 이미지 -->
+          <v-avatar size="120" class="avatar">
+            <img :src="userData.profileImage" alt="Profile" />
+          </v-avatar>
   
-      <!-- 정보 리스트 -->
-      <div class="info-list">
-        <div class="info-item">
-          <span class="label">이메일</span>
-        </div>
-        <div class="info-item">
-          <span class="value">{{ userData.email }}</span>
+          <!-- 이름과 닉네임 -->
+          <span class="value name">{{ userData.name }}</span>
+          <span class="value nickname">{{ userData.nickname }}</span>
         </div>
   
-        <div class="info-item">
-          <span class="label">전화번호</span>
-        </div>
-        <div class="info-item">
-          <span class="value">{{ userData.phone }}</span>
-        </div>
+        <!-- 정보 리스트 -->
+        <div class="info-list">
+          <div class="info-item">
+            <span class="label">이메일</span>
+          </div>
+          <div class="info-item">
+            <span class="value">{{ userData.email }}</span>
+          </div>
   
-        <div class="info-item">
-          <span class="label">비밀번호</span>
-        </div>
-        <div class="info-item">
-          <span class="value">{{ userData.password }}</span>
-        </div>
+          <div class="info-item">
+            <span class="label">전화번호</span>
+          </div>
+          <div class="info-item">
+            <span class="value">{{ userData.phone }}</span>
+          </div>
   
-        <div class="info-item">
-          <span class="label">생일</span>
-        </div>
-        <div class="info-item">
-          <span class="value">{{ userData.birthday }}</span>
-        </div>
-      </div>
+          <div class="info-item">
+            <span class="label">비밀번호</span>
+          </div>
+          <div class="info-item">
+            <span class="value">{{ userData.password }}</span>
+          </div>
   
-      <!-- GitHub 링크 (Box.vue의 구조로 대체) -->
-      <div class="box">
-        <div class="view">
-          <div class="div">
-            <img class="image" alt="Image" :src="githubImage" />
-            <div class="text-wrapper">Github</div>
-            <button class="button">
-              <div class="overlap-group">
-                <a
-                  class="background"
-                  :href="userData.githubLink"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                />
-                <div class="text-wrapper-2">연결하기</div>
-              </div>
-            </button>
+          <div class="info-item">
+            <span class="label">생일</span>
+          </div>
+          <div class="info-item">
+            <span class="value">{{ userData.birthday }}</span>
           </div>
         </div>
-    </div>
-
-        <!-- 계정 권한 그룹 -->
-        <div class="member-auth">
-            <div class="member-auth-item">
-                <div class="member-info">
-                    <span>회원 권환</span>
+  
+        <!-- GitHub 링크 (Box.vue의 구조로 대체) -->
+        <div class="box">
+          <div class="view">
+            <div class="div">
+              <img class="image" alt="Image" :src="githubImage" />
+              <div class="text-wrapper">Github</div>
+              <button class="button">
+                <div class="overlap-group">
+                  <a
+                    class="background"
+                    :href="userData.githubLink"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  />
+                  <div class="text-wrapper-2">연결하기</div>
                 </div>
-                
-                <div class="member-auth-item-2">
-                    <v-icon
-                    color="success"
-                    icon="mdi-alert-circle"
-                    size="small">
-                    </v-icon>
-                    <span class="value"> {{ userData.auth }}</span>
-                </div>
-   
-                
-                <div class="member-auth-item-2">
-                    <v-icon
-                    color="success"
-                    icon="mdi-check-circle"
-                    size="small">
-                    </v-icon>
-                    <span class="value">Admin</span>
-                </div>
-
+              </button>
             </div>
-
+          </div>
         </div>
   
-      <!-- 버튼 그룹 -->
-      <div class="button-group">
-        <v-btn color="#1976d2" @click="goToEdit">수정</v-btn>
-        <v-btn color="#d32f2f" @click="goBack">탈퇴</v-btn>
+        <!-- 계정 권한 그룹 -->
+        <div class="member-auth">
+          <div class="member-auth-item">
+            <div class="member-info">
+              <span>회원 권한</span>
+            </div>
+  
+            <div class="member-auth-item-2">
+              <v-icon color="success" icon="mdi-alert-circle" size="small"></v-icon>
+              <span class="value">{{ userData.auth }}</span>
+            </div>
+  
+            <div class="member-auth-item-2">
+              <v-icon color="success" icon="mdi-check-circle" size="small"></v-icon>
+              <span class="value">Admin</span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 버튼 그룹 -->
+        <div class="button-group">
+          <v-btn color="#1976d2" @click="goToEdit">수정</v-btn>
+          <v-btn color="#d32f2f" @click="goBack">탈퇴</v-btn>
+        </div>
       </div>
     </div>
   </template>
@@ -105,11 +98,11 @@
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
   import { VAvatar, VBtn, VIcon } from 'vuetify/components';
-  import githubImage from '@/assets/issueMaker.png'; // GitHub 이미지 임포트
+  import Sidebar from '@/components/project/ProjectSidebar.vue';
+  import githubImage from '@/assets/issueMaker.png';
   
   const router = useRouter();
   
-  // 사용자 데이터를 ref로 정의
   const userData = ref({
     profileImage: 'https://cdn.vuetifyjs.com/images/parallax/material.jpg',
     name: '고성연',
@@ -121,6 +114,12 @@
     githubLink: 'https://github.com/Gombo2',
     auth: 'member',
   });
+  
+  const menuItems = ref([
+    { type: 'menu', to: '/member/info', label: '내 정보', match: ['/member/info'] },
+    { type: 'menu', to: '/member/settings', label: '설정', match: ['/member/settings'] },
+    { type: 'menu', to: '/member/projects', label: '프로젝트', match: ['/member/projects'] },
+  ]);
   
   const goToEdit = () => {
     router.push('/member/info/edit');
@@ -136,6 +135,14 @@
   </script>
   
   <style scoped>
+  .layout-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
   .member-info-container {
     max-width: 600px;
     margin: 40px auto;
@@ -189,21 +196,20 @@
     font-size: 11px;
     color: #333;
     font-weight: 500;
-    width: 100px; /* 라벨의 고정 너비 설정 */
+    width: 100px;
     padding-left: 0px;
   }
   
   .value {
     font-size: 16px;
     color: #666;
-    flex: 1; /* 나머지 공간을 값이 차지하도록 */
+    flex: 1;
   }
   
-  /* Box.vue에서 가져온 스타일 */
   .box {
     height: 30px;
     width: 400px;
-    margin: 0px auto; /* 중앙 정렬 및 간격 조정 */
+    margin: 0px auto;
     position: relative;
     top: 190px;
   }
@@ -213,7 +219,7 @@
     border-radius: 17px;
     height: 77px;
     left: 0;
-    position: relative; /* fixed 대신 relative로 변경 */
+    position: relative;
     top: 0;
     width: 435px;
   }
@@ -317,7 +323,7 @@
     bottom: 540px;
     left: 100px;
   }
-
+  
   .member-auth-item {
     font-size: 24px;
     justify-content: center;
@@ -325,7 +331,7 @@
     margin-top: 20px;
     position: relative;
   }
-
+  
   .member-auth-item-2 {
     font-size: 24px;
     display: flex;
