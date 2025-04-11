@@ -13,19 +13,22 @@
             <button class="blue" onclick="location.href='/post/write'">글쓰기</button>
         </div>
         <!-- 게시글 목록 -->
-        
+        <List :headers="headers" :items="items"/>
         <!-- 페이지네이션 + 페이지 목록 수 콤보박스 -->
     </article>
 </template>
 
 <script setup>
-    import SearchBox from '@/components/post/SearchBox.vue';
+    import SearchBox from '@/components/common/SearchBox.vue';
     import SinglePost from '@/components/post/SinglePost.vue';
+    import List from '@/components/post/List.vue';
 
     import { ref, reactive, computed } from 'vue';
     import { useRoute } from 'vue-router';
 
     const currentRoute = useRoute();
+
+    const singlePost = ref(false);
 
     const categoryKor = computed(() => {
         switch (currentRoute.params.category) {
@@ -43,12 +46,15 @@
         }
     });
 
-    const singlePost = ref(false);
-    function togglePost(category) {
+    const headers = ref(['번호', '제목', '작성 시간', '작성자']);
+
+    const items = ref([]);
+
+    const togglePost = (category) => {
         
     }
 
-    function showSearchResult(result) {
+    const showSearchResult = (result) => {
         // 게시글 목록에 전달
     }
 </script>
