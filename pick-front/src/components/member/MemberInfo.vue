@@ -42,18 +42,59 @@
         </div>
       </div>
   
-      <!-- 계정 권한 그룹 -->
-      <div class="member-auth"></div>
-  
-      <!-- GitHub 링크 -->
-      <div class="github-link">
-        <v-icon icon="mdi-github" size="24" class="github-icon"></v-icon>
-        <a :href="userData.githubLink" target="_blank">Github</a>
-      </div>
+      <!-- GitHub 링크 (Box.vue의 구조로 대체) -->
+      <div class="box">
+        <div class="view">
+          <div class="div">
+            <img class="image" alt="Image" :src="githubImage" />
+            <div class="text-wrapper">Github</div>
+            <button class="button">
+              <div class="overlap-group">
+                <a
+                  class="background"
+                  :href="userData.githubLink"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                />
+                <div class="text-wrapper-2">연결하기</div>
+              </div>
+            </button>
+          </div>
+        </div>
+    </div>
+
+        <!-- 계정 권한 그룹 -->
+        <div class="member-auth">
+            <div class="member-auth-item">
+                <div class="member-info">
+                    <span>회원 권환</span>
+                </div>
+                
+                <div class="member-auth-item-2">
+                    <v-icon
+                    color="success"
+                    icon="mdi-alert-circle"
+                    size="small">
+                    </v-icon>
+                    <span class="value"> {{ userData.auth }}</span>
+                </div>
+   
+                
+                <div class="member-auth-item-2">
+                    <v-icon
+                    color="success"
+                    icon="mdi-check-circle"
+                    size="small">
+                    </v-icon>
+                    <span class="value">Admin</span>
+                </div>
+
+            </div>
+
+        </div>
   
       <!-- 버튼 그룹 -->
       <div class="button-group">
-        <v-btn color="#1976d2" class="maroon-btn" @click="goToMaroon">마감하기</v-btn>
         <v-btn color="#1976d2" @click="goToEdit">수정</v-btn>
         <v-btn color="#d32f2f" @click="goBack">탈퇴</v-btn>
       </div>
@@ -64,6 +105,7 @@
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
   import { VAvatar, VBtn, VIcon } from 'vuetify/components';
+  import githubImage from '@/assets/issueMaker.png'; // GitHub 이미지 임포트
   
   const router = useRouter();
   
@@ -76,7 +118,8 @@
     phone: '010-3791-8329',
     password: '********',
     birthday: '1999.05.02',
-    githubLink: 'https://github.com',
+    githubLink: 'https://github.com/Gombo2',
+    auth: 'member',
   });
   
   const goToEdit = () => {
@@ -156,25 +199,97 @@
     flex: 1; /* 나머지 공간을 값이 차지하도록 */
   }
   
-  .github-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0;
+  /* Box.vue에서 가져온 스타일 */
+  .box {
+    height: 30px;
+    width: 400px;
+    margin: 0px auto; /* 중앙 정렬 및 간격 조정 */
+    position: relative;
+    top: 190px;
   }
   
-  .github-icon {
-    margin-right: 8px;
+  .box .view {
+    background-color: #fdefef;
+    border-radius: 17px;
+    height: 77px;
+    left: 0;
+    position: relative; /* fixed 대신 relative로 변경 */
+    top: 0;
+    width: 435px;
   }
   
-  .github-link a {
+  .box .div {
+    height: 77px;
+    position: relative;
+    width: 437px;
+  }
+  
+  .box .image {
+    height: 77px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 76px;
+  }
+  
+  .box .text-wrapper {
+    color: #78767c;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 15px;
+    font-weight: 600;
+    height: 23px;
+    left: 105px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 30px;
+    width: 62px;
+  }
+  
+  .box .button {
+    all: unset;
+    box-sizing: border-box;
+    height: 66px;
+    left: 297px;
+    position: absolute;
+    top: 5px;
+    width: 138px;
+  }
+  
+  .box .overlap-group {
+    border-radius: 17px;
+    height: 57px;
+    left: 5px;
+    position: relative;
+    top: 5px;
+    width: 129px;
+  }
+  
+  .box .background {
+    background-color: #5f0080;
+    border: 1px solid;
+    border-color: #e0e0e0;
+    border-radius: 17px;
+    height: 57px;
+    left: 0;
+    position: absolute;
+    bottom: 5px;
+    width: 129px;
+  }
+  
+  .box .text-wrapper-2 {
+    color: #fdfdfd;
+    font-family: "Poppins-Medium", Helvetica;
     font-size: 16px;
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .github-link a:hover {
-    color: #1976d2;
+    font-weight: 500;
+    height: 27px;
+    right: 23px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 12px;
+    width: 80px;
   }
   
   .button-group {
@@ -193,7 +308,32 @@
     left: 500px;
   }
   
-  .maroon-btn {
-    background-color: #d81b60 !important; /* 마감하기 버튼 색상 */
+  .member-auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    bottom: 540px;
+    left: 100px;
+  }
+
+  .member-auth-item {
+    font-size: 24px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+  }
+
+  .member-auth-item-2 {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    top: 20px;
+    left: 0px;
   }
   </style>
