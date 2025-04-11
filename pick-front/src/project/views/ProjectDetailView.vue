@@ -7,28 +7,37 @@
                 <p class="project-introduction">{{ projectData.introduction }}</p>
                 <p class="date">{{ projectData.start_date }} ~ {{ projectData.end_date }}</p>
                 <div class="tag-list">
-                <!-- <span class="tag">최대 인원: {{ projectData.maximum_participant }}명</span>
-                <span class="tag">기간: {{ projectData.duration_time }}</span>
-                <span class="tag">카테고리 ID: {{ projectData.technology_category_id }}</span> -->
-                <div>
-                    
+                  <CategoryChips 
+                          :mainCategory="projectData.main_category" 
+                          :subCategory="projectData.sub_category" 
+                      
+                          />
                 </div>
-                <CategoryChips 
-                        :mainCategory="projectData.main_category" 
-                        :subCategory="projectData.sub_category" 
-                    
-                        />
+                <div class="link-button">
+                  <v-btn
+                  :href="projectData.project_url"
+                  target="_blank"
+                  rel="noopener"
+                  append-icon="mdi-web"
+                  variant="tonal"
+                  >
+                    사이트 바로가기
+                  </v-btn>
+                  <v-btn
+                    :href="projectData.repo_url"
+                    target="_blank"
+                    rel="noopener"
+                    append-icon="mdi-github"
+                    variant="tonal"
+                  >
+                    깃허브 레포 바로가기
+                  </v-btn>
                 </div>
-
+                
+              
             </div>
             <div class="right-image">
                 <ThumbNailMockup />
-                <!-- <img
-                v-if="projectData.thumbnail_image"
-                :src="projectData.thumbnail_image"
-                alt="프로젝트 썸네일"
-                />
-                <span v-else>이미지 없음</span> -->
             </div>
         </section>
         <v-divider class="my-4" style="border-color: #333;" />
@@ -53,13 +62,38 @@
 
           <div>
             <div class="subtitle">프로젝트 후기</div>
-          </div>
+
+            <v-slide-group class="review-carousel" show-arrows>
+              <v-slide-group-item
+                v-for="review in projectReviewData"
+                :key="review.id"
+              >
+                <v-card class="review-card" elevation="2">
+                  <v-card-text>
+                    <strong>{{ review.reviewerId }}</strong>
+                    <p>{{ review.content }}</p>
+                  </v-card-text>
+                </v-card>
+              </v-slide-group-item>
+            </v-slide-group>
+
+
+
+          <!-- <div class="review-wrapper">
+            <div class="review-list">
+              <div v-for="review in projectReviewData" :key="review.id" class="review-card">
+                <strong>{{ review.reviewerId }}</strong>
+                <p>{{ review.content }}</p>
+              </div>
+            </div>
+          </div> -->
+
+        </div>
+
 
         </section>
-        <section>
-            
 
-        </section>
+      
 
   
       </main>
@@ -77,8 +111,10 @@
     import {ref, computed, onMounted, watch} from 'vue';
     import { useRoute } from 'vue-router';
     import CategoryChips from '@/project/components/CategoryChip.vue';
-import ThumbNailMockup from '../components/ThumbNailMockup.vue';
-
+    import ThumbNailMockup from '../components/ThumbNailMockup.vue';
+    import LinkChip from '@/project/components/LinkChip.vue';
+    import ProjectReviewCard from '../components/ProjectReviewCard.vue';
+    import { mdiLink } from '@mdi/js'
 
     //아바타
     const avatarUrl = new URL('@/assets/img/avatar.png', import.meta.url).href
@@ -86,30 +122,42 @@ import ThumbNailMockup from '../components/ThumbNailMockup.vue';
     const route = useRoute()
     const id = route.params.id  
     const projectData = ref(null)
+    const projectReviewData = ref([]);
 
+    // 프로젝트 정보 & 후기 데이터 병렬 fetch 
     onMounted(async () => {
-        try {
-            const res = await fetch(`http://localhost:8081/${id}`)
-            const result = await res.json()
-            projectData.value = result
-        } catch (err) {
-            console.error('🚨 fetch 실패', err)
-        }
+      try {
+        const [projectRes, reviewRes] = await Promise.all([
+          fetch(`http://localhost:8081/${id}`),
+          fetch('http://localhost:8082/project_review_list')
+        ])
+
+        const projectResult = await projectRes.json()
+        const reviewResult = await reviewRes.json()
+
+        console.log('✅ 후기 원본:', reviewResult)
+
+
+        projectData.value = projectResult
+        projectReviewData.value = reviewResult ?? []
+
+      } catch (err) {
+        console.error('🚨 fetch 실패', err)
+      }
     })
 
-    console.log(projectData)
-    console.log(projectData.value)
 
 
 
 </script>
 
-<style>
+<style scoped>
 .project-detail-page{
     background-color: #F2F2F2;
     width: 55%;
-    margin: 0 auto;
+    margin: 0 auto ;
     padding: 5% 5%;
+    margin-bottom: 120px;
 }
 
 .project-intro {
@@ -172,6 +220,11 @@ import ThumbNailMockup from '../components/ThumbNailMockup.vue';
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+}
+.link-button {
+  display:flex;
+  flex-direction: row;
+  gap: 8px;
 }
 
 /* 태그 스타일 예시 */
@@ -244,6 +297,56 @@ import ThumbNailMockup from '../components/ThumbNailMockup.vue';
   text-align: center;
   word-break: keep-all;
 }
+/* 후기 */
+.review-wrapper {
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.review-list {
+  display: inline-flex;
+  gap: 16px;
+  padding: 4px;
+  min-width: max-content;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.review-list::-webkit-scrollbar {
+  height: 8px;
+}
+
+.review-list::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 4px;
+}
+.review-carousel {
+  padding: 8px 0;
+}
+
+.review-card {
+  width: 280px;
+  margin: 0 8px;
+  border-radius: 12px;
+  background-color: #fff;
+}
+::v-deep(.v-slide-group__content) {
+  padding: 20px 16px;
+}
+::v-deep(.v-slide-group__next),
+::v-deep(.v-slide-group__prev) {
+  min-width: 30px !important;
+  flex: 0 1 auto;
+}
+/* .review-card {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: 280px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+} */
 
 
 

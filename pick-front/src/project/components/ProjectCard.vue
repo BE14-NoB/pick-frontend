@@ -40,7 +40,6 @@
     <v-spacer />
 
     <!-- 칩 -->
-     
     <v-card-actions class="chip-wrapper px-6 pb-4 pt-0">
       <v-chip class="custom-chip" :ripple="false" :clickable="true" variant="flat" >
         # {{ mainCategory }}
