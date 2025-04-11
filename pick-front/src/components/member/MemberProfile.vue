@@ -35,7 +35,7 @@
       <v-row class="intro-section">
         <!-- 왼쪽 열: 자기소개 -->
         <v-col cols="12" md="6" class="intro-col">
-          <v-card class="intro-card">
+          <v-card class="intro-card full-height">
             <v-card-title>자기소개</v-card-title>
             <v-card-text class="scrollable">
               컴퓨터 공학과 어떻게 졸업 <br />
@@ -50,35 +50,29 @@
 
         <!-- 오른쪽 열: 선호 분야와 수상 경력 -->
         <v-col cols="12" md="6" class="intro-col">
-          <v-row>
-            <!-- 선호 분야 -->
-            <v-col cols="12" class="sub-intro-col">
-              <v-card class="intro-card">
-                <v-card-title>선호 분야</v-card-title>
-                <v-card-text class="scrollable">
-                  안드로이드 기반의 어플리케이션 관련 선호<br />
-                  안드로이드 기반 커뮤니티 앱 게임 앱 제작<br />
-                  안드로이드 기반 커뮤니티 앱 게임 앱 제작<br />
-                  안드로이드 기반 커뮤니티 앱 게임 앱 제작<br />
-                  안드로이드 기반 커뮤니티 앱 게임 앱 제작
-                </v-card-text>
-              </v-card>
-            </v-col>
+          <!-- 선호 분야 -->
+          <v-card class="intro-card half-height">
+            <v-card-title>선호 분야</v-card-title>
+            <v-card-text class="scrollable">
+              안드로이드 기반의 어플리케이션 관련 선호<br />
+              안드로이드 기반 커뮤니티 앱 게임 앱 제작<br />
+              안드로이드 기반 커뮤니티 앱 게임 앱 제작<br />
+              안드로이드 기반 커뮤니티 앱 게임 앱 제작<br />
+              안드로이드 기반 커뮤니티 앱 게임 앱 제작
+            </v-card-text>
+          </v-card>
 
-            <!-- 수상 경력 -->
-            <v-col cols="12" class="sub-intro-col">
-              <v-card class="intro-card">
-                <v-card-title>수상 경력</v-card-title>
-                <v-card-text class="scrollable">
-                  2023 사이버공격방어대회 청소년 우승, 국가 정보원장상<br />
-                  2022-2024 NO비에이 BE Engineer 지적<br />
-                  2023 사이버공격방어대회 청소년 우승, 국가 정보원장상<br />
-                  2022-2024 NO비에이 BE Engineer 지적<br />
-                  2023 사이버공격방어대회 청소년 우승, 국가 정보원장상
-                </v-card-text>
-              </v-card>
-            </v-col>
-          </v-row>
+          <!-- 수상 경력 -->
+          <v-card class="intro-card half-height">
+            <v-card-title>수상 경력</v-card-title>
+            <v-card-text class="scrollable">
+              2023 사이버공격방어대회 청소년 우승, 국가 정보원장상<br />
+              2022-2024 NO비에이 BE Engineer 지적<br />
+              2023 사이버공격방어대회 청소년 우승, 국가 정보원장상<br />
+              2022-2024 NO비에이 BE Engineer 지적<br />
+              2023 사이버공격방어대회 청소년 우승, 국가 정보원장상
+            </v-card-text>
+          </v-card>
         </v-col>
       </v-row>
     </div>
@@ -199,34 +193,35 @@ p {
 .intro-section {
   margin-top: 20px;
   margin-bottom: 20px;
+  flex-direction: row;
 }
 
 .intro-col {
   display: flex;
   flex-direction: column;
+  gap: 20px; /* 카드 간 간격 */
 }
 
 .intro-card {
   margin-bottom: 20px;
-  height: 300px; /* 고정 높이 설정 */
+}
+
+.full-height {
+  height: 340px; /* 왼쪽 자기소개 카드의 전체 높이 */
+}
+
+.half-height {
+  height: 150px; /* 오른쪽 카드의 높이를 절반으로 */
 }
 
 .scrollable {
-  max-height: 240px; /* 카드 제목을 제외한 스크롤 영역 높이 */
-  overflow-y: auto; /* 세로 스크롤 활성화 */
-  padding-right: 10px; /* 스크롤바와 내용 간격 */
+  max-height: calc(100% - 60px); /* 카드 제목 높이를 뺀 스크롤 영역 */
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
 /* 오른쪽 열의 선호 분야와 수상 경력 */
-.sub-intro-col {
-  flex: 1;
-}
-
-.sub-intro-col .intro-card {
-  height: 150px; /* 오른쪽 열의 카드는 높이를 반으로 나눔 */
-}
-
-.sub-intro-col .scrollable {
-  max-height: 90px; /* 카드 제목을 제외한 스크롤 영역 높이 */
+.intro-col > .intro-card:last-child {
+  margin-bottom: 0; /* 마지막 카드의 하단 마진 제거 */
 }
 </style>
