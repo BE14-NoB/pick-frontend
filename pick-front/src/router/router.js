@@ -48,13 +48,13 @@ const projectChildren = [
   //   name: 'ProjectCommit',
   //   component: () => import('@/views/project/CommitView.vue'),
   // },
- 
+
 ];
 
 const router = createRouter({
   history: createWebHistory(),
 
-  routes : [
+  routes: [
     {
       path: '/',
       name: 'Main',
@@ -71,10 +71,33 @@ const router = createRouter({
       component: () => import('@/project/views/ProjectListView.vue'),
     },
     {
-      path: '/project/:id',
+      // <------------------ 프로젝트 페이지 ------------------>
+      // path: '/project/:id',
+      path: '/project',
       name: 'Project',
-      component: () => import('@/project/views/ProjectRootView.vue'),
-      children: projectChildren
+      component: () => import('@/project/views/ProjectView.vue'),
+      children: [
+        {
+          path: 'issues',
+          component: () => import('@/project/views/IssueListView.vue')
+        },
+        {
+          path: 'create-issue',
+          component: () => import('@/views/project/issue/CreateIssueView.vue')
+        },
+        {
+          path: 'pull-requests',
+          component: () => import('@/views/project/pr/PRListView.vue')
+        },
+        {
+          path: 'create-pull-request',
+          component: () => import('@/views/project/pr/CreatePRView.vue')
+        },
+        {
+          path: 'commits',
+          component: () => import('@/views/project/commit/CommitListView.vue')
+        }
+      ]
     },
     {
       path: '/post',
@@ -91,10 +114,20 @@ const router = createRouter({
         }
       ]
     },
-    {
-      path: '/badge',
-      name: 'Badge',
-      component: () => import('@/views/BadgeView.vue'),
+    { 
+      path: '/member',
+      name: 'Member',
+      component: () => import('@/views/MemberView.vue'),
+      children: [
+        {
+          path: 'info',
+          component: () => import('@/components/member/MemberInfo.vue'),
+        },
+        {
+          path: 'profile',
+          component: () => import('@/components/member/MemberProfile.vue'),
+        },
+      ]
     },
   ]
 })
