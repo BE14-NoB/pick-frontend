@@ -1,7 +1,8 @@
 <template>
     <div class="layout-container">
-      <Sidebar :menu-items="menuItems" />
-  
+      <!-- Sidebar 컴포넌트 임포트하여 사용 -->
+      <MemberSideBar />
+
       <div class="member-info-container">
         <div class="member-info-container-item">
           <!-- 프로필 이미지 -->
@@ -98,8 +99,8 @@
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
   import { VAvatar, VBtn, VIcon } from 'vuetify/components';
-  import Sidebar from '@/components/project/ProjectSidebar.vue';
   import githubImage from '@/assets/issueMaker.png';
+  import MemberSideBar from '@/components/MemberSideBar.vue';
   
   const router = useRouter();
   
@@ -114,12 +115,6 @@
     githubLink: 'https://github.com/Gombo2',
     auth: 'member',
   });
-  
-  const menuItems = ref([
-    { type: 'menu', to: '/member/info', label: '내 정보', match: ['/member/info'] },
-    { type: 'menu', to: '/member/settings', label: '설정', match: ['/member/settings'] },
-    { type: 'menu', to: '/member/projects', label: '프로젝트', match: ['/member/projects'] },
-  ]);
   
   const goToEdit = () => {
     router.push('/member/info/edit');
@@ -140,7 +135,7 @@
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0px auto;
   }
   
   .member-info-container {
