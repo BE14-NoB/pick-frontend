@@ -130,6 +130,8 @@
   </script>
   
   <style scoped>
+
+  
   .layout-container {
     display: flex;
     gap: 20px;

@@ -79,7 +79,7 @@
     margin-bottom: 20px;
     position: relative;
     right: 470px;
-    bottom: 220px;
+    bottom: 420px;
   }
   
   .mypage-main {
