@@ -39,16 +39,13 @@ const model = computed({
 .custom-tab {
     font-weight: bold;
     color: rgba(0, 51, 102, 0.3);
-    /* 연한 파랑 */
     text-transform: none;
 }
 
 .custom-tab.selected-tab {
     color: #003366;
-    /* 진한 파랑 */
 }
 
-/* Vuetify 기본 slider 두께는 얇기 때문에 커스터마이징 필요하면 아래처럼: */
 ::v-deep(.v-tabs-slider) {
     height: 3px;
 }
