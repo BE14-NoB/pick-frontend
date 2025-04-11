@@ -135,6 +135,16 @@ const router = createRouter({
     //   name: 'SignUp',
     //   component: SignUp
     // },
+    {
+      path: '/issueList',
+      name: 'IssueList',
+      component: () => import('@/components/git/views/IssueList.vue')
+    },
+    {
+      path: '/dailymission',
+      name: 'DailyMission',
+      component: () => import('@/components/dailymission/views/DailyMission.vue')
+    }
   ]
 })
 
