@@ -18,7 +18,17 @@ const router = createRouter({
     {
       path: '/project',
       name: 'Project',
-      component: () => import('@/views/ProjectView.vue'),
+      component: () => import('@/project/views/ProjectView.vue'),
+      children: [
+        {
+          path: 'create-issue',
+          component: () => import('@/project/views/CreateIssueView.vue')
+        },
+        {
+          path: 'create-PR',
+          component: () => import('@/project/views/CreatePRView.vue')
+        }
+      ]
     },
     {
       path: '/board',
