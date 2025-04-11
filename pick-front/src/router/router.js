@@ -48,13 +48,13 @@ const projectChildren = [
   //   name: 'ProjectCommit',
   //   component: () => import('@/views/project/CommitView.vue'),
   // },
- 
+
 ];
 
 const router = createRouter({
   history: createWebHistory(),
 
-  routes : [
+  routes: [
     {
       path: '/',
       name: 'Main',
@@ -71,10 +71,33 @@ const router = createRouter({
       component: () => import('@/project/views/ProjectListView.vue'),
     },
     {
-      path: '/project/:id',
+      // <------------------ 프로젝트 페이지 ------------------>
+      // path: '/project/:id',
+      path: '/project',
       name: 'Project',
-      component: () => import('@/project/views/ProjectRootView.vue'),
-      children: projectChildren
+      component: () => import('@/project/views/ProjectView.vue'),
+      children: [
+        {
+          path: 'issues',
+          component: () => import('@/project/views/IssueListView.vue')
+        },
+        {
+          path: 'create-issue',
+          component: () => import('@/project/views/CreateIssueView.vue')
+        },
+        {
+          path: 'pull-requests',
+          component: () => import('@/project/views/PRListView.vue')
+        },
+        {
+          path: 'create-pull-request',
+          component: () => import('@/project/views/CreatePRView.vue')
+        },
+        {
+          path: 'commits',
+          component: () => import('@/project/views/CommitListView.vue')
+        }
+      ]
     },
     {
       path: '/post',
@@ -91,11 +114,6 @@ const router = createRouter({
         }
       ]
     },
-    {
-      path: '/badge',
-      name: 'Badge',
-      component: () => import('@/views/BadgeView.vue'),
-    },
     { 
       path: '/member',
       name: 'Member',
@@ -111,16 +129,6 @@ const router = createRouter({
         },
       ]
     },
-    {
-      path: '/dailymission',
-      name: 'DailyMission',
-      component: () => import('@/dailymission/views/DailyMissionView.vue'),
-    },
-    {
-      path: '/issueList',
-      name: 'IssueList',
-      component: () => import('@/views/IssueList.vue'),
-    }
   ]
 })
 
