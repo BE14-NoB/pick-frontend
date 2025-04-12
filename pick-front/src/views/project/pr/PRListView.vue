@@ -6,9 +6,9 @@
           <p class="desc">
             전체 {{ openPRs.length }}개 파일에서 {{ addedLines }}줄 추가 / {{ deletedLines }}줄 삭제되었음
           </p>
-
+          
           <PRCreateButton />
-
+          
           <div class="list-card">
             <List
               :headers="['번호', '제목', '리뷰어', '생성자', '생성일', '댓글 수']"
