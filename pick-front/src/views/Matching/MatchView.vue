@@ -1,13 +1,12 @@
 <template>
     <div>매칭 페이지</div>
-    <MatchingResult/>
     <MatchingSideBar/>
+    <RouterView/>
 </template>
   
 
 <script setup>
   import { ref } from 'vue'
-  import MatchingResult from '@/components/matching/MatchingResult.vue'
   import MatchingSideBar from '@/components/matching/MatchingSideBar.vue'
 
   const items = ref(Array.from({ length: 30 }, (k, v) => v + 1))

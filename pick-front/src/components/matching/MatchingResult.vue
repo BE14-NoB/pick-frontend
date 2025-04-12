@@ -1,6 +1,6 @@
 <template>
   <div class="matching-result">
-    <h1 class="title">매칭 조회 결과</h1>
+    <h2 class="page-title">매칭 조회 결과</h2>
     
     <div class="content-container">
       <v-infinite-scroll 
@@ -307,4 +307,8 @@ const loadMore = () => {
 .apply-button:hover {
   background: #1a4ca8;
 }
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    }
 </style> 
