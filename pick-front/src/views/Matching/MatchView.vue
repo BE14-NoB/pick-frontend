@@ -1,7 +1,6 @@
 <template>
     <div>매칭 페이지</div>
     <MatchingSideBar/>
-    <RouterView/>
 </template>
   
 

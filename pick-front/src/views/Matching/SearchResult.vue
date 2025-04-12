@@ -32,4 +32,9 @@
         border: 60% 80% 10% 10%;
         margin: 80px 0px 30px 0px;
     }
+
+    .page-title {
+    font-size: 24px;
+    font-weight: bold;
+    }
 </style>

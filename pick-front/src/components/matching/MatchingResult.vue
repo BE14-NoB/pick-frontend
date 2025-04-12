@@ -1,7 +1,6 @@
 <template>
   <div class="matching-result">
-    <h2 class="page-title">매칭 조회 결과</h2>
-    
+    <h2 class=page-title>매칭 조회 결과</h2>
     <div class="content-container">
       <v-infinite-scroll 
         :height="600" 
@@ -11,7 +10,7 @@
         class="scroll-container"
       >
         <template v-for="(result, index) in displayedResults" :key="index">
-          <div class="result-card">
+          <div class="result-card" @click="teamMate(index)">
             <div class="card-content">
               <div class="card-header">
                 <span class="host-info">방장: Lv.{{ result.hostLevel }} {{ result.hostName }}</span>
@@ -53,18 +52,26 @@
                 </div>
               </div>
             </div>
-
             <button class="apply-button">신청</button>
+            <template v-if="openedCardIndex === index">
+              <TeamMemberCard :members="result.members" />
+            </template>
           </div>
         </template>
       </v-infinite-scroll>
-      
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import TeamMemberCard from '@/components/matching/TeamMemberCard.vue'
+
+const openedCardIndex = ref(false)
+
+const teamMate = (index) => {
+  openedCardIndex.value = openedCardIndex.value === index ? false : index
+}
 // 전체 데이터
 const allResults = [
   {
@@ -74,7 +81,24 @@ const allResults = [
     maxMembers: 6,
     duration: 6,
     mainCategory: 'PC',
-    subCategory: '게임'
+    subCategory: '게임',
+    members: [
+    {
+    name: '봇치더코드',
+    level: 30,
+    rating: 4.4,
+  },
+  {
+    name: '체인소개발자',
+    level: 27,
+    rating: 4.7,
+  },
+  {
+    name: '코드코드체인지',
+    level: 35,
+    rating: 4.2,
+  }
+    ]
   },
   {
     hostLevel: 25,
@@ -83,7 +107,8 @@ const allResults = [
     maxMembers: 6,
     duration: 3,
     mainCategory: 'PC',
-    subCategory: '웹'
+    subCategory: '웹',
+    members: []
   },
   {
     hostLevel: 30,
@@ -92,7 +117,8 @@ const allResults = [
     maxMembers: 5,
     duration: 3,
     mainCategory: '모바일',
-    subCategory: 'ios'
+    subCategory: 'ios',
+    members: []
   },
   {
     hostLevel: 17,
@@ -101,7 +127,8 @@ const allResults = [
     maxMembers: 5,
     duration: 4,
     mainCategory: 'PC',
-    subCategory: null
+    subCategory: null,
+    members: []
   },
   {
     hostLevel: 20,
@@ -110,7 +137,9 @@ const allResults = [
     maxMembers: 7,
     duration: 6,
     mainCategory: '모바일',
-    subCategory: '게임'
+    subCategory: '게임',
+    members: [
+]
   },
   {
     hostLevel: 40,
@@ -119,7 +148,8 @@ const allResults = [
     maxMembers: 5,
     duration: 3,
     mainCategory: '모바일',
-    subCategory: '안드로이드'
+    subCategory: '안드로이드',
+    members: []
   },
   // 추가 데이터 (무한 스크롤 테스트용)
   {
@@ -129,7 +159,8 @@ const allResults = [
     maxMembers: 4,
     duration: 5,
     mainCategory: 'PC',
-    subCategory: '앱'
+    subCategory: '앱',
+    members: []
   },
   {
     hostLevel: 35,
@@ -138,7 +169,8 @@ const allResults = [
     maxMembers: 8,
     duration: 4,
     mainCategory: '모바일',
-    subCategory: '웹'
+    subCategory: '웹',
+    members: []
   },
   {
     hostLevel: 22,
@@ -147,7 +179,8 @@ const allResults = [
     maxMembers: 6,
     duration: 3,
     mainCategory: 'PC',
-    subCategory: '게임'
+    subCategory: '게임',
+    members: []
   },
   {
     hostLevel: 28,
@@ -156,7 +189,8 @@ const allResults = [
     maxMembers: 5,
     duration: 6,
     mainCategory: '모바일',
-    subCategory: 'ios'
+    subCategory: 'ios',
+    members: []
   }
 ]
 
@@ -307,6 +341,7 @@ const loadMore = () => {
 .apply-button:hover {
   background: #1a4ca8;
 }
+
 .page-title {
     font-size: 24px;
     font-weight: bold;
