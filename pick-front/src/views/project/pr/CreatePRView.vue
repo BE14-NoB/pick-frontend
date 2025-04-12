@@ -1,21 +1,47 @@
 <template>
-    <ProjectTabs v-model="selectedTab" :tabs="[
-        { label: '커밋', value: 'commit', icon: 'mdi-source-branch' },
-        { label: '파일 변경', value: 'file', icon: 'mdi-file-document' }
-    ]">
-        <template #commit>
-            <!-- 커밋 내용 -->
-        </template>
-        <template #file>
-            <!-- 파일 변경 내용 -->
-        </template>
-    </ProjectTabs>
-</template>
+    <section class="page-wrapper">
+        <!-- 브랜치 선택 -->
+        <PRBranchSelector />
 
+        <!-- PR 작성 폼 -->
+        <PRFormSection v-model:title="prTitle" v-model:content="prContent" v-model:reviewer="selectedReviewer"
+            v-model:creator="selectedProject" @cancel="goToReviewPR" @submit="goToPRList" />
+    </section>
+</template>
 
 <script setup>
 import { ref } from 'vue'
-import ProjectTabs from '@/components/project/ProjectTabs.vue'
+import PRBranchSelector from '@/components/project/pr/PRBranchSelector.vue'
 
-const selectedTab = ref('commit')
+// 라우터
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+
+// 작성 폼
+import PRFormSection from '@/components/project/pr/PRFormSection.vue'
+const prTitle = ref('')
+const prContent = ref('')
+const selectedReviewer = ref('seokhee')
+const selectedProject = ref('pick')
+
+// 취소하기 버튼
+function goToReviewPR() {
+    router.push('/project/review-pull-request')
+}
+
+// 생성하기 버튼
+function goToPRList() {
+    router.push('/project/pull-requests')
+}
+
 </script>
+
+<style scoped>
+.page-wrapper {
+    width: 100%;
+    padding: 0px;
+    margin-top: 20px;
+    max-width: 1100px;
+}
+</style>
