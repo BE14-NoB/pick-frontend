@@ -2,6 +2,12 @@
 export const menuItems = [
     // 사이드바용 메뉴
     {
+        to: '/project/dashboard',
+        label: 'DASHBOARD',
+        type: 'menu',
+        match: ['/project/dashboard', '/project/dashboard']
+    },
+    {
         to: '/project/issues',
         label: 'ISSUE',
         type: 'menu',
@@ -20,12 +26,13 @@ export const menuItems = [
         match: ['/project/pull-requests', '/project/create-pull-request']
     },
 
+
     // 페이지별 정보
     {
         to: '/project/issues',
         label: 'ISSUE',
         title: '이슈 목록',
-        description: 'gPalsqkqh',
+        description: '이슈 목록을 조회할 수 있습니다.',
         match: ['/project/issues'],
         type: 'page'
     },
@@ -41,7 +48,7 @@ export const menuItems = [
         to: '/project/pull-requests',
         label: 'PR',
         title: 'PR 목록',
-        description: '혜민바보',
+        description: 'PR 목록을 조회할 수 있습니다.',
         match: ['/project/pull-requests'],
         type: 'page'
     },

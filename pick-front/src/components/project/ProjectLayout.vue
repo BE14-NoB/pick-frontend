@@ -6,9 +6,11 @@
         <div class="content-wrapper">
             <Sidebar :menu-items="menuItems" />
             <main class="main-content">
+            <template v-if="route.path !== '/project/dashboard'">
                 <h2 class="page-title">{{ pageTitle }}</h2>
                 <p class="page-desc">{{ pageDescription }}</p>
-                <slot />
+            </template>
+            <slot />
             </main>
         </div>
 </template>

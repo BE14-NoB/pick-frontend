@@ -3,21 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 
 const projectChildren = [
-  {
-    path: 'dashboard',
-    name: 'ProjectDashboard',
-    component: () => import('@/project/views/DashboardView.vue'),
-  },
-  {
-    path: 'info',
-    name: 'ProjectInfo',
-    component: () => import('@/project/views/ProjectInfoView.vue'),
-  },
-  {
-    path: 'detail',
-    name: 'ProjectDetail',
-    component: () => import('@/project/views/ProjectDetailView.vue'),
-  },
   // {
   //   path: 'meeting',
   //   name: 'ProjectMeeting',
@@ -73,23 +58,23 @@ const router = createRouter({
     {
       path: '/project-list',
       name: 'ProjectList',
-      component: () => import('@/project/views/ProjectListView.vue'),
+      component: () => import('@/views/project/ProjectListView.vue')
     },
     {
       path: '/project/:id/detail',
       name: 'ProjectDetail',
-      component: () => import('@/project/views/ProjectDetailView.vue'),
+      component: () => import('@/views/project/ProjectDetailView.vue')
     },
     {
       // <------------------ 프로젝트 페이지 ------------------>
       // path: '/project/:id',
       path: '/project',
       name: 'Project',
-      component: () => import('@/project/views/ProjectView.vue'),
+      component: () => import('@/views/project/ProjectView.vue'),
       children: [
         {
           path: 'issues',
-          component: () => import('@/project/views/IssueListView.vue')
+          component: () => import('@/views/project/issue/IssueList.vue')
         },
         {
           path: 'create-issue',
@@ -107,10 +92,15 @@ const router = createRouter({
           path: 'commits',
           component: () => import('@/views/project/commit/CommitListView.vue')
         },
+        {
+          path: 'dashboard',
+          component: () => import('@/views/project/dashboard/DashboardView.vue')
+        },
       ]
     },
     {
       path: '/post',
+      redirect: '/post/list/free',
       name: 'Post',
       component: () => import('@/views/PostView.vue'),
       children: [
@@ -137,6 +127,14 @@ const router = createRouter({
           path: 'profile',
           component: () => import('@/components/member/MemberProfile.vue'),
         },
+        {
+          path: 'login',
+          component: () => import('@/components/member/MemberLogin.vue'),
+        },
+        // {
+        //   path: 'signup',
+        //   component: () => import('@/components/member/MemberSignUp.vue'),
+        // },
       ]
     },
     // 회원가입
@@ -145,11 +143,6 @@ const router = createRouter({
     //   name: 'SignUp',
     //   component: SignUp
     // },
-    {
-      path: '/issueList',
-      name: 'IssueList',
-      component: () => import('@/components/git/views/IssueList.vue')
-    },
     {
       path: '/dailymission',
       name: 'DailyMission',
