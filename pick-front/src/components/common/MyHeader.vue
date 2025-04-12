@@ -46,14 +46,17 @@
                 <v-list-item-title>마이페이지</v-list-item-title>
               </RouterLink>
             </v-list-item>
+            <v-list-item @click.prevent="handleLogout">
+              <RouterLink to="/" class="menu-link" @click.prevent>
+                <v-list-item-title>로그아웃</v-list-item-title>
+              </RouterLink>
+            </v-list-item>
           </v-list>
         </v-menu>
       </template>
       <template v-else>
         <button class="btn login" @click="openLoginModal">로그인</button>
-        <RouterLink to="/member/signup">
-          <button class="btn signup">회원가입</button>
-        </RouterLink>
+        <button class="btn signup" @click="openSignupModal">회원가입</button>
       </template>
     </div>
 
@@ -71,18 +74,40 @@
         <MemberLogin @login="handleLogin" />
       </div>
     </div>
+
+    <!-- 회원가입 모달 -->
+    <div v-if="isSignupModalOpen" class="modal-overlay">
+      <div class="modal-content signup-modal">
+        <v-btn
+          class="close-btn"
+          icon="mdi-close"
+          variant="text"
+          color="grey-darken-2"
+          size="large"
+          @click="closeSignupModal"
+        ></v-btn>
+        <MemberSignup @signup="handleSignup" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { VImg, VMenu, VList, VListItem, VListItemTitle, VBtn } from 'vuetify/components'
 import MemberLogin from '@/components/member/MemberLogin.vue'
+import MemberSignup from '@/components/member/MemberSignup.vue'
+
+// 라우터 인스턴스 가져오기
+const router = useRouter()
 
 // 로그인 여부
 const isLogin = ref(false)
 // 로그인 모달 표시 여부
 const isLoginModalOpen = ref(false)
+// 회원가입 모달 표시 여부
+const isSignupModalOpen = ref(false)
 
 // 메뉴 항목
 const menus = [
@@ -102,10 +127,32 @@ const closeLoginModal = () => {
   isLoginModalOpen.value = false
 }
 
+// 회원가입 모달 열기
+const openSignupModal = () => {
+  isSignupModalOpen.value = true
+}
+
+// 회원가입 모달 닫기
+const closeSignupModal = () => {
+  isSignupModalOpen.value = false
+}
+
 // 로그인 처리 (임시)
 const handleLogin = () => {
   isLogin.value = true
   closeLoginModal()
+}
+
+// 회원가입 처리 (임시)
+const handleSignup = () => {
+  closeSignupModal()
+  router.push('/')
+}
+
+// 로그아웃 처리
+const handleLogout = () => {
+  isLogin.value = false
+  router.push('/')
 }
 </script>
 
@@ -226,12 +273,16 @@ const handleLogin = () => {
 
 .modal-content {
   position: relative;
-  background-color: white; /* 투명에서 흰색으로 변경 */
+  background-color: white;
   max-width: 500px;
   width: 100%;
   padding: 20px;
-  border-radius: 12px; /* 모서리 둥글게 */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.signup-modal {
+  max-width: 600px; /* 회원가입 모달은 더 넓게 */
 }
 
 .close-btn {
