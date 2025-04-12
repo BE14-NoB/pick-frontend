@@ -2,7 +2,7 @@
     <div class="branch-wrapper">
         <v-icon class="branch-icon" icon="mdi-source-branch" />
 
-        <div class="branch-box">
+        <div class="branch-box base-box">
             <div class="branch-label">base :</div>
             <div class="branch-value">main</div>
         </div>
@@ -78,6 +78,11 @@ const filteredHeadBranches = computed(() =>
 .branch-label {
     font-size: 13px;
     color: #57606a;
+}
+
+.base-box {
+    background-color: #e6e6e6;
+    border: 1px solid #d0d7de;
 }
 
 /* base 고정값 */
