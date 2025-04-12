@@ -81,7 +81,7 @@ const filteredHeadBranches = computed(() =>
 }
 
 .base-box {
-    background-color: #e6e6e6;
+    background-color: #f3f4f6;
     border: 1px solid #d0d7de;
 }
 
@@ -89,7 +89,7 @@ const filteredHeadBranches = computed(() =>
 .branch-value {
     font-weight: 600;
     font-size: 14px;
-    color: #24292f;
+    color: #999999;
 }
 
 /* 가운데 화살표 */
