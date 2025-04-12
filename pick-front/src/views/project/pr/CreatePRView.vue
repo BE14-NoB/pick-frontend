@@ -56,10 +56,11 @@ const projectOptions = [
 
 /* 전체 영역 중앙 정렬 */
 .form-layout {
-    max-width: 1150px;
+    max-width: 1250px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    padding-top: 30px;
     gap: 2rem;
 }
 

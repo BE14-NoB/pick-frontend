@@ -44,91 +44,103 @@ const filteredHeadBranches = computed(() =>
 .branch-wrapper {
     display: flex;
     align-items: center;
-    background-color: #f5f6f8;
-    padding: 12px 16px;
-    border-radius: 10px;
-    gap: 12px;
+    background-color: #f6f8fa;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 1px solid #d0d7de;
+    max-width: 1250px;
+    height: 60px;
+    gap: 16px;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* 아이콘 */
+/* 브랜치 아이콘 */
 .branch-icon {
-    color: #444;
-    font-size: 20px;
-    margin-right: 4px;
+    color: #57606a;
+    font-size: 22px;
 }
 
-/* base/head 전체 박스 */
+/* base, head 묶음 박스 */
 .branch-box {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8px 12px;
-    background-color: #eaeaea;
-    border-radius: 10px;
-    max-height: 100px;
-    min-width: 200px;
-    font-size: 14px;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    background-color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid #d0d7de;
+    height: 36px;
+    min-width: 250px;
 }
 
-/* label */
+/* base, head 라벨 */
 .branch-label {
-    font-size: 12px;
-    color: #999;
-
-    max-height: 100px;
-    min-width: 200px;
+    font-size: 13px;
+    color: #57606a;
 }
 
-/* base/head 값 */
+/* base 고정값 */
 .branch-value {
     font-weight: 600;
-    color: #333;
-    max-height: 100px;
-    min-width: 200px;
-}
-
-/* head 드롭다운 커스터마이징 */
-.branch-select>>>.v-field {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    min-height: 10px;
-}
-
-.branch-select>>>.v-field__input {
-    font-weight: 600;
-    color: #333;
-    padding: 0 !important;
-}
-
-.branch-select>>>.v-label {
-    display: none;
+    font-size: 14px;
+    color: #24292f;
 }
 
 /* 가운데 화살표 */
 .branch-arrow {
-    font-size: 18px;
-    color: #555;
+    font-size: 24px;
+    color: #57606a;
+    font-weight: 900;
+    margin: 0 4px;
+}
+
+/* v-select 커스터마이징 */
+.branch-select >>> .v-field {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    min-height: 0;
+    padding: 0;
+}
+
+.branch-select >>> .v-field__input {
+    font-weight: 600;
+    font-size: 14px;
+    color: #24292f;
+    padding: 0 !important;
+}
+
+.branch-select >>> .v-label {
+    display: none;
+}
+
+.branch-select >>> .v-input__control {
+    padding: 0;
+    min-height: 0;
 }
 
 /* 경고 메시지 */
 .warning-box {
     display: flex;
     align-items: center;
-    gap: 4px;
-    margin-left: 12px;
-    font-size: 20px;
-    white-space: nowrap;
+    gap: 8px;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.warning-box .icon {
+    font-size: 18px;
+    color: #e5534b;
 }
 
 .warning-box .label {
-    color: #e74c3c;
-    font-weight: bold;
+    color: #e5534b;
+    font-weight: 600;
 }
 
 .warning-box .desc {
-    color: #999;
-    font-size: 13px;
+    color: #57606a;
 }
+
 </style>
