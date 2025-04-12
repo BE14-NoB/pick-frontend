@@ -27,19 +27,6 @@
           <div v-if="isPrimary(meeting, index) && meeting.date" class="date">{{ meeting.date }}</div>
         </div>
       </RouterLink>
-
-      <!-- <RouterLink
-        v-for="meeting in pagedMeetings"
-        :key="meeting.id"
-        :to="`/meeting/${meeting.id}`"
-        :class="['meeting-card', { primary: meeting.primary }]"
-      >
-        <span v-if="meeting.tag" class="tag">{{ meeting.tag }}</span>
-        <div class="meeting-content">
-          <div class="title">{{ meeting.title }}</div>
-          <div v-if="meeting.date" class="date">{{ meeting.date }}</div>
-        </div>
-      </RouterLink> -->
     </div>
 
     <!-- 도트 페이지네이션 -->

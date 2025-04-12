@@ -28,8 +28,28 @@
             <ScheduleWidget  class="dashboard-schedule"/>
 
             <div class="dashboard-dday" >
-                <v-card text="dday" class="dday-button" flat />
-                <v-card text="dday" class="dday-button" flat />
+                <v-card class="dday-button" flat>
+                <div class="d-flex justify-space-between align-center px-4 py-1">
+                    <div class="text-h5 font-weight-bold">
+                    <span v-if="dday >= 0">D - {{ dday }}</span>
+                    <span v-else>+ {{ Math.abs(dday) }}days</span>
+                    </div>
+                    <div class="text-right">
+                    <div class="text-subtitle-2">프로젝트 마감일까지</div>
+                    <div class="text-caption text-grey">{{ endDate }}</div>
+                    </div>
+                </div>
+                </v-card>
+
+                <v-card class="dday-button" flat>
+                  <div class="d-flex justify-space-between align-center px-4 py-1">
+                    <div class="text-h5 font-weight-bold">+ {{ elapsedDays }}days</div>
+                    <div class="text-right">
+                      <div class="text-subtitle-2">프로젝트 시작한 지</div>
+                      <div class="text-caption text-grey">{{ startDate }} ~ ing</div>
+                    </div>
+                  </div>
+                </v-card>
             </div>
         </div>
         <div class="box c">
@@ -48,11 +68,27 @@
     import MemberWidget from '@/components/project/MemberWidget.vue';
     import {ref, onMounted, computed} from 'vue';
     import {useRoute} from 'vue-router';
+    import dayjs from 'dayjs'
 
     const route = useRoute()
     // const id = route.params.id  
-    const id = 1;       //
+    const id = 1-1;       //
     const gitInfo = ref(null)
+    const project = ref(null)
+
+
+    const dday = computed(() => {
+    if (!project.value) return 0
+    const end = dayjs(project.value.end_date)
+    return end.diff(dayjs(), 'day')
+    })
+    const elapsedDays = computed(() => {
+    if (!project.value) return 0
+    const start = dayjs(project.value.start_date)
+    return dayjs().diff(start, 'day')
+    })
+    const startDate = computed(() => dayjs(project.value?.start_date).format('YY.MM.DD'))
+    const endDate = computed(() => dayjs(project.value?.end_date).format('YY.MM.DD'))
 
     const commit = computed(() => gitInfo.value?.commit || {
     branch: { "branch-list": [], count: 0 },
@@ -65,17 +101,22 @@
     // 프로젝트 깃 정보 가져오기
     onMounted(async () => {
       try {
-        const res = await fetch('http://localhost:8083/git-info')
-        if (!res.ok) throw new Error('네트워크 응답 실패')
+        const [gitRes, projectRes] = await Promise.all([
+            fetch('http://localhost:8083/git-info'),
+            fetch(`http://localhost:8081/${id}`)
+        ])
 
-        const data = await res.json()
-        gitInfo.value = data
-        console.log(data)
-      } catch (err) {
-        console.error('❌ Git 정보 가져오기 실패:', err)
-      }
+        if (!gitRes.ok || !projectRes.ok) throw new Error('요청 실패')
+
+        gitInfo.value = await gitRes.json()
+        project.value = await projectRes.json()
+
+        console.log('✅ Git Info:', gitInfo.value)
+        console.log('✅ Project Info:', project.value)
+    } catch (err) {
+        console.error('❌ 데이터 불러오기 실패:', err)
+    }
     })
-    
 
 </script>
 
@@ -97,12 +138,9 @@
 
 
 .box {
-  /* background-color: #ccc; */
-  /* border: 2px solid #000; */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* justify-content: space-around; */
   font-weight: bold;
 }
 
@@ -142,18 +180,23 @@
     height: 65%;
 }
 .dashboard-dday {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 35%;
-    /* background-color: yellow; */
-    gap:8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 35%;
+  gap: 8px;
 }
-.dday-button{
-    border-radius: 10px;
-    height: 50%;
-    background: linear-gradient(to right, #dcebf5, #ffffff);
+.dday-button {
+  border-radius: 10px;
+  padding : 5px;
+  height: 50%;
+  background: linear-gradient(to right, #dcebf5, #ffffff);
+  cursor: pointer;
 }
 
+  
+.dday-button:hover {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  }
 
 </style>

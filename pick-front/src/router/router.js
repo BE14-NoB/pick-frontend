@@ -45,6 +45,10 @@ const router = createRouter({
           component: () => import('@/views/project/pr/PRListView.vue')
         },
         {
+          path: 'review-pull-request',
+          component: () => import('@/views/project/pr/ReviewPRView.vue')
+        },
+        {
           path: 'create-pull-request',
           component: () => import('@/views/project/pr/CreatePRView.vue')
         },

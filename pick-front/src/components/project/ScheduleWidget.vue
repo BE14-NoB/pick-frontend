@@ -19,6 +19,9 @@
         </v-date-picker>
       </template>
       <template v-else>
+        <div class="header">
+        <span class="chart-title">일주일 프로젝트 진행도</span>
+        </div>
         <div class="content-box">
           <WeeklyChart />
         </div>
@@ -31,7 +34,7 @@
   import WeeklyChart from '@/components/project/WeeklyChart.vue'
   import { ref } from 'vue'
   
-  const showCalendar = ref(true)
+  const showCalendar = ref(false)
   
   function toggleView() {
     showCalendar.value = !showCalendar.value
@@ -48,8 +51,8 @@
   
   .floating-toggle {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 18px;
+    right: 18px;
     z-index: 10;
     background-color: #f0f0f0;
     border-radius: 50%;
@@ -63,6 +66,9 @@
   
   .content-box {
     width: 100%;
+    height: 100%;
+    align-items: center;
+    align-content: center;
   }
   
   /* Vuetify 내부 타이틀 제거 */
@@ -72,5 +78,17 @@
   :deep(.v-date-picker-header) {
     margin-top: 0 !important;
   }
+
+  .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4C4C4C;
+}
   </style>
   
