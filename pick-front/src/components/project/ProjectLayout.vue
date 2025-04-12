@@ -76,6 +76,8 @@ watchEffect(() => {
 .main-content {
     flex: 1;
     padding: 24px;
+    margin-right: 10%;
+
 }
 
 .page-title {
