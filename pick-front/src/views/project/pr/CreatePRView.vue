@@ -5,7 +5,7 @@
 
         <!-- PR 작성 폼 -->
         <PRFormSection v-model:title="prTitle" v-model:content="prContent" v-model:reviewer="selectedReviewer"
-            v-model:creator="selectedProject" @submit="goToPRList" @cancel="goToReviewPR" />
+            v-model:creator="selectedProject" @cancel="goToReviewPR" @submit="goToPRList" />
     </section>
 </template>
 
@@ -27,12 +27,12 @@ const selectedProject = ref('pick')
 
 // 취소하기 버튼
 function goToReviewPR() {
-  router.push('/project/review-pull-request')
+    router.push('/project/review-pull-request')
 }
 
 // 생성하기 버튼
 function goToPRList() {
-  router.push('/project/pull-requests')
+    router.push('/project/pull-requests')
 }
 
 </script>

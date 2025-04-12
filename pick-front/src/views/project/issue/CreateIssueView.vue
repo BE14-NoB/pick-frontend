@@ -4,7 +4,7 @@
             <!-- 왼쪽: Form 입력 -->
             <div class="form-left">
                 <FormEditor v-model:titleModel="issueTitle" v-model:contentModel="issueContent" titleLabel="이슈 제목"
-                    contentLabel="이슈 설명" />
+                    contentLabel="이슈 설명" @cancel="goToIssues" @submit="createIssue" />
             </div>
 
             <!-- 오른쪽: 드롭다운 -->
@@ -20,14 +20,25 @@
 <script setup>
 import { ref } from 'vue'
 
+// 라우터
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
 // 작성 폼 관련
 import FormEditor from '@/components/project/FormEditor.vue'
 const issueTitle = ref('')
 const issueBody = ref('')
 
+// 이슈 목록으로 이동
+function goToIssues() {
+    router.push('/project/issues')
+}
+
+// 생성하기 버튼
 function createIssue() {
-    // TODO: 실제 API 연결
-    console.log('✅ 이슈 생성:', issueTitle.value, issueBody.value)
+    goToIssues();
+
+    // 🚩TODO: 실제 API 연결
 }
 
 // 드롭다운 관련
