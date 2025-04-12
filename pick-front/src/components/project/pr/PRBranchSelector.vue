@@ -48,7 +48,7 @@ const filteredHeadBranches = computed(() =>
     padding: 12px 20px;
     border-radius: 8px;
     border: 1px solid #d0d7de;
-    max-width: 1250px;
+    max-width: 1200px;
     height: 60px;
     gap: 16px;
     font-family: 'Segoe UI', sans-serif;
