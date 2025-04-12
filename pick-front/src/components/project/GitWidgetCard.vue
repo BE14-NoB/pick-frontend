@@ -1,5 +1,5 @@
 <template>
-    <v-card class="git-widget-card" elevation="0" rounded="xl" :style="{ background: cardGradient }">
+    <v-card class="git-widget-card"  rounded="xl" :style="{ background: cardGradient }" flat>
       <!-- 상단 아이콘 -->
       <div class="icon-wrapper" :style="{ backgroundColor: iconBgColor }">
         <v-icon size="40" color="white">{{ iconName }}</v-icon>
@@ -56,6 +56,10 @@
   
   // commit용 selected branch
   const selectedBranch = ref(props.button.branches?.[0] || 'main')
+  const branchCommitCount = computed(() => {
+      const found = props.data.commitMetaList?.find(b => b.branch === selectedBranch.value)
+      return found?.count || 0
+  })
   
   // 카드 제목 및 서브타이틀
   const title = computed(() => {
@@ -65,10 +69,11 @@
   })
   
   const subtitle = computed(() => {
-    if (props.type === 'commit') return `${props.data.commitCount} Commits`
+    if (props.type === 'commit') return `${branchCommitCount.value} Commits`
     if (props.type === 'pull-request') return `opened ${props.data.open} closed ${props.data.closed}`
     return `opened ${props.data.open} closed ${props.data.closed}`
   })
+
   
   // 아이콘 및 배경색
   const iconName = computed(() => {
@@ -106,6 +111,11 @@
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    cursor: pointer; /* 커서 변경 */
+  }
+  
+  .git-widget-card:hover {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
   }
   
   .icon-wrapper {
@@ -129,9 +139,10 @@
   }
   
   .card-subtitle {
-    margin: 0;
+    margin-top: 0;
     font-size: 14px;
     color: #8e8e8e;
+    font-weight: lighter;
   }
   
   .bottom-action {

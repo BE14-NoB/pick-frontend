@@ -1,41 +1,6 @@
 // src/router/router.js
 import { createRouter, createWebHistory } from 'vue-router'
 
-
-const projectChildren = [
-  // {
-  //   path: 'meeting',
-  //   name: 'ProjectMeeting',
-  //   component: () => import('@/views/project/MeetingView.vue'),
-  // },
-  // {
-  //   path: 'members',
-  //   name: 'ProjectMembers',
-  //   component: () => import('@/views/project/MembersView.vue'),
-  // },
-  // {
-  //   path: 'reviews',
-  //   name: 'ProjectReviews',
-  //   component: () => import('@/views/project/ReviewsView.vue'),
-  // },
-  // {
-  //   path: 'issues',
-  //   name: 'ProjectIssues',
-  //   component: () => import('@/views/project/IssuesView.vue'),
-  // },
-  // {
-  //   path: 'pr',
-  //   name: 'ProjectPR',
-  //   component: () => import('@/views/project/PRView.vue'),
-  // },
-  // {
-  //   path: 'commit',
-  //   name: 'ProjectCommit',
-  //   component: () => import('@/views/project/CommitView.vue'),
-  // },
-
-];
-
 const router = createRouter({
   history: createWebHistory(),
 
@@ -53,13 +18,12 @@ const router = createRouter({
     {
       path: '/project-list',
       name: 'ProjectList',
-      component: () => import('@/views/project/ProjectListView.vue')
+      component: () => import('@/views/project/finished/ProjectListView.vue')
     },
     {
       path: '/project/:id/detail',
       name: 'ProjectDetail',
-      component: () => import('@/views/project/ProjectDetailView.vue')
-      component: () => import('@/views/project/finished/ProjectDetailView.vue'),
+      component: () => import('@/views/project/finished/ProjectDetailView.vue')
     },
     {
       // <------------------ 프로젝트 페이지 ------------------>
@@ -92,7 +56,14 @@ const router = createRouter({
           path: 'dashboard',
           component: () => import('@/views/project/dashboard/DashboardView.vue')
         },
-        
+        {
+          path: 'info',
+          component: () => import('@/views/project/info/ProjectInfoView.vue')
+        },
+        {
+          path: 'member',
+          component: () => import('@/views/project/member/ProjectMemberView.vue')
+        },
         {
           path: 'meetings',
           component: () => import('@/views/project/meeting/MeetingList.vue')
@@ -100,6 +71,10 @@ const router = createRouter({
         {
           path: 'create-meeting',
           component: () => import('@/views/project/meeting/CreaetMeeting.vue')
+        },
+        {
+          path: 'review',
+          component: () => import('@/views/project/review/ProjectReview.vue')
         }
       ]
     },

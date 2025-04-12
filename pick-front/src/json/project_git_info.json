@@ -1,0 +1,282 @@
+{
+    "git-info" : {
+        "commit" : {
+            "branch" : {
+                "count" : 10,
+                "branch-list" : ["main", "develop", "feature/login-api", "feature/password-reset", "feature/project-create"]
+            },
+            "commit-list" : [
+                {
+                    "branch" : "main",
+                    "count" : 180, 
+                    "commit-list" : [
+                        {
+                            "num" : 350,
+                            "author" : "yehang",
+                            "date" : "2025-04-07",
+                            "title" : "[Feature] 깃 커밋, 이슈, PR 조회 기능 구현",
+                            "hashcode" : "3d3be2c"
+                        }
+                    ]
+                }
+            ]
+        },
+        "pull-request" : {
+            "count" : {
+                "total" : 112,
+                "open" : 12,
+                "closed" : 100
+            }, 
+            "pull-request-list" : [
+                {
+                  "number": "#123",
+                  "title": "Feature : 로그인 로직 구현",
+                  "reviewers": 3,
+                  "creator": "꼼곰보",
+                  "date": "2025-04-07",
+                  "comments": 3,
+                  "added": 812,
+                  "deleted": 119,
+                  "status": "open"
+                },
+                {
+                  "number": "#122",
+                  "title": "Refactor : 로그인 유효성 개선",
+                  "reviewers": 2,
+                  "creator": "석키키키킼",
+                  "date": "2025-04-05",
+                  "comments": 1,
+                  "added": 203,
+                  "deleted": 45,
+                  "status": "open"
+                },
+                {
+                  "number": "#121",
+                  "title": "Feature : OAuth 로그인 연동",
+                  "reviewers": 4,
+                  "creator": "혬부기",
+                  "date": "2025-04-03",
+                  "comments": 2,
+                  "added": 356,
+                  "deleted": 20,
+                  "status": "open"
+                },
+                {
+                  "number": "#120",
+                  "title": "Feature : 유저 프로필 페이지 구현",
+                  "reviewers": 3,
+                  "creator": "BlueSky",
+                  "date": "2025-04-02",
+                  "comments": 4,
+                  "added": 475,
+                  "deleted": 12,
+                  "status": "open"
+                },
+                {
+                  "number": "#119",
+                  "title": "Enhancement : UI 다듬기",
+                  "reviewers": 2,
+                  "creator": "시냥주",
+                  "date": "2025-04-01",
+                  "comments": 0,
+                  "added": 88,
+                  "deleted": 11,
+                  "status": "open"
+                },
+                {
+                  "number": "#118",
+                  "title": "Feature : 비밀번호 찾기 기능 추가",
+                  "reviewers": 1,
+                  "creator": "민선",
+                  "date": "2025-03-30",
+                  "comments": 2,
+                  "added": 291,
+                  "deleted": 19,
+                  "status": "open"
+                },
+                {
+                  "number": "#117",
+                  "title": "Bugfix : 닉네임 중복 체크 안되는 이슈",
+                  "reviewers": 2,
+                  "creator": "꼼곰보",
+                  "date": "2025-03-29",
+                  "comments": 3,
+                  "added": 22,
+                  "deleted": 9,
+                  "status": "open"
+                },
+                {
+                  "number": "#116",
+                  "title": "Docs : API 명세 업데이트",
+                  "reviewers": 1,
+                  "creator": "민선",
+                  "date": "2025-03-27",
+                  "comments": 0,
+                  "added": 120,
+                  "deleted": 5,
+                  "status": "closed"
+                },
+                {
+                  "number": "#115",
+                  "title": "Refactor : PR 목록 정렬 개선",
+                  "reviewers": 2,
+                  "creator": "시냥주",
+                  "date": "2025-03-25",
+                  "comments": 1,
+                  "added": 134,
+                  "deleted": 48,
+                  "status": "closed"
+                },
+                {
+                  "number": "#114",
+                  "title": "Feature : 다크모드 지원",
+                  "reviewers": 3,
+                  "creator": "BlueSky",
+                  "date": "2025-03-23",
+                  "comments": 5,
+                  "added": 610,
+                  "deleted": 22,
+                  "status": "closed"
+                },
+                {
+                  "number": "#113",
+                  "title": "Refactor : PR 템플릿 정리",
+                  "reviewers": 1,
+                  "creator": "혬부기",
+                  "date": "2025-03-20",
+                  "comments": 2,
+                  "added": 98,
+                  "deleted": 10,
+                  "status": "closed"
+                },
+                {
+                  "number": "#112",
+                  "title": "Feature : 마이페이지 사이드바 구현",
+                  "reviewers": 2,
+                  "creator": "석키키키킼",
+                  "date": "2025-03-18",
+                  "comments": 3,
+                  "added": 432,
+                  "deleted": 60,
+                  "status": "closed"
+                }
+              ]
+              
+
+        },
+        "issue" : {
+            "count": {
+                "total" : 206,
+                "open" : 3,
+                "closed" : 203 
+            },
+            "issue-list" : [
+                {
+                  "number": "#101",
+                  "title": "[Project] 프로젝트 생성 기능 구현",
+                  "label": "✨ enhancement",
+                  "type": "Feature",
+                  "milestone": "v1.0 기능 개발 완료",
+                  "status": "open"
+                },
+                {
+                  "number": "#102",
+                  "title": "[DailyMission] 출석 체크 기능 구현",
+                  "label": "✨ enhancement",
+                  "type": "Feature",
+                  "milestone": "v1.0 기능 개발 완료",
+                  "status": "open"
+                },
+                {
+                  "number": "#103",
+                  "title": "[Matching] 추천 알고리즘 개선",
+                  "label": "✨ enhancement",
+                  "type": "Feature",
+                  "milestone": "추천 기능 개선",
+                  "status": "open"
+                },
+                {
+                  "number": "#104",
+                  "title": "[Challenge] 도전과제 리팩토링",
+                  "label": "🛠️ refactoring",
+                  "type": "Refactor",
+                  "milestone": "코드 안정화 주간",
+                  "status": "open"
+                },
+                {
+                  "number": "#105",
+                  "title": "[Badge] 뱃지 목록 필터 기능 추가",
+                  "label": "✨ enhancement",
+                  "type": "Feature",
+                  "milestone": "UI 개선 작업",
+                  "status": "open"
+                },
+                {
+                  "number": "#106",
+                  "title": "[Project] 삭제 기능 오류 수정",
+                  "label": "🐛 bug",
+                  "type": "Bug",
+                  "milestone": "긴급 패치 v1.0.1",
+                  "status": "open"
+                },
+                {
+                  "number": "#107",
+                  "title": "[Matching] 사용자 매칭 결과 저장 기능 구현",
+                  "label": "✨ enhancement",
+                  "type": "Feature",
+                  "milestone": "v1.1 기능 확장",
+                  "status": "open"
+                },
+                {
+                  "number": "#201",
+                  "title": "[DailyMission] 출석 UI 리팩토링",
+                  "label": "🛠️ refactoring",
+                  "type": "Refactor",
+                  "milestone": "UI 개선 작업",
+                  "status": "closed"
+                },
+                {
+                  "number": "#202",
+                  "title": "[Project] 상세 페이지 문서화",
+                  "label": "📚 docs",
+                  "type": "Docs",
+                  "milestone": "v1.0 문서 정리",
+                  "status": "closed"
+                },
+                {
+                  "number": "#203",
+                  "title": "[Badge] 툴팁 추가",
+                  "label": "✨ enhancement",
+                  "type": "Feature",
+                  "milestone": "UX 개선 작업",
+                  "status": "closed"
+                },
+                {
+                  "number": "#204",
+                  "title": "[Challenge] 미션 질문 기능 회의",
+                  "label": "❓ question",
+                  "type": "Discussion",
+                  "milestone": "기획 회의",
+                  "status": "closed"
+                },
+                {
+                  "number": "#205",
+                  "title": "[Project] 카드 디자인 개선",
+                  "label": "🛠️ refactoring",
+                  "type": "Refactor",
+                  "milestone": "UI 개선 작업",
+                  "status": "closed"
+                },
+                {
+                  "number": "#206",
+                  "title": "[Matching] 매칭 로직 구조 분리",
+                  "label": "🛠️ refactoring",
+                  "type": "Refactor",
+                  "milestone": "코드 안정화 주간",
+                  "status": "closed"
+                }
+              ]
+              
+        }
+    
+    }}

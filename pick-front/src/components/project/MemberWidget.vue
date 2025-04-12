@@ -1,5 +1,6 @@
 <template>
-    <v-card class="widget-container" flat>
+    <v-card class="widget-container" flat 
+            @click="goToMemberList">
       <div class="header">
         <span class="member-title">팀원</span>
   
@@ -10,7 +11,7 @@
             :key="index"
             :class="['dot', { active: index === currentPage }]"
             @click="currentPage = index"
-          />
+          ></span>
         </div>
       </div>
   
@@ -36,6 +37,8 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const members = [
   { id: 1, name: '꿈곰보', role: '백엔드 개발자', profileImg: '/avatar.png' },
@@ -54,6 +57,10 @@ const pagedMembers = computed(() => {
   const start = currentPage.value * membersPerPage
   return members.slice(start, start + membersPerPage)
 })
+const goToMemberList = () => {
+  router.push('/project/member') 
+}
+
 </script>
 
 
@@ -69,7 +76,7 @@ const pagedMembers = computed(() => {
   flex-direction: column;
   gap: 16px;
   justify-content: space-between;
-
+  cursor: pointer;
 }
 
 .header {
@@ -107,6 +114,8 @@ const pagedMembers = computed(() => {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  justify-content: flex-start; 
+  min-height: 300px; 
 }
 
 .member-item {

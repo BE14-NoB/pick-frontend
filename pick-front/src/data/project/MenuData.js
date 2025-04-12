@@ -3,10 +3,23 @@ export const menuItems = [
     // 사이드바용 메뉴
     {
         to: '/project/dashboard',
-        label: 'DASHBOARD',
+        label: '대시보드',
         type: 'menu',
         match: ['/project/dashboard', '/project/dashboard']
     },
+    {
+        to: '/project/info',
+        label: '프로젝트 정보',
+        type: 'menu',
+        match: ['/project/info', '/project/info']
+    },
+    {
+        to: '/project/member',
+        label: '팀원',
+        type: 'menu',
+        match: ['/project/member', '/project/member']
+    },
+
     {
         to: '/project/issues',
         label: 'ISSUE',
@@ -25,9 +38,31 @@ export const menuItems = [
         type: 'menu',
         match: ['/project/pull-requests', '/project/create-pull-request']
     },
+    {
+        to: '/project/review',
+        label: '프로젝트 후기',
+        type: 'menu',
+        match: ['/project/review', '/project/review']
+    },
 
 
     // 페이지별 정보
+    {
+        to: '/project/info',
+        label: 'INFO',
+        title: '프로젝트 정보',
+        description: '프로젝트 정보를 수정할 수 있습니다.',
+        match: ['/project/info'],
+        type: 'page'
+    },
+    {
+        to: '/project/member',
+        label: 'MEMBER',
+        title: '팀원',
+        description: '프로젝트에 참여하는 팀원 목록',
+        match: ['/project/member'],
+        type: 'page'
+    },
     {
         to: '/project/issues',
         label: 'ISSUE',
@@ -67,6 +102,14 @@ export const menuItems = [
         description: 'Git 커밋 기록을 조회할 수 있습니다.',
         match: ['/project/commits'],
         type: 'page'
-      }
+    },
+    {
+        to: '/project/review',
+        label: 'REVIEW',
+        title: '프로젝트 후기',
+        description: '참여하신 프로젝트에 대한 후기를 남겨주세요.',
+        match: ['/project/review'],
+        type: 'page'
+    }
 
 ]
