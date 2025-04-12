@@ -2,7 +2,7 @@
     <div class="form-layout">
         <div class="form-left">
             <FormEditor v-model:titleModel="title" v-model:contentModel="content" titleLabel="PR 제목"
-                contentLabel="PR 설명" />
+                contentLabel="PR 설명" @submit="$emit('submit')" @cancel="$emit('cancel')" />
         </div>
         <div class="form-right">
             <ProjectDropdwon label="리뷰어" v-model="reviewer" :options="reviewerOptions" />
@@ -10,6 +10,7 @@
         </div>
     </div>
 </template>
+
 <script setup>
 import { ref, watch } from 'vue'
 import FormEditor from '@/components/project/FormEditor.vue'

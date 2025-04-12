@@ -6,7 +6,7 @@
         <!-- 탭 메뉴 -->
         <ProjectTabs v-model="selectedTab" :tabs="tabList">
             <template #commit>
-                <CommitList />
+                <PRCommitList :base-branch="'main'" :commit-diff="2" />
             </template>
 
             <template #file>
@@ -19,10 +19,9 @@
 <script setup>
 import { ref } from 'vue'
 
-function createPR() {
-    // TODO: 실제 API 연결
-    console.log('✅ PR 생성:', prTitle.value, prContent.value)
-}
+// 라우터
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 // Tabs
 import ProjectTabs from '@/components/project/ProjectTabs.vue'
@@ -36,13 +35,13 @@ const selectedTab = ref('commit')
 import BranchSelector from '@/components/project/pr/PRBranchSelector.vue'
 
 // 커밋 목록 탭
-import CommitList from '@/components/project/pr/PRCommitList.vue'
+import PRCommitList from '@/components/project/pr/PRCommitList.vue'
 
 // 파일 변경 탭
 import FileChanges from '@/components/project/pr/PRFileChanges.vue'
 
 function goToCreatePR() {
-    router.push('/project/pr/CreatePRView.vue')
+    router.push('/project/create-pull-request')
 }
 
 </script>
@@ -52,7 +51,7 @@ function goToCreatePR() {
     width: 100%;
     padding: 0px;
     margin-top: 20px;
-    max-width: 1200px;
+    max-width: 1100px;
 }
 
 /* 전체 영역 중앙 정렬 */

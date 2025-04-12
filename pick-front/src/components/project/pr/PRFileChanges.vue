@@ -31,6 +31,10 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+
+
+
+// diff
 import * as Diff2Html from 'diff2html'
 import 'diff2html/bundles/css/diff2html.min.css'
 
@@ -80,12 +84,12 @@ const fileLabel = {
 
 // ✅ diff2html 렌더링
 const renderedDiff = computed(() => {
-  if (!selectedFile.value?.diff) return ''
-  return Diff2Html.html(selectedFile.value.diff, {
-    drawFileList: false,
-    matching: 'lines',
-    outputFormat: 'line-by-line',
-  })
+    if (!selectedFile.value?.diff) return ''
+    return Diff2Html.html(selectedFile.value.diff, {
+        drawFileList: false,
+        matching: 'lines',
+        outputFormat: 'line-by-line',
+    })
 })
 
 const addedLines = 812
@@ -116,8 +120,9 @@ const removedLines = 119
 }
 
 .file-summary {
-    color: #333;
-    font-size: 14px;
+    margin-bottom: 50px;
+    color: #939393;
+
 }
 
 .content-split {
