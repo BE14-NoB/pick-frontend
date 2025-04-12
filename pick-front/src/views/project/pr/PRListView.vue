@@ -6,6 +6,9 @@
           <p class="desc">
             전체 {{ openPRs.length }}개 파일에서 {{ addedLines }}줄 추가 / {{ deletedLines }}줄 삭제되었음
           </p>
+
+          <PRCreateButton />
+
           <div class="list-card">
             <List
               :headers="['번호', '제목', '리뷰어', '생성자', '생성일', '댓글 수']"
@@ -65,6 +68,7 @@
   import ProjectTabs from '@/components/project/ProjectTabs.vue'
   import prData from '@/json/project_prlist.json'
   import profile from '@/assets/issueMaker.png'
+  import PRCreateButton from '@/components/project/PRCreateButton.vue'
   
   const selectedTab = ref('open')
   const openPage = ref(1)
@@ -131,6 +135,12 @@
     font-size: 14px;
     color: #666;
     margin: 16px 0;
+  }
+  .pr-create-btn {
+  float: right;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: none;
   }
   .list-card {
     background-color: #fff;
