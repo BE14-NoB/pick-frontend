@@ -1,340 +1,383 @@
 <template>
-    <div class="layout-container">
-      <!-- Sidebar 컴포넌트 임포트하여 사용 -->
-      <MemberSideBar />
+  <div class="layout-container">
+    <MemberSideBar />
 
-      <div class="member-info-container">
-        <div class="member-info-container-item">
-          <!-- 프로필 이미지 -->
-          <v-avatar size="120" class="avatar">
-            <img :src="userData.profileImage" alt="Profile" />
-          </v-avatar>
-  
-          <!-- 이름과 닉네임 -->
-          <span class="value name">{{ userData.name }}</span>
-          <span class="value nickname">{{ userData.nickname }}</span>
-        </div>
-  
-        <!-- 정보 리스트 -->
-        <div class="info-list">
-          <div class="info-item">
-            <span class="label">이메일</span>
-          </div>
-          <div class="info-item">
-            <span class="value">{{ userData.email }}</span>
-          </div>
-  
-          <div class="info-item">
-            <span class="label">전화번호</span>
-          </div>
-          <div class="info-item">
-            <span class="value">{{ userData.phone }}</span>
-          </div>
-  
-          <div class="info-item">
-            <span class="label">비밀번호</span>
-          </div>
-          <div class="info-item">
-            <span class="value">{{ userData.password }}</span>
-          </div>
-  
-          <div class="info-item">
-            <span class="label">생일</span>
-          </div>
-          <div class="info-item">
-            <span class="value">{{ userData.birthday }}</span>
-          </div>
-        </div>
-  
-        <!-- GitHub 링크 (Box.vue의 구조로 대체) -->
-        <div class="box">
-          <div class="view">
-            <div class="div">
-              <img class="image" alt="Image" :src="githubImage" />
-              <div class="text-wrapper">Github</div>
-              <button class="button">
-                <div class="overlap-group">
-                  <a
-                    class="background"
-                    :href="userData.githubLink"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  />
-                  <div class="text-wrapper-2">연결하기</div>
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
-  
-        <!-- 계정 권한 그룹 -->
-        <div class="member-auth">
-          <div class="member-auth-item">
-            <div class="member-info">
-              <span>회원 권한</span>
-            </div>
-  
-            <div class="member-auth-item-2">
-              <v-icon color="success" icon="mdi-alert-circle" size="small"></v-icon>
-              <span class="value">{{ userData.auth }}</span>
-            </div>
-  
-            <div class="member-auth-item-2">
-              <v-icon color="success" icon="mdi-check-circle" size="small"></v-icon>
-              <span class="value">Admin</span>
-            </div>
-          </div>
-        </div>
-  
-        <!-- 버튼 그룹 -->
-        <div class="button-group">
-          <v-btn color="#1976d2" @click="goToEdit">수정</v-btn>
-          <v-btn color="#d32f2f" @click="goBack">탈퇴</v-btn>
+    <div class="member-info-container">
+      <div class="profile-section">
+        <v-avatar size="120" class="avatar">
+          <img :src="userData.profileImage || defaultProfileImage" alt="Profile" />
+        </v-avatar>
+
+        <div class="name-section">
+          <div class="name">{{ userData.name }}</div>
+          <div class="nickname">{{ userData.nickname }}</div>
         </div>
       </div>
+
+      <div class="info-section">
+        <div class="info-group">
+          <div class="info-label">이메일</div>
+          <div class="info-value">{{ userData.email }}</div>
+        </div>
+
+        <div class="info-group">
+          <div class="info-label">전화번호</div>
+          <div class="info-value">{{ userData.phone }}</div>
+        </div>
+
+        <div class="info-group">
+          <div class="info-label">비밀번호</div>
+          <div class="info-value">********</div>
+        </div>
+
+        <div class="info-group">
+          <div class="info-label">생일</div>
+          <div class="info-value">{{ userData.birthday }}</div>
+        </div>
+      </div>
+
+      <div class="github-section">
+        <div class="github-box">
+          <img class="github-img" :src="githubImage" alt="Github" />
+          <!-- 깃허브 닉네임 또는 Github 텍스트 표시 -->
+          <div class="github-text">
+            <a
+              v-if="userData.githubLink"
+              :href="userData.githubLink"
+              target="_blank"
+              class="github-link"
+            >
+              {{ githubUsernameDisplay }}
+            </a>
+            <span v-else>Github</span>
+          </div>
+          <button
+            class="github-button"
+            @click="userData.githubId ? disconnectGithub() : openGithubModal()"
+          >
+            {{ userData.githubId ? '연결해제' : '연결하기' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="auth-section">
+        <div class="auth-title">회원 권한</div>
+        <div class="auth-items">
+          <div class="auth-item">
+            <v-icon color="success" icon="mdi-alert-circle" size="small"></v-icon>
+            <span>{{ userData.auth || 'member' }}</span>
+          </div>
+          <div class="auth-item">
+            <v-icon color="success" icon="mdi-check-circle" size="small"></v-icon>
+            <span>Admin</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <v-btn color="#1976d2" @click="goToEdit">수정</v-btn>
+        <v-btn color="#d32f2f" @click="goBack">탈퇴</v-btn>
+      </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-  import { useRouter } from 'vue-router';
-  import { VAvatar, VBtn, VIcon } from 'vuetify/components';
-  import githubImage from '@/assets/issueMaker.png';
-  import MemberSideBar from '@/components/MemberSideBar.vue';
-  
-  const router = useRouter();
-  
-  const userData = ref({
-    profileImage: 'https://cdn.vuetifyjs.com/images/parallax/material.jpg',
-    name: '고성연',
-    nickname: '꼼곰보',
-    email: 'rhtjddus0502@gmail.com',
-    phone: '010-3791-8329',
-    password: '********',
-    birthday: '1999.05.02',
-    githubLink: 'https://github.com/Gombo2',
-    auth: 'member',
+
+    <!-- 깃허브 PAT 입력 모달 -->
+    <v-dialog v-model="showGithubModal" max-width="500">
+      <v-card>
+        <v-card-title>깃허브 연동</v-card-title>
+        <v-card-text>
+          <p>
+            깃허브 Personal Access Token을 입력해주세요. 토큰은
+            <a href="https://github.com/settings/tokens" target="_blank">여기</a>에서 생성할 수 있습니다.
+            권한은 'user', 'repo'를 선택하세요.
+          </p>
+          <v-text-field
+            v-model="githubToken"
+            label="Personal Access Token"
+            placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            :error-messages="tokenError"
+            @input="tokenError = ''"
+          ></v-text-field>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="grey" text @click="showGithubModal = false">취소</v-btn>
+          <v-btn color="primary" text @click="connectGithub">연결</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
+import { VAvatar, VBtn, VIcon, VDialog, VCard, VCardTitle, VCardText, VCardActions, VSpacer } from 'vuetify/components';
+import githubImage from '@/assets/issueMaker.png';
+import MemberSideBar from '@/components/MemberSideBar.vue';
+import { findUserByEmail, updateUser } from '@/utils/jsonStorage';
+import axios from 'axios';
+
+const router = useRouter();
+const authStore = useAuthStore();
+
+const defaultProfileImage = 'https://cdn.vuetifyjs.com/images/parallax/material.jpg';
+
+const userData = ref({
+  profileImage: '',
+  name: '',
+  nickname: '',
+  email: '',
+  phone: '',
+  password: '',
+  birthday: '',
+  githubLink: '',
+  githubId: null,
+  githubAccessToken: '',
+  auth: '',
+});
+
+const showGithubModal = ref(false);
+const githubToken = ref('');
+const tokenError = ref('');
+
+// 깃허브 닉네임 표시용 computed 속성
+const githubUsernameDisplay = computed(() => {
+  if (userData.value.githubLink) {
+    return userData.value.githubLink.split('github.com/')[1] || 'Github';
+  }
+  return 'Github';
+});
+
+const fetchUserData = async () => {
+  if (authStore.currentUser) {
+    userData.value = { ...authStore.currentUser };
+  } else {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (!currentUser) {
+      alert('로그인이 필요합니다.');
+      router.push('/member/login');
+      return;
+    }
+    const user = await findUserByEmail(currentUser.email);
+    if (user) {
+      userData.value = { ...user };
+      authStore.login(user);
+    } else {
+      alert('사용자 정보를 찾을 수 없습니다.');
+      router.push('/member/login');
+    }
+  }
+};
+
+const openGithubModal = () => {
+  githubToken.value = '';
+  tokenError.value = '';
+  showGithubModal.value = true;
+};
+
+const connectGithub = async () => {
+  if (!githubToken.value.startsWith('ghp_')) {
+    tokenError.value = '유효한 Personal Access Token을 입력해주세요.';
+    return;
+  }
+
+  try {
+    const response = await axios.get('https://api.github.com/user', {
+      headers: { Authorization: `token ${githubToken.value}` },
+    });
+    const githubUser = response.data;
+
+    userData.value.githubId = githubUser.id;
+    userData.value.githubAccessToken = githubToken.value;
+    userData.value.githubLink = githubUser.html_url;
+
+    await updateUser(userData.value.email, {
+      githubId: githubUser.id,
+      githubAccessToken: githubToken.value,
+      githubLink: githubUser.html_url,
+    });
+
+    authStore.login({ ...userData.value });
+    showGithubModal.value = false;
+    alert('깃허브 연동이 완료되었습니다.');
+  } catch (error) {
+    console.error('GitHub API error:', error);
+    tokenError.value = '잘못된 토큰입니다. 다시 확인해주세요.';
+  }
+};
+
+const disconnectGithub = async () => {
+  if (confirm('깃허브 연동을 해제하시겠습니까?')) {
+    userData.value.githubId = null;
+    userData.value.githubAccessToken = '';
+    userData.value.githubLink = '';
+
+    await updateUser(userData.value.email, {
+      githubId: null,
+      githubAccessToken: '',
+      githubLink: '',
+    });
+
+    authStore.login({ ...userData.value });
+    alert('깃허브 연동이 해제되었습니다.');
+  }
+};
+
+onMounted(() => {
+  fetchUserData();
+});
+
+const goToEdit = () => {
+  router.push({
+    path: '/member/edit',
+    state: { userData: userData.value },
   });
-  
-  const goToEdit = () => {
-    router.push('/member/info/edit');
-  };
-  
-  const goBack = () => {
+};
+
+const goBack = () => {
+  if (confirm('정말 탈퇴하시겠습니까?')) {
+    authStore.logout();
     router.push('/');
-  };
-  
-  const goToMaroon = () => {
-    router.push('/');
-  };
-  </script>
-  
-  <style scoped>
-  .layout-container {
-    display: flex;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0px auto;
   }
-  
-  .member-info-container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .avatar {
-    margin-bottom: 20px;
-  }
-  
-  .member-info-container-item {
-    text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-    right: 350px;
-    top: 20px;
-  }
-  
-  .name {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .nickname {
-    font-size: 16px;
-    color: #666;
-    display: block;
-  }
-  
-  .info-list {
-    text-align: left;
-    margin: 0 auto;
-    max-width: 400px;
-    position: relative;
-    bottom: 180px;
-  }
-  
-  .info-item {
-    text-align: left;
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 15px;
-  }
-  
-  .label {
-    text-align: left;
-    font-size: 11px;
-    color: #333;
-    font-weight: 500;
-    width: 100px;
-    padding-left: 0px;
-  }
-  
-  .value {
-    font-size: 16px;
-    color: #666;
-    flex: 1;
-  }
-  
-  .box {
-    height: 30px;
-    width: 400px;
-    margin: 0px auto;
-    position: relative;
-    top: 190px;
-  }
-  
-  .box .view {
-    background-color: #fdefef;
-    border-radius: 17px;
-    height: 77px;
-    left: 0;
-    position: relative;
-    top: 0;
-    width: 435px;
-  }
-  
-  .box .div {
-    height: 77px;
-    position: relative;
-    width: 437px;
-  }
-  
-  .box .image {
-    height: 77px;
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 76px;
-  }
-  
-  .box .text-wrapper {
-    color: #78767c;
-    font-family: "Poppins-SemiBold", Helvetica;
-    font-size: 15px;
-    font-weight: 600;
-    height: 23px;
-    left: 105px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 30px;
-    width: 62px;
-  }
-  
-  .box .button {
-    all: unset;
-    box-sizing: border-box;
-    height: 66px;
-    left: 297px;
-    position: absolute;
-    top: 5px;
-    width: 138px;
-  }
-  
-  .box .overlap-group {
-    border-radius: 17px;
-    height: 57px;
-    left: 5px;
-    position: relative;
-    top: 5px;
-    width: 129px;
-  }
-  
-  .box .background {
-    background-color: #5f0080;
-    border: 1px solid;
-    border-color: #e0e0e0;
-    border-radius: 17px;
-    height: 57px;
-    left: 0;
-    position: absolute;
-    bottom: 5px;
-    width: 129px;
-  }
-  
-  .box .text-wrapper-2 {
-    color: #fdfdfd;
-    font-family: "Poppins-Medium", Helvetica;
-    font-size: 16px;
-    font-weight: 500;
-    height: 27px;
-    right: 23px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 12px;
-    width: 80px;
-  }
-  
-  .button-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .v-btn {
-    color: white;
-    text-transform: none;
-    font-size: 16px;
-    padding: 8px 16px;
-    position: relative;
-    left: 500px;
-  }
-  
-  .member-auth {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    position: relative;
-    bottom: 540px;
-    left: 100px;
-  }
-  
-  .member-auth-item {
-    font-size: 24px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    position: relative;
-  }
-  
-  .member-auth-item-2 {
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    position: relative;
-    top: 20px;
-    left: 0px;
-  }
-  </style>
+};
+</script>
+
+<style scoped>
+.layout-container {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 70px);
+}
+
+.member-info-container {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.nickname {
+  font-size: 16px;
+  color: #666;
+}
+
+.info-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-label {
+  font-size: 12px;
+  color: #666;
+}
+
+.info-value {
+  font-size: 16px;
+  color: #333;
+}
+
+.github-section {
+  margin: 24px 0;
+}
+
+.github-box {
+  display: flex;
+  align-items: center;
+  background-color: #fdefef;
+  border-radius: 16px;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.github-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.github-text {
+  margin-left: 16px;
+  font-size: 16px;
+  color: #666;
+}
+
+.github-link {
+  color: #5f0080;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.github-link:hover {
+  text-decoration: underline;
+}
+
+.github-button {
+  position: absolute;
+  right: 16px;
+  background-color: #5f0080;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.auth-section {
+  margin: 24px 0;
+}
+
+.auth-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.auth-items {
+  display: flex;
+  gap: 16px;
+}
+
+.auth-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.v-btn {
+  color: white;
+  text-transform: none;
+}
+</style>

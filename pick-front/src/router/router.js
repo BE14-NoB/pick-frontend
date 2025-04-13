@@ -106,7 +106,7 @@ const router = createRouter({
         }
       ]
     },
-    { 
+    {
       path: '/member',
       name: 'Member',
       component: () => import('@/views/MemberView.vue'),
@@ -123,11 +123,15 @@ const router = createRouter({
           path: 'login',
           component: () => import('@/components/member/MemberLogin.vue'),
         },
-        // {
-        //   path: 'signup',
-        //   component: () => import('@/components/member/MemberSignUp.vue'),
-        // },
-      ]
+        {
+          path: 'edit',
+          component: () => import('@/views/member/MemberEditView.vue'),
+        },
+        {
+          path: 'signup',
+          component: () => import('@/components/member/MemberSignUp.vue'),
+        },
+      ],
     },
     // 회원가입
     // {
