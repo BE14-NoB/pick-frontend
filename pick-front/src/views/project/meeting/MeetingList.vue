@@ -77,14 +77,6 @@
       }
     })
 
-    // onMounted(() => {
-    //     meetingData.value = meetingJson.map(meeting => ({
-    //         ...meeting,
-    //         // creator: meetingMaker
-    //     }))
-    //     console.log(meetingData)
-    // })
-
     const paginatedMeetings = computed(() => {
     const start = (openPage.value - 1) * itemsPerPage
     return meetingData.value.slice(start, start + itemsPerPage)

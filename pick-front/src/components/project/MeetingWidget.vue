@@ -16,7 +16,7 @@
       <RouterLink
         v-for="(meeting, index) in pagedMeetings"
         :key="meeting.id"
-        :to="`/meeting/${meeting.id}`"
+        :to="`/project/meeting/${meeting.id}`"
         :class="['meeting-card', { primary: isPrimary(meeting, index) }]"
         @mouseenter="hoveredId = meeting.id"
         @mouseleave="hoveredId = null"
