@@ -1,4 +1,3 @@
-<!-- src/views/SignupView.vue -->
 <template>
   <div class="signup-container">
     <h2 class="signup-title">회원가입</h2>
@@ -198,25 +197,17 @@
     >
       가입하기
     </v-btn>
-
-    <!-- 회원가입 완료 모달 -->
-    <v-dialog v-model="showSuccessDialog" max-width="400px">
-      <v-card>
-        <v-card-title class="text-h6">회원가입 완료</v-card-title>
-        <v-card-text>회원가입이 완료되었습니다!</v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="closeDialog">확인</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { readUsers, addUser, findUserByEmail } from '@/utils/jsonStorage';
 
-// 폼 데이터
+const emit = defineEmits(['signup']);
+const router = useRouter();
+
 const form = ref({
   email: '',
   password: '',
@@ -228,9 +219,8 @@ const form = ref({
   birthMonth: '',
   birthDay: '',
   ssn: '',
-})
+});
 
-// 에러 메시지
 const errors = ref({
   email: '',
   password: '',
@@ -242,191 +232,186 @@ const errors = ref({
   birthMonth: '',
   birthDay: '',
   ssn: '',
-})
+});
 
-// 모달창 표시 여부
-const showSuccessDialog = ref(false)
-
-// 유효성 검사 함수
 const validateEmail = () => {
   if (!form.value.email) {
-    errors.value.email = '이메일을 입력해주세요.'
+    errors.value.email = '이메일을 입력해주세요.';
   } else if (!form.value.email.includes('@') || !form.value.email.includes('.')) {
-    errors.value.email = '유효한 이메일 형식이 아닙니다.'
+    errors.value.email = '유효한 이메일 형식이 아닙니다.';
   } else {
-    errors.value.email = ''
+    errors.value.email = '';
   }
-}
+};
 
 const validatePassword = () => {
   if (!form.value.password) {
-    errors.value.password = '비밀번호를 입력해주세요.'
+    errors.value.password = '비밀번호를 입력해주세요.';
   } else if (form.value.password.length < 8) {
-    errors.value.password = '비밀번호는 8자 이상이어야 합니다.'
+    errors.value.password = '비밀번호는 8자 이상이어야 합니다.';
   } else {
-    errors.value.password = ''
-    validatePasswordConfirm() // 비밀번호 확인도 재검사
+    errors.value.password = '';
+    validatePasswordConfirm();
   }
-}
+};
 
 const validatePasswordConfirm = () => {
   if (!form.value.passwordConfirm) {
-    errors.value.passwordConfirm = '비밀번호 확인을 입력해주세요.'
+    errors.value.passwordConfirm = '비밀번호 확인을 입력해주세요.';
   } else if (form.value.password !== form.value.passwordConfirm) {
-    errors.value.passwordConfirm = '비밀번호가 일치하지 않습니다.'
+    errors.value.passwordConfirm = '비밀번호가 일치하지 않습니다.';
   } else {
-    errors.value.passwordConfirm = ''
+    errors.value.passwordConfirm = '';
   }
-}
+};
 
 const validateName = () => {
   if (!form.value.name) {
-    errors.value.name = '이름을 입력해주세요.'
+    errors.value.name = '이름을 입력해주세요.';
   } else if (!/^[가-힣]{2,}$/.test(form.value.name)) {
-    errors.value.name = '이름은 한글 2자 이상이어야 합니다.'
+    errors.value.name = '이름은 한글 2자 이상이어야 합니다.';
   } else {
-    errors.value.name = ''
+    errors.value.name = '';
   }
-}
+};
 
 const validateNickname = () => {
   if (!form.value.nickname) {
-    errors.value.nickname = '닉네임을 입력해주세요.'
+    errors.value.nickname = '닉네임을 입력해주세요.';
   } else if (form.value.nickname.length < 2) {
-    errors.value.nickname = '닉네임은 2자 이상이어야 합니다.'
+    errors.value.nickname = '닉네임은 2자 이상이어야 합니다.';
   } else {
-    errors.value.nickname = ''
+    errors.value.nickname = '';
   }
-}
+};
 
 const validatePhone = () => {
   if (!form.value.phone) {
-    errors.value.phone = '휴대폰 번호를 입력해주세요.'
+    errors.value.phone = '휴대폰 번호를 입력해주세요.';
   } else if (!/^\d{3}-\d{4}-\d{4}$/.test(form.value.phone)) {
-    errors.value.phone = '형식: 010-1234-5678'
+    errors.value.phone = '형식: 010-1234-5678';
   } else {
-    errors.value.phone = ''
+    errors.value.phone = '';
   }
-}
+};
 
 const validateBirthYear = () => {
-  const year = parseInt(form.value.birthYear, 10)
+  const year = parseInt(form.value.birthYear, 10);
   if (!form.value.birthYear) {
-    errors.value.birthYear = '년도를 입력해주세요.'
+    errors.value.birthYear = '년도를 입력해주세요.';
   } else if (isNaN(year) || year < 1900 || year > new Date().getFullYear()) {
-    errors.value.birthYear = `1900 ~ ${new Date().getFullYear()} 사이의 값을 입력해주세요.`
+    errors.value.birthYear = `1900 ~ ${new Date().getFullYear()} 사이의 값을 입력해주세요.`;
   } else {
-    errors.value.birthYear = ''
+    errors.value.birthYear = '';
   }
-}
+};
 
 const validateBirthMonth = () => {
-  const month = parseInt(form.value.birthMonth, 10)
+  const month = parseInt(form.value.birthMonth, 10);
   if (!form.value.birthMonth) {
-    errors.value.birthMonth = '월을 입력해주세요.'
+    errors.value.birthMonth = '월을 입력해주세요.';
   } else if (isNaN(month) || month < 1 || month > 12) {
-    errors.value.birthMonth = '1 ~ 12 사이의 값을 입력해주세요.'
+    errors.value.birthMonth = '1 ~ 12 사이의 값을 입력해주세요.';
   } else {
-    errors.value.birthMonth = ''
+    errors.value.birthMonth = '';
   }
-}
+};
 
 const validateBirthDay = () => {
-  const day = parseInt(form.value.birthDay, 10)
+  const day = parseInt(form.value.birthDay, 10);
   if (!form.value.birthDay) {
-    errors.value.birthDay = '일을 입력해주세요.'
+    errors.value.birthDay = '일을 입력해주세요.';
   } else if (isNaN(day) || day < 1 || day > 31) {
-    errors.value.birthDay = '1 ~ 31 사이의 값을 입력해주세요.'
+    errors.value.birthDay = '1 ~ 31 사이의 값을 입력해주세요.';
   } else {
-    errors.value.birthDay = ''
+    errors.value.birthDay = '';
   }
-}
+};
 
 const validateSsn = () => {
   if (!form.value.ssn) {
-    errors.value.ssn = '주민등록번호를 입력해주세요.'
+    errors.value.ssn = '주민등록번호를 입력해주세요.';
   } else if (!/^\d{6}-\d{7}$/.test(form.value.ssn)) {
-    errors.value.ssn = '형식: 111111-3000000'
+    errors.value.ssn = '형식: 111111-3000000';
   } else {
-    errors.value.ssn = ''
+    errors.value.ssn = '';
   }
-}
+};
 
-// 이메일 중복 확인 (임시)
-const checkEmail = () => {
+const checkEmail = async () => {
   if (!form.value.email) {
-    errors.value.email = '이메일을 입력해주세요.'
-    return
+    errors.value.email = '이메일을 입력해주세요.';
+    return;
   }
-  console.log('이메일 중복 확인:', form.value.email)
-  // 실제로는 백엔드 API 호출 필요
-}
+  const user = await findUserByEmail(form.value.email);
+  if (user) {
+    errors.value.email = '이미 사용 중인 이메일입니다.';
+  } else {
+    errors.value.email = '';
+    alert('사용 가능한 이메일입니다.');
+  }
+};
 
-// 닉네임 중복 확인 (임시)
-const checkNickname = () => {
+const checkNickname = async () => {
   if (!form.value.nickname) {
-    errors.value.nickname = '닉네임을 입력해주세요.'
-    return
+    errors.value.nickname = '닉네임을 입력해주세요.';
+    return;
   }
-  console.log('닉네임 중복 확인:', form.value.nickname)
-  // 실제로는 백엔드 API 호출 필요
-}
-
-// 모달창 닫기
-const closeDialog = () => {
-  showSuccessDialog.value = false
-  // 폼 초기화 (선택 사항)
-  form.value = {
-    email: '',
-    password: '',
-    passwordConfirm: '',
-    name: '',
-    nickname: '',
-    phone: '',
-    birthYear: '',
-    birthMonth: '',
-    birthDay: '',
-    ssn: '',
+  const users = await readUsers();
+  const nicknameExists = users.some((user) => user.nickname === form.value.nickname);
+  if (nicknameExists) {
+    errors.value.nickname = '이미 사용 중인 닉네임입니다.';
+  } else {
+    errors.value.nickname = '';
+    alert('사용 가능한 닉네임입니다.');
   }
-  errors.value = {
-    email: '',
-    password: '',
-    passwordConfirm: '',
-    name: '',
-    nickname: '',
-    phone: '',
-    birthYear: '',
-    birthMonth: '',
-    birthDay: '',
-    ssn: '',
-  }
-}
+};
 
-// 회원가입 처리
-const signup = () => {
-  // 모든 필드 유효성 검사 실행
-  validateEmail()
-  validatePassword()
-  validatePasswordConfirm()
-  validateName()
-  validateNickname()
-  validatePhone()
-  validateBirthYear()
-  validateBirthMonth()
-  validateBirthDay()
-  validateSsn()
+const signup = async () => {
+  validateEmail();
+  validatePassword();
+  validatePasswordConfirm();
+  validateName();
+  validateNickname();
+  validatePhone();
+  validateBirthYear();
+  validateBirthMonth();
+  validateBirthDay();
+  validateSsn();
 
-  // 에러가 있는지 확인
-  const hasErrors = Object.values(errors.value).some(error => error !== '')
+  const hasErrors = Object.values(errors.value).some((error) => error !== '');
   if (hasErrors) {
-    alert('모든 필드를 올바르게 입력해주세요.')
-    return
+    alert('모든 필드를 올바르게 입력해주세요.');
+    return;
   }
 
-  // 회원가입 처리 (예: API 호출)
-  console.log('회원가입 데이터:', form.value)
-  showSuccessDialog.value = true // 모달창 표시
-}
+  const userByEmail = await findUserByEmail(form.value.email);
+  const users = await readUsers();
+  const nicknameExists = users.some((user) => user.nickname === form.value.nickname);
+  if (userByEmail || nicknameExists) {
+    alert('이메일 또는 닉네임이 이미 사용 중입니다.');
+    return;
+  }
+
+  const birthday = `${form.value.birthYear}-${form.value.birthMonth.padStart(2, '0')}-${form.value.birthDay.padStart(2, '0')}`;
+
+  const newUser = {
+    email: form.value.email,
+    password: form.value.password,
+    name: form.value.name,
+    nickname: form.value.nickname,
+    phone: form.value.phone,
+    birthday: birthday,
+    ssn: form.value.ssn,
+    profileImage: 'https://cdn.vuetifyjs.com/images/parallax/material.jpg',
+    githubLink: '',
+    auth: 'member',
+  };
+
+  await addUser(newUser);
+  emit('signup'); // 부모 컴포넌트로 회원가입 성공 이벤트 전달
+  router.push('/'); // 메인 페이지로 이동
+};
 </script>
 
 <style scoped>
@@ -489,7 +474,6 @@ const signup = () => {
   margin-top: 20px;
 }
 
-/* 반응형 디자인 */
 @media (max-width: 960px) {
   .signup-container {
     max-width: 600px;
