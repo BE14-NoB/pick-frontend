@@ -1,0 +1,57 @@
+[
+    {
+      "id": 1,
+      "title": "로그인 하기",
+      "expPoint": 10,
+      "isCompleted": true
+    },
+    {
+      "id": 2,
+      "title": "게시글 작성하기",
+      "expPoint": 20,
+      "isCompleted": false
+    },
+    {
+      "id": 3,
+      "title": "댓글 작성하기",
+      "expPoint": 15,
+      "isCompleted": false
+    },
+    {
+      "id": 4,
+      "title": "Q&A 채택받기",
+      "expPoint": 30,
+      "isCompleted": false
+    },
+    {
+      "id": 5,
+      "title": "일일 커밋하기",
+      "expPoint": 20,
+      "isCompleted": false
+    },
+    {
+      "id": 6,
+      "title": "이슈 생성하기",
+      "expPoint": 20,
+      "isCompleted": false
+    },
+    {
+      "id": 7,
+      "title": "PR 리뷰하기",
+      "expPoint": 25,
+      "isCompleted": false
+    },
+    {
+      "id": 8,
+      "title": "PR 생성하기",
+      "expPoint": 70,
+      "isCompleted": false
+    },
+    {
+      "id": 11,
+      "title": "회의록 작성하기",
+      "expPoint": 90,
+      "isCompleted": false
+    }
+  ]
+  
