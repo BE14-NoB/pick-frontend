@@ -4,9 +4,7 @@
     <div class="content-container">
       <v-infinite-scroll 
         :height="600" 
-        :items="displayedResults" 
         @load="loadMore"
-        :loading="loading && !isEnd"
         class="scroll-container"
       >
         <template v-for="(result, index) in displayedResults" :key="index">
@@ -63,13 +61,16 @@
             </template>
           </div>
         </template>
+        <template v-slot:empty>
+          <v-alert type="warning">더 이상 조건에 맞는 매칭이 없습니다.</v-alert>
+        </template>
       </v-infinite-scroll>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import TeamMemberCard from '@/components/matching/TeamMemberCard.vue'
 
 const openedCardIndex = ref(false)
@@ -207,40 +208,44 @@ const allResults = [
 
 // 현재 표시되는 결과
 const displayedResults = ref([])
-const loading = ref(false)
 const pageSize = 5
 let currentPage = 0;
 
-const isEnd = ref(false);
 // 초기 데이터 로드
 onMounted(() => {
-  loadMore()
+  loadMore();
 })
+async function api() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const start = currentPage * pageSize;
+      if(start >= allResults.length) {
+        resolve('empty'); // 'empty' 상태 반환
+        return;
+      }
+
+      const end = start + pageSize;
+      const newItems = allResults.slice(start, end);
+
+      console.log('currentPage', currentPage);
+      console.log('start', start);
+      console.log('end', end);
+      console.log('newItems', newItems);
+
+      displayedResults.value.push(...newItems);
+      currentPage++;
+      resolve('ok'); // 정상적으로 데이터 로드가 완료된 후 'ok' 상태 반환
+    }, 300);
+  });
+}
 
 // 추가 데이터 로드 함수
-const loadMore = () => {
-  if (loading.value || isEnd.value) return
-  loading.value = true
-  // 실제 API 호출을 시뮬레이션하기 위한 지연
-  setTimeout(() => {
-    const start = currentPage * pageSize
-    const end = start + pageSize
-    if(end >= allResults.length){
-      isEnd.value = true;
-      loading.value = false;
-      return;
-    }
-    const newItems = allResults.slice(start, end)
-    if (newItems.length > 0) {
-      displayedResults.value = [...displayedResults.value, ...newItems]
-      // displayedResults.value.push(...newItems);
-      currentPage++;
-    }
-    loading.value = false
-  }, 300)
-  if(isEnd.value) {
-    loading.value = false;
-    return;
+async function loadMore({ done }) {
+  const result = await api();
+  if (result === 'empty') {
+    done('empty');  // 더 이상 데이터가 없으면 done() 호출
+  } else {
+    done('ok');  // 데이터가 로드되었으면 'ok' 호출
   }
 }
 </script>
