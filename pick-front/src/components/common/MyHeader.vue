@@ -185,7 +185,7 @@ import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { VImg, VMenu, VList, VListItem, VBtn, VRow, VCol, VProgressCircular, VDialog, VCard, VCardTitle, VCardText, VCardActions, VSpacer } from 'vuetify/components';
 import MemberLogin from '@/components/member/MemberLogin.vue';
-import MemberSignup from '@/components/member/MemberSignup.vue';
+import MemberSignup from '@/components/member/MemberSignUp.vue';
 import { useAuthStore } from '@/stores/auth';
 
 // 라우터 인스턴스 가져오기

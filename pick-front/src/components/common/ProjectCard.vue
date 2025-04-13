@@ -62,6 +62,7 @@ const props = defineProps({
   mainCategory : String,
   subCategory: String
 })
+console.log('ProjectCard imgSrc:', props.imgSrc);
 const router = useRouter()
 
 

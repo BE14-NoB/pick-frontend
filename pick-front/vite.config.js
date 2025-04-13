@@ -16,7 +16,7 @@ export default defineConfig({
   server: {
     fs: {
       // src와 node_modules 디렉토리를 허용
-      allow: ['./src', './node_modules'],
+      allow: ['.', './src', './node_modules'],
     },
   },
 });

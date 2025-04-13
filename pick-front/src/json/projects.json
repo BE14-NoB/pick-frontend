@@ -1,0 +1,50 @@
+[
+    {
+      "id": 1,
+      "title": "PICK",
+      "subtitle": "개발자를 위한 사이드 프로젝트 플랫폼",
+      "image": "/assets/member/project-1.png",
+      "mainCategory": "웹",
+      "subCategory": "플랫폼"
+    },
+    {
+      "id": 2,
+      "title": "To Do List",
+      "subtitle": "할 일을 미루는 이들을 위한 체크리스트",
+      "image": "/assets/member/project-2.png",
+      "mainCategory": "앱",
+      "subCategory": "생산성"
+    },
+    {
+      "id": 3,
+      "title": "하늘, 오늘, 맑음",
+      "subtitle": "하루의 기록을 남겨보세요",
+      "image": "/assets/member/project-3.png",
+      "mainCategory": "앱",
+      "subCategory": "일기"
+    },
+    {
+      "id": 4,
+      "title": "미니 게임 천국",
+      "subtitle": "게임 개발 모여라",
+      "image": "/assets/member/project-4.png",
+      "mainCategory": "게임",
+      "subCategory": "미니게임"
+    },
+    {
+      "id": 5,
+      "title": "노비서점",
+      "subtitle": "근처 서점을 바로 찾아보세요",
+      "image": "/assets/member/project-5.png",
+      "mainCategory": "웹",
+      "subCategory": "검색"
+    },
+    {
+      "id": 6,
+      "title": "Mooooooon",
+      "subtitle": "오늘의 달은 어떤 모습일까?",
+      "image": "/assets/member/project-6.png",
+      "mainCategory": "앱",
+      "subCategory": "천문"
+    }
+  ]
