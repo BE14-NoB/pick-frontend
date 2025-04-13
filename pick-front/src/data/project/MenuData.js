@@ -58,7 +58,7 @@ export const menuItems = [
         to: '/project/info',
         label: 'INFO',
         title: '프로젝트 정보',
-        description: '프로젝트 정보를 수정할 수 있습니다.',
+        description: '프로젝트에 대한 정보를 입력해주세요.',
         match: ['/project/info'],
         type: 'page'
     },
