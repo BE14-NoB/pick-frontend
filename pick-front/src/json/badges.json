@@ -1,0 +1,32 @@
+[
+    {
+      "image": "/assets/member/badge-1.png",
+      "description": "게시글 20회 작성",
+      "name": "컨텐츠 크리에이터"
+    },
+    {
+      "image": "/assets/member/badge-2.png",
+      "description": "3년차 개발자",
+      "name": "주니어 탐험가"
+    },
+    {
+      "image": "/assets/member/badge-3.png",
+      "description": "댓글 30회 달성",
+      "name": "소통꾼"
+    },
+    {
+      "image": "/assets/member/badge-4.png",
+      "description": "Q&A 댓글 20회 채택",
+      "name": "해결사"
+    },
+    {
+      "image": "/assets/member/badge-5.png",
+      "description": "누적 출석 30회 달성",
+      "name": "출석왕"
+    },
+    {
+      "image": "/assets/member/badge-6.png",
+      "description": "커밋 20회 달성",
+      "name": "커밋러"
+    }
+  ]

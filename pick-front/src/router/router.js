@@ -82,6 +82,10 @@ const router = createRouter({
           component: () => import('@/views/project/meeting/CreaetMeeting.vue')
         },
         {
+          path: 'meeting/:id',
+          component: () => import('@/views/project/meeting/MeetingDetail.vue')
+        },
+        {
           path: 'review',
           component: () => import('@/views/project/review/ProjectReview.vue')
         }
@@ -100,10 +104,14 @@ const router = createRouter({
         {
           path: 'write',
           component: () => import('@/components/post/Write.vue')
+        },
+        {
+          path: ':id',
+          component: () => import('@/components/post/SinglePost.vue')
         }
       ]
     },
-    { 
+    {
       path: '/member',
       name: 'Member',
       component: () => import('@/views/MemberView.vue'),
@@ -120,11 +128,15 @@ const router = createRouter({
           path: 'login',
           component: () => import('@/components/member/MemberLogin.vue'),
         },
-        // {
-        //   path: 'signup',
-        //   component: () => import('@/components/member/MemberSignUp.vue'),
-        // },
-      ]
+        {
+          path: 'edit',
+          component: () => import('@/views/member/MemberEditView.vue'),
+        },
+        {
+          path: 'signup',
+          component: () => import('@/components/member/MemberSignUp.vue'),
+        },
+      ],
     },
     // 회원가입
     // {

@@ -67,7 +67,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
 import List from '@/components/List.vue'
-import Pagination from '@/components/Pagination.vue'
+import Pagination from '@/components/common/Pagination.vue'
 import IssueCreateButton from '@/components/project/IssueCreateButton.vue'
 import ProjectTabs from '@/components/project/ProjectTabs.vue'
 import issueMaker from '@/assets/issueMaker.png'

@@ -20,14 +20,14 @@
 
     <!-- 오른쪽: 로그인 상태에 따른 버튼/프로필 -->
     <div class="profile">
-      <template v-if="isLogin">
+      <template v-if="authStore.isLoggedIn">
         <v-menu location="bottom">
           <template v-slot:activator="{ props }">
             <div class="profile-img-wrapper">
               <v-img
                 :width="40"
                 :height="40"
-                :src="user.profileImage"
+                :src="authStore.currentUser.profileImage"
                 class="profile-img"
                 v-bind="props"
               />
@@ -41,10 +41,10 @@
                   <v-img
                     :width="60"
                     :height="60"
-                    :src="user.profileImage"
+                    :src="authStore.currentUser.profileImage"
                     class="profile-img-large"
                   />
-                  <div class="nickname">{{ user.nickname }}</div>
+                  <div class="nickname">{{ authStore.currentUser.nickname }}</div>
                 </div>
                 <div class="profile-right">
                   <div class="level-item">
@@ -153,27 +153,52 @@
         <MemberSignup @signup="handleSignup" />
       </div>
     </div>
+
+    <!-- 로그인 성공 모달 -->
+    <v-dialog v-model="showLoginSuccessModal" max-width="400px">
+      <v-card>
+        <v-card-title class="text-h6">로그인 성공</v-card-title>
+        <v-card-text>로그인에 성공했습니다!</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="closeLoginSuccessModal">확인</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <!-- 회원가입 성공 모달 -->
+    <v-dialog v-model="showSignupSuccessModal" max-width="400px">
+      <v-card>
+        <v-card-title class="text-h6">회원가입 완료</v-card-title>
+        <v-card-text>회원가입이 완료되었습니다!</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="closeSignupSuccessModal">확인</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { VImg, VMenu, VList, VListItem, VBtn, VRow, VCol, VProgressCircular } from 'vuetify/components'
-import MemberLogin from '@/components/member/MemberLogin.vue'
-import MemberSignup from '@/components/member/MemberSignup.vue'
+import { ref, computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { VImg, VMenu, VList, VListItem, VBtn, VRow, VCol, VProgressCircular, VDialog, VCard, VCardTitle, VCardText, VCardActions, VSpacer } from 'vuetify/components';
+import MemberLogin from '@/components/member/MemberLogin.vue';
+import MemberSignup from '@/components/member/MemberSignUp.vue';
+import { useAuthStore } from '@/stores/auth';
 
 // 라우터 인스턴스 가져오기
-const router = useRouter()
+const router = useRouter();
+const authStore = useAuthStore();
 
-// 로그인 여부
-const isLogin = ref(false)
-// 로그인 모달 표시 여부
-const isLoginModalOpen = ref(false)
-// 회원가입 모달 표시 여부
-const isSignupModalOpen = ref(false)
+// 로그인/회원가입 모달 표시 여부
+const isLoginModalOpen = ref(false);
+const isSignupModalOpen = ref(false);
+const showLoginSuccessModal = ref(false);
+const showSignupSuccessModal = ref(false);
 
-// 사용자 정보 (임시 데이터)
+// 사용자 정보 (기본값)
 const user = ref({
   profileImage: 'https://cdn.vuetifyjs.com/images/parallax/material.jpg',
   nickname: '꼼곰보',
@@ -183,12 +208,24 @@ const user = ref({
   badges: 2,
   currentExperience: 30, // 현재 경험치
   totalExperience: 100, // 총 경험치 (다음 레벨까지 필요한 경험치)
-})
+});
 
 // 경험치 백분율 계산
 const experiencePercentage = computed(() => {
-  return (user.value.currentExperience / user.value.totalExperience) * 100
-})
+  return (user.value.currentExperience / user.value.totalExperience) * 100;
+});
+
+// 페이지 로드 시 세션 복원
+onMounted(() => {
+  authStore.restoreSession();
+  if (authStore.currentUser) {
+    user.value = {
+      ...user.value,
+      profileImage: authStore.currentUser.profileImage,
+      nickname: authStore.currentUser.nickname,
+    };
+  }
+});
 
 // 메뉴 항목
 const menus = [
@@ -196,45 +233,57 @@ const menus = [
   { label: '전체 프로젝트', path: '/project-list' },
   { label: '게시판', path: '/post' },
   { label: '뱃지', path: '/badge' },
-]
+];
 
 // 로그인 모달 열기
 const openLoginModal = () => {
-  isLoginModalOpen.value = true
-}
+  isLoginModalOpen.value = true;
+};
 
 // 로그인 모달 닫기
 const closeLoginModal = () => {
-  isLoginModalOpen.value = false
-}
+  isLoginModalOpen.value = false;
+};
 
 // 회원가입 모달 열기
 const openSignupModal = () => {
-  isSignupModalOpen.value = true
-}
+  isSignupModalOpen.value = true;
+};
 
 // 회원가입 모달 닫기
 const closeSignupModal = () => {
-  isSignupModalOpen.value = false
-}
+  isSignupModalOpen.value = false;
+};
+
+// 로그인 성공 모달 닫기
+const closeLoginSuccessModal = () => {
+  showLoginSuccessModal.value = false;
+  router.push('/'); // 메인 페이지로 이동
+};
+
+// 회원가입 성공 모달 닫기
+const closeSignupSuccessModal = () => {
+  showSignupSuccessModal.value = false;
+  router.push('/'); // 메인 페이지로 이동
+};
 
 // 로그인 처리
-const handleLogin = () => {
-  isLogin.value = true
-  closeLoginModal()
-}
+const handleLogin = (user) => {
+  closeLoginModal();
+  showLoginSuccessModal.value = true;
+};
 
 // 회원가입 처리
 const handleSignup = () => {
-  closeSignupModal()
-  router.push('/')
-}
+  closeSignupModal();
+  showSignupSuccessModal.value = true;
+};
 
 // 로그아웃 처리
 const handleLogout = () => {
-  isLogin.value = false
-  router.push('/')
-}
+  authStore.logout();
+  router.push('/');
+};
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <!-- index.html 확인 필요 -->
 <template>
-    <article style="margin-left:300px; margin-right:300px">
+    <article>
         <h2>{{ pageTitle }}</h2>
         <input class="titleBox" type="text" placeholder="제목" v-model="title" style="width:440px; height:25px;">
         <br>
@@ -16,7 +16,7 @@
 <script setup>
     import {ref} from 'vue';
 
-    const pageTitle = ref('');
+    const pageTitle = ref('글쓰기');
     const title = ref('');
     const content = ref('');
 

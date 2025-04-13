@@ -103,7 +103,7 @@
   
   <style scoped>
   .git-widget-card {
-    width: 200px;
+    width: 100%;
     padding: 24px;
     height: 100%;
     background: linear-gradient(to bottom, #FDF7F2, #FBEBE1);

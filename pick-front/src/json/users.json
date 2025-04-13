@@ -1,0 +1,14 @@
+[
+    {
+      "email": "rhtjddus0502@gmail.com",
+      "password": "password123!",
+      "name": "고성연",
+      "nickname": "꼼곰보",
+      "phone": "010-3791-8329",
+      "birthday": "1999-05-02",
+      "ssn": "111111-3000000",
+      "profileImage": "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+      "githubLink": "https://github.com/Gombo2",
+      "auth": "member"
+    }
+  ]

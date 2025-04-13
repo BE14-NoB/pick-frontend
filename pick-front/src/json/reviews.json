@@ -1,0 +1,38 @@
+[
+    {
+      "name": "감이 프로젝트 해서 좋았어요!",
+      "rating": 4.5,
+      "comment": "새벽러",
+      "avatar": "/assets/member/avatar-1.png"
+    },
+    {
+      "name": "제 코드가 사라졌어요",
+      "rating": 1.5,
+      "comment": "거북이",
+      "avatar": "/assets/member/avatar-2.png"
+    },
+    {
+      "name": "원할하게 잘 됐던거 같아요",
+      "rating": 3.0,
+      "comment": "펭귄",
+      "avatar": "/assets/member/avatar-3.png"
+    },
+    {
+      "name": "무난했어요",
+      "rating": 3.0,
+      "comment": "토끼",
+      "avatar": "/assets/member/avatar-4.png"
+    },
+    {
+      "name": "기획을 잘해요",
+      "rating": 4.5,
+      "comment": "주정뱅이",
+      "avatar": "/assets/member/avatar-5.png"
+    },
+    {
+      "name": "애매해요",
+      "rating": 0.5,
+      "comment": "믹스",
+      "avatar": "/assets/member/avatar-6.png"
+    }
+  ]
