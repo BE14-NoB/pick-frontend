@@ -41,7 +41,7 @@
         <ProjectCard
           v-for="(card, index) in paginatedData"
           :key="index"
-          :id="Number(card.id)"
+          :id="Number(card.id)-1"
           :title="card.name"
           :subtitle="card.introduction"
           :imgSrc="defaultImage"

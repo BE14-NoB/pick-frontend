@@ -1,0 +1,100 @@
+[
+    {
+      "id" : 1,
+      "title": "백엔드 추가 내용",
+      "create_date": "2025.04.03",
+      "template": "정기 회의",      
+      "author": "꼼곰보",
+      "participants": ["석키키키", "시냥주", "혬헴헴", "민선"]
+    },
+    {
+        "id" : 2,
+      "title": "[백엔드] ERD 설계 시작",
+      "create_date": "2025.04.03",
+      "template": "스프린트 킥오프",
+      "author": "꼼곰보",
+      "participants": ["석키키키", "시냥주", "혬헴헴", "민선"]
+      
+    },
+    {
+        "id" : 3,
+      "title": "[백엔드] ERD 설계 진행 상황 확인",
+      "create_date": "2025.04.03",
+      "template": "데일리 스크럼",
+      "author": "꼼곰보",
+      "participants": ["석키키키", "시냥주", "혬헴헴", "민선"]
+    },
+    {
+        "id" : 4,
+      "title": "[백엔드] Security 코드 리뷰",
+      "create_date": "2025.04.03",
+      "template": "코드 리뷰",
+      "author": "꼼곰보",
+      "participants": ["석키키키", "시냥주", "혬헴헴", "민선"]
+    },
+    {
+        "id" : 5,
+      "title": "[프론트엔드] UI/UX 설계",
+      "create_date": "2025.04.03",
+      "template": "회고 회의",
+      "author": "꼼곰보",
+      "participants": ["석키키키", "시냥주", "혬헴헴", "민선"]
+    },
+    {
+        "id": 6,
+        "title": "[프론트엔드] 페이지 라우팅 구조 논의",
+        "create_date": "2025.04.04",
+        "template": "정기 회의",
+        "author": "민선",
+        "participants": ["꼼곰보", "시냥주", "석키키키", "blueSky"]
+      },
+      {
+        "id": 7,
+        "title": "[백엔드] API 명세 확정",
+        "create_date": "2025.04.04",
+        "template": "스프린트 킥오프",
+        "author": "시냥주",
+        "participants": ["민선", "혜밍", "석키키키", "꼼곰보"]
+      },
+      {
+        "id": 8,
+        "title": "[디자인] 컴포넌트 UI 정리",
+        "create_date": "2025.04.05",
+        "template": "정기 회의",
+        "author": "blueSky",
+        "participants": ["꼼곰보", "시냥주"]
+      },
+      {
+        "id": 9,
+        "title": "[프론트엔드] 상태관리 도입 결정",
+        "create_date": "2025.04.05",
+        "template": "데일리 스크럼",
+        "author": "혜밍",
+        "participants": ["민선", "blueSky", "석키키키"]
+      },
+      {
+        "id": 10,
+        "title": "[공통] Git 브랜치 전략 통일",
+        "create_date": "2025.04.06",
+        "template": "코드 리뷰",
+        "author": "석키키키",
+        "participants": ["시냥주", "꼼곰보", "혜밍"]
+      },
+      {
+        "id": 11,
+        "title": "[백엔드] JPA vs MyBatis 토론",
+        "create_date": "2025.04.06",
+        "template": "회고 회의",
+        "author": "시냥주",
+        "participants": ["민선", "석키키키", "blueSky"]
+      },
+      {
+        "id": 12,
+        "title": "[프론트엔드] 초기 컴포넌트 구조 확정",
+        "create_date": "2025.04.06",
+        "template": "스프린트 킥오프",
+        "author": "blueSky",
+        "participants": ["시냥주", "석키키키", "민선"]
+      }
+  ]
+  

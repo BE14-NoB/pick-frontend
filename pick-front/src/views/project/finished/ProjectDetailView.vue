@@ -76,26 +76,11 @@
                 </v-card>
               </v-slide-group-item>
             </v-slide-group>
-
-
-
-          <!-- <div class="review-wrapper">
-            <div class="review-list">
-              <div v-for="review in projectReviewData" :key="review.id" class="review-card">
-                <strong>{{ review.reviewerId }}</strong>
-                <p>{{ review.content }}</p>
-              </div>
-            </div>
-          </div> -->
-
         </div>
 
 
         </section>
 
-      
-
-  
       </main>
     </div>
   
@@ -111,10 +96,7 @@
     import {ref, computed, onMounted, watch} from 'vue';
     import { useRoute } from 'vue-router';
     import CategoryChips from '@/components/project/CategoryChip.vue';
-    import ThumbNailMockup from '../../components/project/ThumbNailMockup.vue';
-    import LinkChip from '@/components/project/LinkChip.vue';
-    import ProjectReviewCard from '../../components/project/ProjectReviewCard.vue';
-    import { mdiLink } from '@mdi/js'
+    import ThumbNailMockup from '@/components/project/ThumbNailMockup.vue';
 
     //아바타
     const avatarUrl = new URL('@/assets/img/avatar.png', import.meta.url).href
@@ -338,17 +320,6 @@
   min-width: 30px !important;
   flex: 0 1 auto;
 }
-/* .review-card {
-  scroll-snap-align: start;
-  flex: 0 0 auto;
-  width: 280px;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-} */
-
-
 
 </style>
 
