@@ -2,13 +2,14 @@
     <p class="desc">
         PICK 에서 총 <strong>{{ meetingData.length }}</strong>개의 회의록을 작성하셨어요! ✨
     </p>
-    <div class="issue-header">
+    <div class="meeting-header">
         <MeetingCreateButton @click="onClickCreateMeeting" />
     </div>
     <div class="list-card">
         <List
             :headers="['번호', '제목', '작성일', '템플릿' , '작성자', '참여자']"
-            :items="paginatedMeetings.map(({ status, ...rest }) => rest)"
+            :items="paginatedMeetings.map(({ content,  updatedAt,  ...rest }) => rest)"
+            @row-click="goToDetail"
         >
         <template #template="{ value }">
             <v-chip :color="getTypeColor(value)" variant="tonal" size="small">
@@ -48,6 +49,9 @@
     import meetingJson from '@/json/project_meeting_list.json';
     import meetingMaker from '@/assets/img/avatar.png';
     import MeetingCreateButton from '@/components/project/MeetingCreateButton.vue';
+    import { useRouter } from 'vue-router'
+    
+    const router = useRouter()
 
 
     const meetingData = ref([])
@@ -55,13 +59,31 @@
     const itemsPerPage = 5
 
     // json server
-    onMounted(() => {
-        meetingData.value = meetingJson.map(meeting => ({
-            ...meeting,
-            // creator: meetingMaker
-        }))
+    onMounted(async () => {
+      try {
+        const res = await fetch('http://localhost:8080/meetings')
+        const data = await res.json()
+
+        // 유효하지 않은 항목 필터링 (title, content 없는 경우 제외)
+        meetingData.value = data.filter(meeting =>
+          meeting.title?.trim() &&
+          meeting.content?.trim()
+        )
+
+        console.log('✅ meetings 불러옴:', meetingData.value)
         console.log(meetingData)
+      } catch (err) {
+        console.error('❌ 회의록 불러오기 실패:', err)
+      }
     })
+
+    // onMounted(() => {
+    //     meetingData.value = meetingJson.map(meeting => ({
+    //         ...meeting,
+    //         // creator: meetingMaker
+    //     }))
+    //     console.log(meetingData)
+    // })
 
     const paginatedMeetings = computed(() => {
     const start = (openPage.value - 1) * itemsPerPage
@@ -73,7 +95,7 @@
     )
 
     const onClickCreateMeeting = () => {
-    console.log('회의록 작성 클릭됨!')
+      console.log('회의록 작성 클릭됨!')
     }
 
 
@@ -83,8 +105,13 @@
         if (type === '코드 리뷰') return 'red'
         if (type === '회고 회의') return 'cyan'
         return 'grey'
-        }
-    
+    }
+
+    function goToDetail(row) {
+      const id = row.id
+      router.push(`/project/meeting/${id}`)
+    }
+        
 
 </script>
 
@@ -96,7 +123,7 @@
   margin: 16px 0;
 }
 
-.issue-header {
+.meeting-header {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 16px;

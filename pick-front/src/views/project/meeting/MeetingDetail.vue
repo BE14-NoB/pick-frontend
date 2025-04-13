@@ -1,0 +1,211 @@
+<template>
+    <div v-if="meeting" class="note-editor">
+      <!-- 상단 헤더 -->
+      <div class="meeting-header">
+        <span style="color:#4c4c4c; font-weight: 500">
+          <!-- 회의록 상세 보기 -->
+        </span>
+        <v-btn
+          color="primary"
+          variant="text"
+          prepend-icon="mdi-pencil"
+          @click="goToEdit"
+        >
+          수정하기
+        </v-btn>
+      </div>
+  
+      <!-- 제목 -->
+      <input
+        v-model="meeting.title"
+        class="note-title readonly-input"
+        readonly
+      />
+  
+      <!-- 작성/수정일 -->
+      <div class="note-meta">
+        <div>🕒 작성일: {{ meeting.create_date }}</div>
+        <div>🔄 수정일: {{ meeting.updatedAt || '-' }}</div>
+      </div>
+  
+      <!-- 작성자/참여자/템플릿 -->
+      <div class="note-meta meta-box">
+        <!-- 작성자 -->
+        <div class="meta-row author">
+          <div class="meta-label">👩‍💻 작성자</div>
+          <v-select
+            v-model="selectedAuthor"
+            :items="memberList"
+            item-title="name"
+            return-object
+            variant="underlined"
+            density="comfortable"
+            class="meta-select readonly-select"
+            chips
+            readonly
+          />
+        </div>
+  
+        <!-- 참여자 -->
+        <div class="meta-row participants">
+          <div class="meta-label">👥 참여자</div>
+          <v-select
+            v-model="selectedParticipants"
+            :items="memberList"
+            item-title="name"
+            return-object
+            multiple
+            variant="underlined"
+            density="comfortable"
+            class="meta-select readonly-select"
+            chips
+            readonly
+          />
+        </div>
+  
+        <!-- 템플릿 -->
+        <div class="meta-row template">
+          <div class="meta-label">📄 템플릿</div>
+          <v-select
+            v-model="meeting.template"
+            :items="templates"
+            variant="underlined"
+            density="comfortable"
+            class="meta-select readonly-select"
+            chips
+            readonly
+          />
+        </div>
+      </div>
+  
+      <!-- 내용 미리보기 -->
+      <div class="note-preview" v-html="renderedMarkdown" />
+    </div>
+  
+    <div v-else>
+      <p>📂 회의록 정보를 찾을 수 없습니다.</p>
+    </div>
+  </template>
+  
+  <script setup>
+  import { ref, onMounted, computed } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { marked } from 'marked'
+  import profile from '@/assets/img/avatar.png'
+  
+  const route = useRoute()
+  const router = useRouter()
+  const meeting = ref(null)
+  
+  const memberList = [
+    { name: '꼼꼼보', avatar: profile },
+    { name: '석키키키', avatar: profile },
+    { name: '시냥주', avatar: profile },
+    { name: '민선', avatar: profile },
+    { name: 'blueSky', avatar: profile },
+    { name: '혬헴헴', avatar: profile }
+  ]
+  
+  const templates = ['정기 회의', '스프린트 킥오프', '회고 회의', '코드 리뷰', '데일리 스크럼']
+  const selectedAuthor = ref(null)
+  const selectedParticipants = ref([])
+  
+  onMounted(async () => {
+    const id = route.params.id
+    try {
+      const res = await fetch('http://localhost:8080/meetings')
+      const data = await res.json()
+      const target = data.find(m => m.id === id)
+      if (!target) return
+      meeting.value = target
+      selectedAuthor.value = memberList.find(m => m.name === target.author)
+      selectedParticipants.value = memberList.filter(m => target.participants.includes(m.name))
+    } catch (err) {
+      console.error('❌ 회의록 불러오기 실패:', err)
+    }
+  })
+  
+  const renderedMarkdown = computed(() =>
+    meeting.value?.content ? marked(meeting.value.content) : ''
+  )
+  
+  const goToEdit = () => {
+    router.push({
+      path: '/project/create-meeting',
+      query: { id: meeting.value.id }
+    })
+  }
+  </script>
+  
+  <style scoped>
+  .note-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+  .meeting-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .note-title {
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 8px;
+  }
+  .note-meta {
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .meta-box {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+  }
+  .meta-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+  }
+  .meta-label {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .meta-select {
+    min-width: 200px;
+    max-width: 300px;
+    font-size: 14px;
+  }
+  .readonly-input {
+    pointer-events: none;
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .readonly-select {
+    pointer-events: none;
+    opacity: 1 !important;
+  }
+  .note-preview {
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    white-space: pre-wrap;
+  }
+  </style>
+  

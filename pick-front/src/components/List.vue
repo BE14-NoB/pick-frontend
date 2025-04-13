@@ -1,12 +1,12 @@
 <template>
   <v-table class="list-table">
     <thead>
-      <tr>
+      <tr >
         <th v-for="(header, index) in headers" :key="index">{{ header }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, rowIndex) in items" :key="rowIndex">
+      <tr v-for="(row, rowIndex) in items" :key="rowIndex" @click="emit('row-click', row)">
         <td v-for="(value, key, colIndex) in row" :key="colIndex">
           <slot :name="key" :value="value">
             {{ value }}
@@ -18,6 +18,10 @@
 </template>
 
 <script setup>
+import { defineProps, defineEmits } from 'vue'
+
+const emit = defineEmits(['row-click']) // 클릭 이벤트 정의
+
 defineProps({
   headers: {
     type: Array,
@@ -28,6 +32,7 @@ defineProps({
     required: true
   }
 })
+
 </script>
 
 <style scoped>
@@ -51,10 +56,21 @@ td {
   text-align: center;
   padding: 14px;
   border-bottom: 1px solid #eee;
+  cursor: pointer;
 }
 
 /* 제목 컬럼의 td만 왼쪽 정렬 (제목은 두 번째 컬럼) */
 td:nth-child(2) {
   text-align: left;
 }
+
+.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.clickable-row:hover {
+  background-color: #f5f5f5;
+}
+
+
 </style>

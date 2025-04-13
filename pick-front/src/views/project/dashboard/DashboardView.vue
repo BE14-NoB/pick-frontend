@@ -132,7 +132,8 @@
   display: grid;
   grid-template-columns: 60% 40%;
   grid-template-rows: 40% 60%;
-  gap: 8px;
+  column-gap: 15px; 
+  row-gap: 8px;
   height: 100%;
 }
 
@@ -149,6 +150,7 @@
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   width: 100%;
+  gap: 15px;
 }
 .b {
     display: flex;
@@ -163,7 +165,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  gap: 10px;
+  gap: 15px;
 }
 .meeting-widget{
     width: 50%;

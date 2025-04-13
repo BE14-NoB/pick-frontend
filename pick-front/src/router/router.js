@@ -77,6 +77,10 @@ const router = createRouter({
           component: () => import('@/views/project/meeting/CreaetMeeting.vue')
         },
         {
+          path: 'meeting/:id',
+          component: () => import('@/views/project/meeting/MeetingDetail.vue')
+        },
+        {
           path: 'review',
           component: () => import('@/views/project/review/ProjectReview.vue')
         }

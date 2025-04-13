@@ -37,7 +37,7 @@ const currentPageMeta = computed(() =>
     )
 )
 
-const pageTitle = computed(() => currentPageMeta.value?.title || '페이지')
+const pageTitle = computed(() => currentPageMeta.value?.title || '')
 const pageDescription = computed(() => currentPageMeta.value?.description || '')
 
 watchEffect(() => {
@@ -69,15 +69,15 @@ watchEffect(() => {
 
 .content-wrapper {
     display: flex;
-    flex: 1;
-    
+    flex: 1;    
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .main-content {
     flex: 1;
     padding: 24px;
-    margin-right: 10%;
-
+    margin-right: 5%;
 }
 
 .page-title {
