@@ -1,6 +1,6 @@
 <template>
     <v-card class="widget-container" flat 
-            @click="goToMemberList">
+            >
       <div class="header">
         <span class="member-title">팀원</span>
   
@@ -16,7 +16,7 @@
       </div>
   
       <!-- 팀원 리스트 -->
-      <div class="member-list">
+      <div class="member-list" @click="goToMemberList">
         <div
           class="member-item"
           v-for="member in pagedMembers"

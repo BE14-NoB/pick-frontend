@@ -19,6 +19,12 @@ export const menuItems = [
         type: 'menu',
         match: ['/project/member', '/project/member']
     },
+    {
+        to: '/project/meeting',
+        label: '회의록',
+        type: 'menu',
+        match: ['/project/meeting', '/project/meeting']
+    },
 
     {
         to: '/project/issues',
@@ -46,6 +52,7 @@ export const menuItems = [
     },
 
 
+
     // 페이지별 정보
     {
         to: '/project/info',
@@ -61,6 +68,23 @@ export const menuItems = [
         title: '팀원',
         description: '프로젝트에 참여하는 팀원 목록',
         match: ['/project/member'],
+        type: 'page'
+    },
+    {
+        to: '/project/meeting',
+        label: 'MEETING',
+        title: '회의록',
+        description: '회의록 목록을 조회할 수 있습니다.',
+        match: ['/project/meeting'],
+        type: 'page'
+    },
+    {
+        to: '/project/create-meeting',
+        label: 'MEETING',
+        title: '회의록 작성하기',
+        description: '마크다운 문법으로 회의록을 작성할 수 있습니다.',
+        // description: '기본으로 제공되는 템플릿을 이용해 회의록을 작성할 수 있습니다.',
+        match: ['/project/create-meeting'],
         type: 'page'
     },
     {

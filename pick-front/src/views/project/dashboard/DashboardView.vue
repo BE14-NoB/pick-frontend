@@ -98,7 +98,7 @@
     const issue = computed(() => gitInfo.value?.issue || { count: { open: 0, closed: 0 } })
     const pullRequest = computed(() => gitInfo.value?.['pull-request'] || {count : {open: 0, closed:0}})
 
-    // 프로젝트 깃 정보 가져오기
+    // 프로젝트 정보 & 깃 정보 가져오기
     onMounted(async () => {
       try {
         const [gitRes, projectRes] = await Promise.all([
