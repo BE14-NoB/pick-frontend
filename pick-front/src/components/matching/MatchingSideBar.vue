@@ -1,307 +1,438 @@
 <template>
-    <div class="search-container">
-      <div class="tab-container">
-        <div class="tab active">
-          <div class="icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#5D8AC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="#5D8AC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+  <div class="search-container">
+      <div class="header">
+          <div class="tab-group">
+              <button class="tab-button" :class="{ active: activeTab === 'random' }" @click="setActiveTab('random')">
+                  Random Matching
+              </button>
+              <button class="tab-button" :class="{ active: activeTab === 'private' }" @click="setActiveTab('private')">
+                  Private Matching
+              </button>
           </div>
-          <span>Random Matching</span>
-        </div>
-        <div class="tab">
-          <div class="icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#020725" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="#020725" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <span>Private Matching</span>
-        </div>
       </div>
-      
-      <div class="search-form">
-        <div class="form-group">
-          <div class="icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#020725" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="#020725" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="select-wrapper">
-            <label>최대 인원</label>
-            <div class="select-container">
-              <span class="placeholder">Choose Number</span>
-              <div class="chevron-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 9L12 15L18 9" stroke="#020725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+      <div v-if="activeTab === 'random'" class="search-form">
+          <div class="form-group">
+              <div class="input-group">
+                  <label>프로젝트 인원</label>
+                  <div class="people-range">
+                      <div class="select-wrapper select-wrapper-small">
+                          <select v-model="minPeople" @focus="hidePlaceholder = true" @blur="hidePlaceholder = false" class="select-drop">
+                              <option value="" disabled :hidden="hidePlaceholder">최소</option>
+                              <option v-for="n in 10" :key="n" :value="n">{{ n === 10 ? '10명 이상' : n + '명' }}</option>
+                          </select>
+                      </div>
+                      <span class="range-separator">~</span>
+                      <div class="select-wrapper select-wrapper-small">
+                          <select v-model="maxPeople" :disabled="!minPeople" @focus="hidePlaceholder = true" @blur="hidePlaceholder = false" class="select-drop">
+                              <option value="" disabled :hidden="hidePlaceholder">최대</option>
+                              <option v-for="n in maxPeopleOptions" :key="n" :value="n">{{ n === 10 ? '10명 이상' : n + '명' }}</option>
+                          </select>
+                      </div>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
-        
-        <div class="form-group">
-          <div class="icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#020725" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 6V12L16 14" stroke="#020725" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="select-wrapper">
-            <label>프로젝트 기간</label>
-            <div class="select-container">
-              <span class="placeholder">Choose Duration</span>
-              <div class="chevron-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 9L12 15L18 9" stroke="#020725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+          <div class="divider"></div>
+          <div class="form-group">
+              <div class="input-group">
+                  <label>프로젝트 기간</label>
+                  <div class="duration-range">
+                      <div class="select-wrapper select-wrapper-small">
+                          <select v-model="minDuration" @focus="hidePlaceholder = true" @blur="hidePlaceholder = false" class="select-drop">
+                              <option value="" disabled :hidden="hidePlaceholder">최소</option>
+                              <option v-for="duration in durationOptions" :key="duration.value" :value="duration.value">{{ duration.label }}</option>
+                          </select>
+                      </div>
+                      <span class="range-separator">~</span>
+                      <div class="select-wrapper select-wrapper-small">
+                          <select v-model="maxDuration" :disabled="!minDuration" @focus="hidePlaceholder = true" @blur="hidePlaceholder = false" class="select-drop">
+                              <option value="" disabled :hidden="hidePlaceholder">최대</option>
+                              <option v-for="duration in maxDurationOptions" :key="duration.value" :value="duration.value">
+                                  {{ duration.label }}
+                              </option>
+                          </select>
+                      </div>
+                  </div>
               </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="form-group category-group">
-          <div class="select-wrapper-small">
-            <label>상위 카테고리</label>
-            <div class="select-container">
-              <span class="placeholder">Select Category</span>
-              <div class="chevron-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 9L12 15L18 9" stroke="#020725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </div>
-          </div>
+          </div>  
+  
+          <div class="divider"></div>
           
-          <div class="select-wrapper-small">
-            <label>하위 카테고리</label>
-            <div class="select-container">
-              <span class="placeholder">Select Category</span>
-              <div class="chevron-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 9L12 15L18 9" stroke="#020725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
+          <div class="category-group">
+            <div class="form-group">
+            <div class="input-group">
+                <label>상위 카테고리</label>
+                <div class="select-wrapper">
+                    <select v-model="category" @focus="hidePlaceholder = true" @blur="hidePlaceholder = false">
+                        <option value="" disabled :hidden="hidePlaceholder">Select Category</option>
+                            <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
+                    </select>
+                </div>
+            </div>
+          </div>
+      
+          <div class="form-group">
+            <div class="input-group">
+                <label>하위 카테고리</label>
+                <div class="select-wrapper">
+                    <select v-model="subcategory" :disabled="!category" @focus="hidePlaceholder = true" @blur="hidePlaceholder = false">
+                        <option value="" disabled :hidden="hidePlaceholder">{{subcategoryPlaceholder}}</option>
+                        <option v-for="subcat in subcategories" :key="subcat" :value="subcat">{{ subcat }}</option>
+                    </select>
+                </div>
             </div>
           </div>
         </div>
-        
-        <div class="button-group">
-          <button class="search-button">매칭 조회</button>
-          <button class="reset-button">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 3C14.5013 3 16.8917 3.99246 18.7456 5.74642C20.5995 7.50038 21.5 9.89079 21.5 12.3921C21.5 14.8934 20.5995 17.2838 18.7456 19.0378C16.8917 20.7917 14.5013 21.7842 12 21.7842C9.49872 21.7842 7.10832 20.7917 5.25442 19.0378C3.40052 17.2838 2.5 14.8934 2.5 12.3921C2.5 9.89079 3.40052 7.50038 5.25442 5.74642C7.10832 3.99246 9.49872 3 12 3Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 7V12L15 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
+      <div class="divider"></div>  
+      <div class="btn-group">
+        <button class="search-button matching-button" @click="searchMatching">
+          매칭 조회
+        </button>
+        <button class="create-project-button matching-button">
+          매칭 생성
+        </button>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  // Component logic can be added here
-  </script>
-  
-  <style scoped>
+  <div v-if="activeTab === 'private'" class="search-form">
+      <div class="invite-group">
+          <div class="invite">
+              <label>입장 코드</label>
+              <div class="invite-input">
+                  <input ref="inviteInput" type="text" placeholder="입장 코드를 입력하세요">
+              </div>
+              <button class="invite-button">입장하기</button>
+          </div>
+      </div>
+  </div>
+</div>
+</template>
+
+<script setup>
+import { ref, computed, nextTick, watch } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const activeTab = ref('random')
+const minPeople = ref('')
+const maxPeople = ref('')
+const minDuration = ref('')
+const maxDuration = ref('')
+const category = ref('')
+const subcategory = ref('')
+const hidePlaceholder = ref(false)
+const inviteInput = ref(null)
+const subcategoryPlaceholder = ref('Select Category')
+
+// 읽어오기
+const categories = ['개발', '디자인', '기획', '마케팅']
+const subcategoriesMap = {
+  '개발': ['웹', '모바일', '백엔드', '프론트엔드'],
+  '디자인': ['UI/UX', '그래픽', '브랜딩'],
+  '기획': ['서비스 기획', '전략 기획', 'PM'],
+  '마케팅': ['디지털 마케팅', '콘텐츠 마케팅', '브랜드 마케팅']
+}
+const durationOptions = [
+  { value: '1w', label: '1주' },
+  { value: '2w', label: '2주' },
+  { value: '1m', label: '1개월' },
+  { value: '2m', label: '2개월' },
+  { value: '3m', label: '3개월' },
+  { value: '6m', label: '6개월' }
+]
+
+const subcategories = computed(() => {
+  return category.value ? subcategoriesMap[category.value] : []
+})
+
+const maxPeopleOptions = computed(() => {
+  return minPeople.value ? Array.from({ length: 10 - minPeople.value + 1 }, (_, i) => i + Number(minPeople.value)) : []
+})
+
+const maxDurationOptions = computed(() => {
+  if (!minDuration.value) return []
+  const currentIndex = durationOptions.findIndex(d => d.value === minDuration.value)
+  return durationOptions.slice(currentIndex)
+})
+
+const setActiveTab = (tab) => {
+  activeTab.value = tab
+  if (tab === 'private') {
+      nextTick(() => {
+          inviteInput.value.focus()
+      })
+  }
+}
+// Watch for changes in category to reset subcategory and update placeholder
+  watch(category, (newValue) => {
+      if (newValue) {
+          subcategory.value = ''
+          subcategoryPlaceholder.value = 'Select Category'
+      }
+  })
+  watch(activeTab, (newValue) => {
+      if(newValue) {
+          const activeTab = ref('random')
+          minPeople.value = ''
+          maxPeople.value = ''
+          minDuration.value = ''
+          maxDuration.value = ''
+          category.value = ''
+          subcategory.value = ''
+          hidePlaceholder.value = false
+          inviteInput.value = null
+          subcategoryPlaceholder.value = 'Select Category'
+      }
+  })
+
+  const searchMatching = () => {
+      router.push('/match/result')
+  }
+  // 이부분에 api 요청 구현
+  // const searchMatching = async () => {
+  // if (activeTab.value === 'random') {
+  //     // Create search parameters object
+  //     const searchParams = {
+  //         minPeople: minPeople.value,
+  //         maxPeople: maxPeople.value,
+  //         minDuration: minDuration.value,
+  //         maxDuration: maxDuration.value,
+  //         category: category.value,
+  //         subcategory: subcategory.value
+  //     }
+
+  //     // Convert to query string, including null values
+  //     const queryString = Object.entries(searchParams)
+  //         .map(([key, value]) => `${key}=${value === null ? 'null' : value}`)
+  //         .join('&')
+
+  //     // Navigate to result page with search parameters
+  //     router.push(`/match/result?${queryString}`)
+  // }
+//}
+</script>
+
+<style scoped>
   .search-container {
-    width: 440px;
-    min-width: 440px;
-    border: 1px solid #020725;
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: #fff;
+    justify-items: center;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: fit-content;
+      min-width: fit-content;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .header {
+      display: flex;
+      justify-content: center;
+      width: 280px;
+  }
+
+  .tab-group {
+      display: flex;
+      gap: 0;
+  }
+
+  label {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #020725;
+  }
+
+  .tab-button {
+      align-items: center;
+      justify-items: center;
+      width: 140px;
+      gap: 5px;
+      padding: 6px;
+      background: rgba(111, 111, 111, 0.3);
+      border: none;
+      cursor: pointer;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
   }
   
-  .tab-container {
-    display: flex;
-    height: 80px;
+  .tab-button:first-child {
+      border-radius: 12px 0 0 0;
   }
   
-  .tab {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px;
-    width: 220px;
-    height: 80px;
-    background-color: rgba(217, 217, 217, 0.4);
-    cursor: pointer;
+  .tab-button:last-child {
+      border-radius: 0 12px 0 0;
   }
   
-  .tab.active {
-    background-color: #fff;
+  .tab-button:hover {
+      background: rgba(255, 255, 255, 0.8);
+      color: #020725;
   }
   
-  .tab.active .icon-wrapper svg path {
-    stroke: #5D8AC1;
-  }
-  
-  .tab.active span {
-    color: #5D8AC1;
-  }
-  
-  .tab:not(.active) .icon-wrapper svg path {
-    stroke: #020725;
-  }
-  
-  .tab:not(.active) span {
-    color: #020725;
-  }
-  
-  .icon-wrapper {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .icon-wrapper svg {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .tab span {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 1.36;
+  .tab-button.active {
+      background: #fff;
+      color: #020725;
   }
   
   .search-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    width: 440px;
-    min-width: fit-content;
+      align-items: center;
+      justify-items: center;
+      padding: 12px;
+      background: #ffffff;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 2px 8px rgba(2, 7, 37, 0.05);
+      width: 280px;
   }
   
   .form-group {
-    display: flex;
-    gap: 7px;
-    padding: 16px;
-    width: 410px;
-    white-space: nowrap;
+      display: flex;
+      gap: 7px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      background: white;
+      border-radius: 8px;
+      white-space: nowrap;
+      margin: 0;
   }
   
-  .category-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 2px 1px;
-    width: 410px;
+  .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+  }
+
+  .invite-input {
+      font-size: 12px;
+      border: 2px solid #5d8ac1;
+      border-radius: 8px;
+      width: 256px;
+      padding: 1px;
+      padding-left: 10px;
+      display: inline-block
+  }
+
+  .invite-input input {
+      border: none;
+      outline: none;
+  }
+  
+  .divider {
+      width: 256px;
+      height: 1px;
+      background: rgba(2, 7, 37, 0.1);
   }
   
   .select-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
   }
   
   .select-wrapper-small {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 100%;
+      min-width: 100px;
+      width: 100px;
   }
   
-  .select-container {
+  .select-wrapper-large {
+      min-width: 180px;
+      width: 180px;
+  }
+  
+  .select-wrapper::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9L12 15L18 9' stroke='%23020725' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      pointer-events: none;
+      opacity: 0.6;
+  }
+  
+  select {
+      width: 100%;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      color: rgba(2, 7, 37, 0.8);
+      border: none;
+      background: transparent;
+      padding-right: 24px;
+      padding-left: 3px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+  }
+  
+  select::-ms-expand {
+      display: none;
+  }
+  
+  .chevron-down {
+      display: none;
+  }
+  
+  .matching-button {
+      padding: 8px 16px;
+      background: #133E86;
+      width: 120px;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 8px;
+      margin-right: 8px;
+  }
+  
+  .matching-button:hover {
+      background: rgba(93, 138, 193, 0.85);
+  }
+
+  .invite-button {
+    padding: 8px 16px;
+      background: #133E86;
+      width: 256px;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 8px;
+      margin-right: 8px;
+  }
+  
+  .people-range,
+  .duration-range {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  }
+  
+  .range-separator {
+      color: #020725;
+      font-size: 12px;
+      font-weight: 600;
+  }
+  
+  select:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+  }
+  .category-group {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px;
-    border: 1px solid #020725;
-    border-radius: 8px;
-    cursor: pointer;
+    justify-items: center;
+    flex-direction: row;
+    gap: 16px;
+    height: 80px;
   }
-  
-  .placeholder {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 1.36;
-    color: #020725;
-    opacity: 0.8;
-  }
-  
-  .chevron-icon {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.6;
-  }
-  
-  .chevron-icon svg {
-    width: 100%;
-    height: 100%;
-  }
-  
-  label {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 1.36;
-    color: #020725;
-  }
-  
-  .button-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 10px 17px;
-    width: 410px;
-  }
-  
-  .search-button {
-    width: 300px;
-    padding: 12px 24px;
-    background-color: #133E86;
-    border: none;
-    border-radius: 12px;
-    color: #fff;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 1.36;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .search-button:hover {
-    background-color: #1a4ca8;
-  }
-  
-  .reset-button {
-    width: 51px;
-    height: 51px;
-    padding: 6px;
-    background-color: #133E86;
-    border: none;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .reset-button:hover {
-    background-color: #1a4ca8;
-  }
-  
-  .reset-button svg {
-    width: 100%;
-    height: 100%;
-  }
-  </style> 
+</style> 

@@ -1,25 +1,28 @@
 <template>
-    <div class="page-header">
+        <div class="page-header">
             <h1 class="page-header-title">PICK</h1>
-    </div>
-    <div class="content-wrapper">
-        <main class="main-content">
-            <MatchingResult/>
-        </main>
-    </div>
+        </div>
+        <div class="content-wrapper">
+            <main class="content">
+                <div class="sidebar">
+                    
+                </div>
+                <div class="result-content">
+                    <MatchingResult />
+                </div>
+                <div class="sidebar">
+                    <MatchingSideBar />
+                </div>
+            </main>
+        </div>
 </template>
 
 <script setup>
     import MatchingResult from '@/components/matching/MatchingResult.vue'
+    import MatchingSideBar from '@/components/matching/MatchingSideBar.vue';
 </script>
 
 <style>
-    .project-layout {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-    }
-
     .page-header {
         background-color: #cfe3f2;
         padding: 20px 0px 0px 200px;
@@ -36,5 +39,19 @@
     .page-title {
     font-size: 24px;
     font-weight: bold;
+    }
+    .content {
+        display: flex;
+    }
+    .result-content {
+        flex: 3;
+    }
+
+    .sidebar {
+        flex: 1;
+        position: sticky;
+        top: 100px; /* 헤더 높이에 맞춰 조정 */
+        bottom: 100px;
+        align-self: flex-start;
     }
 </style>

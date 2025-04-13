@@ -6,14 +6,19 @@
         :height="600" 
         :items="displayedResults" 
         @load="loadMore"
-        :loading="loading"
+        :loading="loading && !isEnd"
         class="scroll-container"
       >
         <template v-for="(result, index) in displayedResults" :key="index">
           <div class="result-card" @click="teamMate(index)">
             <div class="card-content">
               <div class="card-header">
-                <span class="host-info">방장: Lv.{{ result.hostLevel }} {{ result.hostName }}</span>
+                <div class="profile-img">
+
+                </div>
+                <span class="host-info">
+                  방장: Lv.{{ result.hostLevel }} {{ result.hostName }}
+                </span>
               </div>
               
               <div class="info-section">
@@ -52,7 +57,7 @@
                 </div>
               </div>
             </div>
-            <button class="apply-button">신청</button>
+            <button :disabled="disabledButtons[index]" @click.stop="matchingApply(index)" :class="['apply-button', { 'disabled-button': disabledButtons[index] }]">신청</button>
             <template v-if="openedCardIndex === index">
               <TeamMemberCard :members="result.members" />
             </template>
@@ -68,9 +73,15 @@ import { ref, onMounted } from 'vue'
 import TeamMemberCard from '@/components/matching/TeamMemberCard.vue'
 
 const openedCardIndex = ref(false)
-
+const disabledButtons = ref([]);
 const teamMate = (index) => {
   openedCardIndex.value = openedCardIndex.value === index ? false : index
+}
+const matchingApply = (index) => {
+  const confiremd = window.confirm('신청하시겠습니까')
+  if(confiremd) {
+    disabledButtons.value[index] = true;
+  }
 }
 // 전체 데이터
 const allResults = [
@@ -198,8 +209,9 @@ const allResults = [
 const displayedResults = ref([])
 const loading = ref(false)
 const pageSize = 5
-let currentPage = 0
+let currentPage = 0;
 
+const isEnd = ref(false);
 // 초기 데이터 로드
 onMounted(() => {
   loadMore()
@@ -207,23 +219,29 @@ onMounted(() => {
 
 // 추가 데이터 로드 함수
 const loadMore = () => {
-  if (loading.value) return
-  
+  if (loading.value || isEnd.value) return
   loading.value = true
-  
   // 실제 API 호출을 시뮬레이션하기 위한 지연
   setTimeout(() => {
     const start = currentPage * pageSize
     const end = start + pageSize
+    if(end >= allResults.length){
+      isEnd.value = true;
+      loading.value = false;
+      return;
+    }
     const newItems = allResults.slice(start, end)
-    
     if (newItems.length > 0) {
       displayedResults.value = [...displayedResults.value, ...newItems]
-      currentPage++
+      // displayedResults.value.push(...newItems);
+      currentPage++;
     }
-    
     loading.value = false
-  }, 500)
+  }, 300)
+  if(isEnd.value) {
+    loading.value = false;
+    return;
+  }
 }
 </script>
 
@@ -280,7 +298,10 @@ const loadMore = () => {
 }
 
 .card-header {
+  display: flex;
+  flex-direction: row;
   font-family: 'Open Sans', sans-serif;
+  align-items: center;
   font-weight: 400;
   font-size: 18px;
   color: #000;
@@ -334,7 +355,7 @@ const loadMore = () => {
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  height: 100%;
+  height: 50%;
   min-height: 50px;
 }
 
@@ -342,8 +363,29 @@ const loadMore = () => {
   background: #1a4ca8;
 }
 
+.apply-button:disabled,
+.disabled-button {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  pointer-events: none;
+  transition: none;
+}
+
+.apply-button:disabled:hover {
+  background-color: #ccc;
+}
+
 .page-title {
     font-size: 24px;
     font-weight: bold;
     }
+  .profile-img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #020725;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+  }
 </style> 
