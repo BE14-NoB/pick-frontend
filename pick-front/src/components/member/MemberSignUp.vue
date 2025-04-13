@@ -11,6 +11,7 @@
         variant="plain"
         readonly
         class="field-label"
+        tabindex="-1"
       ></v-text-field>
       <v-text-field
         v-model="form.email"
@@ -32,6 +33,7 @@
         variant="plain"
         readonly
         class="field-label"
+        tabindex="-1"
       ></v-text-field>
       <v-text-field
         v-model="form.password"
@@ -52,6 +54,7 @@
         variant="plain"
         readonly
         class="field-label"
+        tabindex="-1"
       ></v-text-field>
       <v-text-field
         v-model="form.passwordConfirm"
@@ -72,6 +75,7 @@
         variant="plain"
         readonly
         class="field-label"
+        tabindex="-1"
       ></v-text-field>
       <v-text-field
         v-model="form.name"
@@ -91,6 +95,7 @@
         variant="plain"
         readonly
         class="field-label"
+        tabindex="-1"
       ></v-text-field>
       <v-text-field
         v-model="form.nickname"
@@ -112,6 +117,7 @@
         variant="plain"
         readonly
         class="field-label"
+        tabindex="-1"
       ></v-text-field>
       <v-text-field
         v-model="form.phone"
@@ -131,6 +137,7 @@
         variant="plain"
         readonly
         class="field-label"
+        tabindex="-1"
       ></v-text-field>
       <div class="field-input birth-wrapper">
         <v-text-field
@@ -168,6 +175,7 @@
         variant="plain"
         readonly
         class="field-label"
+        tabindex="-1"
       ></v-text-field>
       <v-text-field
         v-model="form.ssn"
@@ -190,6 +198,18 @@
     >
       가입하기
     </v-btn>
+
+    <!-- 회원가입 완료 모달 -->
+    <v-dialog v-model="showSuccessDialog" max-width="400px">
+      <v-card>
+        <v-card-title class="text-h6">회원가입 완료</v-card-title>
+        <v-card-text>회원가입이 완료되었습니다!</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="closeDialog">확인</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -223,6 +243,9 @@ const errors = ref({
   birthDay: '',
   ssn: '',
 })
+
+// 모달창 표시 여부
+const showSuccessDialog = ref(false)
 
 // 유효성 검사 함수
 const validateEmail = () => {
@@ -349,6 +372,36 @@ const checkNickname = () => {
   // 실제로는 백엔드 API 호출 필요
 }
 
+// 모달창 닫기
+const closeDialog = () => {
+  showSuccessDialog.value = false
+  // 폼 초기화 (선택 사항)
+  form.value = {
+    email: '',
+    password: '',
+    passwordConfirm: '',
+    name: '',
+    nickname: '',
+    phone: '',
+    birthYear: '',
+    birthMonth: '',
+    birthDay: '',
+    ssn: '',
+  }
+  errors.value = {
+    email: '',
+    password: '',
+    passwordConfirm: '',
+    name: '',
+    nickname: '',
+    phone: '',
+    birthYear: '',
+    birthMonth: '',
+    birthDay: '',
+    ssn: '',
+  }
+}
+
 // 회원가입 처리
 const signup = () => {
   // 모든 필드 유효성 검사 실행
@@ -372,14 +425,13 @@ const signup = () => {
 
   // 회원가입 처리 (예: API 호출)
   console.log('회원가입 데이터:', form.value)
-  alert('회원가입이 완료되었습니다!')
-  // $emit('signup') // 필요 시 부모 컴포넌트로 이벤트 전달
+  showSuccessDialog.value = true // 모달창 표시
 }
 </script>
 
 <style scoped>
 .signup-container {
-  max-width: 800px; /* 모달 너비 유지 */
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -399,37 +451,37 @@ const signup = () => {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
-  gap: 20px; /* 요소 간 간격 */
+  gap: 20px;
 }
 
 .field-label {
-  width: 150px; /* 라벨 너비 고정 */
+  width: 150px;
   font-size: 14px;
   color: #333;
 }
 
 .field-input {
-  width: 400px; /* 텍스트 필드 너비 고정 */
+  width: 400px;
 }
 
 .birth-wrapper {
   display: flex;
   gap: 10px;
-  width: 400px; /* 생일 필드 전체 너비를 텍스트 필드와 동일하게 설정 */
+  width: 400px;
 }
 
 .birth-field {
-  width: 12px; /* 400px를 3으로 나눈 값에서 gap(10px * 2)을 고려한 크기 */
+  width: 126px;
 }
 
 .check-btn {
-  width: 90px; /* 중복확인 버튼 너비 고정 */
+  width: 90px;
   height: 36px;
   font-size: 12px;
 }
 
 .check-btn-placeholder {
-  width: 90px; /* 중복확인 버튼 자리 확보 */
+  width: 90px;
   height: 36px;
 }
 
@@ -449,7 +501,7 @@ const signup = () => {
   }
 
   .field-label {
-    width: 70%;
+    width: 100%;
   }
 
   .field-input {
