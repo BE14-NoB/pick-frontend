@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-    import GitWidgetCard from '@/components/project/GitWidgetCard.vue'
+    import GitWidgetCard from '@/components/project/dashboard/GitWidgetCard.vue'
     import MeetingWidget from '@/components/project/MeetingWidget.vue';
     import ScheduleWidget from '@/components/project/ScheduleWidget.vue';
     import MemberWidget from '@/components/project/MemberWidget.vue';
