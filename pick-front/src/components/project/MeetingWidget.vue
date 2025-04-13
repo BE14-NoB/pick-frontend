@@ -1,10 +1,10 @@
 <template>
   <v-card class="widget-container"
-          @click="goToMeetingList">
+          >
     <!-- 헤더 -->
     <div class="header">
-      <span class="meeting-title">회의록</span>
-      <RouterLink to="/project/create-issue">
+      <span class="meeting-title" @click="goToMeetingList">회의록</span>
+      <RouterLink to="/project/create-meeting">
         <v-btn icon class="edit-btn" size="small" variant="text">
           <v-icon>mdi-pen</v-icon>
         </v-btn>
@@ -16,7 +16,7 @@
       <RouterLink
         v-for="(meeting, index) in pagedMeetings"
         :key="meeting.id"
-        :to="`/meeting/${meeting.id}`"
+        :to="`/project/meeting/${meeting.id}`"
         :class="['meeting-card', { primary: isPrimary(meeting, index) }]"
         @mouseenter="hoveredId = meeting.id"
         @mouseleave="hoveredId = null"
@@ -43,6 +43,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 
 // 회의록 데이터 예시
 const meetingItems = [
@@ -89,7 +90,7 @@ const meetingItems = [
     primary: true,
   }
 ]
-import { useRouter } from 'vue-router'
+
 const router = useRouter()
 const currentPage = ref(0)
 const itemsPerPage = 3
