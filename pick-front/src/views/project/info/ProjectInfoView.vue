@@ -133,13 +133,13 @@
   .project-info-page {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px;
+    /* padding: 40px; */
   }
   
   .grid-2-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 100px;
   }
   
   .grid-2-col {

@@ -43,7 +43,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import List from '@/components/List.vue'
-import Pagination from '@/components/Pagination.vue'
+import Pagination from '@/components/common/Pagination.vue'
 import commitData from '@/json/project_commitlist.json'
 import profile from '@/assets/issueMaker.png'
 

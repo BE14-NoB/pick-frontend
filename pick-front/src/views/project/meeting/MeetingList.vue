@@ -44,7 +44,7 @@
 
 <script setup>
     import {ref, onMounted, computed} from 'vue';
-    import Pagination from '@/components/Pagination.vue'
+    import Pagination from '@/components/common/Pagination.vue'
     import List from '@/components/List.vue'
     import meetingJson from '@/json/project_meeting_list.json';
     import meetingMaker from '@/assets/img/avatar.png';

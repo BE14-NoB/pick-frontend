@@ -64,7 +64,7 @@
   <script setup>
   import { ref, computed, onMounted, watch } from 'vue'
   import List from '@/components/List.vue'
-  import Pagination from '@/components/Pagination.vue'
+  import Pagination from '@/components/common/Pagination.vue'
   import ProjectTabs from '@/components/project/ProjectTabs.vue'
   import prData from '@/json/project_prlist.json'
   import profile from '@/assets/issueMaker.png'
