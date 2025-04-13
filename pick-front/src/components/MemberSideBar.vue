@@ -95,7 +95,7 @@ const goTo = (path) => {
 }
 
 const handleProjectClick = () => {
-  alert('프로젝트 매칭하기 클릭됨')
+  router.push('/match')
 }
 </script>
 
