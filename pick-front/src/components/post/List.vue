@@ -8,7 +8,7 @@
         <tbody>
             <tr v-for="(row, rowIndex) in items" :key="rowIndex">
                 <td v-for="(value, key, colIndex) in row" :key="colIndex">
-                    <slot :name="key" :value="value">
+                    <slot :name="key" :value="value" :row="row">
                         {{ value }}
                     </slot>
                 </td>

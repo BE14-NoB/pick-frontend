@@ -1,0 +1,371 @@
+[
+    {
+        "id": 1,
+        "title": "1번 게시글 제목",
+        "content": "1번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:11",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 2,
+        "title": "2번 게시글 제목",
+        "content": "2번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:12",
+        "status": 1,
+        "member_id": 2
+    },
+    {
+        "id": 3,
+        "title": "3번 게시글 제목",
+        "content": "3번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:13",
+        "status": 2,
+        "member_id": 3
+    },
+    {
+        "id": 4,
+        "title": "4번 게시글 제목",
+        "content": "4번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:14",
+        "status": 1,
+        "member_id": 4
+    },
+    {
+        "id": 5,
+        "title": "5번 게시글 제목",
+        "content": "5번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:15",
+        "status": 0,
+        "member_id": 5
+    },
+    {
+        "id": 6,
+        "title": "6번 게시글 제목",
+        "content": "6번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:16",
+        "status": 1,
+        "member_id": 6
+    },
+    {
+        "id": 7,
+        "title": "7번 게시글 제목",
+        "content": "7번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:17",
+        "status": 2,
+        "member_id": 7
+    },
+    {
+        "id": 8,
+        "title": "8번 게시글 제목",
+        "content": "8번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:18",
+        "status": 0,
+        "member_id": 8
+    },
+    {
+        "id": 9,
+        "title": "9번 게시글 제목",
+        "content": "9번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:19",
+        "status": 0,
+        "member_id": 9
+    },
+    {
+        "id": 10,
+        "title": "10번 게시글 제목",
+        "content": "10번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:20",
+        "status": 0,
+        "member_id": 10
+    },
+    {
+        "id": 11,
+        "title": "11번 게시글 제목",
+        "content": "11번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:21",
+        "status": 0,
+        "member_id": 11
+    },
+    {
+        "id": 12,
+        "title": "12번 게시글 제목",
+        "content": "12번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:22",
+        "status": 0,
+        "member_id": 12
+    },
+    {
+        "id": 13,
+        "title": "13번 게시글 제목",
+        "content": "13번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:23",
+        "status": 0,
+        "member_id": 13
+    },
+    {
+        "id": 14,
+        "title": "14번 게시글 제목",
+        "content": "14번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:24",
+        "status": 0,
+        "member_id": 14
+    },
+    {
+        "id": 15,
+        "title": "15번 게시글 제목",
+        "content": "15번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:25",
+        "status": 0,
+        "member_id": 15
+    },
+    {
+        "id": 16,
+        "title": "16번 게시글 제목",
+        "content": "16번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:26",
+        "status": 0,
+        "member_id": 16
+    },
+    {
+        "id": 17,
+        "title": "17번 게시글 제목",
+        "content": "17번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:27",
+        "status": 0,
+        "member_id": 17
+    },
+    {
+        "id": 18,
+        "title": "18번 게시글 제목",
+        "content": "18번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:28",
+        "status": 0,
+        "member_id": 18
+    },
+    {
+        "id": 19,
+        "title": "19번 게시글 제목",
+        "content": "19번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:29",
+        "status": 0,
+        "member_id": 19
+    },
+    {
+        "id": 20,
+        "title": "20번 게시글 제목",
+        "content": "20번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:30",
+        "status": 0,
+        "member_id": 20
+    },
+    {
+        "id": 21,
+        "title": "21번 게시글 제목",
+        "content": "21번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:31",
+        "status": 0,
+        "member_id": 21
+    },
+    {
+        "id": 22,
+        "title": "22번 게시글 제목",
+        "content": "22번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:32",
+        "status": 0,
+        "member_id": 22
+    },
+    {
+        "id": 23,
+        "title": "23번 게시글 제목",
+        "content": "23번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:33",
+        "status": 0,
+        "member_id": 23
+    },
+    {
+        "id": 24,
+        "title": "24번 게시글 제목",
+        "content": "24번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:34",
+        "status": 0,
+        "member_id": 24
+    },
+    {
+        "id": 25,
+        "title": "25번 게시글 제목",
+        "content": "25번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:35",
+        "status": 0,
+        "member_id": 25
+    },
+    {
+        "id": 26,
+        "title": "26번 게시글 제목",
+        "content": "26번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:36",
+        "status": 0,
+        "member_id": 26
+    },
+    {
+        "id": 27,
+        "title": "27번 게시글 제목",
+        "content": "27번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:37",
+        "status": 0,
+        "member_id": 27
+    },
+    {
+        "id": 28,
+        "title": "28번 게시글 제목",
+        "content": "28번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:38",
+        "status": 0,
+        "member_id": 28
+    },
+    {
+        "id": 29,
+        "title": "29번 게시글 제목",
+        "content": "29번 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:39",
+        "status": 0,
+        "member_id": 29
+    },
+    {
+        "id": 30,
+        "title": "30번 게시글 제목",
+        "content": "30번 게시글 내용",
+        "category": 2,
+        "upload_at": "2025-03-17 01:11:40",
+        "status": 0,
+        "member_id": 30
+    },
+    {
+        "id": 31,
+        "title": "1번 회원 1번째 게시글 제목",
+        "content": "1번 회원 1번째 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 01:11:41",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 32,
+        "title": "1번 회원 2번째 게시글 제목",
+        "content": "1번 회원 2번째 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 02:11:41",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 33,
+        "title": "1번 회원 3번째 게시글 제목",
+        "content": "1번 회원 3번째 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 03:11:41",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 34,
+        "title": "1번 회원 4번째 게시글 제목",
+        "content": "1번 회원 4번째 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 04:11:41",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 35,
+        "title": "1번 회원 5번째 게시글 제목",
+        "content": "1번 회원 5번째 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 05:11:41",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 36,
+        "title": "1번 회원 6번째 게시글 제목",
+        "content": "1번 회원 6번째 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 06:11:41",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 37,
+        "title": "1번 회원 7번째 게시글 제목",
+        "content": "1번 회원 7번째 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 07:11:41",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 38,
+        "title": "1번 회원 8번째 게시글 제목",
+        "content": "1번 회원 8번째 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 08:11:41",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 39,
+        "title": "1번 회원 9번째 게시글 제목",
+        "content": "1번 회원 9번째 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 09:11:41",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 40,
+        "title": "1번 회원 10번째 게시글 제목",
+        "content": "1번 회원 10번째 게시글 내용",
+        "category": 1,
+        "upload_at": "2025-03-17 10:11:41",
+        "status": 0,
+        "member_id": 1
+    },
+    {
+        "id": 41,
+        "title": "지금 자유 게시판에 이거 하나만 나오면 정상입니다!!!",
+        "content": "글내용글내용글내용글내용글내용글내용글내용글내용글내용",
+        "category": 0,
+        "upload_at": "2025-04-13 01:01:01",
+        "status": 0,
+        "member_id": 1
+    }
+]

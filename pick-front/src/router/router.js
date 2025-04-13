@@ -99,6 +99,10 @@ const router = createRouter({
         {
           path: 'write',
           component: () => import('@/components/post/Write.vue')
+        },
+        {
+          path: ':id',
+          component: () => import('@/components/post/SinglePost.vue')
         }
       ]
     },

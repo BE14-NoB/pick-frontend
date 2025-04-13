@@ -7,7 +7,9 @@
             <aside class="left">
                 <SideBar/>
             </aside>
-            <RouterView/>
+            <article id="postView">
+                <RouterView/>
+            </article>
         </section>
     </main>
 </template>
@@ -21,6 +23,9 @@
     aside.left {
         float: left;
         margin-left: 40px;
-        margin-right: 30px;
+    }
+    #postView {
+        margin-left: 300px;
+        margin-right: 200px;
     }
 </style>
