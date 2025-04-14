@@ -103,7 +103,7 @@
       <div class="modal-content signup-modal">
         <v-btn class="close-btn" icon="mdi-close" variant="text" color="grey-darken-2" size="large"
           @click="closeSignupModal"></v-btn>
-        <MemberSignup @signup="handleSignup" />
+        <MemberSignup @signup="handleSignup" @close="closeSignupModal" />
       </div>
     </div>
 
@@ -497,8 +497,8 @@ const handleLogout = () => {
 
 .close-btn {
   position: absolute;
-  bottom: 420px;
-  right: 16px;
+  bottom: 450px;
+  right: 12px;
   z-index: 1001;
 }
 </style>
