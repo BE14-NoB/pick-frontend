@@ -13,10 +13,10 @@
                     <!-- 날짜 -->
                     <td class="date-cell">{{ item.date }}</td>
 
-                    <!-- 작성자 이름 + 아바타 -->
+                    <!-- 작성자 아바타 + 이름 -->
                     <td class="author-cell">
-                        <span class="author-name">{{ item.author.name }}</span>
                         <img :src="item.author.avatarUrl" class="avatar" />
+                        <span class="author-name">{{ item.author.name }}</span>
                     </td>
                 </tr>
             </tbody>
