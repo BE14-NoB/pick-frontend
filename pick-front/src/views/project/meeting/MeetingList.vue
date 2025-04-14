@@ -81,7 +81,7 @@ const selectedAuthor = ref('전체')
 const sortOrder = ref('최신순')
 const sortOptions = ['최신순', '오래된순']
 
-const imageModules = import.meta.glob('@/assets/member/*.png', { eager: true })
+const imageModules = import.meta.glob('@/assets/img/member_profile/*.png', { eager: true })
 const imageMap = Object.fromEntries(
   Object.entries(imageModules).map(([path, mod]) => [path.split('/').pop(), mod.default])
 )
