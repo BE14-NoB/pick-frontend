@@ -155,7 +155,7 @@
                 <div class="invite-input">
                     <input ref="inviteInput" type="text" placeholder="입장 코드를 입력하세요">
                 </div>
-                <button class="invite-button">입장하기</button>
+                <button class="invite-button" @click="enterMatching">입장하기</button>
             </div>
         </div>
     </div>
@@ -278,6 +278,10 @@ const setActiveTab = (tab) => {
 
     const searchMatching = () => {
         router.push('/match/result')
+    }
+
+    const enterMatching = () => {
+        window.confirm('입장하시겠습니까?');
     }
     // 이부분에 api 요청 구현
     // const searchMatching = async () => {
