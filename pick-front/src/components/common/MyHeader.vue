@@ -7,13 +7,7 @@
 
     <!-- 중앙: 메뉴 (router-link로 라우팅 연결) -->
     <div class="menu-list">
-      <RouterLink
-        v-for="(item, index) in menus"
-        :key="index"
-        :to="item.path"
-        class="menu-item"
-        active-class="active"
-      >
+      <RouterLink v-for="(item, index) in menus" :key="index" :to="item.path" class="menu-item" active-class="active">
         {{ item.label }}
       </RouterLink>
     </div>
@@ -24,6 +18,7 @@
         <v-menu location="bottom">
           <template v-slot:activator="{ props }">
             <div class="profile-img-wrapper">
+<<<<<<< HEAD
               <v-img
                 :width="40"
                 :height="40"
@@ -31,6 +26,10 @@
                 class="profile-img no-cover"
                 v-bind="props"
               />
+=======
+              <v-img :width="40" :height="40" :src="authStore.currentUser.profileImage" class="profile-img"
+                v-bind="props" />
+>>>>>>> 3f35f3ebf407d31140e94063e9878d0adb2cea5b
             </div>
           </template>
           <v-list class="profile-dropdown">
@@ -38,23 +37,13 @@
             <v-list-item class="profile-info">
               <div class="profile-header">
                 <div class="profile-left">
-                  <v-img
-                    :width="60"
-                    :height="60"
-                    :src="authStore.currentUser.profileImage"
-                    class="profile-img-large"
-                  />
+                  <v-img :width="60" :height="60" :src="authStore.currentUser.profileImage" class="profile-img-large" />
                   <div class="nickname">{{ authStore.currentUser.nickname }}</div>
                 </div>
                 <div class="profile-right">
                   <div class="level-item">
-                    <v-progress-circular
-                      :model-value="experiencePercentage"
-                      :size="70"
-                      :width="5"
-                      color="blue"
-                      class="level-circle"
-                    >
+                    <v-progress-circular :model-value="experiencePercentage" :size="70" :width="5" color="blue"
+                      class="level-circle">
                       <span class="level-text">Lv. {{ user.level }}</span>
                     </v-progress-circular>
                     <div class="experience-text">
@@ -83,35 +72,22 @@
 
             <!-- 버튼 -->
             <v-list-item class="action-buttons">
-              <v-btn
-                class="action-btn"
-                variant="outlined"
-                color="primary"
-                block
-                to="/member/info"
-              >
-                내정보 수정
+              <v-btn class="action-btn" variant="outlined" color="primary" block to="/member/info">
+                회원 정보
               </v-btn>
             </v-list-item>
             <v-list-item class="action-buttons">
-              <v-btn
-                class="action-btn"
-                variant="outlined"
-                color="primary"
-                block
-                to="/member/profile"
-              >
-                마이페이지
+              <v-btn class="action-btn" variant="outlined" color="primary" block to="/member/profile">
+                프로필 페이지
               </v-btn>
             </v-list-item>
             <v-list-item class="action-buttons">
-              <v-btn
-                class="action-btn"
-                variant="outlined"
-                color="primary"
-                block
-                @click="handleLogout"
-              >
+              <v-btn class="action-btn" variant="outlined" color="primary" block to="/project/dashboard">
+                참여중인 프로젝트
+              </v-btn>
+            </v-list-item>
+            <v-list-item class="action-buttons">
+              <v-btn class="action-btn" variant="outlined" color="primary" block @click="handleLogout">
                 로그아웃
               </v-btn>
             </v-list-item>
@@ -127,14 +103,8 @@
     <!-- 로그인 모달 -->
     <div v-if="isLoginModalOpen" class="modal-overlay">
       <div class="modal-content">
-        <v-btn
-          class="close-btn"
-          icon="mdi-close"
-          variant="text"
-          color="grey-darken-2"
-          size="large"
-          @click="closeLoginModal"
-        ></v-btn>
+        <v-btn class="close-btn" icon="mdi-close" variant="text" color="grey-darken-2" size="large"
+          @click="closeLoginModal"></v-btn>
         <MemberLogin @login="handleLogin" />
       </div>
     </div>
@@ -142,14 +112,8 @@
     <!-- 회원가입 모달 -->
     <div v-if="isSignupModalOpen" class="modal-overlay">
       <div class="modal-content signup-modal">
-        <v-btn
-          class="close-btn"
-          icon="mdi-close"
-          variant="text"
-          color="grey-darken-2"
-          size="large"
-          @click="closeSignupModal"
-        ></v-btn>
+        <v-btn class="close-btn" icon="mdi-close" variant="text" color="grey-darken-2" size="large"
+          @click="closeSignupModal"></v-btn>
         <MemberSignup @signup="handleSignup" />
       </div>
     </div>

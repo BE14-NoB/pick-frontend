@@ -5,19 +5,19 @@ export const menuItems = [
         to: '/project/dashboard',
         label: '대시보드',
         type: 'menu',
-        match: ['/project/dashboard', '/project/dashboard']
+        match: ['/project/dashboard']
     },
     {
         to: '/project/info',
         label: '프로젝트 정보',
         type: 'menu',
-        match: ['/project/info', '/project/info']
+        match: ['/project/info']
     },
     {
         to: '/project/member',
         label: '팀원',
         type: 'menu',
-        match: ['/project/member', '/project/member']
+        match: ['/project/member']
     },
     {
         to: '/project/meeting',
@@ -41,6 +41,7 @@ export const menuItems = [
         to: '/project/pull-requests',
         label: 'PR',
         type: 'menu',
+        match: ['/project/pull-requests', '/project/create-pull-request', '/project/review-pull-request']
         match: ['/project/pull-requests', '/project/create-pull-request', '/project/review-pull-request']
     },
     {
