@@ -55,7 +55,7 @@
     import postMember from '@/json/post_member.json';
     import List from '@/components/post/List.vue';
     import postList from '@/json/post_list.json';
-    import CommentList from '@/components/post/CommentList.vue';
+    import CommentList from '@/components/post/CommentList2.vue';
 
     import { ref, computed, watch, onMounted } from 'vue';
     import { useRoute } from 'vue-router';
