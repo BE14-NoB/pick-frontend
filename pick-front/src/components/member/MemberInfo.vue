@@ -374,6 +374,8 @@ const goBack = () => {
   justify-content: flex-end;
   gap: 16px;
   margin-top: 24px;
+  position: relative;
+  bottom: 100px;
 }
 
 .v-btn {
