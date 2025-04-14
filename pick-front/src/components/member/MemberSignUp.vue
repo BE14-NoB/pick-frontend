@@ -1,5 +1,4 @@
 <template>
-  <div class="modal-wrapper">
     <div class="signup-container">
       <h2 class="signup-title">회원가입</h2>
       <v-btn
@@ -71,7 +70,6 @@
           type="password"
           class="field-input"
           :error-messages="errors.passwordConfirm"
-があれば
           @input="validatePasswordConfirm"
         ></v-text-field>
         <div class="check-btn-placeholder"></div>
@@ -207,8 +205,8 @@
       >
         가입하기
       </v-btn>
-    </div>
-  </div>
+    
+</div>
 </template>
 
 <script setup>
@@ -443,17 +441,9 @@ const signup = async () => {
 }
 
 .signup-container {
-  max-width: 800px;
-  height: 100vh; /* 화면 전체 높이에 맞춤 */
-  background: #fff;
-  border-radius: 0; /* 전체 화면이므로 둥근 모서리 제거 */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin: 0;
-  padding: 20px; /* 내부 여백 유지 */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* 세로 중앙 정렬 */
-  position: relative; /* 닫기 버튼의 절대 위치를 위해 */
+  padding: 5% 7%;
+  align-items: center;
+  align-content: center;
 }
 
 .signup-title {
@@ -488,14 +478,14 @@ const signup = async () => {
   height: 50px;
   display: flex;
   align-items: center;
-  white-space: nowrap; /* 라벨 잘림 방지 */
+  white-space: nowrap;
 }
 
-.field-label >>> .v-label {
-  white-space: nowrap; /* Vuetify 라벨 잘림 방지 */
-  overflow: visible; /* 라벨이 잘리지 않도록 */
-  text-overflow: unset; /* "..." 제거 */
-  font-size: 14px; /* 글씨 크기 유지 */
+.field-label ::v-deep .v-label {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+  font-size: 14px;
   max-width: 100px;
 }
 
@@ -504,14 +494,22 @@ const signup = async () => {
   height: 50px;
 }
 
-.field-input >>> .v-input__control {
+.field-input ::v-deep .v-input__control {
   height: 40px !important;
+  align-items: center !important;
 }
 
-.field-input >>> .v-field {
-  height: 35px !important;
+.field-input ::v-deep .v-field {
+  height: 40px !important;
   padding: 0 10px !important;
   font-size: 14px;
+}
+
+.field-input ::v-deep .v-field__input {
+  line-height: 40px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin: 0 !important;
 }
 
 .birth-wrapper {
@@ -526,14 +524,22 @@ const signup = async () => {
   height: 30px;
 }
 
-.birth-field >>> .v-input__control {
+.birth-field ::v-deep .v-input__control {
   height: 35px !important;
+  align-items: center !important;
 }
 
-.birth-field >>> .v-field {
-  height: 40px !important;
+.birth-field ::v-deep .v-field {
+  height: 35px !important;
   padding: 0 10px !important;
   font-size: 14px;
+}
+
+.birth-field ::v-deep .v-field__input {
+  line-height: 35px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin: 0 !important;
 }
 
 .check-btn {
@@ -559,7 +565,7 @@ const signup = async () => {
 @media (max-width: 960px) {
   .signup-container {
     max-width: 600px;
-    height: 100vh; /* 화면 전체 높이 유지 */
+    height: 100vh;
     padding: 15px;
   }
 
@@ -594,13 +600,17 @@ const signup = async () => {
     height: 35px;
   }
 
-  .field-input >>> .v-input__control {
+  .field-input ::v-deep .v-input__control {
     height: 35px !important;
   }
 
-  .field-input >>> .v-field {
+  .field-input ::v-deep .v-field {
     height: 35px !important;
     padding: 0 8px !important;
+  }
+
+  .field-input ::v-deep .v-field__input {
+    line-height: 35px !important;
   }
 
   .birth-wrapper {
@@ -613,13 +623,17 @@ const signup = async () => {
     height: 35px;
   }
 
-  .birth-field >>> .v-input__control {
+  .birth-field ::v-deep .v-input__control {
     height: 35px !important;
   }
 
-  .birth-field >>> .v-field {
+  .birth-field ::v-deep .v-field {
     height: 35px !important;
     padding: 0 8px !important;
+  }
+
+  .birth-field ::v-deep .v-field__input {
+    line-height: 35px !important;
   }
 
   .check-btn,

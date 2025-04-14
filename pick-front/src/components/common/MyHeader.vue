@@ -95,14 +95,13 @@
         <v-btn class="close-btn" icon="mdi-close" variant="text" color="grey-darken-2" size="large"
           @click="closeLoginModal"></v-btn>
         <MemberLogin @login="handleLogin" />
-      </div>
+      </div> 
     </div>
 
     <!-- 회원가입 모달 -->
     <div v-if="isSignupModalOpen" class="modal-overlay">
-      <div class="modal-content signup-modal">
-        <v-btn class="close-btn" icon="mdi-close" variant="text" color="grey-darken-2" size="large"
-          @click="closeSignupModal"></v-btn>
+      <div class="modal-content ">
+        
         <MemberSignup @signup="handleSignup" @close="closeSignupModal" />
       </div>
     </div>
@@ -484,7 +483,7 @@ const handleLogout = () => {
 .modal-content {
   position: relative;
   background-color: white;
-  max-width: 500px;
+  max-width: fit-content;
   width: 100%;
   padding: 20px;
   border-radius: 12px;
