@@ -7,9 +7,20 @@
           <h3 class="footer-title">프로젝트 매칭</h3>
           <ul>
             <li v-for="(item, index) in projectMatching" :key="index">
-              <router-link :to="item.path" class="footer-link">
+              <router-link
+                v-if="item.path === '/match'"
+                :to="item.path"
+                class="footer-link"
+              >
                 {{ item.label }}
               </router-link>
+              <span
+                v-else
+                class="footer-link disabled"
+                @click="handleInvalidRoute(item.label)"
+              >
+                {{ item.label }}
+              </span>
             </li>
           </ul>
         </v-col>
@@ -43,9 +54,12 @@
           <h3 class="footer-title">뱃지</h3>
           <ul>
             <li v-for="(item, index) in badges" :key="index">
-              <router-link :to="item.path" class="footer-link">
+              <span
+                class="footer-link disabled"
+                @click="handleInvalidRoute(item.label)"
+              >
                 {{ item.label }}
-              </router-link>
+              </span>
             </li>
           </ul>
         </v-col>
@@ -72,6 +86,10 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 defineProps({
   projectMatching: {
     type: Array,
@@ -125,6 +143,11 @@ defineProps({
     default: `Copyright © ${new Date().getFullYear()}. All rights reserved.`,
   },
 });
+
+// 유효하지 않은 경로 클릭 시 처리
+const handleInvalidRoute = (label) => {
+  alert(`"${label}" 페이지는 현재 지원되지 않습니다.`);
+};
 </script>
 
 <style scoped>
@@ -156,6 +179,15 @@ li {
 
 .footer-link:hover {
   color: #b6c8d7;
+}
+
+.footer-link.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.footer-link.disabled:hover {
+  color: #73ACDE;
 }
 
 .contact-item {
