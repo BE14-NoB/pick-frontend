@@ -103,7 +103,7 @@
       <div class="modal-content signup-modal">
         <v-btn class="close-btn" icon="mdi-close" variant="text" color="grey-darken-2" size="large"
           @click="closeSignupModal"></v-btn>
-        <MemberSignup @signup="handleSignup" />
+        <MemberSignup @signup="handleSignup" @close="closeSignupModal" />
       </div>
     </div>
 
@@ -151,7 +151,7 @@ const imageMap = Object.fromEntries(
 );
 
 // 기본 프로필 이미지 설정
-const defaultProfileImage = imageMap['/assets/member/avatar.png'] || '/assets/member/avatar.png';
+const defaultProfileImage = imageMap['/assets/member/profile-image-1.png'] || '/assets/member/profile-image-1.png';
 
 // 라우터 인스턴스 가져오기
 const router = useRouter();
@@ -321,7 +321,6 @@ const handleLogout = () => {
   justify-content: flex-end;
 }
 
-
 .active {
   color: white;
   font-size: 16px;
@@ -363,10 +362,7 @@ const handleLogout = () => {
   overflow: hidden;
   cursor: pointer;
 }
-.no-cover{
-  object-fit: contain !important;
 
-}
 /* 드롭다운 스타일 */
 .profile-dropdown {
   width: 250px;
@@ -501,7 +497,7 @@ const handleLogout = () => {
 
 .close-btn {
   position: absolute;
-  bottom: 290px;
+  bottom: 450px;
   right: 12px;
   z-index: 1001;
 }

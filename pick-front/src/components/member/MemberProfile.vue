@@ -7,7 +7,7 @@
           <img
             :src="userData.profileImage || defaultProfileImage"
             alt="Profile"
-            @error="console.error('Profile image failed:', $event)"
+            @error="handleImageError"
           />
         </v-avatar>
         <v-avatar size="150" v-else color="grey">
@@ -169,15 +169,17 @@ import badgesData from '@/json/badges.json';
 // 동적 이미지 로드
 const images = import.meta.glob('@/assets/member/*.png', { eager: true });
 const imageMap = Object.fromEntries(
-  Object.entries(images).map(([path, module]) => [
-    `/assets/member/${path.split('/').pop()}`,
-    module.default,
-  ])
+  Object.entries(images).map(([path, module]) => {
+    const fileName = path.split('/').pop();
+    return [`/assets/member/${fileName}`, module.default];
+  })
 );
+
+// 기본 프로필 이미지 설정
+const defaultProfileImage = imageMap['/assets/member/profile-image-1.png'] || '/assets/member/profile-image-1.png';
 
 // Auth Store에서 사용자 정보 가져오기
 const authStore = useAuthStore();
-const defaultProfileImage = imageMap['/assets/member/avatar.png'] || '/assets/member/avatar.png'; // 폴백 경로
 
 const userData = ref({
   profileImage: null, // 초기값 null, fetchUserData에서 처리
@@ -216,7 +218,6 @@ const defaultAwards = `
 2022-2024 NO비에이 BE Engineer 지적
 2024 Beyond 한화 부트캠프 파이널 프로젝트 1등
 2025 서울 알고리즘 히어로 2등
-
 `;
 
 // JSON 데이터를 반응형으로 사용, 이미지 매핑 적용
@@ -227,10 +228,11 @@ const recentProjects = ref(
   }))
 );
 
+// 회원 후기 사진을 profile-image-1.png ~ profile-image-6.png로 변경
 const reviews = ref(
-  reviewsData.map(review => ({
+  reviewsData.map((review, index) => ({
     ...review,
-    avatar: imageMap[review.avatar] || review.avatar, // 동적 아바타 또는 원본 경로
+    avatar: imageMap[`/assets/member/profile-image-${index + 1}.png`] || `/assets/member/profile-image-${index + 1}.png`,
   }))
 );
 
@@ -241,16 +243,19 @@ const recentBadges = ref(
   }))
 );
 
+// 이미지 로드 에러 핸들링
+const handleImageError = () => {
+  userData.value.profileImage = defaultProfileImage; // 이미지 로드 실패 시 defaultProfileImage로 설정
+};
+
 // 사용자 데이터 가져오기
 const fetchUserData = async () => {
   if (authStore.currentUser) {
     userData.value = {
       ...authStore.currentUser,
-      profileImage:
-        // 외부 URL은 그대로, 로컬 경로면 imageMap 적용
-        authStore.currentUser.profileImage?.startsWith('http')
-          ? authStore.currentUser.profileImage
-          : imageMap[authStore.currentUser.profileImage] || defaultProfileImage,
+      profileImage: authStore.currentUser.profileImage?.startsWith('http')
+        ? authStore.currentUser.profileImage
+        : imageMap[authStore.currentUser.profileImage] || defaultProfileImage,
     };
   } else {
     userData.value.profileImage = defaultProfileImage;

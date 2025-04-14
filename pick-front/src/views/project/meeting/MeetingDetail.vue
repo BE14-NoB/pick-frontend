@@ -1,5 +1,12 @@
 <template>
-    <div v-if="meeting" class="note-editor">
+    <div v-if="loading" class="loading-wrapper">
+      <v-progress-circular indeterminate color="primary" size="48" />
+      <div class="loading-text">회의록을 불러오는 중입니다...</div>
+    </div>
+
+
+  
+    <div v-else-if="meeting" class="note-editor">
       <!-- 상단 헤더 -->
       <div class="meeting-header">
         <span style="color:#4c4c4c; font-weight: 500">
@@ -91,6 +98,7 @@
   import { ref, onMounted, computed } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { marked } from 'marked'
+  import meetingDummy from '@/json/project_meeting_db.json'
   import profile from '@/assets/img/avatar.png'
   
   const route = useRoute()
@@ -107,11 +115,14 @@
   ]
   
   const templates = ['정기 회의', '스프린트 킥오프', '회고 회의', '코드 리뷰', '데일리 스크럼']
+  const loading = ref(true)
   const selectedAuthor = ref(null)
   const selectedParticipants = ref([])
   
   onMounted(async () => {
+    loading.value = true;
     const id = route.params.id
+
     try {
       const res = await fetch('http://localhost:8080/meetings')
       const data = await res.json()
@@ -122,7 +133,10 @@
       selectedParticipants.value = memberList.filter(m => target.participants.includes(m.name))
     } catch (err) {
       console.error('❌ 회의록 불러오기 실패:', err)
+      meeting.value = meetingDummy['meetings'][id-1]
     }
+
+    loading.value = false;
   })
   
   const renderedMarkdown = computed(() =>
@@ -205,7 +219,22 @@
     padding: 16px;
     background-color: #f9f9f9;
     border-radius: 8px;
+    min-height: 200px;
     white-space: pre-wrap;
   }
+
+  .loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+  gap: 12px;
+}
+.loading-text {
+  font-size: 14px;
+  color: #888;
+}
+
+
   </style>
   

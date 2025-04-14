@@ -75,10 +75,10 @@
           :items="memberList"
           item-title="name"
           return-object
-          multiple
           variant="underlined"
           density="comfortable"
           class="meta-select"
+          multiple
           chips
         >
           <template #selection="{ item }">
@@ -86,7 +86,6 @@
               <v-avatar start size="18">
                 <img :src="item.avatar" />
               </v-avatar>
-              {{ item.name }}
             </v-chip>
           </template>
           <template #item="{ props, item }">
@@ -96,7 +95,7 @@
                   <img :src="item.raw.avatar" />
                 </v-avatar>
               </template>
-              <v-list-item-title>{{ item.raw.name }}</v-list-item-title>
+              <!-- <v-list-item-title>{{ item.raw.name }}</v-list-item-title> -->
             </v-list-item>
           </template>
         </v-select>
