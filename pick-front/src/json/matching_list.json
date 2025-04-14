@@ -1,0 +1,268 @@
+
+  [
+    {
+      "hostLevel": 25,
+      "hostName": "카드값줘체리",
+      "currentMembers": 3,
+      "maxMembers": 6,
+      "duration": 6,
+      "mainCategory": "게임",
+      "subCategory": "Unity",
+      "members": [
+        {
+          "name": "카드값줘체리",
+          "level": 25,
+          "rating": 4.5
+        },
+        {
+          "name": "봇치더코드",
+          "level": 30,
+          "rating": 4.4
+        },
+        {
+          "name": "체인소개발자",
+          "level": 27,
+          "rating": 4.7
+        }
+      ]
+    },
+    {
+      "hostLevel": 25,
+      "hostName": "전생했더니개발자였던건에대하여",
+      "currentMembers": 4,
+      "maxMembers": 6,
+      "duration": 3,
+      "mainCategory": "웹",
+      "subCategory": "백엔드",
+      "members": [
+        {
+          "name": "전생했더니개발자였던건에대하여",
+          "level": 25,
+          "rating": 4.3
+        },
+        {
+          "name": "개발자와향신료",
+          "level": 28,
+          "rating": 4.4
+        },
+        {
+          "name": "개발자의우울",
+          "level": 30,
+          "rating": 4.5
+        },
+        {
+          "name": "개발자의농구",
+          "level": 23,
+          "rating": 4.9
+        }
+      ]
+    },
+    {
+      "hostLevel": 30,
+      "hostName": "코드아트온라인",
+      "currentMembers": 2,
+      "maxMembers": 5,
+      "duration": 3,
+      "mainCategory": "웹",
+      "subCategory": "프론트엔드",
+      "members": [
+        {
+          "name": "코드아트온라인",
+          "level": 30,
+          "rating": 3.8
+        },
+        {
+          "name": "진격의개발자",
+          "level": 25,
+          "rating": 4.5
+        }
+      ]
+    },
+    {
+      "hostLevel": 17,
+      "hostName": "개발자X패밀리",
+      "currentMembers": 4,
+      "maxMembers": 5,
+      "duration": 4,
+      "mainCategory": "웹",
+      "subCategory": null,
+      "members": [
+        {
+          "name": "개발자X패밀리",
+          "level": 17,
+          "rating": 3.9
+        },
+        {
+          "name": "코딩의상처",
+          "level": 20,
+          "rating": 3.8
+        },
+        {
+          "name": "코드라이브",
+          "level": 22,
+          "rating": 4.3
+        },
+        {
+          "name": "미래소년개발자",
+          "level": 25,
+          "rating": 4.2
+        }
+      ]
+    },
+    {
+      "hostLevel": 20,
+      "hostName": "코딩용사성공담",
+      "currentMembers": 4,
+      "maxMembers": 7,
+      "duration": 6,
+      "mainCategory": "게임",
+      "subCategory": "모바일 기반",
+      "members": [
+        {
+          "name": "코딩용사성공담",
+          "level": 20,
+          "rating": 4.1
+        },
+        {
+          "name": "수성의개발자",
+          "level": 24,
+          "rating": 3.9
+        },
+        {
+          "name": "개발자의스타일기",
+          "level": 23,
+          "rating": 4.3
+        },
+        {
+          "name": "꿈빛개발자",
+          "level": 25,
+          "rating": 4.3
+        }
+      ]
+    },
+    {
+      "hostLevel": 40,
+      "hostName": "귀멸의코드",
+      "currentMembers": 3,
+      "maxMembers": 5,
+      "duration": 3,
+      "mainCategory": "보안",
+      "subCategory": "웹 보안",
+      "members": [
+        {
+          "name": "귀멸의코드",
+          "level": 40,
+          "rating": 4.9
+        },
+        {
+          "name": "벽력일깃",
+          "level": 35,
+          "rating": 4.2
+        },
+        {
+          "name": "범부",
+          "level": 36,
+          "rating": 4.6
+        }
+      ]
+    },
+    {
+      "hostLevel": 15,
+      "hostName": "코딩마스터",
+      "currentMembers": 2,
+      "maxMembers": 4,
+      "duration": 5,
+      "mainCategory": "기타",
+      "subCategory": "VR/AR",
+      "members": [
+        {
+          "name": "코딩마스터",
+          "level": 15,
+          "rating": 4.6
+        },
+        {
+          "name": "제로부터시작하는프론트생활",
+          "level": 20,
+          "rating": 4.3
+        }
+      ]
+    },
+    {
+      "hostLevel": 35,
+      "hostName": "개발자의길",
+      "currentMembers": 5,
+      "maxMembers": 8,
+      "duration": 4,
+      "mainCategory": "모바일",
+      "subCategory": "안드로이드",
+      "members": [
+        {
+          "name": "개발자의길",
+          "level": 35,
+          "rating": 4.5
+        },
+        {
+          "name": "개발자스테이나이트",
+          "level": 30,
+          "rating": 4.2
+        },
+        {
+          "name": "개발자어드벤처",
+          "level": 32,
+          "rating": 4.5
+        },
+        {
+          "name": "코딩왕통키",
+          "level": 40,
+          "rating": 4.8
+        },
+        {
+          "name": "이세계개발자",
+          "level": 25,
+          "rating": 4.0
+        }
+      ]
+    },
+    {
+      "hostLevel": 22,
+      "hostName": "코딩천사",
+      "currentMembers": 3,
+      "maxMembers": 6,
+      "duration": 3,
+      "mainCategory": "게임",
+      "subCategory": "Unity",
+      "members": [
+        {
+          "name": "코딩천사",
+          "level": 22,
+          "rating": 4.3
+        },
+        {
+          "name": "불꽃개발자",
+          "level": 20,
+          "rating": 4.4
+        },
+        {
+          "name": "코드엑소시스트",
+          "level": 23,
+          "rating": 4.2
+        }
+      ]
+    },
+    {
+      "hostLevel": 28,
+      "hostName": "개발자지망생",
+      "currentMembers": 1,
+      "maxMembers": 5,
+      "duration": 6,
+      "mainCategory": "웹",
+      "subCategory": "프론트엔드",
+      "members": [
+        {
+          "name": "개발자지망생",
+          "level": 28,
+          "rating": 3.7
+        }
+      ]
+    }
+  ]

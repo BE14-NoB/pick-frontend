@@ -33,7 +33,7 @@
               :id="Number(card.id)"
               :title="card.name"
               :subtitle="card.introduction"
-              :imgSrc="card.imgSrc || defaultImage"
+              :imgSrc="card.thumbnail_image || defaultImage"
               :mainCategory="card.main_category"
               :subCategory="card.sub_category"
             />
@@ -87,13 +87,20 @@
       const res = await fetch('http://localhost:8080/project_list')
       const result = await res.json()
       if (Array.isArray(result.project_list)) {
-        cardData.value = result.project_list
+        cardData.value = result.project_list.map(project => ({
+          ...project,
+          thumbnail_image: imageMap[project.thumbnail_image] || project.thumbnail_image, // 동적 이미지 처리
+        }));
+
       } else {
         throw new Error('Invalid server response format')
       }
     } catch (err) {
       console.error('🚨 fetch 실패, 더미 데이터로 대체합니다.', err)
-      cardData.value = projectDummy.project_list
+      cardData.value = projectDummy.project_list.map(project => ({
+        ...project,
+        thumbnail_image: imageMap[project.thumbnail_image] || project.thumbnail_image, // 동적 이미지 처리
+      }))
     }
   })
 
@@ -101,6 +108,15 @@
     const shuffled = [...cardData.value].sort(() => Math.random() - 0.5)
     return shuffled.slice(0, 3)
   })
+
+    // 이미지 
+    const images = import.meta.glob('@/assets/member/*.png', { eager: true });
+  const imageMap = Object.fromEntries(
+    Object.entries(images).map(([path, module]) => [
+      `/assets/member/${path.split('/').pop()}`,
+      module.default,
+    ])
+  );
   
 </script>
 

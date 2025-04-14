@@ -153,6 +153,7 @@ import { useRoute } from 'vue-router'
 import { marked } from 'marked'
 import dayjs from 'dayjs'
 import profile from '@/assets/img/avatar.png'
+import members from '@/json/participants.json'
 import MeetingSaveButton from  '@/components/project/MeetingSaveButton.vue'
 
 const route = useRoute()

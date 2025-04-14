@@ -19,16 +19,21 @@
                     Private Matching
                 </button>
             </div>
+        <btn-group>
+            <button class="create-project-button" @click="handleCancled">
+                선택 초기화
+            </button>
+            <teleport to="body">
+                <MatchingCreate 
+                v-if="showModal"
+                @close="showModal = false"
+                @create="handleCreateMatching"
+                />
+            </teleport>
             <button class="create-project-button" @click="createMatching">
                 프로젝트 생성
-                <teleport to="body">
-                    <MatchingCreate 
-                        v-if="showModal"
-                        @close="showModal = false"
-                        @create="handleCreateMatching"
-                        />
-                    </teleport>
-                </button>
+            </button>
+            </btn-group>
         </div>
         <div v-if="activeTab === 'random'" class="search-form">
             <div class="form-group">
@@ -193,16 +198,18 @@ onMounted(async () => {
       console.error('🚨 fetch 실패, 더미 데이터로 대체합니다.', err)
       categories.value = matchingFilter.categories
       subcategoriesMap.value = matchingFilter.subcategoriesMap
+      console.log(subcategoriesMap.value);
     }
   })
 // 읽어오기
-// const categories = ['PC', '모바일', '보안', '마케팅']
-// const subcategoriesMap = {
-//     'PC': ['웹', '게임', '백엔드', '프론트엔드'],
-//     '모바일': ['ios', '안드로이드'],
-//     '기획': ['서비스 기획', '전략 기획', 'PM'],
-//     '마케팅': ['디지털 마케팅', '콘텐츠 마케팅', '브랜드 마케팅']
-// }
+// const categories = ['웹', '게임', '보안', '모바일', '기타]
+// const subcategoriesMap= {
+//         '웹': ['프론트엔드', '백엔드', '풀스택'],
+//         '게임': ['Unity', 'Unreal Engine', '모바일 기반', '웹 기반'],
+//         '보안': ['웹 보안', '모바일 보안', '인증 및 암호화', '블록체인'],
+//         '모바일': ['안드로이드', 'iOS', '크로스플랫폼'],
+//         '기타': ['VR/AR', '3D 모델링', '암호화폐']
+//     }
 const durationOptions = [
     { value: '1m', label: '1개월' },
     { value: '2m', label: '2개월' },
@@ -210,11 +217,23 @@ const durationOptions = [
     { value: '4m', label: '4개월' },
     { value: '5m', label: '5개월' },
     { value: '6m', label: '6개월' },
-    { value: '7m', label: '6개월 이상'}
+    { value: '7m', label: '6개월 이상'},
 ]
 
+// '선택 취소' 처리
+const handleCancled = () => {
+    minPeople.value = ''
+    maxPeople.value = ''
+    minDuration.value = ''
+    maxDuration.value = ''
+    category.value = ''
+    subcategory.value = ''
+    hidePlaceholder.value = false
+    subcategoryPlaceholder.value = 'Select Category'
+}
+
 const subcategories = computed(() => {
-    return category.value ? subcategoriesMap[category.value] : []
+    return category.value ? subcategoriesMap.value[category.value] : []
 })
 
 const maxPeopleOptions = computed(() => {

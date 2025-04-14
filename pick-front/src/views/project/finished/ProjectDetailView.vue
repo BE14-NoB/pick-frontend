@@ -1,173 +1,175 @@
 <template>
-    
-    <div class="project-detail-page" v-if="projectData">
-      <v-btn
-        :to="'/project-list'"
-        prepend-icon="mdi-view-list"
-        variant="text"
-        size="small"
-        color="#C6C6C6"
-        style="padding: 0"
-      >
-        전체 목록 보기
-      </v-btn>
+  <div class="project-detail-page" v-if="projectData">
+    <!-- 목록 보기 버튼 -->
+    <v-btn
+      :to="'/project-list'"
+      prepend-icon="mdi-view-list"
+      variant="text"
+      size="small"
+      color="#C6C6C6"
+      style="padding: 0"
+    >
+      전체 목록 보기
+    </v-btn>
 
-      <main class="main-content">
-        
-        <section class="project-intro">
-            <div class="left-text">
-                <div class="project-name">{{ projectData.name }}</div>
-                <p class="project-introduction">{{ projectData.introduction }}</p>
-                <p class="date">{{ projectData.start_date }} ~ {{ projectData.end_date }}</p>
-                <div class="tag-list">
-                  <CategoryChips 
-                          :mainCategory="projectData.main_category" 
-                          :subCategory="projectData.sub_category" 
-                      
-                          />
-                </div>
-                <div class="link-button">
-                  <v-btn
-                  to="/"
-                  target="_blank"
-                  rel="noopener"
-                  append-icon="mdi-web"
-                  variant="tonal"
-                  size="small"
-                  >
-                    사이트 바로가기
-                  </v-btn>
-                  <v-btn
-                    :href="projectData.repo_url"
-                    target="_blank"
-                    rel="noopener"
-                    append-icon="mdi-github"
-                    variant="tonal"
-                    size="small"
-                  >
-                    깃허브 레포 바로가기
-                  </v-btn>
-                </div>
-                
-              
-            </div>
-            <div class="right-image">
-              <ThumbNailMockup :thumbnailUrl="thumbnailUrl" />
-            </div>
-        </section>
-        <v-divider class="my-4" style="border-color: #333;" />
-
-        <section class="project-content">
-          <div>
-            <div class="subtitle">프로젝트 설명</div>
-            <div v-html="marked(projectData.content)" class="markdown-content" > </div>
+    <main class="main-content">
+      <!-- 프로젝트 소개 -->
+      <section class="project-intro">
+        <div class="left-text">
+          <div class="project-name">{{ projectData.name }}</div>
+          <p class="project-introduction">{{ projectData.introduction }}</p>
+          <p class="date">{{ projectData.start_date }} ~ {{ projectData.end_date }}</p>
+          <div class="tag-list">
+            <CategoryChips 
+              :mainCategory="projectData.main_category" 
+              :subCategory="projectData.sub_category"
+            />
           </div>
-
-          <div>
-            <div class="subtitle">팀원 소개</div>
-            <div class="team-list">
-              <div class="member" v-for="(member, index) in projectData.participants" :key="index">
-                <v-avatar size="60">
-                  <v-img :src="avatarUrl" :alt="member" />
-                </v-avatar>
-                <span class="member-name">{{ member }}</span>
-              </div>
-            </div>
+          <div class="link-button">
+            <v-btn to="/" target="_blank" rel="noopener" append-icon="mdi-web" variant="tonal" size="small">
+              사이트 바로가기
+            </v-btn>
+            <v-btn :href="projectData.repo_url" target="_blank" rel="noopener" append-icon="mdi-github" variant="tonal" size="small">
+              깃허브 레포 바로가기
+            </v-btn>
           </div>
+        </div>
+        <div class="right-image">
+          <ThumbNailMockup :thumbnailUrl="thumbnailUrl" />
+        </div>
+      </section>
 
-          <div>
-            <div class="subtitle">프로젝트 후기</div>
+      <v-divider class="my-4" style="border-color: #333;" />
 
-            <v-slide-group class="review-carousel" show-arrows>
-              <v-slide-group-item
-                v-for="review in projectReviewData"
-                :key="review.id"
-              >
-                <v-card class="review-card" elevation="2">
-                  <v-card-text>
-                    <strong>{{ review.reviewerId }}</strong>
-                    <p>{{ review.content }}</p>
-                  </v-card-text>
-                </v-card>
-              </v-slide-group-item>
-            </v-slide-group>
+      <!-- 프로젝트 내용 -->
+      <section class="project-content">
+        <!-- 설명 -->
+        <div>
+          <div class="subtitle">프로젝트 설명</div>
+          <div v-html="marked(projectData.content)" class="markdown-content"></div>
         </div>
 
+        <!-- 팀원 소개 -->
+        <div>
+          <div class="subtitle">팀원 소개</div>
+          <div class="team-list">
+            <div class="member" v-for="(member, index) in participants" :key="index">
+              <v-avatar size="60">
+                <v-img
+                 :src="member.profileImg"
+                  :alt="member.name"
+                  class="avatar-img"
+                />
+              </v-avatar>
+              <span class="member-name">{{ member.nickname || member.name }}</span>
+            </div>
+          </div>
+        </div>
 
-        </section>
+        <!-- 후기 -->
+        <div>
+          <div class="subtitle">프로젝트 후기</div>
+          <v-slide-group class="review-carousel" show-arrows>
+            <v-slide-group-item
+              v-for="review in projectReviewData"
+              :key="review.id"
+            >
+              <v-card class="review-card" elevation="2">
+                <v-card-text>
+                  <strong>{{ review.reviewerId }}</strong>
+                  <p style="margin-top: 10px;">{{ review.content }}</p>
+                </v-card-text>
+              </v-card>
+            </v-slide-group-item>
+          </v-slide-group>
+        </div>
+      </section>
+    </main>
+  </div>
 
-      </main>
-    </div>
-  
-    <div v-else class="text-center my-12">
-      <v-progress-circular indeterminate color="primary" size="64" />
-    </div>
-  </template>
-  
-  
-
-
+  <!-- 로딩 -->
+  <div v-else class="text-center my-12">
+    <v-progress-circular indeterminate color="primary" size="64" />
+  </div>
+</template>
 
 <script setup>
-    import { marked } from 'marked'
-    import {ref, computed, onMounted, watch} from 'vue';
-    import { useRoute } from 'vue-router';
-    import CategoryChips from '@/components/project/CategoryChip.vue'
-    import defaultImage from '@/assets/member/default-image.png'
-    import ThumbNailMockup from '@/components/project/ThumbNailMockup.vue';
-    import projectDummy from '@/json/project_entry.json'
-    import reviewDummy from '@/json/project_review.json'
+import { ref, computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { marked } from 'marked'
 
-    //아바타
-    const avatarUrl = new URL('@/assets/img/avatar.png', import.meta.url).href
-    
-    const route = useRoute()
-    const id = route.params.id  
-    const projectData = ref(null)
-    const projectReviewData = ref([]);
+import CategoryChips from '@/components/project/CategoryChip.vue'
+import ThumbNailMockup from '@/components/project/ThumbNailMockup.vue'
+import defaultImage from '@/assets/member/default-image.png'
 
-    // 이미지 매핑
-    const images = import.meta.glob('@/assets/member/*.png', { eager: true })
-    const imageMap = Object.fromEntries(
-      Object.entries(images).map(([path, mod]) => [
-        `/assets/member/${path.split('/').pop()}`,
-        mod.default,
-      ])
-    )
+import projectDummy from '@/json/project_entry.json'
+import reviewDummy from '@/json/project_review.json'
+import participantDummy from '@/json/participants.json'
 
-    const thumbnailUrl = computed(() =>
-      imageMap[projectData.value?.thumbnail_image] || defaultImage
-    )
+// 현재 라우트 ID
+const route = useRoute()
+const id = route.params.id
 
+// 데이터 상태
+const projectData = ref(null)
+const projectReviewData = ref([])
 
-    // 프로젝트 정보 & 후기 데이터 병렬 fetch 
-    onMounted(async () => {
-      try {
-        const [projectRes, reviewRes] = await Promise.all([
-          fetch(`http://localhost:8081/${id}`),
-          fetch('http://localhost:8082/project_review_list')
-        ])
+// 이미지 매핑 (썸네일용)
+const projectImages = import.meta.glob('@/assets/member/*.png', { eager: true })
+const imageMap = Object.fromEntries(
+  Object.entries(projectImages).map(([path, mod]) => [
+    `/assets/member/${path.split('/').pop()}`,
+    mod.default,
+  ])
+)
 
-        const projectResult = await projectRes.json()
-        const reviewResult = await reviewRes.json()
-
-        console.log('✅ 후기 원본:', reviewResult)
+const profileImageModules = import.meta.glob('@/assets/img/member_profile/*.png', { eager: true })
+const profileImageMap = Object.fromEntries(
+  Object.entries(profileImageModules).map(([path, mod]) => [
+    path.split('/').pop(), // 'sy.png' 같은 파일명
+    mod.default,
+  ])
+)
+const participants = ref(participantDummy.map(member => ({
+  ...member,
+  profileImg: profileImageMap[member.profileImage] || defaultImage
+})))
 
 
-        projectData.value = projectResult
-        projectReviewData.value = reviewResult ?? []
+// 썸네일 이미지 가져오기
+const thumbnailUrl = computed(() =>
+  imageMap[projectData.value?.thumbnail_image] || defaultImage
+)
 
-      } catch (err) {
-        console.error('🚨 fetch 실패', err)
-        projectData.value = projectDummy[id-1];
-        projectReviewData.value = reviewDummy.project_review_list;
-      }
-    })
+// 이름 기준으로 팀원 정보 매칭
+const matchedParticipants = computed(() => {
+  if (!projectData.value) return []
+  return projectData.value.participants.map(name =>
+    participants.value.find(p => p.name === name)
+  ).filter(Boolean)
+})
 
+// 병렬 fetch
+onMounted(async () => {
+  try {
+    const [projectRes, reviewRes] = await Promise.all([
+      fetch(`http://localhost:8081/${id}`),
+      fetch('http://localhost:8082/project_review_list')
+    ])
 
+    const projectResult = await projectRes.json()
+    const reviewResult = await reviewRes.json()
 
-
+    projectData.value = projectResult
+    projectReviewData.value = reviewResult ?? []
+  } catch (err) {
+    console.error('🚨 fetch 실패', err)
+    projectData.value = projectDummy[id - 1]
+    projectReviewData.value = reviewDummy.project_review_list
+  }
+})
 </script>
+
 
 <style scoped>
 .project-detail-page{
@@ -202,6 +204,12 @@
     font-size: 13px;
 }
 
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
 
 /* 왼쪽 텍스트 스타일 */
 .left-text {
