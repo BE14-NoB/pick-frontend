@@ -2,20 +2,28 @@
     <div class="branch-wrapper">
         <v-icon class="branch-icon" icon="mdi-source-branch" />
 
+        <!-- base 브랜치 -->
         <div class="branch-box base-box">
             <div class="branch-label">base :</div>
-            <div class="branch-value">main</div>
+            <div class="branch-value">{{ baseBranch }}</div>
         </div>
 
         <span class="branch-arrow">←</span>
 
+        <!-- head 브랜치 -->
         <div class="branch-box">
             <div class="branch-label">head :</div>
-            <v-select v-model="head" :items="filteredHeadBranches" variant="plain" hide-details density="compact"
-                menu-icon="mdi-menu-down" class="branch-select" />
+            <template v-if="disableSelect">
+                <div class="branch-value">{{ head || '선택된 브랜치 없음' }}</div>
+            </template>
+            <template v-else>
+                <v-select v-model="head" :items="filteredHeadBranches" variant="plain" hide-details density="compact"
+                    menu-icon="mdi-menu-down" class="branch-select" />
+            </template>
         </div>
 
-        <div v-if="!head" class="warning-box">
+        <!-- 경고 문구 -->
+        <div v-if="!head && !disableSelect" class="warning-box">
             <span class="icon">❌</span>
             <span class="label">자동 머지 방지</span>
             <span class="desc">PR을 생성할 브랜치를 선택해주세요.</span>
@@ -26,18 +34,28 @@
 
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
-const base = ref('main')
-const head = ref(null)
+const props = defineProps({
+    defaultBranch: String,         // base로 표시할 브랜치
+    selectedBranch: String,        // head 브랜치를 외부에서 고정
+    disableSelect: Boolean         // 선택 불가능하게 만들기
+})
+
+const emit = defineEmits(['update:selectedBranch'])
+
+const baseBranch = ref(props.defaultBranch || 'main')
+const head = ref(props.selectedBranch || null)
 
 const branches = ['main', 'dev', 'feature/project']
-const baseBranch = 'main'
-
-// head용 브랜치에서 'main' 제거
 const filteredHeadBranches = computed(() =>
-    branches.filter(b => b !== baseBranch)
+    branches.filter(b => b !== baseBranch.value)
 )
+
+watch(head, (newVal) => {
+    emit('update:selectedBranch', newVal)
+})
+
 </script>
 
 <style scoped>
@@ -101,7 +119,7 @@ const filteredHeadBranches = computed(() =>
 }
 
 /* v-select 커스터마이징 */
-.branch-select >>> .v-field {
+.branch-select>>>.v-field {
     background-color: transparent;
     border: none;
     box-shadow: none;
@@ -109,18 +127,18 @@ const filteredHeadBranches = computed(() =>
     padding: 0;
 }
 
-.branch-select >>> .v-field__input {
+.branch-select>>>.v-field__input {
     font-weight: 600;
     font-size: 14px;
     color: #24292f;
     padding: 0 !important;
 }
 
-.branch-select >>> .v-label {
+.branch-select>>>.v-label {
     display: none;
 }
 
-.branch-select >>> .v-input__control {
+.branch-select>>>.v-input__control {
     padding: 0;
     min-height: 0;
 }
@@ -147,5 +165,4 @@ const filteredHeadBranches = computed(() =>
 .warning-box .desc {
     color: #57606a;
 }
-
 </style>

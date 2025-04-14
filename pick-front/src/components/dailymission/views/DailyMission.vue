@@ -32,9 +32,8 @@
                   <v-btn
                     icon
                     :color="mission.isCompleted ? 'primary' : 'blue-grey-lighten4'"
-                    @click="mission.isCompleted = !mission.isCompleted"
                     density="compact"
-                    style="min-width: 32px; height: 32px;"
+                    style="min-width: 32px; height: 32px; pointer-events: none; cursor: default;"
                   >
                     <v-icon size="20">
                       {{ mission.isCompleted ? 'mdi-checkbox-marked-circle' : 'mdi-checkbox-blank-circle-outline' }}
@@ -90,7 +89,7 @@ const completedCount = computed(() =>
 
 .side {
   width: 240px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   border-right: 1px solid #ddd;
 }
 

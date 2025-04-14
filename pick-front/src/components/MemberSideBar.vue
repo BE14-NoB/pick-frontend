@@ -59,8 +59,8 @@
           <v-list-item
             title="참여 중 프로젝트"
             value="/project/active"
-            :active="selected === '/project/active'"
-            @click="goTo('/project/active')"
+            :active="selected === '/project/dashboard'"
+            @click="goTo('/project/dashboard')"
           />
           <v-list-item
             title="참여 완료 프로젝트"

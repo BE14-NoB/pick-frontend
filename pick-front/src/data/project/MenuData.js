@@ -5,27 +5,26 @@ export const menuItems = [
         to: '/project/dashboard',
         label: '대시보드',
         type: 'menu',
-        match: ['/project/dashboard', '/project/dashboard']
+        match: ['/project/dashboard']
     },
     {
         to: '/project/info',
         label: '프로젝트 정보',
         type: 'menu',
-        match: ['/project/info', '/project/info']
+        match: ['/project/info']
     },
     {
         to: '/project/member',
         label: '팀원',
         type: 'menu',
-        match: ['/project/member', '/project/member']
+        match: ['/project/member']
     },
     {
         to: '/project/meeting',
         label: '회의록',
         type: 'menu',
-        match: ['/project/meeting', '/project/meeting']
+        match: ['/project/meeting']
     },
-
     {
         to: '/project/issues',
         label: 'ISSUE',
@@ -42,13 +41,13 @@ export const menuItems = [
         to: '/project/pull-requests',
         label: 'PR',
         type: 'menu',
-        match: ['/project/pull-requests', '/project/create-pull-request']
+        match: ['/project/pull-requests', '/project/create-pull-request', '/project/review-pull-request']
     },
     {
         to: '/project/review',
         label: '프로젝트 후기',
         type: 'menu',
-        match: ['/project/review', '/project/review']
+        match: ['/project/review']
     },
 
 
