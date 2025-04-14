@@ -148,6 +148,17 @@ const router = createRouter({
       path: '/dailymission',
       name: 'DailyMission',
       component: () => import('@/components/dailymission/views/DailyMission.vue')
+    },
+    {
+      path: '/github/success',
+      name: 'GithubSuccess',
+      component: () => import('@/views/git/GithubSuccess.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('@/views/common/ErrorPage.vue'),
+      props: { message: '페이지를 찾을 수 없습니다.' }
     }
   ]
 })
