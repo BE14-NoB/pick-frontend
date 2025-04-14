@@ -87,8 +87,13 @@
         <button class="search-button matching-button" @click="searchMatching">
           매칭 조회
         </button>
-        <button class="create-project-button matching-button">
-          매칭 생성
+        <button class="create-project-button matching-button" @click="createMatching">
+          매칭 생성    
+          <MatchingCreate 
+            v-if="showModal"
+            @close="showModal = false"
+            @create="handleCreateMatching"
+            />
         </button>
       </div>
     </div>
@@ -109,6 +114,7 @@
 <script setup>
 import { ref, computed, nextTick, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import MatchingCreate from './MatchingCreate.vue'
 
 const router = useRouter()
 const activeTab = ref('random')
@@ -121,6 +127,7 @@ const subcategory = ref('')
 const hidePlaceholder = ref(false)
 const inviteInput = ref(null)
 const subcategoryPlaceholder = ref('Select Category')
+const showModal = ref(false);
 
 // 읽어오기
 const categories = ['개발', '디자인', '기획', '마케팅']
@@ -185,6 +192,10 @@ const setActiveTab = (tab) => {
 
   const searchMatching = () => {
       router.push('/match/result')
+  }
+
+  const createMatching = () => {
+    showModal.value = !showModal.value;
   }
   // 이부분에 api 요청 구현
   // const searchMatching = async () => {
