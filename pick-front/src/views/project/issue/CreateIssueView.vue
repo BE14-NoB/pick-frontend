@@ -3,14 +3,14 @@
         <div class="form-layout">
             <!-- 왼쪽: Form 입력 -->
             <div class="form-left">
-                <FormEditor v-model:titleModel="issueTitle" v-model:contentModel="issueContent" titleLabel="이슈 제목"
+                <FormEditor v-model:titleModel="issueTitle" v-model:contentModel="issueBody" titleLabel="이슈 제목"
                     contentLabel="이슈 설명" @cancel="goToIssues" @submit="createIssue" />
             </div>
 
             <!-- 오른쪽: 드롭다운 -->
             <div class="form-right">
                 <ProjectDropdwon label="생성자" v-model="selectedCreator" :options="creatorOptions" :disabled="true" />
-                <ProjectDropdwon label="프로젝트" v-model="selectedProject" :options="projectOptions" :disabled="true" />
+                <ProjectDropdwon label="프로젝트" v-model="selectedProject" :options="projectOptions" :disabled="false" />
             </div>
         </div>
     </section>
@@ -27,7 +27,13 @@ const router = useRouter()
 // 작성 폼 관련
 import FormEditor from '@/components/project/FormEditor.vue'
 const issueTitle = ref('')
-const issueBody = ref('')
+const issueBody = ref(`### 📄 설명
+
+
+### ✅ 작업할 내용
+> 할 일을 체크박스 형태로 작성해주세요.
+
+`)
 
 // 이슈 목록으로 이동
 function goToIssues() {
@@ -45,6 +51,7 @@ async function createIssue() {
             },
             body: JSON.stringify({
                 repo: selectedProject.value,
+                owner: 'BE14-NoB',
                 title: issueTitle.value,
                 body: issueBody.value || ""
             })
@@ -79,7 +86,7 @@ const creatorOptions = [
 
 const projectOptions = [
     { label: 'PICK', value: 'Pick' },
-    // { label: 'AI 리포트', value: 'ai-report' },
+    { label: 'PICK FRONTEND', value: 'pick-frontend' },
 ]
 
 </script>
