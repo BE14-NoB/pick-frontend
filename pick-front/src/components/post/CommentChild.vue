@@ -1,6 +1,6 @@
-<!-- CommentItem.vue -->
+<!-- CommentChild.vue -->
 <template>
-    <div :style="{ marginLeft: `${depth * 40}px` }" class="commentBox">
+    <div :style="{ marginLeft: `${depth * 40 + 10}px` }" class="commentBox">
         <div class="commentBoxHeader">
             <div>{{ comment.nickname }}</div>
             <div v-if="comment.update_at">
@@ -16,7 +16,7 @@
     </div>
     
     <!-- 자식 댓글 재귀 렌더링 -->
-    <CommentItem
+    <CommentChild
         v-for="child in comment.children"
         :key="child.id"
         :comment="child"
@@ -25,16 +25,16 @@
 </template>
     
 <script setup>
-    import CommentItem from './CommentItem.vue' // 재귀 import
+    import CommentChild from './CommentChild.vue' // 재귀 import
     
     defineProps({
         comment: {
-        type: Object,
-        required: true,
+            type: Object,
+            required: true,
         },
         depth: {
-        type: Number,
-        default: 0,
+            type: Number,
+            default: 0,
         },
     })
 </script>
@@ -42,7 +42,6 @@
 <style scoped>
     .commentBox {
         border: 1px solid #d5d5d5;
-        margin-left: 10px;
         margin-right: 10px;
         margin-bottom: 10px;
         border-radius: 10px;

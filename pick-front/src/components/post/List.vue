@@ -7,9 +7,9 @@
         </thead>
         <tbody>
             <tr v-for="(row, rowIndex) in items" :key="rowIndex">
-                <td v-for="(value, key, colIndex) in row" :key="colIndex">
-                    <slot :name="key" :value="value" :row="row">
-                        {{ value }}
+                <td v-for="(header, colIndex) in headers" :key="colIndex">
+                    <slot :name="getKeyByHeader(header)" :value="row[getKeyByHeader(header)]" :row="row">
+                        {{ row[getKeyByHeader(header)] }}
                     </slot>
                 </td>
             </tr>
@@ -28,6 +28,15 @@
             required: true
         }
     })
+
+    const headerKeyMap = {
+        '번호': 'id',
+        '제목': 'title',
+        '작성 시간': 'upload_at',
+        '작성자': 'nickname',
+    };
+
+    const getKeyByHeader = (header) => headerKeyMap[header] || header;
 </script>
 
 <style scoped>
