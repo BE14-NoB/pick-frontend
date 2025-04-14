@@ -1,4 +1,3 @@
-# pick-frontend
 🐙 고성연 🪨 김석희 🐊 이청민 🦝 장시원 🦭 정민선 🐧 최혜민
 # 🗝️ Pick
 
@@ -22,15 +21,13 @@
 #### [💡 Tech Stack](#-Tech-Stack) <br>
 #### [📢 프로젝트 개요](#-프로젝트-개요) <br>
 #### [🛠️ 주요 기능](#-주요-기능) <br>
-#### [📅 WBS](#-WBS) <br>
-#### [🙆‍♀️ 요구사항 명세서](#-요구사항-명세서) <br>
-#### [💭 DDD 설계](#-DDD-설계) <br>
+#### [📅 개발 사이클](#-Component) <br>
+#### [🙆‍♀️ 와이어 프레임](#-와이어-프레임) <br>
+#### [💭 프론트 화면 구성](#-Figma) <br>
 #### [🗃️ DB 모델링](#-DB-모델링) <br>
-#### [🪄 MSA 아키텍처](#-MSA-아키텍처) <br>
-#### [🛜 Server](#-Server) <br>
-#### [🚩 단위 테스트](#-단위-테스트) <br>
-#### [📱 API 테스트](#-API-테스트) <br>
-#### [📑 API 명세서](#-API-명세서) <br>
+#### [🪄 기능 명세서](#-기능-명세서) <br>
+#### [📱 테스트 케이스](#-테스트-케이스) <br>
+#### [📑 트러블 슈팅](#-트러블-슈팅) <br>
 #### [🔜 향후 확장 계획](#-향후-확장-계획) <br>
 #### [🍪 동료 평가](#-동료-평가) <br>
 
@@ -39,6 +36,9 @@
 ## 💡 Tech Stack
 ### 🌿 Backend
 <img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/JPA-0769GE?style=flat-square&logo=JPA&logoColor=white"/> <img src="https://img.shields.io/badge/Hibernate-61DAFB?style=flat-square&logo=Hibernate&logoColor=white"/> <img src="https://img.shields.io/badge/gradle-0769AD?style=flat-square&logo=gradle&logoColor=white"/> <img src="https://img.shields.io/badge/security-F7DF1E?style=flat-square&logo=security&logoColor=white"/>
+
+### 🗝️ Frontend
+<img src="https://img.shields.io/badge/javascript-blue?logo=javascript"/>
 
 ### 🗂️ DB
 ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=flat&logo=mariadb&logoColor=white) <img src="https://img.shields.io/badge/MyBatis-FFCA28?style=flat-square&logo=MyBatis&logoColor=white"/>
@@ -83,10 +83,68 @@
 매일매일 반복적으로 달성할 수 있는 <b>단기 목표</b> 부여 -> 일정 횟수 반복 시 도전 과제 달성 -> 업적 뱃지 제공<br>
 경력, 전공, 자격증 등 스펙 증명 시 <b>스펙 뱃지</b> 제공 <br>
 
+<br><br>
 
-## 📅 WBS
-🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vScA7f_mLFChQQ5SMSU5AAC6-O3h8PYJg0H-dxRvMKHrePOtW3VIgnlNMcAEWP1Xy8O8LcMe4OFuCWe/pubhtml?gid=88084636&single=true"> WBS 자세히 보기</a><br> <br>
-<img src="https://github.com/user-attachments/assets/6677a334-9d8f-4d8d-a756-e98de9b2968f" width = "1000"/>
+## 📅 개발 사이클
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/vuetify.png" alt="vuetify"/><br>
+Vuetify UI 라이브러리를 사용하여 모두가 통일된 컴포넌트를 재사용하여 효율적인 작업을 진행이 가능했다.
+
+
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-1.png" alt="components-1"/><br>
+SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 부분은 동적으로 다시 생성하여 사용자에게 편의성을 제공함
+
+
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-2.png" alt="components-2"/><br>
+공통으로 사용되는 헤더, 푸터, 드롭다운, 버튼, 사이드바 등을 컴포넌트화 시켜 재사용하여 통일성을 가지고 생산성을 높였다
+
+<br><br>
+
+## 🙆‍♀️ 와이어 프레임
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/와이어 프레임 최종본.png" alt="와이어-프레임-최종본"/><br>
+
+<br><br>
+
+💭 프론트 화면 구성
+<details>
+     <summary><b>👤 회원</b></summary><br>
+  <details>
+          <summary>회원가입</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/SignUp.gif" width = "600"/><br>
+	          </p>
+  </details>
+	<details>
+		<summary>로그인</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/Login.gif" width = "600"/><br>
+	          </p>
+	</details>
+	<details>
+		<summary>회원 정보 조회</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FindInfo.gif" width = "600"/><br>
+	          </p>
+	</details>
+	<details>
+		<summary>회원 정보 수정</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FetchInfo.gif" width = "600"/><br>
+	          </p>
+	</details>
+	<details>
+		<summary>프로필 페이지</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FindProfile.gif" width = "600"/><br>
+	          </p>
+	</details>
+	<details>
+		<summary>로그아웃</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/Logout.gif" width = "600"/><br>
+	          </p>
+	</details>
+</details>
+
 
 <br><br>
 
@@ -116,11 +174,6 @@
 
 <br>
 
-## 🪄 MSA 아키텍처
-
-<img src = "" width = "900"/>
-
-<br><br>
 
 ## 🛜 Server
 ### 1. Eureka 서버 + Config 서버 + GateWay
