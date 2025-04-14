@@ -42,7 +42,6 @@ export const menuItems = [
         label: 'PR',
         type: 'menu',
         match: ['/project/pull-requests', '/project/create-pull-request', '/project/review-pull-request']
-        match: ['/project/pull-requests', '/project/create-pull-request', '/project/review-pull-request']
     },
     {
         to: '/project/project-review',

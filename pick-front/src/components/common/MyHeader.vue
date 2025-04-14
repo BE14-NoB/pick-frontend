@@ -18,18 +18,8 @@
         <v-menu location="bottom">
           <template v-slot:activator="{ props }">
             <div class="profile-img-wrapper">
-<<<<<<< HEAD
-              <v-img
-                :width="40"
-                :height="40"
-                :src="authStore.currentUser.profileImage"
-                class="profile-img no-cover"
-                v-bind="props"
-              />
-=======
               <v-img :width="40" :height="40" :src="authStore.currentUser.profileImage" class="profile-img"
                 v-bind="props" />
->>>>>>> 3f35f3ebf407d31140e94063e9878d0adb2cea5b
             </div>
           </template>
           <v-list class="profile-dropdown">
