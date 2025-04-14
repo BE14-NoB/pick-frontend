@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="commentHeader">
-            <h4>댓글 {{ commentNum }}</h4>
+            <h4 >댓글 {{ commentNum }}</h4>
         </div>
         <div>
             <div v-for="comment in mappedShowableComments" :key="id">
@@ -10,8 +10,11 @@
                         <div>
                             {{ comment.nickname }}
                         </div>
-                        <div>
-                            {{ comment.upload_at }} | 신고 | 답글
+                        <div v-if="comment.update_at">
+                            수정일: {{ comment.update_at }} | 신고 | 답글
+                        </div>
+                        <div v-else>
+                            작성일: {{ comment.upload_at }} | 신고 | 답글
                         </div>
                     </div>
                     <div class="commentBoxBody">
@@ -36,7 +39,8 @@
 
 <script setup>
     import commentList from '@/json/comment_list.json';
-    import {ref, onMounted, computed} from 'vue';
+    import postMember from '@/json/post_member.json';
+    import {ref, computed} from 'vue';
 
     const nickname = ref('꼼곰보');
 
@@ -47,18 +51,7 @@
     console.log('postId', props.postId);
 
     // 임시 멤버 데이터
-    const memberList = ref([
-        { id: 1, nickname: '꼼곰보' },
-        { id: 2, nickname: '혬부기' },
-        { id: 3, nickname: '석킼키킼키' },
-        { id: 4, nickname: '민선' },
-        { id: 5, nickname: 'Bluesky' },
-        { id: 6, nickname: '시냥주' },
-        { id: 7, nickname: 'VeRiTaS' },
-        { id: 8, nickname: '개발하는햄스터' },
-        { id: 9, nickname: '쿼리장수' },
-        { id: 10, nickname: '열정개발러' }
-    ]);
+    const memberList = ref(postMember);
     
     const commentData = ref(commentList);
     
@@ -75,12 +68,15 @@
                 id: comment.id,
                 content: comment.content,
                 upload_at: comment.upload_at,
+                update_at: comment.update_at,
                 nickname: member ? member.nickname : '알 수 없음'
             }
         });
     });
     
     const commentNum = computed(() => mappedShowableComments.value.length);
+    const emit = defineEmits(["commentNumber"]);
+    emit("commentNumber", commentNum);
 
 </script>
 

@@ -16,7 +16,7 @@
     "type": "Feature",
     "milestone": "v1.0 기능 개발 완료",
     "status": "open",
-    "creator": "석키키키킼",
+    "creator": "석키키키키",
     "avatarUrl": "sh.png"
   },
   {
@@ -76,7 +76,7 @@
     "type": "Refactor",
     "milestone": "UI 개선 작업",
     "status": "closed",
-    "creator": "석키키키킼",
+    "creator": "석키키키키",
     "avatarUrl": "sh.png"
   },
   {
@@ -96,7 +96,7 @@
     "type": "Feature",
     "milestone": "UX 개선 작업",
     "status": "closed",
-    "creator": "석키키키킼",
+    "creator": "석키키키키",
     "avatarUrl": "sh.png"
   },
   {
@@ -116,8 +116,18 @@
     "type": "Refactor",
     "milestone": "UI 개선 작업",
     "status": "closed",
-    "creator": "석키키키킼",
+    "creator": "석키키키키",
     "avatarUrl": "sh.png"
+  },
+  {
+    "number": "#206",
+    "title": "[Matching] 매칭 로직 구조 분리",
+    "label": "🛠️ refactoring",
+    "type": "Refactor",
+    "milestone": "코드 안정화 주간",
+    "status": "closed",
+    "creator": "꼼꼼보",
+    "avatarUrl": "sy.png"
   },
   {
     "number": "#206",

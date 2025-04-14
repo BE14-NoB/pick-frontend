@@ -19,16 +19,21 @@
                     Private Matching
                 </button>
             </div>
+        <btn-group>
+            <button class="create-project-button" @click="handleCancled">
+                선택 초기화
+            </button>
+            <teleport to="body">
+                <MatchingCreate 
+                v-if="showModal"
+                @close="showModal = false"
+                @create="handleCreateMatching"
+                />
+            </teleport>
             <button class="create-project-button" @click="createMatching">
                 프로젝트 생성
-                <teleport to="body">
-                    <MatchingCreate 
-                        v-if="showModal"
-                        @close="showModal = false"
-                        @create="handleCreateMatching"
-                        />
-                    </teleport>
-                </button>
+            </button>
+            </btn-group>
         </div>
         <div v-if="activeTab === 'random'" class="search-form">
             <div class="form-group">
@@ -210,8 +215,20 @@ const durationOptions = [
     { value: '4m', label: '4개월' },
     { value: '5m', label: '5개월' },
     { value: '6m', label: '6개월' },
-    { value: '7m', label: '6개월 이상'}
+    { value: '7m', label: '6개월 이상'},
 ]
+
+// '선택 취소' 처리
+const handleCancled = () => {
+    minPeople.value = ''
+    maxPeople.value = ''
+    minDuration.value = ''
+    maxDuration.value = ''
+    category.value = ''
+    subcategory.value = ''
+    hidePlaceholder.value = false
+    subcategoryPlaceholder.value = 'Select Category'
+}
 
 const subcategories = computed(() => {
     return category.value ? subcategoriesMap[category.value] : []
