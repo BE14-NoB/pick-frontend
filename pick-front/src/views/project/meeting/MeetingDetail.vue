@@ -10,14 +10,25 @@
         <span style="color:#4c4c4c; font-weight: 500">
           <!-- 회의록 상세 보기 -->
         </span>
-        <v-btn
-          color="primary"
-          variant="text"
-          prepend-icon="mdi-pencil"
-          @click="goToEdit"
-        >
-          수정하기
-        </v-btn>
+        <div style="display:flex; flex-direction:row; gap:10px;">
+          <v-btn
+            color="primary"
+            variant="tonal"
+            prepend-icon="mdi-pencil"
+            @click="goToEdit"
+          >
+            수정하기
+          </v-btn>
+          <v-btn
+            color="gray"
+            variant="tonal"
+            prepend-icon="mdi-trash-can-outline"
+            @click="deleteMeeting"
+          >
+            삭제하기
+          </v-btn>
+        </div>
+       
       </div>
   
       <!-- 제목 -->
@@ -113,23 +124,34 @@
   
   onMounted(async () => {
     loading.value = true;
-    const id = route.params.id
+    const id = route.params.id;
 
     try {
-      const res = await fetch('http://localhost:8080/meetings')
-      const data = await res.json()
-      const target = data.find(m => m.id === id)
-      if (!target) return
-      meeting.value = target
-      selectedAuthor.value = memberList.find(m => m.name === target.author)
-      selectedParticipants.value = memberList.filter(m => target.participants.includes(m.name))
+      const res = await fetch('http://localhost:8084/meetings');
+      const data = await res.json();
+
+      // 🔥 여기에서 string 비교로 안전하게 고쳐줌
+      const target = data.find(m => String(m.id) === String(id));
+
+      if (!target) {
+        console.warn('📂 회의록 정보를 찾을 수 없습니다.');
+        loading.value = false;
+        return;
+      }
+
+      meeting.value = target;
+
+      // 💡 memberList는 ref이기 때문에 .value 꼭 써야 함
+      selectedAuthor.value = memberList.value.find(m => m.name === target.author);
+      selectedParticipants.value = memberList.value.filter(m => target.participants.includes(m.name));
     } catch (err) {
-      console.error('❌ 회의록 불러오기 실패:', err)
-      meeting.value = meetingDummy['meetings'][id-1]
+      console.error('❌ 회의록 불러오기 실패:', err);
+      meeting.value = meetingDummy['meetings'].find(m => String(m.id) === String(id));
     }
 
     loading.value = false;
-  })
+  });
+
   
   const renderedMarkdown = computed(() =>
     meeting.value?.content ? marked(meeting.value.content) : ''
@@ -142,13 +164,37 @@
     Object.entries(imageModules).map(([path, mod]) => [path.split('/').pop(), mod.default])
   )
 
+  // 회의록 수정 
   const goToEdit = () => {
     router.push({
       path: '/project/create-meeting',
       query: { id: meeting.value.id }
     })
   }
-  </script>
+
+  // 회의록 삭제
+  const deleteMeeting = async () => {
+      const confirmDelete = confirm('이 회의록을 정말 삭제하시겠습니까?');
+      if (!confirmDelete) return;
+
+      try {
+        const res = await fetch(`http://localhost:8084/meetings/${meeting.value.id}`, {
+          method: 'DELETE',
+        });
+
+        if (!res.ok) throw new Error('삭제 실패');
+
+        alert('회의록이 삭제되었습니다.');
+        router.push('/project/meeting'); // 목록 페이지 등으로 리디렉션
+      } catch (err) {
+        console.error('❌ 삭제 중 오류:', err);
+        alert('삭제에 실패했습니다.');
+      }
+  };
+
+
+
+</script>
   
   <style scoped>
   .note-editor {

@@ -263,7 +263,7 @@ const renderedMarkdown = computed(() => marked(content.value))
 onMounted(async () => {
   if (!id) return // 신규 작성이면 skip
   try {
-    const res = await fetch('http://localhost:8080/meetings')
+    const res = await fetch('http://localhost:8084/meetings')
     const data = await res.json()
     const existing = data.find(m => m.id === id)
     if (existing) {

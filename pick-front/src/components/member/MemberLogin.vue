@@ -1,5 +1,6 @@
 <template>
-  <v-card class="login-card" elevation="8" max-width="448" rounded="lg">
+  <!-- <v-card class="login-card" elevation="8" max-width="448" rounded="lg"> -->
+    <div class="login-card">
     <div class="text-subtitle-1 text-medium-emphasis">이메일</div>
 
     <v-text-field
@@ -55,11 +56,12 @@
     </v-btn>
 
     <v-card-text class="text-center">
-      <RouterLink to="/member/signup" class="text-blue text-decoration-none">
+      <RouterLink to="/member/signup" class="text-blue text-decoration-none" >
         회원가입 <v-icon icon="mdi-chevron-right"></v-icon>
       </RouterLink>
     </v-card-text>
-  </v-card>
+  </div>
+  <!-- </v-card> -->
 </template>
 
 <script setup>
