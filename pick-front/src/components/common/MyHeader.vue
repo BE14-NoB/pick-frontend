@@ -18,7 +18,16 @@
         <v-menu location="bottom">
           <template v-slot:activator="{ props }">
             <div class="profile-img-wrapper">
-              <v-img :width="40" :height="40" :src="profileImage" class="profile-img" v-bind="props" @error="handleImageError" />
+              <v-img
+                :width="40"
+                :height="40"
+                :src="profileImage"
+                class="profile-img"
+                cover
+                v-bind="props"
+                @error="handleImageError"
+              />
+
             </div>
           </template>
           <v-list class="profile-dropdown">
@@ -26,7 +35,7 @@
             <v-list-item class="profile-info">
               <div class="profile-header">
                 <div class="profile-left">
-                  <v-img :width="60" :height="60" :src="profileImage" class="profile-img-large" @error="handleImageError" />
+                  <v-img :width="60" :height="60" :src="profileImage" class="profile-img-large" @error="handleImageError"  cover/>
                   <div class="nickname">{{ authStore.currentUser.nickname }}</div>
                 </div>
                 <div class="profile-right">
@@ -360,6 +369,7 @@ const handleLogout = () => {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+  object-fit: cover;
 }
 
 /* 드롭다운 스타일 */
@@ -397,6 +407,7 @@ const handleLogout = () => {
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #e0e0e0;
+  
 }
 
 .nickname {
