@@ -532,7 +532,7 @@ const signup = async () => {
 
 .signup-btn {
   margin-top: 20px;
-  height: 15px; /* 유지 */
+  height: 30px; /* 유지 */
   font-size: 10px; /* 유지 */
 }
 

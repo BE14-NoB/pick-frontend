@@ -497,8 +497,8 @@ const handleLogout = () => {
 
 .close-btn {
   position: absolute;
-  bottom: 290px;
-  right: 12px;
+  bottom: 420px;
+  right: 16px;
   z-index: 1001;
 }
 </style>
