@@ -5,7 +5,7 @@
       <!-- Open 탭 -->
       <template #open>
         <p class="desc">
-          PICK 에서 총 <strong>{{ openIssues.length }}</strong>개의 이슈를 생성하셨어요! ✨
+          총 <strong>{{ openIssues.length }}</strong>개의 이슈가 열려있어요! ✨
         </p>
         <div class="issue-header">
           <IssueCreateButton @click="onClickCreateIssue" />
@@ -13,22 +13,40 @@
         <div class="list-card">
           <List
             :headers="['이슈번호', '제목', '라벨', '타입', '마일스톤', '생성자']"
-            :items="paginatedOpenIssues.map(({ status, ...rest }) => rest)"
+            :items="paginatedOpenIssues.map(({ status, creator, avatarUrl, ...rest }) => ({
+              ...rest,
+              creatorDisplay: {
+                name: creator.name,
+                avatarUrl: creator.avatarUrl
+              }
+            }))"
           >
+            <!-- 라벨 색상 표시 -->
             <template #label="{ value }">
               <v-chip :color="getLabelColor(value)" variant="tonal" size="small">
                 {{ value }}
               </v-chip>
             </template>
+
+            <!-- 타입 색상 표시 -->
             <template #type="{ value }">
               <v-chip :color="getTypeColor(value)" variant="tonal" size="small">
                 {{ value }}
               </v-chip>
             </template>
-            <template #creator="{ value }">
-              <img :src="value" class="profile-img" alt="creator" />
+            
+            <template #creatorDisplay="{ value }">
+              <div class="creator-cell">
+                <img
+                  :src="`/src/assets/img/member_profile/${value.avatarUrl}`"
+                  class="profile-img"
+                  alt="creator"
+                />
+                <span class="creator-name">{{ value.name }}</span>
+              </div>
             </template>
           </List>
+
         </div>
         <Pagination class="pagination" v-model:currentPage="openPage" :totalPages="openTotalPages" />
       </template>
@@ -41,22 +59,40 @@
         <div class="list-card">
           <List
             :headers="['이슈번호', '제목', '라벨', '타입', '마일스톤', '생성자']"
-            :items="paginatedClosedIssues.map(({ status, ...rest }) => rest)"
+            :items="paginatedClosedIssues.map(({ status, creator, avatarUrl, ...rest }) => ({
+              ...rest,
+              creatorDisplay: {
+                name: creator.name,
+                avatarUrl: creator.avatarUrl
+              }
+            }))"
           >
+            <!-- 라벨 색상 표시 -->
             <template #label="{ value }">
               <v-chip :color="getLabelColor(value)" variant="tonal" size="small">
                 {{ value }}
               </v-chip>
             </template>
+
+            <!-- 타입 색상 표시 -->
             <template #type="{ value }">
               <v-chip :color="getTypeColor(value)" variant="tonal" size="small">
                 {{ value }}
               </v-chip>
             </template>
-            <template #creator="{ value }">
-              <img :src="value" class="profile-img" alt="creator" />
+
+            <template #creatorDisplay="{ value }">
+              <div class="creator-cell">
+                <img
+                  :src="`/src/assets/img/member_profile/${value.avatarUrl}`"
+                  class="profile-img"
+                  alt="creator"
+                />
+                <span class="creator-name">{{ value.name }}</span>
+              </div>
             </template>
           </List>
+
         </div>
         <Pagination class="pagination" v-model:currentPage="closedPage" :totalPages="closedTotalPages" />
       </template>
@@ -70,7 +106,6 @@ import List from '@/components/List.vue'
 import Pagination from '@/components/common/Pagination.vue'
 import IssueCreateButton from '@/components/project/IssueCreateButton.vue'
 import ProjectTabs from '@/components/project/ProjectTabs.vue'
-import issueMaker from '@/assets/issueMaker.png'
 import issueJson from '@/json/project_issuelist.json'
 
 const selectedTab = ref('open')
@@ -83,7 +118,10 @@ const issueData = ref([])
 onMounted(() => {
   issueData.value = issueJson.map(issue => ({
     ...issue,
-    creator: issueMaker
+    creator: {
+      name: issue.creator,
+      avatarUrl: issue.avatarUrl
+    }
   }))
 })
 
@@ -149,7 +187,6 @@ const tabs = [
 .issue-header {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 16px;
 }
 
 .list-card {
@@ -164,6 +201,26 @@ const tabs = [
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto;
+}
+
+.creator-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+}
+
+.profile-img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
+}
+.creator-name {
+  font-size: 13px;
+  color: #444;
 }
 
 .pagination {

@@ -1,8 +1,8 @@
 <template>
     <div class="v-select-wrapper">
         <v-select :model-value="modelValue" @update:modelValue="$emit('update:modelValue', $event)" :label="label"
-            :items="options" item-title="label" item-value="value" variant="outlined" density="comfortable"
-            class="v-select-box" />
+            :items="options" :disabled="disabled" item-title="label" item-value="value" variant="outlined"
+            density="comfortable" class="v-select-box" />
     </div>
 </template>
 
@@ -14,6 +14,10 @@ defineProps({
         type: Array,
         required: true,
     },
+    disabled: {
+        type: Boolean,
+        default: false,
+    },
 })
 
 defineEmits(['update:modelValue'])
@@ -22,5 +26,10 @@ defineEmits(['update:modelValue'])
 <style scoped>
 .v-select-wrapper {
     margin-bottom: 1rem;
+}
+
+.v-select[disabled] {
+    opacity: 0.6;
+    pointer-events: none;
 }
 </style>

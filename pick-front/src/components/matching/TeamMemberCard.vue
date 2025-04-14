@@ -1,9 +1,9 @@
 <template>
   <div class="team-member-list">
     <div class="team-member" v-for="(member, index) in members" :key="index">
-      <div class="profile-img">
+      <!-- <div class="profile-img">
 
-      </div>
+      </div> -->
       <div class="info">
         <div class="name">Lv.{{ member.level }} {{ member.name }}</div>
       </div>

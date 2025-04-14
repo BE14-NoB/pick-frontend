@@ -79,14 +79,14 @@ const router = createRouter({
         },
         {
           path: 'create-meeting',
-          component: () => import('@/views/project/meeting/CreaetMeeting.vue')
+          component: () => import('@/views/project/meeting/CreateMeeting.vue')
         },
         {
           path: 'meeting/:id',
           component: () => import('@/views/project/meeting/MeetingDetail.vue')
         },
         {
-          path: 'review',
+          path: 'project-review',
           component: () => import('@/views/project/review/ProjectReview.vue')
         }
       ]

@@ -10,15 +10,22 @@
             <div v-if="post" class="postSection">
                 <div class="postTitle">
                     <h2>{{ post.title }}</h2>
-                    <div class="postInfo">
-                        <div>{{ nickname }}</div>
-                        <div>댓글: {{ commentNum }} | 작성일: {{ post.upload_at }}</div>
+                </div>
+                <div class="postInfo">
+                    <div>{{ nickname }}</div>
+                    <div style="display:flex;">
+                        <div style="margin-right: 5px;">댓글: {{ commentNumber2 }}</div>
+                        <div v-if="post.update_at">| 수정일: {{ post.update_at }}</div>
+                        <div v-else>| 작성일: {{ post.upload_at }}</div>
                     </div>
                 </div>
-                <p>{{ post.content }}</p>
+                <p class="postContent">{{ post.content }}</p>
             </div>
-            <div v-else>
+            <div v-else class="postSection">
                 <p>게시글을 찾을 수 없습니다.</p>
+            </div>
+            <div class="commentSection">
+                <CommentList :postId="postId" @commentNumber="commentNumber"/>
             </div>
         </div>
         <!-- 검색창 + 글쓰기 버튼 -->
@@ -44,28 +51,35 @@
 
 <script setup>
     import SearchBox from '@/components/common/SearchBox.vue';
-    import Pagination from '@/components/common/Pagination.vue'
+    import Pagination from '@/components/common/Pagination.vue';
+    import postMember from '@/json/post_member.json';
     import List from '@/components/post/List.vue';
     import postList from '@/json/post_list.json';
+    import CommentList from '@/components/post/CommentList.vue';
 
     import { ref, computed, watch, onMounted } from 'vue';
     import { useRoute } from 'vue-router';
 
-    const commentNum = ref(0);
+    const commentNumber2 = ref(0);
     const currentRoute = useRoute();
     const currentPage = ref(1)
     const itemsPerPage = 10
+    const postId = ref(currentRoute.params.id);
+
+    function commentNumber(commentNum) {
+        commentNumber2.value = commentNum;
+    }
+
+    console.log('postId', postId.value);
 
     const post = computed(() => {
-        const postId = currentRoute.params.id;
-        return postList.find(p => p.id === Number(postId));
+        return postList.find(p => p.id === Number(postId.value));
     });
 
     const nickname = computed(() => memberList.value.find(m => m.id === post.value.member_id).nickname);
 
     const currentPost = computed(() => {
-        const postId = Number(currentRoute.params.id);
-        return postList.find(post => post.id === postId);
+        return postList.find(post => post.id === Number(postId.value));
     });
 
     const currentCategory = computed(() => currentPost.value?.category);
@@ -98,11 +112,7 @@
     const items = ref([]);
 
     // 임시 멤버 데이터
-    const memberList = ref([
-        { id: 1, nickname: '민수킹' },
-        { id: 2, nickname: '지우짱' },
-        { id: 3, nickname: '현우천재' }
-    ]);
+    const memberList = ref(postMember);
 
     // 백엔드 연동 전 임시 데이터
     onMounted(() => {
@@ -129,6 +139,7 @@
                 id: post.id,
                 title: post.title,
                 upload_at: post.upload_at,
+                update_at: post.update_at,
                 nickname: member ? member.nickname : '알 수 없음'
             }
         });
@@ -149,7 +160,7 @@
 
 <style scoped>
     .postHeaderUp {
-        margin-left: 30px;
+        margin-left: 10px;
     }
 
     .postHeaderDown{
@@ -184,20 +195,30 @@
     }
 
     .postTitle {
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
-        margin-bottom: 10px;
+        border-top: 1px solid #d5d5d5;
+        border-bottom: 1px solid #d5d5d5;
+        padding-left: 10px;
     }
-
+    
     .postInfo {
         display: flex;
         justify-content: space-between;
-        border-top: 1px solid black;
+        border-bottom: 1px solid #d5d5d5;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
     }
 
     .postSection {
-        margin-left: 30px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #d5d5d5;
         margin-bottom: 30px;
+    }
+
+    .postContent {
+        padding-left: 10px;
+        min-height: 100px;
+        white-space: pre-line;
     }
 </style>

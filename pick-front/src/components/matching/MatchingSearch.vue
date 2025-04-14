@@ -158,9 +158,10 @@
 </template>
 
 <script setup>
-import { ref, computed, nextTick, watch } from 'vue'
+import { ref, computed, nextTick, watch, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import MatchingCreate from './MatchingCreate.vue'
+import matchingFilter from '@/json/matching_filter.json'
 
 const router = useRouter()
 const activeTab = ref('random')
@@ -174,22 +175,42 @@ const hidePlaceholder = ref(false)
 const inviteInput = ref(null)
 const subcategoryPlaceholder = ref('Select Category')
 const showModal = ref(false)
+const subcategoriesMap = ref('');
+const categories = ref('');
 
+// 데이터 fetch
+onMounted(async () => {
+    try {
+      const res = await fetch('http://localhost:8080/matching_filter')
+      const result = await res.json()
+      if (Array.isArray(result.project_list)) {
+        categories.value = result.categories
+        subcategoriesMap.value = result.subcategoriesMap
+      } else {
+        throw new Error('Invalid server response format')
+      }
+    } catch (err) {
+      console.error('🚨 fetch 실패, 더미 데이터로 대체합니다.', err)
+      categories.value = matchingFilter.categories
+      subcategoriesMap.value = matchingFilter.subcategoriesMap
+    }
+  })
 // 읽어오기
-const categories = ['개발', '디자인', '기획', '마케팅']
-const subcategoriesMap = {
-    '개발': ['웹', '모바일', '백엔드', '프론트엔드'],
-    '디자인': ['UI/UX', '그래픽', '브랜딩'],
-    '기획': ['서비스 기획', '전략 기획', 'PM'],
-    '마케팅': ['디지털 마케팅', '콘텐츠 마케팅', '브랜드 마케팅']
-}
+// const categories = ['PC', '모바일', '보안', '마케팅']
+// const subcategoriesMap = {
+//     'PC': ['웹', '게임', '백엔드', '프론트엔드'],
+//     '모바일': ['ios', '안드로이드'],
+//     '기획': ['서비스 기획', '전략 기획', 'PM'],
+//     '마케팅': ['디지털 마케팅', '콘텐츠 마케팅', '브랜드 마케팅']
+// }
 const durationOptions = [
-    { value: '1w', label: '1주' },
-    { value: '2w', label: '2주' },
     { value: '1m', label: '1개월' },
     { value: '2m', label: '2개월' },
     { value: '3m', label: '3개월' },
-    { value: '6m', label: '6개월' }
+    { value: '4m', label: '4개월' },
+    { value: '5m', label: '5개월' },
+    { value: '6m', label: '6개월' },
+    { value: '7m', label: '6개월 이상'}
 ]
 
 const subcategories = computed(() => {
