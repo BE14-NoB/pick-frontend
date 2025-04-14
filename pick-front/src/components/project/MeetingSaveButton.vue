@@ -53,8 +53,8 @@
   
     const isEdit = !!props.id
     const url = isEdit
-      ? `http://localhost:8080/meetings/${props.id}`
-      : `http://localhost:8080/meetings`
+      ? `http://localhost:8084/meetings/${props.id}`
+      : `http://localhost:8084/meetings`
     const method = isEdit ? 'PUT' : 'POST'
   
     try {

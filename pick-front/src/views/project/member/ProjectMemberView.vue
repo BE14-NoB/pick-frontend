@@ -5,7 +5,9 @@
                 총 {{ members.length }} 명의 팀원💪이 프로젝트에 참여하고 있어요!
             </span>
             <v-btn class="review-btn"  color="primary" variant="tonal" prepend-icon="mdi-pencil"
-                @click="showReviewModal = true">
+                @click="showReviewModal = true"
+                :disabled="reviewButtonDisabled"
+                >
                 팀원 후기 작성하기
             </v-btn>
         </div>
@@ -27,7 +29,7 @@
                 </v-avatar>
                 <div>
                   <div class="name-row">
-                    <span class="name">{{ member.name }}</span>
+                    <span class="name">{{ member.nickname }}</span>
                     <span v-if="member.isMe" class="badge">⭐ (ME)</span>
                   </div>
                   <div v-if="member.reviewDone" class="review-complete">팀원후기 작성 완료</div>
@@ -73,9 +75,11 @@
   import Pagination from '@/components/common/Pagination.vue' 
   import MemberReviewModal from '@/components/project/member/MemberReviewModal.vue'
   import participantDummy from '@/json/participants.json'
+  import memberReviews from '@/json/send_member_review.json'; 
 
   const members = ref([])
-  
+  const myReviews = ref([]);
+
   const authStore = useAuthStore(); 
   console.log(authStore);
 
@@ -111,26 +115,63 @@
     // 여기서 실제 저장 처리 or API 호출
     }
 
-  onMounted (async () => {
+    onMounted(async () => {
     loading.value = true;
+
+    const currentUser = authStore.user?.name;
+
     try {
-      const res = await fetch('http://localhost:8084/participants');
-      const data = await res.json();
-      members.value = data.map(member => ({
+      // 병렬로 participants + reviews 불러오기
+      const [participantsRes, reviewsRes] = await Promise.all([
+        fetch('http://localhost:8086/participants'),
+        fetch('http://localhost:8087/member_reviews')
+      ]);
+
+      const [participantsData, reviewsData] = await Promise.all([
+        participantsRes.json(),
+        reviewsRes.json()
+      ]);
+
+      // 현재 유저가 작성한 리뷰
+      const myReviewList = reviewsData.filter(r => r.reviewerName === currentUser);
+
+      // participants 구성 + reviewDone 계산
+      members.value = participantsData.map(member => ({
         ...member,
-        profileImage: imageMap[member.profileImage?.split('/').pop()] || profile // fallback
+        profileImage: imageMap[member.profileImage?.split('/').pop()] || profile,
+        reviewDone:
+          member.nickname !== currentUser &&
+          myReviewList.some(r => r.revieweeName === member.nickname)
       }));
 
-    }catch (err) {
-      console.error('❌ 팀원 목록 불러오기 실패:', err)
+      myReviews.value = myReviewList;
+    } catch (err) {
+      console.error('❌ 병렬 데이터 불러오기 실패:', err);
+
+      // fallback (더미 participants 사용)
       members.value = participantDummy.map(member => ({
         ...member,
-        profileImage: imageMap[member.profileImage?.split('/').pop()] || profile // fallback
+        profileImage: imageMap[member.profileImage?.split('/').pop()] || profile,
+        reviewDone: false
       }));
-    }
-    loading.value = false;
 
-  })
+      myReviews.value = memberReviews;
+    }
+
+    loading.value = false;
+  });
+  
+  // 작성하기 버튼 - 상태 
+  const reviewButtonDisabled = computed(() => {
+    const currentUser = authStore.user?.nickname;
+    const reviewTargets = members.value.filter(m => m.nickname !== currentUser);
+    const reviewedNicknames = myReviews.value.map(r => r.revieweeName);
+
+    // 작성하지 않은 사람이 있다면 false
+    return reviewTargets.every(m => reviewedNicknames.includes(m.nickname));
+  });
+
+
 </script>
   
   <style scoped>
