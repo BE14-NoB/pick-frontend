@@ -19,7 +19,16 @@
                     Private Matching
                 </button>
             </div>
-            <button class="create-project-button">프로젝트 생성</button>
+            <button class="create-project-button" @click="createMatching">
+                프로젝트 생성
+                <teleport to="body">
+                    <MatchingCreate 
+                        v-if="showModal"
+                        @close="showModal = false"
+                        @create="handleCreateMatching"
+                        />
+                    </teleport>
+                </button>
         </div>
         <div v-if="activeTab === 'random'" class="search-form">
             <div class="form-group">
@@ -151,6 +160,7 @@
 <script setup>
 import { ref, computed, nextTick, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import MatchingCreate from './MatchingCreate.vue'
 
 const router = useRouter()
 const activeTab = ref('random')
@@ -163,6 +173,7 @@ const subcategory = ref('')
 const hidePlaceholder = ref(false)
 const inviteInput = ref(null)
 const subcategoryPlaceholder = ref('Select Category')
+const showModal = ref(false)
 
 // 읽어오기
 const categories = ['개발', '디자인', '기획', '마케팅']
@@ -250,6 +261,10 @@ const setActiveTab = (tab) => {
     //     router.push(`/match/result?${queryString}`)
     // }
 //}
+
+const createMatching = () => {
+    showModal.value = !showModal.value;
+  }
 </script>
 
 <style scoped>
