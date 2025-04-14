@@ -36,6 +36,7 @@
 <script setup>
     import SearchBox from '@/components/common/SearchBox.vue';
     // import SinglePost from '@/components/post/SinglePost.vue';
+    import postMember from '@/json/post_member.json';
     import Pagination from '@/components/common/Pagination.vue'
     import List from '@/components/post/List.vue';
     import postList from '@/json/post_list.json';
@@ -68,18 +69,7 @@
     const items = ref([]);
 
     // 임시 멤버 데이터
-    const memberList = ref([
-        { id: 1, nickname: '꼼곰보' },
-        { id: 2, nickname: '혬부기' },
-        { id: 3, nickname: '석킼키킼키' },
-        { id: 4, nickname: '민선' },
-        { id: 5, nickname: 'Bluesky' },
-        { id: 6, nickname: '시냥주' },
-        { id: 7, nickname: 'VeRiTaS' },
-        { id: 8, nickname: '개발하는햄스터' },
-        { id: 9, nickname: '쿼리장수' },
-        { id: 10, nickname: '열정개발러' }
-    ]);
+    const memberList = ref(postMember);
 
     // 백엔드 연동 전 임시 데이터
     onMounted(() => {
