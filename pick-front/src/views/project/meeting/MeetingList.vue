@@ -71,6 +71,7 @@
   import { useRouter } from 'vue-router'
   import SearchBox from '@/components/common/SearchBox.vue'
   import SearchComboBox from '@/components/common/SearchComboBox.vue'
+  import meetingDummy from '@/json/project_meeting_db.json';
 
 const router = useRouter()
 
@@ -91,6 +92,7 @@ onMounted(async () => {
     meetingData.value = data.filter(meeting => meeting.title?.trim() && meeting.content?.trim())
   } catch (err) {
     console.error('❌ 회의록 불러오기 실패:', err)
+    meetingData.value = meetingDummy.meetings;
   }
 })
 

@@ -20,22 +20,27 @@
     </section>
   
     <div class="project-page" >
-      <div style="background-color: yellow;">
-        검색 & 필터 영역
-      </div>
-      <!-- 검색 & 필터 -->
-      <!-- <section class="search-section">
-        <v-text-field
-          v-model="search"
-          placeholder="검색어를 입력하세요."
-          prepend-inner-icon="mdi-magnify"
-          variant="outlined"
-          class="search-input"
-        />
-        <v-btn icon><v-icon>mdi-view-grid</v-icon></v-btn>
-        <v-btn icon><v-icon>mdi-filter-variant</v-icon></v-btn>
-      </section> -->
+
+      <!-- 검색 + 필터 + 정렬 -->
+      <!-- <div class="search-filter-bar" style="width: 100%;">
+        <div class="searchBox" style="width:50%;">
+          <SearchComboBox hidden/>
+          <input v-model="searchQuery" placeholder="제목 검색..." type="text" style="width:70%; height:25px;" />
+          <button @click="search" style="width:25px; height:25px;">
+              <img src="@/assets/post/icons8-search.svg" alt="돋보기 아이콘" width="25px" height="25px">
+          </button>
+        </div>
+
+        <v-select v-model="selectedTemplate" :items="templateOptions" label="템플릿" density="compact" class="select" />
+        <v-select v-model="selectedAuthor" :items="authorOptionsWithAll" label="작성자" density="compact" class="select" />
+        <v-select v-model="sortOrder" :items="sortOptions" label="정렬" density="compact" class="select" />
+      </div> -->
   
+      <!-- 로딩 상태일 때만 보여줄 스피너 -->
+      <v-container v-if="loading" class="text-center my-12">
+        <v-progress-circular indeterminate color="primary" size="64" />
+      </v-container>
+      <template v-else>
       <!-- 프로젝트 카드 리스트 -->
       <div class="grid-wrapper">
         <ProjectCard
@@ -64,13 +69,19 @@
         />
 
       </div>
+    </template>
     </div>
   </template>
   
   <script setup>
   import { ref, computed, onMounted, watch } from 'vue'
+  import projectDummy from '@/json/project_list.json'
   import ProjectCard from '@/components/common/ProjectCard.vue'
+  import SearchBox from '@/components/common/SearchBox.vue'
+  import SearchComboBox from '@/components/common/SearchComboBox.vue'
   
+  const loading = ref(true)
+
   const cardData = ref([])
   const search = ref('')
   const page = ref(1)
@@ -121,14 +132,23 @@
   
   // 데이터 fetch
   onMounted(async () => {
+    loading.value = true
     try {
       const res = await fetch('http://localhost:8080/project_list')
       const result = await res.json()
-      cardData.value = Array.isArray(result) ? result : []
+      if (Array.isArray(result.project_list)) {
+        cardData.value = result.project_list
+      } else {
+        throw new Error('Invalid server response format')
+      }
     } catch (err) {
-      console.error('🚨 fetch 실패', err)
+      console.error('🚨 fetch 실패, 더미 데이터로 대체합니다.', err)
+      cardData.value = projectDummy.project_list
+    } finally {
+      loading.value = false
     }
   })
+
   </script>
   
   <style scoped>
@@ -183,6 +203,24 @@
   
   .search-input {
     flex: 1;
+  }
+
+    
+  .search-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+  .search-filter-bar input {
+    flex: 2;
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+  .select {
+    /* min-width: 150px; */
+    max-width: 180px;
   }
   
   .pagination-wrapper {
