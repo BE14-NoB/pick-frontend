@@ -11,7 +11,7 @@
         </div>
  
       <v-container class="member-box">
-        <v-row dense>
+        <v-row dense  v-if="loading != true">
           <v-col
             v-for="(member, index) in pagedMembers"
             :key="index"
@@ -21,7 +21,7 @@
             <v-card v-if="member" class="member-card" flat>
               <div class="member-info">
                 <v-avatar size="60" class="mr-4">
-                  <img :src="member.profileImage || profile" />
+                  <img :src="member.profileImage || profile" class="avatar-img" />
 
                   <!-- <img :src="member.profileImage" alt="avatar" /> -->
                 </v-avatar>
@@ -39,9 +39,14 @@
             <div v-else style="height: 100px;"></div>
           </v-col>
         </v-row>
+
+        <!-- 로딩 -->
+        <v-row v-else justify="center" class="mt-10 mb-10">
+          <v-progress-circular indeterminate color="primary" size="48" />
+        </v-row>
   
         <!-- 페이지네이션 -->
-        <div class="pagination" v-if="totalPages > 1">
+        <div class="pagination" v-if="totalPages > 1 && !loading">
             <Pagination
             v-if="totalPages > 1"
             :currentPage="currentPage"
@@ -74,6 +79,8 @@
   const authStore = useAuthStore(); 
   console.log(authStore);
 
+  const loading = ref(true);
+
   const currentPage = ref(1)
   const pageSize = 6
 
@@ -91,7 +98,7 @@
     return pageData
   });
 
-  const imageModules = import.meta.glob('@/assets/member/*.png', { eager: true });
+  const imageModules = import.meta.glob('@/assets/img/member_profile/*.png', { eager: true });
   const imageMap = Object.fromEntries(
     Object.entries(imageModules).map(([path, module]) => {
       const filename = path.split('/').pop(); // avatar-1.png
@@ -105,6 +112,7 @@
     }
 
   onMounted (async () => {
+    loading.value = true;
     try {
       const res = await fetch('http://localhost:8084/participants');
       const data = await res.json();
@@ -120,6 +128,7 @@
         profileImage: imageMap[member.profileImage?.split('/').pop()] || profile // fallback
       }));
     }
+    loading.value = false;
 
   })
 </script>
@@ -202,5 +211,13 @@
     justify-content: center;
     margin-top: 1rem;
   }
+
+  .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
   </style>
   

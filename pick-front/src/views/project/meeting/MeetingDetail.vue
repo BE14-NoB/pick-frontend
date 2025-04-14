@@ -4,8 +4,6 @@
       <div class="loading-text">회의록을 불러오는 중입니다...</div>
     </div>
 
-
-  
     <div v-else-if="meeting" class="note-editor">
       <!-- 상단 헤더 -->
       <div class="meeting-header">
@@ -99,20 +97,14 @@
   import { useRoute, useRouter } from 'vue-router'
   import { marked } from 'marked'
   import meetingDummy from '@/json/project_meeting_db.json'
+  import memberDummy from '@/json/participants.json'
   import profile from '@/assets/img/avatar.png'
   
   const route = useRoute()
   const router = useRouter()
   const meeting = ref(null)
   
-  const memberList = [
-    { name: '꼼꼼보', avatar: profile },
-    { name: '석키키키', avatar: profile },
-    { name: '시냥주', avatar: profile },
-    { name: '민선', avatar: profile },
-    { name: 'blueSky', avatar: profile },
-    { name: '혬헴헴', avatar: profile }
-  ]
+  const memberList = ref(memberDummy);
   
   const templates = ['정기 회의', '스프린트 킥오프', '회고 회의', '코드 리뷰', '데일리 스크럼']
   const loading = ref(true)
@@ -143,6 +135,13 @@
     meeting.value?.content ? marked(meeting.value.content) : ''
   )
   
+  
+  // ✅ 이미지 파일 자동 매핑
+  const imageModules = import.meta.glob('@/assets/img/member_profile/*.png', { eager: true })
+  const imageMap = Object.fromEntries(
+    Object.entries(imageModules).map(([path, mod]) => [path.split('/').pop(), mod.default])
+  )
+
   const goToEdit = () => {
     router.push({
       path: '/project/create-meeting',

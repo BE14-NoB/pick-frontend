@@ -1,10 +1,11 @@
 [
-    {
+    {   
+        "id" : 1,
         "email": "rhtjddus0502@gmail.com",
         "name": "고성연",
         "nickname": "꼼곰보",
         "birthday": "1999-05-02",
-        "profileImage": "avatar-6.png",
+        "profileImage": "sy.png",
         "githubLink": "https://github.com/Gombo2",
         "auth": "member",
         "isMe": true,
@@ -12,11 +13,12 @@
         "introduction" : "안녕하세요, 문제 해결을 즐기는 백엔드 개발자 고성연입니다. 함께 성장하는 걸 좋아해요! "
     }, 
     {
+        "id" : 2,
         "email": "rhtjddus0502@gmail.com",
         "name": "김석희",
         "nickname": "석키키키키",
         "birthday": "1999-05-02",
-        "profileImage": "avatar-2.png",
+        "profileImage": "sh.png",
         "githubLink": "https://github.com/Gombo2",
         "auth": "member",
         "isManager" : false,
@@ -24,44 +26,48 @@
 
     },
     {
+        "id" : 3,
         "email": "rhtjddus0502@gmail.com",
         "name": "정민선",
         "nickname": "민선",
         "birthday": "1999-05-02",
-        "profileImage": "avatar-1.png",
+        "profileImage": "ms.png",
         "githubLink": "https://github.com/Gombo2",
         "auth": "member",
         "isManager" : false,
         "introduction" : "사용자에게 진심인 개발자, 정민선입니다. 좋은 서비스는 디테일에서 시작된다고 믿어요."
     },
     {
+        "id" : 4,
         "email": "rhtjddus0502@gmail.com",
         "name": "최혜민",
-        "nickname": "혬혬혬혬혬",
+        "nickname": "혬혬부기",
         "birthday": "1999-05-02",
-        "profileImage": "avatar-3.png",
+        "profileImage": "hm.png",
         "githubLink": "https://github.com/Gombo2",
         "auth": "member",
         "isManager" : false,
         "introduction" : "팀워크를 소중히 여기는 소프트한 개발자, 혜민이에요 😊"
     },
     {
+        "id" : 5,
         "email": "rhtjddus0502@gmail.com",
         "name": "장시원",
         "nickname": "시냥주",
         "birthday": "1999-05-02",
-        "profileImage": "avatar-4.png",
+        "profileImage": "sw.png",
         "githubLink": "https://github.com/Gombo2",
         "auth": "member",
         "isManager" : false,
         "introduction" : "호기심이 많고 도전하는 걸 좋아하는 장시원입니다. 새로운 기술에 빠르게 적응하는 게 장점이에요!"
     },
     {
+        "id" : 6,
         "email": "rhtjddus0502@gmail.com",
         "name": "이청민",
         "nickname": "BlueSky",
         "birthday": "1999-05-02",
-        "profileImage": "avatar-5.png",
+        "profileImage": "cm.png",
         "githubLink": "https://github.com/Gombo2",
         "auth": "member",
         "isManager" : false,
