@@ -23,9 +23,8 @@ export const menuItems = [
         to: '/project/meeting',
         label: '회의록',
         type: 'menu',
-        match: ['/project/meeting', '/project/meeting']
+        match: ['/project/meeting', '/project/create-meeting']
     },
-
     {
         to: '/project/issues',
         label: 'ISSUE',
@@ -42,13 +41,13 @@ export const menuItems = [
         to: '/project/pull-requests',
         label: 'PR',
         type: 'menu',
-        match: ['/project/pull-requests', '/project/create-pull-request']
+        match: ['/project/pull-requests', '/project/create-pull-request', '/project/review-pull-request']
     },
     {
-        to: '/project/review',
+        to: '/project/project-review',
         label: '프로젝트 후기',
         type: 'menu',
-        match: ['/project/review', '/project/review']
+        match: ['/project/project-review']
     },
 
 
@@ -78,15 +77,6 @@ export const menuItems = [
         match: ['/project/meeting'],
         type: 'page'
     },
-    // {
-    //     to: '/project/create-meeting',
-    //     label: 'MEETING',
-    //     title: '회의록 작성하기',
-    //     description: '마크다운 문법으로 회의록을 작성할 수 있습니다.',
-    //     // description: '기본으로 제공되는 템플릿을 이용해 회의록을 작성할 수 있습니다.',
-    //     match: ['/project/create-meeting'],
-    //     type: 'page'
-    // },
     {
         to: '/project/issues',
         label: 'ISSUE',
@@ -128,11 +118,11 @@ export const menuItems = [
         type: 'page'
     },
     {
-        to: '/project/review',
-        label: 'REVIEW',
+        to: '/project/project-review',
+        label: 'PROJECT_REVIEW',
         title: '프로젝트 후기',
         description: '참여하신 프로젝트에 대한 후기를 남겨주세요.',
-        match: ['/project/review'],
+        match: ['/project/project-review'],
         type: 'page'
     }
 

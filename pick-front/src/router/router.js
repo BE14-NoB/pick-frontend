@@ -86,7 +86,7 @@ const router = createRouter({
           component: () => import('@/views/project/meeting/MeetingDetail.vue')
         },
         {
-          path: 'review',
+          path: 'project-review',
           component: () => import('@/views/project/review/ProjectReview.vue')
         }
       ]

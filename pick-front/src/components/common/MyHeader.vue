@@ -28,7 +28,7 @@
                 :width="40"
                 :height="40"
                 :src="authStore.currentUser.profileImage"
-                class="profile-img"
+                class="profile-img no-cover"
                 v-bind="props"
               />
             </div>
@@ -336,6 +336,7 @@ const handleLogout = () => {
   justify-content: flex-end;
 }
 
+
 .active {
   color: white;
   font-size: 16px;
@@ -377,7 +378,10 @@ const handleLogout = () => {
   overflow: hidden;
   cursor: pointer;
 }
+.no-cover{
+  object-fit: contain !important;
 
+}
 /* 드롭다운 스타일 */
 .profile-dropdown {
   width: 250px;
