@@ -2,6 +2,14 @@
   <div class="modal-wrapper">
     <div class="signup-container">
       <h2 class="signup-title">회원가입</h2>
+      <v-btn
+        class="close-btn"
+        icon="mdi-close"
+        variant="text"
+        color="grey-darken-2"
+        size="large"
+        @click="closeModal"
+      ></v-btn>
       <v-divider class="divider" />
 
       <!-- 이메일 -->
@@ -63,6 +71,7 @@
           type="password"
           class="field-input"
           :error-messages="errors.passwordConfirm"
+があれば
           @input="validatePasswordConfirm"
         ></v-text-field>
         <div class="check-btn-placeholder"></div>
@@ -207,7 +216,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { readUsers, addUser, findUserByEmail } from '@/utils/jsonStorage';
 
-const emit = defineEmits(['signup']);
+const emit = defineEmits(['signup', 'close']);
 const router = useRouter();
 
 const form = ref({
@@ -369,6 +378,10 @@ const checkNickname = async () => {
   }
 };
 
+const closeModal = () => {
+  emit('close'); // 부모 컴포넌트에 모달 닫기 이벤트 전달
+};
+
 const signup = async () => {
   validateEmail();
   validatePassword();
@@ -440,6 +453,7 @@ const signup = async () => {
   display: flex;
   flex-direction: column;
   justify-content: center; /* 세로 중앙 정렬 */
+  position: relative; /* 닫기 버튼의 절대 위치를 위해 */
 }
 
 .signup-title {
@@ -447,6 +461,13 @@ const signup = async () => {
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
 }
 
 .divider {
@@ -464,7 +485,7 @@ const signup = async () => {
   width: 150px;
   font-size: 14px;
   color: #333;
-  height: 50px; /* 40px → 50px (더 늘림) */
+  height: 50px;
   display: flex;
   align-items: center;
   white-space: nowrap; /* 라벨 잘림 방지 */
@@ -480,15 +501,15 @@ const signup = async () => {
 
 .field-input {
   width: 400px;
-  height: 50px; /* 유지 */
+  height: 50px;
 }
 
 .field-input >>> .v-input__control {
-  height: 40px !important; /* 유지 */
+  height: 40px !important;
 }
 
 .field-input >>> .v-field {
-  height: 35px !important; /* 유지 */
+  height: 35px !important;
   padding: 0 10px !important;
   font-size: 14px;
 }
@@ -497,28 +518,27 @@ const signup = async () => {
   display: flex;
   gap: 10px;
   width: 400px;
-  height: 40px; /* 유지 */
+  height: 40px;
 }
 
 .birth-field {
   width: 60px;
-  height: 30px; /* 유지 */
+  height: 30px;
 }
 
 .birth-field >>> .v-input__control {
-  height: 35px !important; /* 유지 */
-  font-size: 7px;
+  height: 35px !important;
 }
 
 .birth-field >>> .v-field {
-  height: 40px !important; /* 유지 */
+  height: 40px !important;
   padding: 0 10px !important;
   font-size: 14px;
 }
 
 .check-btn {
   width: 90px;
-  height: 40px; /* 유지 */
+  height: 40px;
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -527,13 +547,13 @@ const signup = async () => {
 
 .check-btn-placeholder {
   width: 90px;
-  height: 40px; /* 유지 */
+  height: 40px;
 }
 
 .signup-btn {
   margin-top: 20px;
-  height: 30px; /* 유지 */
-  font-size: 10px; /* 유지 */
+  height: 30px;
+  font-size: 10px;
 }
 
 @media (max-width: 960px) {
@@ -546,6 +566,11 @@ const signup = async () => {
   .signup-title {
     font-size: 20px;
     margin-bottom: 16px;
+  }
+
+  .close-btn {
+    top: 15px;
+    right: 15px;
   }
 
   .divider {
@@ -561,39 +586,39 @@ const signup = async () => {
 
   .field-label {
     width: 100%;
-    height: 45px; /* 35px → 45px (더 늘림) */
+    height: 45px;
   }
 
   .field-input {
     width: 100%;
-    height: 35px; /* 유지 */
+    height: 35px;
   }
 
   .field-input >>> .v-input__control {
-    height: 35px !important; /* 유지 */
+    height: 35px !important;
   }
 
   .field-input >>> .v-field {
-    height: 35px !important; /* 유지 */
+    height: 35px !important;
     padding: 0 8px !important;
   }
 
   .birth-wrapper {
     width: 100%;
-    height: 35px; /* 유지 */
+    height: 35px;
   }
 
   .birth-field {
     width: 33%;
-    height: 35px; /* 유지 */
+    height: 35px;
   }
 
   .birth-field >>> .v-input__control {
-    height: 35px !important; /* 유지 */
+    height: 35px !important;
   }
 
   .birth-field >>> .v-field {
-    height: 35px !important; /* 유지 */
+    height: 35px !important;
     padding: 0 8px !important;
   }
 
@@ -602,13 +627,13 @@ const signup = async () => {
     margin-left: 0;
     margin-top: 5px;
     width: 80px;
-    height: 35px; /* 유지 */
+    height: 35px;
   }
 
   .signup-btn {
     margin-top: 15px;
-    height: 12px; /* 유지 */
-    font-size: 9px; /* 유지 */
+    height: 12px;
+    font-size: 9px;
   }
 }
 </style>
