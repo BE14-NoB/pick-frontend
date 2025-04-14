@@ -11,9 +11,9 @@
           <div class="result-card" @click="teamMate(index)">
             <div class="card-content">
               <div class="card-header">
-                <div class="profile-img">
+                <!-- <div class="profile-img">
 
-                </div>
+                </div> -->
                 <span class="host-info">
                   방장: Lv.{{ result.hostLevel }} {{ result.hostName }}
                 </span>
@@ -55,7 +55,13 @@
                 </div>
               </div>
             </div>
-            <button :disabled="disabledButtons[index]" @click.stop="matchingApply(index)" :class="['apply-button', { 'disabled-button': disabledButtons[index] }]">신청</button>
+            <button 
+              @click.stop="matchingApply(index)"
+              :class="['apply-button', { 'applied-button': appliedButtons[index] }]"
+            >
+              {{ appliedButtons[index] ? '신청 완료' : '신청' }}
+            </button>
+
             <template v-if="openedCardIndex === index">
               <TeamMemberCard :members="result.members" />
             </template>
@@ -74,14 +80,22 @@ import { ref, onMounted, nextTick } from 'vue'
 import TeamMemberCard from '@/components/matching/TeamMemberCard.vue'
 
 const openedCardIndex = ref(false)
-const disabledButtons = ref([]);
+const appliedButtons = ref([]); // 신청 상태 저장용
 const teamMate = (index) => {
   openedCardIndex.value = openedCardIndex.value === index ? false : index
 }
+
 const matchingApply = (index) => {
-  const confiremd = window.confirm('신청하시겠습니까')
-  if(confiremd) {
-    disabledButtons.value[index] = true;
+  if (appliedButtons.value[index]) {
+    const cancel = window.confirm('신청을 취소하시겠습니까?');
+    if (cancel) {
+      appliedButtons.value[index] = false;
+    }
+  } else {
+    const confirmed = window.confirm('신청하시겠습니까?');
+    if (confirmed) {
+      appliedButtons.value[index] = true;
+    }
   }
 }
 // 전체 데이터
@@ -349,7 +363,7 @@ async function loadMore({ done }) {
 }
 
 .apply-button {
-  width: 100px;
+  width: 120px;
   padding: 10px 20px;
   background: #133E86;
   border: none;
@@ -368,17 +382,13 @@ async function loadMore({ done }) {
   background: #1a4ca8;
 }
 
-.apply-button:disabled,
-.disabled-button {
-  background-color: #ccc;
-  color: #666;
-  cursor: not-allowed;
-  pointer-events: none;
-  transition: none;
+.applied-button {
+  background: #9E9E9E;
+  cursor: default;
 }
 
-.apply-button:disabled:hover {
-  background-color: #ccc;
+.applied-button:hover {
+  background: #9E9E9E;
 }
 
 .page-title {
