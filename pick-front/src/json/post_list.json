@@ -1,273 +1,183 @@
 [
     {
         "id": 1,
-        "title": "1번 게시글 제목",
-        "content": "1번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:11",
-        "status": 0,
-        "member_id": 1
-    },
-    {
-        "id": 2,
-        "title": "2번 게시글 제목",
-        "content": "2번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:12",
-        "status": 1,
-        "member_id": 2
-    },
-    {
-        "id": 3,
-        "title": "3번 게시글 제목",
-        "content": "3번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:13",
-        "status": 2,
-        "member_id": 3
-    },
-    {
-        "id": 4,
-        "title": "4번 게시글 제목",
-        "content": "4번 게시글 내용",
+        "title": "React에서 useEffect 안에 async 함수 어떻게 써요?",
+        "content": "useEffect는 async 직접 못 쓰던데, 비동기 로직은 어떻게 처리하는 게 맞나요?",
         "category": 2,
-        "upload_at": "2025-03-17 01:11:14",
-        "status": 1,
-        "member_id": 4
-    },
-    {
-        "id": 5,
-        "title": "5번 게시글 제목",
-        "content": "5번 게시글 내용",
-        "category": 2,
-        "upload_at": "2025-03-17 01:11:15",
+        "upload_at": "2025-04-13 09:00:00",
         "status": 0,
         "member_id": 5
     },
     {
-        "id": 6,
-        "title": "6번 게시글 제목",
-        "content": "6번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:16",
-        "status": 1,
-        "member_id": 6
-    },
-    {
-        "id": 7,
-        "title": "7번 게시글 제목",
-        "content": "7번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:17",
-        "status": 2,
-        "member_id": 7
-    },
-    {
-        "id": 8,
-        "title": "8번 게시글 제목",
-        "content": "8번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:18",
+        "id": 2,
+        "title": "Python 리스트 중복 제거 + 순서 유지 방법?",
+        "content": "set 쓰면 순서가 뒤죽박죽돼요. 순서도 유지하면서 중복 제거할 수 있는 깔끔한 방법 없을까요?",
+        "category": 2,
+        "upload_at": "2025-04-13 09:03:00",
         "status": 0,
-        "member_id": 8
+        "member_id": 13
     },
     {
-        "id": 9,
-        "title": "9번 게시글 제목",
-        "content": "9번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:19",
+        "id": 3,
+        "title": "브라우저 CORS 오류 해결 어떻게 하나요?",
+        "content": "로컬에서 백엔드 API 호출하면 CORS 에러 나요. 프론트에서 해결 가능한가요, 아니면 서버에서 설정해야 하나요?",
+        "category": 2,
+        "upload_at": "2025-04-13 09:06:00",
+        "status": 0,
+        "member_id": 22
+    },
+    {
+        "id": 4,
+        "title": "Git revert vs reset 차이점이 뭐예요?",
+        "content": "커밋 되돌리려는데 둘 중 어떤 걸 써야 할지 모르겠어요. 기록은 남겨야 해요.",
+        "category": 2,
+        "upload_at": "2025-04-13 09:10:00",
         "status": 0,
         "member_id": 9
     },
     {
-        "id": 10,
-        "title": "10번 게시글 제목",
-        "content": "10번 게시글 내용",
+        "id": 5,
+        "title": "MySQL vs PostgreSQL 뭐가 더 나을까요?",
+        "content": "신규 프로젝트인데 둘 중 뭘로 시작할지 고민입니다. 각각 장단점이 궁금해요.",
         "category": 2,
-        "upload_at": "2025-03-17 01:11:20",
+        "upload_at": "2025-04-13 09:13:00",
         "status": 0,
-        "member_id": 10
+        "member_id": 27
+    },
+    {
+        "id": 6,
+        "title": "REST API에서 PUT과 PATCH 차이점이 뭔가요?",
+        "content": "문서에는 PATCH가 일부 수정, PUT은 전체 교체라고 하는데 실제로 어떻게 쓰시나요?",
+        "category": 2,
+        "upload_at": "2025-04-13 09:16:00",
+        "status": 0,
+        "member_id": 18
+    },
+    {
+        "id": 7,
+        "title": "배포 전에 꼭 테스트해야 하는 항목들 뭐가 있을까요?",
+        "content": "CI/CD 구축 중인데 체크리스트 만들고 있어요. 다들 어떤 항목 확인하시나요?",
+        "category": 2,
+        "upload_at": "2025-04-13 09:19:00",
+        "status": 0,
+        "member_id": 30
+    },
+    {
+        "id": 8,
+        "title": "JavaScript에서 깊은 복사 안전하게 하는 법?",
+        "content": "Object.assign이나 spread operator로는 얕은 복사만 되더라고요. 깊은 복사는 어떻게 하시나요?",
+        "category": 2,
+        "upload_at": "2025-04-13 09:22:00",
+        "status": 0,
+        "member_id": 4
+    },
+    {
+        "id": 9,
+        "title": "TypeScript에서 any 최대한 안 쓰는 팁?",
+        "content": "개발 속도 때문에 any를 자꾸 쓰게 돼요... 타입 제대로 잡는 요령 있을까요?",
+        "category": 2,
+        "upload_at": "2025-04-13 09:25:00",
+        "status": 0,
+        "member_id": 14
+    },
+    {
+        "id": 10,
+        "title": "비동기 처리 시 try-catch 어디까지 감싸세요?",
+        "content": "async 함수 내부랑 호출부 모두 try-catch 하긴 애매하던데, 범위를 어떻게 설정하세요?",
+        "category": 2,
+        "upload_at": "2025-04-13 09:28:00",
+        "status": 0,
+        "member_id": 1
     },
     {
         "id": 11,
-        "title": "11번 게시글 제목",
-        "content": "11번 게시글 내용",
+        "title": "JWT 토큰 저장 위치, localStorage vs cookie?",
+        "content": "보안 측면에서 뭐가 더 나은지 고민입니다. 실제로 어떻게 사용하시나요?",
         "category": 2,
-        "upload_at": "2025-03-17 01:11:21",
+        "upload_at": "2025-04-13 09:31:00",
         "status": 0,
         "member_id": 11
     },
     {
         "id": 12,
-        "title": "12번 게시글 제목",
-        "content": "12번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:22",
-        "status": 0,
-        "member_id": 12
-    },
-    {
-        "id": 13,
-        "title": "13번 게시글 제목",
-        "content": "13번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:23",
-        "status": 0,
-        "member_id": 13
-    },
-    {
-        "id": 14,
-        "title": "14번 게시글 제목",
-        "content": "14번 게시글 내용",
+        "title": "SASS vs styled-components 뭐가 더 좋은가요?",
+        "content": "React 프로젝트에 스타일링 고민 중입니다. 실무에선 어떤 걸 더 많이 쓰시나요?",
         "category": 2,
-        "upload_at": "2025-03-17 01:11:24",
-        "status": 0,
-        "member_id": 14
-    },
-    {
-        "id": 15,
-        "title": "15번 게시글 제목",
-        "content": "15번 게시글 내용",
-        "category": 2,
-        "upload_at": "2025-03-17 01:11:25",
-        "status": 0,
-        "member_id": 15
-    },
-    {
-        "id": 16,
-        "title": "16번 게시글 제목",
-        "content": "16번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:26",
-        "status": 0,
-        "member_id": 16
-    },
-    {
-        "id": 17,
-        "title": "17번 게시글 제목",
-        "content": "17번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:27",
-        "status": 0,
-        "member_id": 17
-    },
-    {
-        "id": 18,
-        "title": "18번 게시글 제목",
-        "content": "18번 게시글 내용",
-        "category": 2,
-        "upload_at": "2025-03-17 01:11:28",
-        "status": 0,
-        "member_id": 18
-    },
-    {
-        "id": 19,
-        "title": "19번 게시글 제목",
-        "content": "19번 게시글 내용",
-        "category": 2,
-        "upload_at": "2025-03-17 01:11:29",
-        "status": 0,
-        "member_id": 19
-    },
-    {
-        "id": 20,
-        "title": "20번 게시글 제목",
-        "content": "20번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:30",
+        "upload_at": "2025-04-13 09:34:00",
         "status": 0,
         "member_id": 20
     },
     {
-        "id": 21,
-        "title": "21번 게시글 제목",
-        "content": "21번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:31",
-        "status": 0,
-        "member_id": 21
-    },
-    {
-        "id": 22,
-        "title": "22번 게시글 제목",
-        "content": "22번 게시글 내용",
+        "id": 13,
+        "title": "CI/CD에서 테스트 실패 시 자동 롤백 어떻게 하나요?",
+        "content": "GitHub Actions 쓰고 있는데, 테스트 실패하면 자동으로 이전 배포 상태로 되돌리는 방법 있을까요?",
         "category": 2,
-        "upload_at": "2025-03-17 01:11:32",
+        "upload_at": "2025-04-13 09:37:00",
         "status": 0,
-        "member_id": 22
+        "member_id": 10
     },
     {
-        "id": 23,
-        "title": "23번 게시글 제목",
-        "content": "23번 게시글 내용",
+        "id": 14,
+        "title": "Node.js에서 메모리 누수 디버깅 어떻게 하세요?",
+        "content": "서버가 점점 느려지는데 어디서 누수 나는지 잘 모르겠어요. 툴이나 팁 있으면 알려주세요!",
         "category": 2,
-        "upload_at": "2025-03-17 01:11:33",
+        "upload_at": "2025-04-13 09:40:00",
         "status": 0,
-        "member_id": 23
+        "member_id": 6
     },
     {
-        "id": 24,
-        "title": "24번 게시글 제목",
-        "content": "24번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:34",
-        "status": 0,
-        "member_id": 24
-    },
-    {
-        "id": 25,
-        "title": "25번 게시글 제목",
-        "content": "25번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:35",
+        "id": 15,
+        "title": "React 프로젝트 폴더 구조 어떻게 가져가세요?",
+        "content": "초반에 구조 잘못 잡아서 고생 중입니다. 유지보수 편한 구조 추천해주실 수 있을까요?",
+        "category": 2,
+        "upload_at": "2025-04-13 09:43:00",
         "status": 0,
         "member_id": 25
     },
     {
-        "id": 26,
-        "title": "26번 게시글 제목",
-        "content": "26번 게시글 내용",
+        "id": 16,
+        "title": "Flutter vs React Native 어떤 게 나을까요?",
+        "content": "하이브리드 앱 개발 예정인데 고민 중입니다. 실제 써보신 분들 장단점 공유 부탁드려요.",
         "category": 2,
-        "upload_at": "2025-03-17 01:11:36",
+        "upload_at": "2025-04-13 09:46:00",
         "status": 0,
-        "member_id": 26
+        "member_id": 12
     },
     {
-        "id": 27,
-        "title": "27번 게시글 제목",
-        "content": "27번 게시글 내용",
+        "id": 17,
+        "title": "SQL JOIN이 느릴 때 어떻게 최적화하세요?",
+        "content": "INNER JOIN 두세 번만 해도 쿼리 느려져요. 인덱스 외에 어떤 방법들이 있을까요?",
         "category": 2,
-        "upload_at": "2025-03-17 01:11:37",
+        "upload_at": "2025-04-13 09:49:00",
         "status": 0,
-        "member_id": 27
+        "member_id": 3
     },
     {
-        "id": 28,
-        "title": "28번 게시글 제목",
-        "content": "28번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:38",
+        "id": 18,
+        "title": "Java에서 Lombok 쓰는 거 괜찮을까요?",
+        "content": "간편해 보이긴 한데, 실무에서 유지보수 시 문제가 생기진 않나요?",
+        "category": 2,
+        "upload_at": "2025-04-13 09:52:00",
+        "status": 0,
+        "member_id": 23
+    },
+    {
+        "id": 19,
+        "title": "웹소켓과 SSE 차이점이 궁금합니다",
+        "content": "실시간 기능 넣을 건데, 웹소켓과 SSE 중 뭘 써야 할지 고민이에요.",
+        "category": 2,
+        "upload_at": "2025-04-13 09:55:00",
+        "status": 0,
+        "member_id": 17
+    },
+    {
+        "id": 20,
+        "title": "클라이언트 로그 수집 어떻게 하세요?",
+        "content": "프론트에서 발생하는 에러 로그를 백엔드로 모으고 싶은데, 구조를 어떻게 잡는 게 좋을까요?",
+        "category": 2,
+        "upload_at": "2025-04-13 09:58:00",
         "status": 0,
         "member_id": 28
-    },
-    {
-        "id": 29,
-        "title": "29번 게시글 제목",
-        "content": "29번 게시글 내용",
-        "category": 1,
-        "upload_at": "2025-03-17 01:11:39",
-        "status": 0,
-        "member_id": 29
-    },
-    {
-        "id": 30,
-        "title": "30번 게시글 제목",
-        "content": "30번 게시글 내용",
-        "category": 2,
-        "upload_at": "2025-03-17 01:11:40",
-        "status": 0,
-        "member_id": 30
     },
     {
         "id": 31,
