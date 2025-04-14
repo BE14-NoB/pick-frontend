@@ -2,70 +2,100 @@
     {
       "hash": "8bdfc0",
       "message": "Feature: 로그인 기능 구현",
-      "author": "꼼곰보",
+      "author": {
+        "name": "꼼꼼보",
+        "avatarUrl": "sy.png"
+      },
       "branch": "main",
       "date": "2025-04-07"
     },
     {
       "hash": "7acbe2",
       "message": "Refactor: 로그인 유효성 개선",
-      "author": "혬부기",
+      "author": {
+        "name": "혬혬부기",
+        "avatarUrl": "hm.png"
+      },
       "branch": "main",
       "date": "2025-04-05"
     },
     {
       "hash": "acd013",
       "message": "Fix: 버튼 클릭 오류 수정",
-      "author": "석킼키킼키",
+      "author": {
+        "name": "석킼키킼키",
+        "avatarUrl": "sh.png"
+      },
       "branch": "feature/ui",
       "date": "2025-04-04"
     },
     {
       "hash": "cc901a",
       "message": "Docs: README 업데이트",
-      "author": "민선",
+      "author": {
+        "name": "민선",
+        "avatarUrl": "ms.png"
+      },
       "branch": "main",
       "date": "2025-04-02"
     },
     {
       "hash": "dfa323",
       "message": "Chore: dependency 업데이트",
-      "author": "Bluesky",
+      "author": {
+        "name": "Bluesky",
+        "avatarUrl": "cm.png"
+      },
       "branch": "main",
       "date": "2025-04-01"
     },
     {
       "hash": "bbc233",
       "message": "Feature: UI 버튼 스타일 추가",
-      "author": "시냥주",
+      "author": {
+        "name": "시냥주",
+        "avatarUrl": "sw.png"
+      },
       "branch": "feature/ui",
       "date": "2025-03-30"
     },
     {
       "hash": "f901a2",
       "message": "Test: 로그인 기능 테스트 코드 추가",
-      "author": "꼼곰보",
+      "author": {
+        "name": "꼼곰보",
+        "avatarUrl": "sy.png"
+      },
       "branch": "feature/backend",
       "date": "2025-03-28"
     },
     {
       "hash": "c92ad3",
       "message": "Refactor: 유저 상태 관리 코드 리팩토링",
-      "author": "민선",
+      "author": {
+        "name": "민선",
+        "avatarUrl": "ms.png"
+      },
       "branch": "main",
       "date": "2025-03-25"
     },
     {
       "hash": "3b5ec1",
       "message": "Fix: 마이페이지 프로필 오류 수정",
-      "author": "석킼키킼키",
+      "author": {
+        "name": "석킼키킼키",
+        "avatarUrl": "sh.png"
+      },
       "branch": "feature/ui",
       "date": "2025-03-21"
     },
     {
       "hash": "aa123f",
       "message": "Chore: 린트 설정 수정",
-      "author": "꼼곰보",
+      "author": {
+        "name": "꼼곰보",
+        "avatarUrl": "sy.png"
+      },
       "branch": "main",
       "date": "2025-03-18"
     }
