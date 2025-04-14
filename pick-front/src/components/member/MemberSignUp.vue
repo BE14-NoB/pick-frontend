@@ -1,202 +1,204 @@
 <template>
-  <div class="signup-container">
-    <h2 class="signup-title">회원가입</h2>
-    <v-divider class="divider" />
+  <div class="modal-wrapper">
+    <div class="signup-container">
+      <h2 class="signup-title">회원가입</h2>
+      <v-divider class="divider" />
 
-    <!-- 이메일 -->
-    <div class="field-row">
-      <v-text-field
-        label="이메일*"
-        variant="plain"
-        readonly
-        class="field-label"
-        tabindex="-1"
-      ></v-text-field>
-      <v-text-field
-        v-model="form.email"
-        placeholder="example01@gmail.com"
-        variant="solo"
-        class="field-input"
-        :error-messages="errors.email"
-        @input="validateEmail"
-      ></v-text-field>
-      <v-btn class="check-btn" color="purple-lighten-2" @click="checkEmail">
-        중복확인
-      </v-btn>
-    </div>
-
-    <!-- 비밀번호 -->
-    <div class="field-row">
-      <v-text-field
-        label="비밀번호*"
-        variant="plain"
-        readonly
-        class="field-label"
-        tabindex="-1"
-      ></v-text-field>
-      <v-text-field
-        v-model="form.password"
-        placeholder="비밀번호를 입력"
-        variant="solo"
-        type="password"
-        class="field-input"
-        :error-messages="errors.password"
-        @input="validatePassword"
-      ></v-text-field>
-      <div class="check-btn-placeholder"></div>
-    </div>
-
-    <!-- 비밀번호 확인 -->
-    <div class="field-row">
-      <v-text-field
-        label="비밀번호확인*"
-        variant="plain"
-        readonly
-        class="field-label"
-        tabindex="-1"
-      ></v-text-field>
-      <v-text-field
-        v-model="form.passwordConfirm"
-        placeholder="비밀번호를 한번 더 입력"
-        variant="solo"
-        type="password"
-        class="field-input"
-        :error-messages="errors.passwordConfirm"
-        @input="validatePasswordConfirm"
-      ></v-text-field>
-      <div class="check-btn-placeholder"></div>
-    </div>
-
-    <!-- 이름 -->
-    <div class="field-row">
-      <v-text-field
-        label="이름*"
-        variant="plain"
-        readonly
-        class="field-label"
-        tabindex="-1"
-      ></v-text-field>
-      <v-text-field
-        v-model="form.name"
-        placeholder="이름을 입력"
-        variant="solo"
-        class="field-input"
-        :error-messages="errors.name"
-        @input="validateName"
-      ></v-text-field>
-      <div class="check-btn-placeholder"></div>
-    </div>
-
-    <!-- 닉네임 -->
-    <div class="field-row">
-      <v-text-field
-        label="닉네임*"
-        variant="plain"
-        readonly
-        class="field-label"
-        tabindex="-1"
-      ></v-text-field>
-      <v-text-field
-        v-model="form.nickname"
-        placeholder="닉네임을 입력"
-        variant="solo"
-        class="field-input"
-        :error-messages="errors.nickname"
-        @input="validateNickname"
-      ></v-text-field>
-      <v-btn class="check-btn" color="purple-lighten-2" @click="checkNickname">
-        중복확인
-      </v-btn>
-    </div>
-
-    <!-- 휴대폰 -->
-    <div class="field-row">
-      <v-text-field
-        label="휴대폰*"
-        variant="plain"
-        readonly
-        class="field-label"
-        tabindex="-1"
-      ></v-text-field>
-      <v-text-field
-        v-model="form.phone"
-        placeholder="010-1234-5678"
-        variant="solo"
-        class="field-input"
-        :error-messages="errors.phone"
-        @input="validatePhone"
-      ></v-text-field>
-      <div class="check-btn-placeholder"></div>
-    </div>
-
-    <!-- 생일 -->
-    <div class="field-row">
-      <v-text-field
-        label="생일*"
-        variant="plain"
-        readonly
-        class="field-label"
-        tabindex="-1"
-      ></v-text-field>
-      <div class="field-input birth-wrapper">
+      <!-- 이메일 -->
+      <div class="field-row">
         <v-text-field
-          v-model="form.birthYear"
-          placeholder="년도"
-          variant="solo"
-          class="birth-field"
-          :error-messages="errors.birthYear"
-          @input="validateBirthYear"
+          label="이메일*"
+          variant="plain"
+          readonly
+          class="field-label"
+          tabindex="-1"
         ></v-text-field>
         <v-text-field
-          v-model="form.birthMonth"
-          placeholder="월"
+          v-model="form.email"
+          placeholder="example01@gmail.com"
           variant="solo"
-          class="birth-field"
-          :error-messages="errors.birthMonth"
-          @input="validateBirthMonth"
+          class="field-input"
+          :error-messages="errors.email"
+          @input="validateEmail"
         ></v-text-field>
-        <v-text-field
-          v-model="form.birthDay"
-          placeholder="일"
-          variant="solo"
-          class="birth-field"
-          :error-messages="errors.birthDay"
-          @input="validateBirthDay"
-        ></v-text-field>
+        <v-btn class="check-btn" color="purple-lighten-2" @click="checkEmail">
+          중복확인
+        </v-btn>
       </div>
-      <div class="check-btn-placeholder"></div>
-    </div>
 
-    <!-- 주민등록번호 -->
-    <div class="field-row">
-      <v-text-field
-        label="주민등록번호*"
-        variant="plain"
-        readonly
-        class="field-label"
-        tabindex="-1"
-      ></v-text-field>
-      <v-text-field
-        v-model="form.ssn"
-        placeholder="111111-3000000"
-        variant="solo"
-        class="field-input"
-        :error-messages="errors.ssn"
-        @input="validateSsn"
-      ></v-text-field>
-      <div class="check-btn-placeholder"></div>
-    </div>
+      <!-- 비밀번호 -->
+      <div class="field-row">
+        <v-text-field
+          label="비밀번호*"
+          variant="plain"
+          readonly
+          class="field-label"
+          tabindex="-1"
+        ></v-text-field>
+        <v-text-field
+          v-model="form.password"
+          placeholder="비밀번호를 입력"
+          variant="solo"
+          type="password"
+          class="field-input"
+          :error-messages="errors.password"
+          @input="validatePassword"
+        ></v-text-field>
+        <div class="check-btn-placeholder"></div>
+      </div>
 
-    <v-divider class="divider" />
-    <v-btn
-      class="signup-btn"
-      color="purple-darken-3"
-      size="large"
-      block
-      @click="signup"
-    >
-      가입하기
-    </v-btn>
+      <!-- 비밀번호 확인 -->
+      <div class="field-row">
+        <v-text-field
+          label="비밀번호확인*"
+          variant="plain"
+          readonly
+          class="field-label"
+          tabindex="-1"
+        ></v-text-field>
+        <v-text-field
+          v-model="form.passwordConfirm"
+          placeholder="비밀번호를 한번 더 입력"
+          variant="solo"
+          type="password"
+          class="field-input"
+          :error-messages="errors.passwordConfirm"
+          @input="validatePasswordConfirm"
+        ></v-text-field>
+        <div class="check-btn-placeholder"></div>
+      </div>
+
+      <!-- 이름 -->
+      <div class="field-row">
+        <v-text-field
+          label="이름*"
+          variant="plain"
+          readonly
+          class="field-label"
+          tabindex="-1"
+        ></v-text-field>
+        <v-text-field
+          v-model="form.name"
+          placeholder="이름을 입력"
+          variant="solo"
+          class="field-input"
+          :error-messages="errors.name"
+          @input="validateName"
+        ></v-text-field>
+        <div class="check-btn-placeholder"></div>
+      </div>
+
+      <!-- 닉네임 -->
+      <div class="field-row">
+        <v-text-field
+          label="닉네임*"
+          variant="plain"
+          readonly
+          class="field-label"
+          tabindex="-1"
+        ></v-text-field>
+        <v-text-field
+          v-model="form.nickname"
+          placeholder="닉네임을 입력"
+          variant="solo"
+          class="field-input"
+          :error-messages="errors.nickname"
+          @input="validateNickname"
+        ></v-text-field>
+        <v-btn class="check-btn" color="purple-lighten-2" @click="checkNickname">
+          중복확인
+        </v-btn>
+      </div>
+
+      <!-- 휴대폰 -->
+      <div class="field-row">
+        <v-text-field
+          label="휴대폰*"
+          variant="plain"
+          readonly
+          class="field-label"
+          tabindex="-1"
+        ></v-text-field>
+        <v-text-field
+          v-model="form.phone"
+          placeholder="010-1234-5678"
+          variant="solo"
+          class="field-input"
+          :error-messages="errors.phone"
+          @input="validatePhone"
+        ></v-text-field>
+        <div class="check-btn-placeholder"></div>
+      </div>
+
+      <!-- 생일 -->
+      <div class="field-row">
+        <v-text-field
+          label="생일*"
+          variant="plain"
+          readonly
+          class="field-label"
+          tabindex="-1"
+        ></v-text-field>
+        <div class="field-input birth-wrapper">
+          <v-text-field
+            v-model="form.birthYear"
+            placeholder="년도"
+            variant="solo"
+            class="birth-field"
+            :error-messages="errors.birthYear"
+            @input="validateBirthYear"
+          ></v-text-field>
+          <v-text-field
+            v-model="form.birthMonth"
+            placeholder="월"
+            variant="solo"
+            class="birth-field"
+            :error-messages="errors.birthMonth"
+            @input="validateBirthMonth"
+          ></v-text-field>
+          <v-text-field
+            v-model="form.birthDay"
+            placeholder="일"
+            variant="solo"
+            class="birth-field"
+            :error-messages="errors.birthDay"
+            @input="validateBirthDay"
+          ></v-text-field>
+        </div>
+        <div class="check-btn-placeholder"></div>
+      </div>
+
+      <!-- 주민등록번호 -->
+      <div class="field-row">
+        <v-text-field
+          label="주민등록번호*"
+          variant="plain"
+          readonly
+          class="field-label"
+          tabindex="-1"
+        ></v-text-field>
+        <v-text-field
+          v-model="form.ssn"
+          placeholder="111111-3000000"
+          variant="solo"
+          class="field-input"
+          :error-messages="errors.ssn"
+          @input="validateSsn"
+        ></v-text-field>
+        <div class="check-btn-placeholder"></div>
+      </div>
+
+      <v-divider class="divider" />
+      <v-btn
+        class="signup-btn"
+        color="purple-darken-3"
+        size="large"
+        block
+        @click="signup"
+      >
+        가입하기
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -300,7 +302,7 @@ const validateBirthYear = () => {
   if (!form.value.birthYear) {
     errors.value.birthYear = '년도를 입력해주세요.';
   } else if (isNaN(year) || year < 1900 || year > new Date().getFullYear()) {
-    errors.value.birthYear = `1900 ~ ${new Date().getFullYear()} 사이의 값을 입력해주세요.`;
+    errors.value.birthYear = `1900~ ${new Date().getFullYear()}입력`;
   } else {
     errors.value.birthYear = '';
   }
@@ -309,9 +311,9 @@ const validateBirthYear = () => {
 const validateBirthMonth = () => {
   const month = parseInt(form.value.birthMonth, 10);
   if (!form.value.birthMonth) {
-    errors.value.birthMonth = '월을 입력해주세요.';
+    errors.value.birthMonth = '월을 입력.';
   } else if (isNaN(month) || month < 1 || month > 12) {
-    errors.value.birthMonth = '1 ~ 12 사이의 값을 입력해주세요.';
+    errors.value.birthMonth = '1 ~ 12';
   } else {
     errors.value.birthMonth = '';
   }
@@ -320,9 +322,9 @@ const validateBirthMonth = () => {
 const validateBirthDay = () => {
   const day = parseInt(form.value.birthDay, 10);
   if (!form.value.birthDay) {
-    errors.value.birthDay = '일을 입력해주세요.';
+    errors.value.birthDay = '일을 입력.';
   } else if (isNaN(day) || day < 1 || day > 31) {
-    errors.value.birthDay = '1 ~ 31 사이의 값을 입력해주세요.';
+    errors.value.birthDay = '1 ~ 31';
   } else {
     errors.value.birthDay = '';
   }
@@ -415,10 +417,29 @@ const signup = async () => {
 </script>
 
 <style scoped>
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
 .signup-container {
   max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  height: 100vh; /* 화면 전체 높이에 맞춤 */
+  background: #fff;
+  border-radius: 0; /* 전체 화면이므로 둥근 모서리 제거 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 20px; /* 내부 여백 유지 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 중앙 정렬 */
 }
 
 .signup-title {
@@ -435,7 +456,7 @@ const signup = async () => {
 .field-row {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   gap: 20px;
 }
 
@@ -443,67 +464,151 @@ const signup = async () => {
   width: 150px;
   font-size: 14px;
   color: #333;
+  height: 50px; /* 40px → 50px (더 늘림) */
+  display: flex;
+  align-items: center;
+  white-space: nowrap; /* 라벨 잘림 방지 */
+}
+
+.field-label >>> .v-label {
+  white-space: nowrap; /* Vuetify 라벨 잘림 방지 */
+  overflow: visible; /* 라벨이 잘리지 않도록 */
+  text-overflow: unset; /* "..." 제거 */
+  font-size: 14px; /* 글씨 크기 유지 */
+  max-width: 100px;
 }
 
 .field-input {
   width: 400px;
+  height: 50px; /* 유지 */
+}
+
+.field-input >>> .v-input__control {
+  height: 40px !important; /* 유지 */
+}
+
+.field-input >>> .v-field {
+  height: 35px !important; /* 유지 */
+  padding: 0 10px !important;
+  font-size: 14px;
 }
 
 .birth-wrapper {
   display: flex;
   gap: 10px;
   width: 400px;
+  height: 40px; /* 유지 */
 }
 
 .birth-field {
-  width: 126px;
+  width: 60px;
+  height: 30px; /* 유지 */
+}
+
+.birth-field >>> .v-input__control {
+  height: 35px !important; /* 유지 */
+  font-size: 7px;
+}
+
+.birth-field >>> .v-field {
+  height: 40px !important; /* 유지 */
+  padding: 0 10px !important;
+  font-size: 14px;
 }
 
 .check-btn {
   width: 90px;
-  height: 36px;
+  height: 40px; /* 유지 */
   font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .check-btn-placeholder {
   width: 90px;
-  height: 36px;
+  height: 40px; /* 유지 */
 }
 
 .signup-btn {
   margin-top: 20px;
+  height: 30px; /* 유지 */
+  font-size: 10px; /* 유지 */
 }
 
 @media (max-width: 960px) {
   .signup-container {
     max-width: 600px;
+    height: 100vh; /* 화면 전체 높이 유지 */
+    padding: 15px;
+  }
+
+  .signup-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .divider {
+    margin: 16px 0;
   }
 
   .field-row {
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 10px;
+    gap: 15px;
   }
 
   .field-label {
     width: 100%;
+    height: 45px; /* 35px → 45px (더 늘림) */
   }
 
   .field-input {
     width: 100%;
+    height: 35px; /* 유지 */
+  }
+
+  .field-input >>> .v-input__control {
+    height: 35px !important; /* 유지 */
+  }
+
+  .field-input >>> .v-field {
+    height: 35px !important; /* 유지 */
+    padding: 0 8px !important;
   }
 
   .birth-wrapper {
     width: 100%;
+    height: 35px; /* 유지 */
   }
 
   .birth-field {
     width: 33%;
+    height: 35px; /* 유지 */
+  }
+
+  .birth-field >>> .v-input__control {
+    height: 35px !important; /* 유지 */
+  }
+
+  .birth-field >>> .v-field {
+    height: 35px !important; /* 유지 */
+    padding: 0 8px !important;
   }
 
   .check-btn,
   .check-btn-placeholder {
     margin-left: 0;
-    margin-top: 10px;
+    margin-top: 5px;
+    width: 80px;
+    height: 35px; /* 유지 */
+  }
+
+  .signup-btn {
+    margin-top: 15px;
+    height: 12px; /* 유지 */
+    font-size: 9px; /* 유지 */
   }
 }
 </style>

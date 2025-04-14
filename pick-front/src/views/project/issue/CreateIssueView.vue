@@ -3,14 +3,14 @@
         <div class="form-layout">
             <!-- 왼쪽: Form 입력 -->
             <div class="form-left">
-                <FormEditor v-model:titleModel="issueTitle" v-model:contentModel="issueContent" titleLabel="이슈 제목"
+                <FormEditor v-model:titleModel="issueTitle" v-model:contentModel="issueBody" titleLabel="이슈 제목"
                     contentLabel="이슈 설명" @cancel="goToIssues" @submit="createIssue" />
             </div>
 
             <!-- 오른쪽: 드롭다운 -->
             <div class="form-right">
-                <ProjectDropdwon label="생성자" v-model="selectedCreator" :options="creatorOptions" />
-                <ProjectDropdwon label="프로젝트" v-model="selectedProject" :options="projectOptions" />
+                <ProjectDropdwon label="생성자" v-model="selectedCreator" :options="creatorOptions" :disabled="true" />
+                <ProjectDropdwon label="프로젝트" v-model="selectedProject" :options="projectOptions" :disabled="false" />
             </div>
         </div>
     </section>
@@ -27,7 +27,13 @@ const router = useRouter()
 // 작성 폼 관련
 import FormEditor from '@/components/project/FormEditor.vue'
 const issueTitle = ref('')
-const issueBody = ref('')
+const issueBody = ref(`### 📄 설명
+
+
+### ✅ 작업할 내용
+> 할 일을 체크박스 형태로 작성해주세요.
+
+`)
 
 // 이슈 목록으로 이동
 function goToIssues() {
@@ -35,25 +41,52 @@ function goToIssues() {
 }
 
 // 생성하기 버튼
-function createIssue() {
-    goToIssues();
+async function createIssue() {
+    try {
+        const response = await fetch('http://localhost:8000/pick-service/api/github/issue', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            },
+            body: JSON.stringify({
+                repo: selectedProject.value,
+                owner: 'BE14-NoB',
+                title: issueTitle.value,
+                body: issueBody.value || ""
+            })
+        });
 
-    // 🚩TODO: 실제 API 연결
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText);
+        }
+
+        alert('✅ 이슈가 성공적으로 생성되었습니다!');
+        goToIssues();
+    } catch (err) {
+        console.error('❌ 이슈 생성 실패:', err);
+        alert('❌ 이슈 생성 중 오류가 발생했습니다');
+    }
 }
 
 // 드롭다운 관련
 import ProjectDropdwon from '@/components/project/ProjectDropdown.vue'
-const selectedCreator = ref('seokhee')
-const selectedProject = ref('pick')
+const selectedCreator = ref('꼼꼼보')
+const selectedProject = ref('PICK')
 
 const creatorOptions = [
-    { label: '석키킥키키', value: 'seokhee' },
-    { label: '홍길동', value: 'hong' },
+    { label: '꼼꼼보', value: 'Gombo2' },
+    { label: '석키키키', value: 'yehang218' },
+    { label: '시냥주', value: 'swjang7269' },
+    { label: '혬헴헴', value: 'HMYIEN' },
+    { label: '민선', value: 'minsun24' },
+    { label: 'blueSky', value: 'Bluesky3125' },
 ]
 
 const projectOptions = [
-    { label: 'PICK', value: 'pick' },
-    { label: 'AI 리포트', value: 'ai-report' },
+    { label: 'PICK', value: 'Pick' },
+    { label: 'PICK FRONTEND', value: 'pick-frontend' },
 ]
 
 </script>

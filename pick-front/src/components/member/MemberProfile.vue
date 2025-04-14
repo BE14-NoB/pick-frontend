@@ -7,7 +7,7 @@
           <img
             :src="userData.profileImage || defaultProfileImage"
             alt="Profile"
-            @error="console.error('Profile image failed:', $event)"
+            @error="handleImageError"
           />
         </v-avatar>
         <v-avatar size="150" v-else color="grey">
@@ -40,7 +40,7 @@
         <v-row class="stats-section">
           <v-col cols="4" class="stat-item">
             <span class="stat-label">완료 프로젝트</span>
-            <div class="stat-value">{{ userData.completedProjects || 7 }}개</div>
+            <div class="stat-value">{{ userData.completedProjects || 30 }}개</div>
           </v-col>
           <v-col cols="4" class="stat-item">
             <span class="stat-label">함께한 팀원</span>
@@ -169,15 +169,17 @@ import badgesData from '@/json/badges.json';
 // 동적 이미지 로드
 const images = import.meta.glob('@/assets/member/*.png', { eager: true });
 const imageMap = Object.fromEntries(
-  Object.entries(images).map(([path, module]) => [
-    `/assets/member/${path.split('/').pop()}`,
-    module.default,
-  ])
+  Object.entries(images).map(([path, module]) => {
+    const fileName = path.split('/').pop();
+    return [`/assets/member/${fileName}`, module.default];
+  })
 );
+
+// 기본 프로필 이미지 설정
+const defaultProfileImage = imageMap['/assets/member/profile-image-1.png'] || '/assets/member/profile-image-1.png';
 
 // Auth Store에서 사용자 정보 가져오기
 const authStore = useAuthStore();
-const defaultProfileImage = imageMap['/assets/member/defaultpic.png'] || '/assets/member/defaultpic.png'; // 폴백 경로
 
 const userData = ref({
   profileImage: null, // 초기값 null, fetchUserData에서 처리
@@ -197,22 +199,25 @@ const defaultIntroduction = `
 컴퓨터 공학과 어떻게 졸업
 프로젝트 경험 N회
 프론트 - 백엔드 전향
-하고싶은건 주도적으로 하는 편이에요
+하고 싶은 건 주도적으로 하는 편이에요
 추후 사이드 이펙트까지 확인하는 편이에요
-기획 단계에 모이고 개발 후부터는 각자 하는 것을 신호해요
+기획 단계에 모이고 개발 후부터는 각자 하는 것을 선호합니다
+
+대학교 시절에 보안 관련 랩실 다니다가 이쪽은 아니다 싶어서
+프론트로 졸업 프로젝트를 진행했다가 다 까먹고 백엔드에 관심이
+생겨서 백엔드로 전향했습니다
 `;
 
 const defaultPreferredFields = `
 안드로이드 기반의 어플리케이션 관련 선호
-안드로이드 기반 커뮤니티 앱 게임 앱 제작
-안드로이드 기반 커뮤니티 앱 게임 앱 제작
 안드로이드 기반 커뮤니티 앱 게임 앱 제작
 `;
 
 const defaultAwards = `
 2023 사이버공격방어대회 청소년 우승, 국가 정보원장상
 2022-2024 NO비에이 BE Engineer 지적
-2023 사이버공격방어대회 청소년 우승, 국가 정보원장상
+2024 Beyond 한화 부트캠프 파이널 프로젝트 1등
+2025 서울 알고리즘 히어로 2등
 `;
 
 // JSON 데이터를 반응형으로 사용, 이미지 매핑 적용
@@ -223,10 +228,11 @@ const recentProjects = ref(
   }))
 );
 
+// 회원 후기 사진을 profile-image-1.png ~ profile-image-6.png로 변경
 const reviews = ref(
-  reviewsData.map(review => ({
+  reviewsData.map((review, index) => ({
     ...review,
-    avatar: imageMap[review.avatar] || review.avatar, // 동적 아바타 또는 원본 경로
+    avatar: imageMap[`/assets/member/profile-image-${index + 1}.png`] || `/assets/member/profile-image-${index + 1}.png`,
   }))
 );
 
@@ -237,16 +243,19 @@ const recentBadges = ref(
   }))
 );
 
+// 이미지 로드 에러 핸들링
+const handleImageError = () => {
+  userData.value.profileImage = defaultProfileImage; // 이미지 로드 실패 시 defaultProfileImage로 설정
+};
+
 // 사용자 데이터 가져오기
 const fetchUserData = async () => {
   if (authStore.currentUser) {
     userData.value = {
       ...authStore.currentUser,
-      profileImage:
-        // 외부 URL은 그대로, 로컬 경로면 imageMap 적용
-        authStore.currentUser.profileImage?.startsWith('http')
-          ? authStore.currentUser.profileImage
-          : imageMap[authStore.currentUser.profileImage] || defaultProfileImage,
+      profileImage: authStore.currentUser.profileImage?.startsWith('http')
+        ? authStore.currentUser.profileImage
+        : imageMap[authStore.currentUser.profileImage] || defaultProfileImage,
     };
   } else {
     userData.value.profileImage = defaultProfileImage;
@@ -383,6 +392,8 @@ h2 {
   max-height: calc(100% - 60px);
   overflow-y: auto;
   padding-right: 10px;
+  white-space: pre-line; /* 개행 반영 */
+  line-height: 1.6; /* 줄 간격 조정 */
 }
 
 .scrollable::-webkit-scrollbar {
