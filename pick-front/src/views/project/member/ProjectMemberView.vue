@@ -29,7 +29,7 @@
                     <span v-if="member.isMe" class="badge">⭐ (ME)</span>
                   </div>
                   <div v-if="member.reviewDone" class="review-complete">팀원후기 작성 완료</div>
-                  <div class="intro">저는 {{ member.role }}입니다! 잘 부탁드려요!</div>
+                  <div class="intro">{{ member.introduction }}</div>
                 </div>
               </div>
             </v-card>
@@ -61,21 +61,27 @@
   
 <script setup>
   import { ref, computed } from 'vue'
+  import { useAuthStore } from '@/stores/auth';
   import profile from '@/assets/img/avatar.png'
   import Pagination from '@/components/common/Pagination.vue' 
   import MemberReviewModal from '@/components/project/member/MemberReviewModal.vue'
-  
+
+
   const members = ref([
-    { name: '꼼꼼보', role: '백엔드 개발자', isMe: true, reviewDone: false, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar1.png' },
-    { name: 'BlueSky', role: '백엔드 개발자', isMe: false, reviewDone: true, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar2.png' },
-    { name: '석키키키킥', role: '백엔드 개발자', isMe: false, reviewDone: true, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar3.png' },
-    { name: '시냥주', role: '백엔드 개발자', isMe: false, reviewDone: false, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar4.png' },
-    { name: '혐혐부기', role: '백엔드 개발자', isMe: false, reviewDone: false, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar5.png' },
-    { name: '민선', role: '백엔드 개발자', isMe: false, reviewDone: false, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar6.png' },
-    { name: '새 멤버', role: '프론트엔드 개발자', isMe: false, reviewDone: true, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar1.png' },
+    { name: '꼼꼼보', role: '백엔드 개발자', isMe: true, reviewDone: false, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar1.png' , introduction : "안녕하세요, 문제 해결을 즐기는 백엔드 개발자 고성연입니다. \n함께 성장하는 걸 좋아해요! "},
+      
+    { name:  '민선', role: '백엔드 개발자', isMe: false, reviewDone: true, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar3.png' , introduction: "사용자에게 진심인 개발자, 정민선입니다.\n 좋은 서비스는 디테일에서 시작된다고 믿어요."},
+    { name: '시냥주', role: '백엔드 개발자', isMe: false, reviewDone: false, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar4.png' , introduction :  "호기심이 많고 도전하는 걸 좋아하는 장시원입니다.\n 새로운 기술에 빠르게 적응하는 게 장점이에요!"},
+    { name: '혬혬혬혬혬', role: '백엔드 개발자', isMe: false, reviewDone: false, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar5.png', introduction : "팀워크를 소중히 여기는 소프트한 개발자, 혜민이에요 😊" },
+    { name: '석키키키키', role: '백엔드 개발자', isMe: false, reviewDone: false, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar6.png', introduction :  "꾸준함이 저의 무기입니다.\n 성실하게 한 걸음씩 나아가는 개발자 김석희입니다." },
+    { name: 'BlueSky', role: '프론트엔드 개발자', isMe: false, reviewDone: true, avatar: 'https://cdn.jsdelivr.net/gh/monsori/ui/avatar1.png' , introduction: "푸른 하늘처럼 넓은 시야를 가진 개발자, 이청민입니다.\n 함께하는 모든 순간을 즐깁니다!"},
   ])
   
-//   const currentPage = ref(0)
+  const authStore = useAuthStore(); 
+  console.log(authStore);
+
+
+//   const currentPage = ref(0)s
   const currentPage = ref(1)
   const pageSize = 6
 
@@ -137,6 +143,7 @@
   .member-card {
     border: 1px solid #e0e0e0;
     padding: 1rem;
+    height: 100%;
     border-radius: 12px;
   }
   
@@ -167,6 +174,9 @@
   
   .intro {
     margin-top: 4px;
+    font-size: 14px;
+    color: #4c4c4c;
+    /* white-space: pre-line;  */
   }
   
   .pagination {
