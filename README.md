@@ -105,8 +105,10 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 <br><br>
 
 💭 프론트 화면 구성
+
+### 👤 회원
 <details>
-     <summary><b>👤 회원</b></summary><br>
+     <summary><b>회원</b></summary><br>
   <details>
           <summary>회원가입</summary><br>
 	          <p alian="center">
@@ -145,6 +147,116 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 	</details>
 </details>
 
+### 🔔 일일 미션
+<details>
+     <summary><b>일일 미션</b></summary><br>
+  <details>
+          <summary>일일 미션 조회</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/본인 도메인 패키지명/GIF 파일명" width = "600"/><br>
+	          </p>
+  </details>
+</details>
+
+### 📜 게시글
+<details>
+	<summary><b>게시판</b></summary>
+	<details>
+		<summary>자유 게시판 조회</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/post/post-게시판 사이드바-단일 게시글 조회.gif"  width="600"/>
+		</p>
+	</details>
+	<details>
+		<summary>모집 게시판 조회</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/post/post-게시판 사이드바-단일 게시글 조회.gif"  width="600"/>
+		</p>
+	</details>
+	<details>
+		<summary>Q&A 게시판 조회</summary>
+		<p alian="center">
+		<img src=""  width="600"/>
+		</p>
+	</details>
+	<details>
+		<summary>단일 게시글글 조회</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/post/post-게시판 사이드바-단일 게시글 조회.gif"  width="600"/>
+		</p>
+	</details>
+	<details>
+		<summary>게시글 쓰기</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/post/post-글쓰기창 진입.gif"  width="600"/>
+		</p>
+	</details>
+</details>
+
+### 🤼 매칭
+<details>
+     <summary><b>매칭</b></summary><br>
+  <details>
+          <summary>랜덤 매칭 생성</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/랜덤매칭생성.gif" width = "600"/><br>
+	          </p>
+  </details>
+  <details>
+          <summary>매칭 조회</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/매칭조회.gif" width = "600"/><br>
+	          </p>
+  </details>
+  <details>
+          <summary>사설 매칭 생성</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/사설매칭생성.gif" width = "600"/><br>
+	          </p>
+  </details>  
+  <details>
+          <summary>사설 매칭 입장</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/사설매칭입장.gif" width = "600"/><br>
+	          </p>
+  </details>
+  <details>
+          <summary>사이드 바 매칭 조회</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/사이드바로매칭조회.gif" width = "600"/><br>
+	          </p>
+  </details>
+  <details>
+          <summary>헤더 랜덤 매칭 생성</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/프로젝트매칭_랜덤매칭생성.gif" width = "600"/><br>
+	          </p>
+  </details>
+  <details>
+          <summary>헤더 랜덤 매칭 조회</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/프로젝트매칭_매칭조회.gif" width = "600"/><br>
+	          </p>
+  </details>
+  <details>
+          <summary>헤더 사설 매칭 생성</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/프로젝트매칭_사설매칭생성.gif" width = "600"/><br>
+	          </p>
+  </details>
+  <details>
+          <summary>헤더 사설 매칭 입장</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/프로젝트매칭_사설매칭입장.gif" width = "600"/><br>
+	          </p>
+  </details>
+  <details>
+          <summary>헤더 프로젝트 매칭 페이지</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/프로젝트매칭페이지.gif" width = "600"/><br>
+	          </p>
+  </details>
+</details>
 
 <br><br>
 
