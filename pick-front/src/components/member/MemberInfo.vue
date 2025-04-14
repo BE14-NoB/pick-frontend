@@ -41,20 +41,12 @@
           <img class="github-img" :src="githubImage" alt="Github" />
           <!-- 깃허브 닉네임 또는 Github 텍스트 표시 -->
           <div class="github-text">
-            <a
-              v-if="userData.githubLink"
-              :href="userData.githubLink"
-              target="_blank"
-              class="github-link"
-            >
+            <a v-if="userData.githubLink" :href="userData.githubLink" target="_blank" class="github-link">
               {{ githubUsernameDisplay }}
             </a>
             <span v-else>Github</span>
           </div>
-          <button
-            class="github-button"
-            @click="userData.githubId ? disconnectGithub() : openGithubModal()"
-          >
+          <button class="github-button" @click="userData.githubId ? disconnectGithub() : redirectToGitHubOAuth()">
             {{ userData.githubId ? '연결해제' : '연결하기' }}
           </button>
         </div>
@@ -90,13 +82,9 @@
             <a href="https://github.com/settings/tokens" target="_blank">여기</a>에서 생성할 수 있습니다.
             권한은 'user', 'repo'를 선택하세요.
           </p>
-          <v-text-field
-            v-model="githubToken"
-            label="Personal Access Token"
-            placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-            :error-messages="tokenError"
-            @input="tokenError = ''"
-          ></v-text-field>
+          <v-text-field v-model="githubToken" label="Personal Access Token"
+            placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" :error-messages="tokenError"
+            @input="tokenError = ''"></v-text-field>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -195,6 +183,12 @@ const fetchUserData = async () => {
   }
 };
 
+// 실제 깃 토큰 연동
+const redirectToGitHubOAuth = () => {
+  window.location.href = 'http://localhost:8000/pick-service/oauth2/authorization/github';
+};
+
+
 const openGithubModal = () => {
   githubToken.value = '';
   tokenError.value = '';
@@ -249,8 +243,20 @@ const disconnectGithub = async () => {
   }
 };
 
+const fetchGitData = (() => {
+  const { profileImage, name, githubLink, githubId } = router.currentRoute.value.query;
+
+  if (profileImage && name && githubLink && githubId) {
+    userData.value.profileImage = profileImage
+    userData.value.name = name;
+    userData.value.githubLink = githubLink;
+    userData.value.githubId = githubId;
+  }
+});
+
 onMounted(() => {
   fetchUserData();
+  fetchGitData();
   console.log('MemberInfo Image Map:', imageMap);
   console.log('MemberInfo Profile Image:', userData.value.profileImage);
   console.log('MemberInfo Default Image:', defaultProfileImage);
