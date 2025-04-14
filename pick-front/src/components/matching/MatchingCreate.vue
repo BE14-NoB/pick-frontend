@@ -153,7 +153,8 @@
 </template>
 
 <script setup>
-import { ref, computed, nextTick, watch } from 'vue'
+import { ref, computed, nextTick, watch, onMounted } from 'vue'
+import matchingFilter from '@/json/matching_filter'
 
 const activeTab = ref('random')
 const maxPeople = ref('')
@@ -166,16 +167,27 @@ const inviteInput = ref('')
 const subcategoryPlaceholder = ref('Select Category')
 const emit = defineEmits(['close'])
 // 읽어오기
-const categories = ['개발', '디자인', '기획', '마케팅']
-const subcategoriesMap = {
-  '개발': ['웹', '모바일', '백엔드', '프론트엔드'],
-  '디자인': ['UI/UX', '그래픽', '브랜딩'],
-  '기획': ['서비스 기획', '전략 기획', 'PM'],
-  '마케팅': ['디지털 마케팅', '콘텐츠 마케팅', '브랜드 마케팅']
-}
-
+const categories = ref('')
+const subcategoriesMap = ref('')
+onMounted(async () => {
+    try {
+      const res = await fetch('http://localhost:8080/matching_filter')
+      const result = await res.json()
+      if (Array.isArray(result.project_list)) {
+        categories.value = result.categories
+        subcategoriesMap.value = result.subcategoriesMap
+      } else {
+        throw new Error('Invalid server response format')
+      }
+    } catch (err) {
+      console.error('🚨 fetch 실패, 더미 데이터로 대체합니다.', err)
+      categories.value = matchingFilter.categories
+      subcategoriesMap.value = matchingFilter.subcategoriesMap
+      console.log(subcategoriesMap.value);
+    }
+  })
 const subcategories = computed(() => {
-  return category.value ? subcategoriesMap[category.value] : []
+  return category.value ? subcategoriesMap.value[category.value] : []
 })
 
 

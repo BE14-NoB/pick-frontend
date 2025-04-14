@@ -106,8 +106,8 @@ const allResults = [
     currentMembers: 3,
     maxMembers: 6,
     duration: 6,
-    mainCategory: 'PC',
-    subCategory: '게임',
+    mainCategory: '게임',
+    subCategory: 'Unity',
     members: [
     {
     name: '봇치더코드',
@@ -132,8 +132,8 @@ const allResults = [
     currentMembers: 4,
     maxMembers: 6,
     duration: 3,
-    mainCategory: 'PC',
-    subCategory: '웹',
+    mainCategory: '웹',
+    subCategory: '백엔드',
     members: []
   },
   {
@@ -142,8 +142,8 @@ const allResults = [
     currentMembers: 2,
     maxMembers: 5,
     duration: 3,
-    mainCategory: '모바일',
-    subCategory: 'ios',
+    mainCategory: '웹',
+    subCategory: '프론트엔드',
     members: []
   },
   {
@@ -152,7 +152,7 @@ const allResults = [
     currentMembers: 4,
     maxMembers: 5,
     duration: 4,
-    mainCategory: 'PC',
+    mainCategory: '웹',
     subCategory: null,
     members: []
   },
@@ -162,8 +162,8 @@ const allResults = [
     currentMembers: 4,
     maxMembers: 7,
     duration: 6,
-    mainCategory: '모바일',
-    subCategory: '게임',
+    mainCategory: '게임',
+    subCategory: '모바일 기반',
     members: [
 ]
   },
@@ -173,8 +173,8 @@ const allResults = [
     currentMembers: 3,
     maxMembers: 5,
     duration: 3,
-    mainCategory: '모바일',
-    subCategory: '안드로이드',
+    mainCategory: '보안',
+    subCategory: '웹 보안',
     members: []
   },
   // 추가 데이터 (무한 스크롤 테스트용)
@@ -184,8 +184,8 @@ const allResults = [
     currentMembers: 2,
     maxMembers: 4,
     duration: 5,
-    mainCategory: 'PC',
-    subCategory: '앱',
+    mainCategory: '기타',
+    subCategory: 'VR/AR',
     members: []
   },
   {
@@ -195,7 +195,7 @@ const allResults = [
     maxMembers: 8,
     duration: 4,
     mainCategory: '모바일',
-    subCategory: '웹',
+    subCategory: '안드로이드',
     members: []
   },
   {
@@ -204,8 +204,8 @@ const allResults = [
     currentMembers: 3,
     maxMembers: 6,
     duration: 3,
-    mainCategory: 'PC',
-    subCategory: '게임',
+    mainCategory: '게임',
+    subCategory: 'Unity',
     members: []
   },
   {
@@ -214,8 +214,8 @@ const allResults = [
     currentMembers: 1,
     maxMembers: 5,
     duration: 6,
-    mainCategory: '모바일',
-    subCategory: 'ios',
+    mainCategory: '웹',
+    subCategory: '프론트엔드',
     members: []
   }
 ]
