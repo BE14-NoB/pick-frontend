@@ -25,10 +25,10 @@
     :items="paginatedCommits"
     >
     <template #author="{ value }">
-        <div class="profile-wrapper">
-        <img :src="profile" class="profile-img" />
-        <span>{{ value }}</span>
-        </div>
+      <div class="profile-wrapper">
+        <img :src="`/src/assets/img/member_profile/${value.avatarUrl}`" class="profile-img" />
+        <span>{{ value.name }}</span>
+      </div>
     </template>
     </List>
 
@@ -45,7 +45,6 @@ import { ref, computed, onMounted } from 'vue'
 import List from '@/components/List.vue'
 import Pagination from '@/components/common/Pagination.vue'
 import commitData from '@/json/project_commitlist.json'
-import profile from '@/assets/issueMaker.png'
 
 const commits = ref([])
 const currentPage = ref(1)
@@ -55,35 +54,56 @@ const selectedBranch = ref('전체')
 const selectedAuthor = ref('전체')
 const selectedPeriod = ref('전체')
 
+// 1. JSON 데이터 그대로 저장
 onMounted(() => {
   commits.value = commitData
 })
 
-const branches = computed(() => ['전체', ...new Set(commitData.map(c => c.branch))])
-const authors = computed(() => ['전체', ...new Set(commitData.map(c => c.author))])
+// 2. 브랜치 목록 추출
+const branches = computed(() => [
+  '전체',
+  ...new Set(commitData.map(c => c.branch))
+])
+
+// 3. 작성자 목록 (author.name 기준)
+const authors = computed(() => [
+  '전체',
+  ...new Set(commitData.map(c => c.author.name))
+])
+
+// 4. 기간 옵션
 const periods = ['전체', '최근 7일', '최근 30일']
 
+// 5. 필터링 로직 수정 (author.name 기준으로 비교)
 const filteredCommits = computed(() => {
   const now = new Date()
   return commits.value.filter(c => {
     const date = new Date(c.date)
-    const branchMatch = selectedBranch.value === '전체' || c.branch === selectedBranch.value
-    const authorMatch = selectedAuthor.value === '전체' || c.author === selectedAuthor.value
+    const branchMatch =
+      selectedBranch.value === '전체' || c.branch === selectedBranch.value
+    const authorMatch =
+      selectedAuthor.value === '전체' || c.author.name === selectedAuthor.value
     const periodMatch =
       selectedPeriod.value === '전체' ||
-      (selectedPeriod.value === '최근 7일' && now - date <= 7 * 24 * 60 * 60 * 1000) ||
-      (selectedPeriod.value === '최근 30일' && now - date <= 30 * 24 * 60 * 60 * 1000)
+      (selectedPeriod.value === '최근 7일' &&
+        now - date <= 7 * 24 * 60 * 60 * 1000) ||
+      (selectedPeriod.value === '최근 30일' &&
+        now - date <= 30 * 24 * 60 * 60 * 1000)
     return branchMatch && authorMatch && periodMatch
   })
 })
 
+// 6. 페이징 처리
 const paginatedCommits = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   return filteredCommits.value.slice(start, start + itemsPerPage)
 })
 
-const totalPages = computed(() => Math.ceil(filteredCommits.value.length / itemsPerPage))
+const totalPages = computed(() =>
+  Math.ceil(filteredCommits.value.length / itemsPerPage)
+)
 </script>
+
 
 <style scoped>
 .commit-page {
