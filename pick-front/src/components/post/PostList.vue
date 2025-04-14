@@ -36,7 +36,7 @@
 <script setup>
     import SearchBox from '@/components/common/SearchBox.vue';
     // import SinglePost from '@/components/post/SinglePost.vue';
-    import Pagination from '@/components/Pagination.vue'
+    import Pagination from '@/components/common/Pagination.vue'
     import List from '@/components/post/List.vue';
     import postList from '@/json/post_list.json';
 
