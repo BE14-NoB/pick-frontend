@@ -59,7 +59,7 @@
         <div class="list-card">
           <List
             :headers="['이슈번호', '제목', '라벨', '타입', '마일스톤', '생성자']"
-            :items="paginatedOpenIssues.map(({ status, creator, avatarUrl, ...rest }) => ({
+            :items="paginatedClosedIssues.map(({ status, creator, avatarUrl, ...rest }) => ({
               ...rest,
               creatorDisplay: {
                 name: creator.name,
@@ -187,7 +187,6 @@ const tabs = [
 .issue-header {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 16px;
 }
 
 .list-card {
