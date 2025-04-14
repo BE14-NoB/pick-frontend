@@ -9,7 +9,9 @@
             <tbody>
                 <tr v-for="(item, index) in paginatedItems" :key="index">
                     <!-- 메시지 -->
-                    <td class="message-cell">{{ item.message }}</td>
+                    <td class="message-cell">
+                        {{ item.message.length > 60 ? item.message.slice(0, 60) + '...' : item.message }}
+                    </td>
 
                     <!-- 날짜 -->
                     <td class="date-cell">{{ item.date }}</td>
