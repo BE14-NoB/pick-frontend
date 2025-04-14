@@ -177,7 +177,6 @@ const setActiveTab = (tab) => {
   })
   watch(activeTab, (newValue) => {
       if(newValue) {
-          const activeTab = ref('random')
           minPeople.value = ''
           maxPeople.value = ''
           minDuration.value = ''
@@ -191,7 +190,11 @@ const setActiveTab = (tab) => {
   })
 
   const searchMatching = () => {
-      router.push('/match/result')
+    if (router.currentRoute.value.path === '/match/result') {
+    window.location.reload()
+  } else {
+    router.push('/match/result')
+  }
   }
 
   const createMatching = () => {
