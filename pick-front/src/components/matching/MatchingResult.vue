@@ -6,7 +6,6 @@
       v-if="isInit"
         :height="600" 
         @load="loadMore"
-        :immediate-check="false" 
         class="scroll-container"
       >
         <template v-for="(result, index) in displayedResults" :key="index">
@@ -116,7 +115,7 @@ onMounted(async () => {
       const res = await fetch('http://localhost:8080/matching_filter')
       const result = await res.json()
       if (Array.isArray(result.matching_list)) {
-        allResults.value = matchingList
+        allResults.value = result.matchingList
       } else {
         throw new Error('Invalid server response format')
       }
