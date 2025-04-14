@@ -8,14 +8,22 @@
     </div>
 </template>
   
-  <script setup>
+<script setup>
   import { ref } from 'vue'
+  defineProps({
+    thumbnailUrl: {
+      type: String,
+      required: true,
+    },
+  })
+
   
   // 동적으로 바꿀 썸네일 이미지 URL
-  const thumbnailUrl = ref(new URL('@/assets/img/pick_title.png', import.meta.url).href)
+  // const thumbnailUrl = ref(new URL('@/assets/member/default-image.png', import.meta.url).href)
 
-//   const thumbnailUrl = ref('@/assets/img/pick_title.png') // 나중에 props로 받아도 OK
-  </script>
+
+
+</script>
   
   <style scoped>
   .mockup-wrapper {
