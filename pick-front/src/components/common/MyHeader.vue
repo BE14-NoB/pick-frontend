@@ -18,8 +18,7 @@
         <v-menu location="bottom">
           <template v-slot:activator="{ props }">
             <div class="profile-img-wrapper">
-              <v-img :width="40" :height="40" :src="authStore.currentUser.profileImage" class="profile-img"
-                v-bind="props" />
+              <v-img :width="40" :height="40" :src="profileImage" class="profile-img" v-bind="props" @error="handleImageError" />
             </div>
           </template>
           <v-list class="profile-dropdown">
@@ -27,7 +26,7 @@
             <v-list-item class="profile-info">
               <div class="profile-header">
                 <div class="profile-left">
-                  <v-img :width="60" :height="60" :src="authStore.currentUser.profileImage" class="profile-img-large" />
+                  <v-img :width="60" :height="60" :src="profileImage" class="profile-img-large" @error="handleImageError" />
                   <div class="nickname">{{ authStore.currentUser.nickname }}</div>
                 </div>
                 <div class="profile-right">
@@ -142,9 +141,36 @@ import MemberLogin from '@/components/member/MemberLogin.vue';
 import MemberSignup from '@/components/member/MemberSignUp.vue';
 import { useAuthStore } from '@/stores/auth';
 
+// 동적 이미지 로드
+const images = import.meta.glob('@/assets/member/*.png', { eager: true });
+const imageMap = Object.fromEntries(
+  Object.entries(images).map(([path, module]) => {
+    const fileName = path.split('/').pop();
+    return [`/assets/member/${fileName}`, module.default];
+  })
+);
+
+// 기본 프로필 이미지 설정
+const defaultProfileImage = imageMap['/assets/member/avatar.png'] || '/assets/member/avatar.png';
+
 // 라우터 인스턴스 가져오기
 const router = useRouter();
 const authStore = useAuthStore();
+
+// 프로필 이미지 계산
+const profileImage = computed(() => {
+  if (authStore.currentUser?.profileImage) {
+    return authStore.currentUser.profileImage.startsWith('http')
+      ? authStore.currentUser.profileImage
+      : imageMap[authStore.currentUser.profileImage] || defaultProfileImage;
+  }
+  return defaultProfileImage;
+});
+
+// 이미지 로드 에러 핸들링
+const handleImageError = () => {
+  console.error('Header profile image failed');
+};
 
 // 로그인/회원가입 모달 표시 여부
 const isLoginModalOpen = ref(false);
@@ -154,7 +180,7 @@ const showSignupSuccessModal = ref(false);
 
 // 사용자 정보 (기본값)
 const user = ref({
-  profileImage: 'https://cdn.vuetifyjs.com/images/parallax/material.jpg',
+  profileImage: defaultProfileImage,
   nickname: '꼼곰보',
   level: 31,
   completedProjects: 30,
@@ -175,10 +201,15 @@ onMounted(() => {
   if (authStore.currentUser) {
     user.value = {
       ...user.value,
-      profileImage: authStore.currentUser.profileImage,
+      profileImage: authStore.currentUser.profileImage?.startsWith('http')
+        ? authStore.currentUser.profileImage
+        : imageMap[authStore.currentUser.profileImage] || defaultProfileImage,
       nickname: authStore.currentUser.nickname,
     };
   }
+  console.log('Header Image Map:', imageMap);
+  console.log('Header Profile Image:', profileImage.value);
+  console.log('Header Default Image:', defaultProfileImage);
 });
 
 // 메뉴 항목
@@ -470,8 +501,8 @@ const handleLogout = () => {
 
 .close-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  bottom: 290px;
+  right: 12px;
   z-index: 1001;
 }
 </style>
