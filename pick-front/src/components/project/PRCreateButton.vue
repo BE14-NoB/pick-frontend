@@ -10,7 +10,7 @@
   const router = useRouter()
   
   const handleClick = () => {
-    router.push('/project/create-pull-request')
+    router.push('/project/review-pull-request')
   }
   </script>
   
