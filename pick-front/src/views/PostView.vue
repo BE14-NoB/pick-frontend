@@ -25,7 +25,7 @@
         margin-left: 40px;
     }
     #postView {
-        margin-left: 300px;
+        margin-left: 330px;
         margin-right: 200px;
     }
 </style>
