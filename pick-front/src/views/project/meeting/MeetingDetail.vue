@@ -116,7 +116,7 @@
     const id = route.params.id
 
     try {
-      const res = await fetch('http://localhost:8080/meetings')
+      const res = await fetch('http://localhost:8084/meetings')
       const data = await res.json()
       const target = data.find(m => m.id === id)
       if (!target) return

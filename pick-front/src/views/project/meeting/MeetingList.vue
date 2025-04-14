@@ -96,7 +96,7 @@ const getProfile = (nickname) => {
 
 onMounted(async () => {
   try {
-    const res = await fetch('http://localhost:8080/meetings')
+    const res = await fetch('http://localhost:8084/meetings')
     const data = await res.json()
     meetingData.value = data
       .filter(meeting => meeting.title?.trim() && meeting.content?.trim())
