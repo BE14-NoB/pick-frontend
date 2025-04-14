@@ -22,8 +22,7 @@ const props = defineProps({
 
 const route = useRoute()
 
-const isActive = (matchList) =>
-    matchList?.some(path => route.path.startsWith(path))
+const isActive = (matchList) => matchList?.includes(route.path)
 </script>
 
 <style scoped>
