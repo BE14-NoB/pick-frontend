@@ -3,8 +3,10 @@
     <h2 class=page-title>매칭 조회 결과</h2>
     <div class="content-container">
       <v-infinite-scroll 
+      v-if="isInit"
         :height="600" 
         @load="loadMore"
+        :immediate-check="false" 
         class="scroll-container"
       >
         <template v-for="(result, index) in displayedResults" :key="index">
@@ -110,13 +112,25 @@ let currentPage = 0;
 
 // 초기 데이터 로드
 onMounted(async () => {
-    allResults.value = matchingList
-
+  try {
+      const res = await fetch('http://localhost:8080/matching_filter')
+      const result = await res.json()
+      if (Array.isArray(result.matching_list)) {
+        allResults.value = matchingList
+      } else {
+        throw new Error('Invalid server response format')
+      }
+    } catch (err) {
+      allResults.value = matchingList
+    }
     console.log("매칭", allResults)
+  
+  // ✅ 반드시 done('ok') 호출
+  loadMore({
+    done: () => {}
+  });
+})
 
-    isInit.value = true;
-    loadMore({ done: () => {} });
-  })
 
 
 async function api() {
@@ -145,7 +159,8 @@ async function loadMore({ done }) {
   if (!isInit.value) {
     // 최초 진입 시 자동 호출된 loadMore는 무시
     isInit.value = true
-    // done('ok');
+    console.log("초기 호출")
+    done('ok');
     return
   }
   const result = await api();
