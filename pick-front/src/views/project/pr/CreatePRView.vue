@@ -17,6 +17,8 @@ import PRBranchSelector from '@/components/project/pr/PRBranchSelector.vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
+// 브랜치
+const selectedBranch = ref(router.query.branch || '')
 
 // 작성 폼
 import PRFormSection from '@/components/project/pr/PRFormSection.vue'

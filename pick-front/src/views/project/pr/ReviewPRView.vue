@@ -1,10 +1,10 @@
 <template>
     <section class="page-wrapper">
         <!-- 브랜치 선택 -->
-        <BranchSelector />
+        <BranchSelector v-model:selectedBranch="selectedBranch" />
 
         <!-- 탭 메뉴 -->
-        <ProjectTabs v-model="selectedTab" :tabs="tabList">
+        <ProjectTabs v-if="selectedBranch" v-model="selectedTab" :tabs="tabList">
             <template #commit>
                 <PRCommitList :base-branch="'main'" :commit-diff="2" />
             </template>
@@ -33,6 +33,7 @@ const selectedTab = ref('commit')
 
 // 브랜치 선택
 import BranchSelector from '@/components/project/pr/PRBranchSelector.vue'
+const selectedBranch = ref(null)
 
 // 커밋 목록 탭
 import PRCommitList from '@/components/project/pr/PRCommitList.vue'
@@ -41,7 +42,11 @@ import PRCommitList from '@/components/project/pr/PRCommitList.vue'
 import FileChanges from '@/components/project/pr/PRFileChanges.vue'
 
 function goToCreatePR() {
-    router.push('/project/create-pull-request')
+    router.push({
+        path: '/project/create-pull-request',
+        query: { branch: selectedBranch.value }
+    })
+
 }
 
 </script>
