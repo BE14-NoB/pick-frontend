@@ -39,8 +39,8 @@
         "update_at": null,
         "content": "글에 작성된 디자이너 모집 조건이 조금 더 상세하면 좋을 것 같아요!",
         "status": 0,
-        "post_id": 102,
-        "root_comment_id": 3,
+        "post_id": 37,
+        "root_comment_id": null,
         "member_id": 78
     },
     {
@@ -50,7 +50,7 @@
         "update_at": null,
         "content": "참여하고 싶은데 시간대가 안 맞네요 ㅠㅠ 다음에 또 기회가 있으면 좋겠어요.",
         "status": 1,
-        "post_id": 102,
+        "post_id": 36,
         "root_comment_id": null,
         "member_id": 81
     },
@@ -72,7 +72,7 @@
         "update_at": "2025.04.13 17:50:10",
         "content": "혹시 백엔드는 어떤 스택으로 구성되어 있나요?",
         "status": 0,
-        "post_id": 102,
+        "post_id": 38,
         "root_comment_id": null,
         "member_id": 62
     }
