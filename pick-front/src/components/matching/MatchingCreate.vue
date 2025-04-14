@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-overlay" @click.self="$emit('close')">
+    <div class="modal-overlay">
       <div class="modal-content">
         <div class="modal-header">
           <div class="tab-container">
@@ -93,6 +93,45 @@
             <button class="primary-button" @click="handleCreate">
               랜덤 매칭 생성
             </button>
+            <!-- <MeetingSaveButton
+              :id="id"
+              :hostLevel: "10"
+              :hostName="hostName"
+              :currentMember="currentMembers"
+              :maxMembers="maxMembers"
+              :duration="duration"
+              :mainCategory="mainCategory"
+              :subCategory="subCategory
+              :members="members"
+              :levelRange="levelRange"
+              /> 
+              {
+    hostLevel: 10,
+    hostName: '카드값줘체리',
+    currentMembers: 3,
+    maxMembers: 6,
+    duration: 6,
+    mainCategory: 'PC',
+    subCategory: '게임',
+    members: [
+    {
+    name: '봇치더코드',
+    level: 30,
+    rating: 4.4,
+  },
+  {
+    name: '체인소개발자',
+    level: 27,
+    rating: 4.7,
+  },
+  {
+    name: '코드코드체인지',
+    level: 35,
+    rating: 4.2,
+  }
+    ]
+  },
+            -->
             <button class="secondary-button" @click="$emit('close')">
               <i class="mdi mdi-undo-variant"></i>
             </button>

@@ -11,9 +11,9 @@
           <div class="result-card" @click="teamMate(index)">
             <div class="card-content">
               <div class="card-header">
-                <div class="profile-img">
+                <!-- <div class="profile-img">
 
-                </div>
+                </div> -->
                 <span class="host-info">
                   방장: Lv.{{ result.hostLevel }} {{ result.hostName }}
                 </span>
