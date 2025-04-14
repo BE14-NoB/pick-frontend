@@ -87,7 +87,7 @@ const statusMessage = computed(() => {
 
 
 // 페이지네이션 로직
-import Pagination from '@/components/Pagination.vue'
+import Pagination from '@/components/common/Pagination.vue'
 const allCommits = commitItems
 const itemsPerPage = 4
 const currentPage = ref(1)
