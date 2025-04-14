@@ -5,8 +5,7 @@
         </div>
         <hr class="status-hr">
 
-        <div v-if="isLoading">커밋 목록 로딩 중...</div>
-        <table v-else class="list-table">
+        <table class="list-table">
             <tbody>
                 <tr v-for="(item, index) in paginatedItems" :key="index">
                     <!-- 메시지 -->
@@ -70,7 +69,6 @@ const dummyCommitItems = [
     }
 ]
 
-// 리스트 위의 문구
 const props = defineProps({
     baseBranch: {
         type: String,
@@ -95,7 +93,6 @@ const props = defineProps({
 })
 
 const allCommits = ref([])
-const isLoading = ref(true)
 
 const statusMessage = computed(() => {
     if (props.commitDiff === 0) return `${props.baseBranch} 브랜치와 동일함`
@@ -105,9 +102,8 @@ const statusMessage = computed(() => {
 
 // API로 커밋 불러오기
 const fetchCommits = async () => {
-    isLoading.value = true
     try {
-        const response = await axios.get('/api/github/branchCommits', {
+        const response = await axios.get('http://localhost:8000/pick-service/api/github/branchCommits', {
             params: {
                 repo: props.selectedRepo,
                 owner: props.selectedOwner,
@@ -115,20 +111,17 @@ const fetchCommits = async () => {
             }
         })
 
-        // response 데이터에서 필요한 부분만 추출 (예: message, date, author 등)
         allCommits.value = response.data.map(commit => ({
-            message: commit.commit.message,
-            date: commit.commit.author.date.split('T')[0],
+            message: commit.message,
+            date: commit.date?.split('T')[0] ?? '', // 혹시 ISO 형식이면 잘라냄
             author: {
-                name: commit.commit.author.name,
-                avatarUrl: commit.author?.avatar_url || avatarUrl
+                name: commit.author || 'unknown',
+                avatarUrl: commit.avatarUrl || avatarUrl
             }
         }))
     } catch (error) {
         console.error('커밋 불러오기 실패:', error)
-        allCommits.value = dummyCommitItems.value
-    } finally {
-        isLoading.value = false
+        allCommits.value = dummyCommitItems
     }
 }
 

@@ -6,8 +6,8 @@
         <!-- 탭 메뉴 -->
         <ProjectTabs v-if="selectedBranch" v-model="selectedTab" :tabs="tabList">
             <template #commit>
-                <PRCommitList :base-branch="'main'" :commit-diff="2" :selected-repo="'pick-backend'"
-                    :selected-owner="'nob-dev'" :selected-branch="selectedBranch" />
+                <PRCommitList :base-branch="'main'" :commit-diff="2" :selected-repo="'Pick'"
+                    :selected-owner="'BE14-NoB'" :selected-branch="selectedBranch" />
             </template>
 
             <template #file>
