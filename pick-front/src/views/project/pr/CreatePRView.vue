@@ -23,8 +23,8 @@ const selectedBranch = ref(router.currentRoute.value.query.branch || '')
 
 const prTitle = ref('')
 const prContent = ref('')
-const selectedReviewer = ref('seokhee')
-const selectedProject = ref('pick')
+const selectedReviewer = ref('yehang218')
+const selectedProject = ref('Pick')
 
 function goToReviewPR() {
     router.push('/project/review-pull-request')

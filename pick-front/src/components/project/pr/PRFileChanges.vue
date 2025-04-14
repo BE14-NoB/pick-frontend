@@ -9,36 +9,50 @@
         </div>
 
         <!-- 본문: 좌우 분할 -->
-        <div class="content-split">
+        <div v-if="isLoading" class="loading-wrapper">🔄 변경 내역을 불러오는 중입니다...</div>
+        <div v-else class="content-split">
             <!-- 왼쪽: 파일 리스트 -->
             <div class="file-list">
                 <div v-for="file in files" :key="file.path" class="file-item"
                     :class="{ active: file.path === selectedFile?.path }" @click="selectedFile = file">
                     <div class="file-info">
                         <span :class="`badge ${file.type}`">{{ fileLabel[file.type] }}</span>
-                        {{ file.path }}
+                        {{ formatFilePath(file.path) }}
                     </div>
                 </div>
             </div>
 
             <!-- 오른쪽: Diff2HTML 기반 미리보기 -->
-            <div class="file-diff-preview" v-if="selectedFile?.diff">
-                <div v-html="renderedDiff" class="diff2html-wrapper" />
+            <div class="file-diff-preview">
+                <template v-if="renderedDiff && selectedFile?.diff?.trim()">
+                    <div v-html="renderedDiff" class="diff2html-wrapper" />
+                </template>
+                <template v-else>
+                    <div style="padding: 1rem; color: #999;">변경된 내용을 찾을 수 없습니다.</div>
+                </template>
             </div>
         </div>
     </section>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
+import axios from 'axios'
 
+const props = defineProps({
+    selectedBranch: {
+        type: String,
+        required: true
+    }
+})
 
+const isLoading = ref(false)
 
 // diff
 import * as Diff2Html from 'diff2html'
 import 'diff2html/bundles/css/diff2html.min.css'
 
-const files = ref([
+const dummyFiles = ref([
     {
         path: 'src/Login.vue',
         type: 'modified',
@@ -73,8 +87,6 @@ index 111..222 100644
     },
 ])
 
-const selectedFile = ref(files.value[0])
-
 const fileLabel = {
     modified: '파일 변경',
     added: '파일 추가',
@@ -82,18 +94,122 @@ const fileLabel = {
     renamed: '이름 변경',
 }
 
-// ✅ diff2html 렌더링
-const renderedDiff = computed(() => {
-    if (!selectedFile.value?.diff) return ''
-    return Diff2Html.html(selectedFile.value.diff, {
-        drawFileList: false,
-        matching: 'lines',
-        outputFormat: 'line-by-line',
-    })
+const selectedRepo = ref('Pick')
+const selectedOwner = ref('BE14-NoB')
+const files = ref([])  // 파일 목록
+const addedLines = ref(0)
+const removedLines = ref(0)
+const selectedFile = ref(null)
+
+// 변경 줄 수 계산
+function calculateLineChanges(files) {
+    let totalAdded = 0
+    let totalRemoved = 0
+
+    for (const file of files) {
+        if (!file.diff) continue
+
+        const lines = file.diff.split('\n')
+
+        for (const line of lines) {
+            if (line.startsWith('+++') || line.startsWith('---')) continue
+            if (line.startsWith('+')) totalAdded++
+            else if (line.startsWith('-')) totalRemoved++
+        }
+    }
+
+    return { added: totalAdded, removed: totalRemoved }
+}
+
+// 파일 변경 내역 확인
+const fetchFileDiffs = async () => {
+    if (!props.selectedBranch) {
+        console.warn('브랜치가 선택되지 않아 파일 변경 내역을 불러오지 않음')
+        return
+    }
+
+    isLoading.value = true
+    const controller = new AbortController()
+    const timeout = setTimeout(() => {
+        controller.abort() // ❌ 요청 강제 취소
+    }, 10000) // 10초
+
+    try {
+        const res = await axios.get('http://localhost:8000/pick-service/api/github/branchDiff', {
+            params: {
+                repo: selectedRepo.value,
+                owner: selectedOwner.value,
+                base: 'main',
+                head: props.selectedBranch
+            },
+            signal: controller.signal
+        })
+
+        files.value = res.data.files
+        selectedFile.value = files.value[0]
+        
+        const result = calculateLineChanges(files.value)
+        addedLines.value = result.added
+        removedLines.value = result.removed
+    } catch (err) {
+        files.value = dummyFiles.value
+        selectedFile.value = dummyFiles.value[0]
+
+        const result = calculateLineChanges(dummyFiles.value)
+        addedLines.value = result.added
+        removedLines.value = result.removed
+
+        console.error('파일 변경 내역 불러오기 실패', err)
+    } finally {
+        clearTimeout(timeout)
+        isLoading.value = false
+    }
+}
+
+// 파일 이름 줄이기
+const formatFilePath = (path) => {
+  if (path.length <= 40) return path
+  return '...' + path.slice(-40) // 뒤에서 40자만
+}
+
+watch(() => props.selectedBranch, (newVal) => {
+    if (newVal) {
+        fetchFileDiffs()
+    }
 })
 
-const addedLines = 812
-const removedLines = 119
+
+// ✅ diff2html 렌더링
+const renderedDiff = computed(() => {
+    const diffText = selectedFile.value?.diff?.trim()
+
+    if (!diffText) return '<div style="padding:1rem; color:#888;">변경 내용 없음</div>'
+
+    const header = `diff --git a/${selectedFile.value.path} b/${selectedFile.value.path}\n`
+        + `--- a/${selectedFile.value.path}\n`
+        + `+++ b/${selectedFile.value.path}\n`
+
+    const fullDiff = header + diffText
+
+    try {
+        const html = Diff2Html.html(fullDiff, {
+            drawFileList: false,
+            matching: 'lines',
+            outputFormat: 'line-by-line',
+        })
+        return html
+    } catch (e) {
+        console.error('Diff2Html 렌더링 실패:', e)
+        return '<div style="color:red;">렌더링 실패</div>'
+    }
+})
+
+onMounted(() => {
+    if (props.selectedBranch) {
+        fetchFileDiffs()
+    }
+})
+
 </script>
 
 <style scoped>
@@ -108,6 +224,15 @@ const removedLines = 119
     align-items: center;
     margin-bottom: 12px;
 }
+
+.loading-wrapper {
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+}
+
 
 .create-pr-button {
     background-color: #1e1e1e;

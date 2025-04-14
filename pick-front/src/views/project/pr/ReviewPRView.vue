@@ -6,12 +6,12 @@
         <!-- 탭 메뉴 -->
         <ProjectTabs v-if="selectedBranch" v-model="selectedTab" :tabs="tabList">
             <template #commit>
-                <PRCommitList :base-branch="'main'" :commit-diff="2" :selected-repo="'Pick'"
+                <PRCommitList :base-branch="'main'" :selected-repo="'Pick'"
                     :selected-owner="'BE14-NoB'" :selected-branch="selectedBranch" />
             </template>
 
             <template #file>
-                <FileChanges @click-create-pr="goToCreatePR" />
+                <FileChanges @click-create-pr="goToCreatePR" :selected-branch="selectedBranch" />
             </template>
         </ProjectTabs>
     </section>
