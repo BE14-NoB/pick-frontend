@@ -17,7 +17,7 @@
                 <div class="branch-value">{{ head || '선택된 브랜치 없음' }}</div>
             </template>
             <template v-else>
-                <v-select v-model="head" :items="filteredHeadBranches" variant="plain" hide-details density="compact"
+                <v-select v-model="head" :items="branches" variant="plain" hide-details density="compact"
                     menu-icon="mdi-menu-down" class="branch-select" />
             </template>
         </div>
@@ -34,12 +34,12 @@
 
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 
 const props = defineProps({
     defaultBranch: String,         // base로 표시할 브랜치
     selectedBranch: String,        // head 브랜치를 외부에서 고정
-    disableSelect: Boolean         // 선택 불가능하게 만들기
+    disableSelect: Boolean,         // 선택 불가능하게 만들기
 })
 
 const emit = defineEmits(['update:selectedBranch'])
@@ -47,13 +47,36 @@ const emit = defineEmits(['update:selectedBranch'])
 const baseBranch = ref(props.defaultBranch || 'main')
 const head = ref(props.selectedBranch || null)
 
-const branches = ['main', 'dev', 'feature/project']
-const filteredHeadBranches = computed(() =>
-    branches.filter(b => b !== baseBranch.value)
-)
+const branches = ref([])
+const dummyBranches = ['main', 'feature/ui', 'feature/backend']
 
 watch(head, (newVal) => {
     emit('update:selectedBranch', newVal)
+})
+
+onMounted(async () => {
+    try {
+        const res = await fetch(
+            `http://localhost:8000/pick-service/api/github/branches?repo=Pick&owner=BE14-NoB`,
+            { method: 'GET' }
+        )
+
+        if (res.ok) {
+            const data = await res.json()
+            if (Array.isArray(data)) {
+                branches.value = data
+            } else {
+                console.warn('⚠️ 배열이 아닌 응답이 왔어요. 기본 브랜치 목록 사용!')
+                branches.value = dummyBranches
+            }
+        } else {
+            console.warn(`⚠️ HTTP ${res.status} 오류. 기본 브랜치 목록 사용!`)
+            branches.value = dummyBranches
+        }
+    } catch (err) {
+        console.error('❌ 브랜치 목록 요청 실패:', err)
+        branches.value = dummyBranches
+    }
 })
 
 </script>

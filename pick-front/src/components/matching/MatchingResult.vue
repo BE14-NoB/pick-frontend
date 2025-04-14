@@ -76,9 +76,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, onBeforeMount } from 'vue'
 import TeamMemberCard from '@/components/matching/TeamMemberCard.vue'
+import matchingList from '@/json/matching_list.json'
 
+const isInit = ref(false)
 const openedCardIndex = ref(false)
 const appliedButtons = ref([]); // 신청 상태 저장용
 const teamMate = (index) => {
@@ -99,126 +101,7 @@ const matchingApply = (index) => {
   }
 }
 // 전체 데이터
-const allResults = [
-  {
-    hostLevel: 10,
-    hostName: '카드값줘체리',
-    currentMembers: 3,
-    maxMembers: 6,
-    duration: 6,
-    mainCategory: 'PC',
-    subCategory: '게임',
-    members: [
-    {
-    name: '봇치더코드',
-    level: 30,
-    rating: 4.4,
-  },
-  {
-    name: '체인소개발자',
-    level: 27,
-    rating: 4.7,
-  },
-  {
-    name: '코드코드체인지',
-    level: 35,
-    rating: 4.2,
-  }
-    ]
-  },
-  {
-    hostLevel: 25,
-    hostName: '전생했더니개발자였던건에대하여',
-    currentMembers: 4,
-    maxMembers: 6,
-    duration: 3,
-    mainCategory: 'PC',
-    subCategory: '웹',
-    members: []
-  },
-  {
-    hostLevel: 30,
-    hostName: '코드아트온라인',
-    currentMembers: 2,
-    maxMembers: 5,
-    duration: 3,
-    mainCategory: '모바일',
-    subCategory: 'ios',
-    members: []
-  },
-  {
-    hostLevel: 17,
-    hostName: '개발자X패밀리',
-    currentMembers: 4,
-    maxMembers: 5,
-    duration: 4,
-    mainCategory: 'PC',
-    subCategory: null,
-    members: []
-  },
-  {
-    hostLevel: 20,
-    hostName: '코딩용사성공담',
-    currentMembers: 4,
-    maxMembers: 7,
-    duration: 6,
-    mainCategory: '모바일',
-    subCategory: '게임',
-    members: [
-]
-  },
-  {
-    hostLevel: 40,
-    hostName: '귀멸의코드',
-    currentMembers: 3,
-    maxMembers: 5,
-    duration: 3,
-    mainCategory: '모바일',
-    subCategory: '안드로이드',
-    members: []
-  },
-  // 추가 데이터 (무한 스크롤 테스트용)
-  {
-    hostLevel: 15,
-    hostName: '코딩마스터',
-    currentMembers: 2,
-    maxMembers: 4,
-    duration: 5,
-    mainCategory: 'PC',
-    subCategory: '앱',
-    members: []
-  },
-  {
-    hostLevel: 35,
-    hostName: '개발자의길',
-    currentMembers: 5,
-    maxMembers: 8,
-    duration: 4,
-    mainCategory: '모바일',
-    subCategory: '웹',
-    members: []
-  },
-  {
-    hostLevel: 22,
-    hostName: '코딩천사',
-    currentMembers: 3,
-    maxMembers: 6,
-    duration: 3,
-    mainCategory: 'PC',
-    subCategory: '게임',
-    members: []
-  },
-  {
-    hostLevel: 28,
-    hostName: '개발자지망생',
-    currentMembers: 1,
-    maxMembers: 5,
-    duration: 6,
-    mainCategory: '모바일',
-    subCategory: 'ios',
-    members: []
-  }
-]
+const allResults = ref([]);
 
 // 현재 표시되는 결과
 const displayedResults = ref([])
@@ -226,25 +109,28 @@ const pageSize = 5
 let currentPage = 0;
 
 // 초기 데이터 로드
-onMounted(() => {
-  loadMore();
-})
+onMounted(async () => {
+    allResults.value = matchingList
+
+    console.log("매칭", allResults)
+
+    isInit.value = true;
+    loadMore({ done: () => {} });
+  })
+
+
 async function api() {
   return new Promise((resolve) => {
     setTimeout(() => {
       const start = currentPage * pageSize;
-      if(start >= allResults.length) {
+      console.log('start', start);
+      if(start >= allResults.value.length) {
         resolve('empty'); // 'empty' 상태 반환
         return;
       }
 
       const end = start + pageSize;
-      const newItems = allResults.slice(start, end);
-
-      console.log('currentPage', currentPage);
-      console.log('start', start);
-      console.log('end', end);
-      console.log('newItems', newItems);
+      const newItems = allResults.value.slice(start, end);
 
       displayedResults.value.push(...newItems);
       currentPage++;
@@ -255,6 +141,13 @@ async function api() {
 
 // 추가 데이터 로드 함수
 async function loadMore({ done }) {
+  console.log("isInit", isInit.value);
+  if (!isInit.value) {
+    // 최초 진입 시 자동 호출된 loadMore는 무시
+    isInit.value = true
+    // done('ok');
+    return
+  }
   const result = await api();
   if (result === 'empty') {
     done('empty');  // 더 이상 데이터가 없으면 done() 호출
