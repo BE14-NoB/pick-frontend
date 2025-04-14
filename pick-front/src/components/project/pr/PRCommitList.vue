@@ -5,12 +5,13 @@
         </div>
         <hr class="status-hr">
 
-        <div v-if="isLoading">커밋 목록 로딩 중...</div>
-        <table v-else class="list-table">
+        <table class="list-table">
             <tbody>
                 <tr v-for="(item, index) in paginatedItems" :key="index">
                     <!-- 메시지 -->
-                    <td class="message-cell">{{ item.message }}</td>
+                    <td class="message-cell">
+                        {{ item.message.length > 60 ? item.message.slice(0, 60) + '...' : item.message }}
+                    </td>
 
                     <!-- 날짜 -->
                     <td class="date-cell">{{ item.date }}</td>
@@ -31,10 +32,12 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, computed, watch } from 'vue';
 import axios from 'axios'
 
 const avatarUrl = new URL('@/assets/img/avatar.png', import.meta.url).href
+
+// 더미 커밋 데이터 (API 실패 시 사용)
 const dummyCommitItems = [
     {
         message: 'Feature : 로그인 로직 구현',
@@ -70,15 +73,10 @@ const dummyCommitItems = [
     }
 ]
 
-// 리스트 위의 문구
 const props = defineProps({
     baseBranch: {
         type: String,
         default: 'main'
-    },
-    commitDiff: {
-        type: Number,
-        default: 0
     },
     selectedRepo: {
         type: String,
@@ -95,19 +93,18 @@ const props = defineProps({
 })
 
 const allCommits = ref([])
-const isLoading = ref(true)
+const commitDiff = ref(0)
 
 const statusMessage = computed(() => {
-    if (props.commitDiff === 0) return `${props.baseBranch} 브랜치와 동일함`
-    if (props.commitDiff > 0) return `${props.baseBranch} 브랜치보다 ${props.commitDiff} 커밋 앞서 있음`
-    return `${props.baseBranch} 브랜치보다 ${Math.abs(props.commitDiff)} 커밋 뒤쳐져 있음`
+    if (commitDiff.value === 0) return `${props.baseBranch} 브랜치와 동일함`
+    if (commitDiff.value > 0) return `${props.baseBranch} 브랜치보다 ${commitDiff.value} 커밋 이상 앞서 있음`
+    return `${props.baseBranch} 브랜치보다 ${Math.abs(commitDiff.value)} 커밋 뒤쳐져 있음`
 })
 
 // API로 커밋 불러오기
 const fetchCommits = async () => {
-    isLoading.value = true
     try {
-        const response = await axios.get('/api/github/branchCommits', {
+        const response = await axios.get('http://localhost:8000/pick-service/api/github/branchCommits', {
             params: {
                 repo: props.selectedRepo,
                 owner: props.selectedOwner,
@@ -115,20 +112,22 @@ const fetchCommits = async () => {
             }
         })
 
-        // response 데이터에서 필요한 부분만 추출 (예: message, date, author 등)
         allCommits.value = response.data.map(commit => ({
-            message: commit.commit.message,
-            date: commit.commit.author.date.split('T')[0],
+            message: commit.message,
+            date: commit.date?.split('T')[0] ?? '',
             author: {
-                name: commit.commit.author.name,
-                avatarUrl: commit.author?.avatar_url || avatarUrl
+                name: commit.author || 'unknown',
+                avatarUrl: commit.avatarUrl || avatarUrl
             }
         }))
+
+        // 커밋 차이 계산
+        commitDiff.value = allCommits.value.length
+
     } catch (error) {
         console.error('커밋 불러오기 실패:', error)
-        allCommits.value = dummyCommitItems.value
-    } finally {
-        isLoading.value = false
+        allCommits.value = dummyCommitItems
+        commitDiff.value = dummyCommitItems.length
     }
 }
 

@@ -5,8 +5,8 @@
                 contentLabel="PR 설명" @submit="$emit('submit')" @cancel="$emit('cancel')" />
         </div>
         <div class="form-right">
-            <ProjectDropdwon label="리뷰어" v-model="reviewer" :options="reviewerOptions" />
-            <ProjectDropdwon label="생성자" v-model="creator" :options="creatorOptions" />
+            <ProjectDropdwon label="리뷰어" v-model="reviewer" :options="reviewerOptions" :disabled="true"/>
+            <ProjectDropdwon label="프로젝트" v-model="creator" :options="projectOptions" :disabled="false"/>
         </div>
     </div>
 </template>
@@ -24,14 +24,18 @@ const creator = defineModel('creator')
 
 // 드롭다운 옵션은 이 컴포넌트 내부에서 정의
 const reviewerOptions = [
-    { label: '석키킥키키', value: 'seokhee' },
-    { label: '홍길동', value: 'hong' },
+    { label: '석키키키', value: 'yehang218' },
+    { label: '시냥주', value: 'swjang7269' },
+    { label: '혬헴헴', value: 'HMYIEN' },
+    { label: '민선', value: 'minsun24' },
+    { label: 'blueSky', value: 'Bluesky3125' },
 ]
 
-const creatorOptions = [
-    { label: 'PICK', value: 'pick' },
-    { label: 'AI 리포트', value: 'ai-report' },
+const projectOptions = [
+    { label: 'PICK', value: 'Pick' },
+    { label: 'PICK FRONTEND', value: 'pick-frontend' },
 ]
+
 </script>
 
 <style scoped>
