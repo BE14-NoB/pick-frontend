@@ -26,7 +26,12 @@
 
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
+
+const props = defineProps({
+    defaultBranch: String
+})
+const emit = defineEmits(['update:selectedBranch'])
 
 const base = ref('main')
 const head = ref(null)
@@ -38,6 +43,12 @@ const baseBranch = 'main'
 const filteredHeadBranches = computed(() =>
     branches.filter(b => b !== baseBranch)
 )
+
+// head 변경 시 selectedBranch로 emit
+watch(head, (newVal) => {
+    emit('update:selectedBranch', newVal)
+})
+
 </script>
 
 <style scoped>
