@@ -24,8 +24,8 @@
         >
           <img :src="member.profileImg" class="profile-img" />
           <div class="info">
-            <div class="name">{{ member.name }}</div>
-            <div class="role">{{ member.role }}</div>
+            <div class="name">{{ member.nickname }}</div>
+            <!-- <div class="role">{{ member.role }}</div> -->
           </div>
         </div>
       </div>
@@ -38,30 +38,35 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import memberDummy from '@/json/participants.json'
+
 const router = useRouter()
 
-const members = [
-  { id: 1, name: '꿈곰보', role: '백엔드 개발자', profileImg: '/avatar.png' },
-  { id: 2, name: '서키키키킥', role: '백엔드 개발자', profileImg: '/avatar.png' },
-  { id: 3, name: '헴', role: '백엔드 개발자', profileImg: '/avatar.png' },
-  { id: 4, name: 'BlueSky', role: '프론트엔드 개발자', profileImg: '/avatar.png' },
-  { id: 5, name: '민선', role: 'PM', profileImg: '/avatar.png' },
-  { id: 6, name: '시냥주', role: '디자이너',profileImg: '/avatar.png' }
-]
+// ✅ 이미지 파일 자동 매핑
+const imageModules = import.meta.glob('@/assets/img/member_profile/*.png', { eager: true })
+const imageMap = Object.fromEntries(
+  Object.entries(imageModules).map(([path, mod]) => [path.split('/').pop(), mod.default])
+)
+
+const members = ref(memberDummy.map(member => ({
+  ...member,
+  profileImg: imageMap[member.profileImage] || '/default.png'
+})))
 
 const currentPage = ref(0)
 const membersPerPage = 4
-const totalPages = Math.ceil(members.length / membersPerPage)
+const totalPages = Math.ceil(members.value.length / membersPerPage)
 
 const pagedMembers = computed(() => {
   const start = currentPage.value * membersPerPage
-  return members.slice(start, start + membersPerPage)
+  return members.value.slice(start, start + membersPerPage)
 })
-const goToMemberList = () => {
-  router.push('/project/member') 
-}
 
+const goToMemberList = () => {
+  router.push('/project/member')
+}
 </script>
+
 
 
 

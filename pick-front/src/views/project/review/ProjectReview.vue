@@ -26,7 +26,7 @@
           <v-card v-if="member" class="member-card" flat>
             <div class="member-info">
               <v-avatar size="60" class="mr-4">
-                <img :src="imageMap[member.profileImage] || profile" alt="avatar" />
+                <img :src="imageMap[member.profileImage] || profile" alt="avatar" class="avatar-img" />
               </v-avatar>
               <div>
                 <div class="name-row">
@@ -76,7 +76,7 @@ import ProjectReviewModal from '@/components/project/review/ProjectReviewModal.v
 import participantDummy from '@/json/participants.json'
 import projectReviewDummy from '@/json/project_review.json'
 
-const imageModules = import.meta.glob('@/assets/member/*.png', { eager: true });
+const imageModules = import.meta.glob('@/assets/img/member_profile/*.png', { eager: true });
 const imageMap = Object.fromEntries(
   Object.entries(imageModules).map(([path, module]) => {
     const filename = path.split('/').pop();
@@ -204,4 +204,11 @@ onMounted(async () => {
   justify-content: center;
   margin-top: 1rem;
 }
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
 </style>

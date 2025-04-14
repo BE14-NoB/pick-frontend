@@ -7,38 +7,34 @@
       <MeetingCreateButton @click="onClickCreateMeeting" />
     </div>
 
-    <!-- 검색 + 필터 + 정렬 -->
-      <div class="search-filter-bar" style="width: 100%;">
-        <div class="searchBox" style="width:50%;">
-          <SearchComboBox hidden/>
-          <input v-model="searchQuery" placeholder="제목 검색..." type="text" style="width:70%; height:25px;" />
-          <button @click="search" style="width:25px; height:25px;">
-              <img src="@/assets/post/icons8-search.svg" alt="돋보기 아이콘" width="25px" height="25px">
-          </button>
-        </div>
+    <div class="search-filter-bar">
+      <div class="searchBox">
+        <SearchComboBox hidden />
+        <input v-model="searchQuery" placeholder="제목 검색..." type="text" />
+        <button @click="search">
+          <img src="@/assets/post/icons8-search.svg" alt="돋보기 아이콘" width="25" height="25" />
+        </button>
+      </div>
 
       <v-select v-model="selectedTemplate" :items="templateOptions" label="템플릿" density="compact" class="select" />
       <v-select v-model="selectedAuthor" :items="authorOptionsWithAll" label="작성자" density="compact" class="select" />
       <v-select v-model="sortOrder" :items="sortOptions" label="정렬" density="compact" class="select" />
     </div>
 
-
     <div class="list-card">
       <List
-        :headers="['번호', '제목', '작성일', '템플릿' , '작성자', '참여자']"
+        :headers="['번호', '제목', '작성일', '템플릿', '작성자', '참여자']"
         :items="paginatedMeetings.map(({ content, updatedAt, ...rest }) => rest)"
         @row-click="goToDetail"
       >
         <template #template="{ value }">
-          <v-chip :color="getTypeColor(value)" variant="tonal" size="small">
-            {{ value }}
-          </v-chip>
+          <v-chip :color="getTypeColor(value)" variant="tonal" size="small">{{ value }}</v-chip>
         </template>
 
         <template #author="{ value }">
           <div class="profile-wrapper">
-            <img :src="meetingMaker" class="profile-img" />
-            <span>{{ value }}</span>
+            <img :src="value.profileImage" class="profile-img" />
+            <span>{{ value.name }}</span>
           </div>
         </template>
 
@@ -49,8 +45,9 @@
               :key="index"
               size="24"
               class="avatar-overlap"
+              :title="participant.name"
             >
-              <img :src="meetingMaker" />
+              <img :src="participant.profileImage" />
             </v-avatar>
             <span v-if="value.length > 3" class="extra-count">+{{ value.length - 3 }}</span>
           </div>
@@ -63,15 +60,15 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, computed } from 'vue'
-  import Pagination from '@/components/common/Pagination.vue'
-  import List from '@/components/List.vue'
-  import meetingMaker from '@/assets/img/avatar.png'
-  import MeetingCreateButton from '@/components/project/MeetingCreateButton.vue'
-  import { useRouter } from 'vue-router'
-  import SearchBox from '@/components/common/SearchBox.vue'
-  import SearchComboBox from '@/components/common/SearchComboBox.vue'
-  import meetingDummy from '@/json/project_meeting_db.json';
+import { ref, onMounted, computed } from 'vue'
+import Pagination from '@/components/common/Pagination.vue'
+import List from '@/components/List.vue'
+import meetingMaker from '@/assets/img/avatar.png'
+import MeetingCreateButton from '@/components/project/MeetingCreateButton.vue'
+import { useRouter } from 'vue-router'
+import SearchComboBox from '@/components/common/SearchComboBox.vue'
+import meetingDummy from '@/json/project_meeting_db.json'
+import memberDummy from '@/json/participants.json'
 
 const router = useRouter()
 
@@ -82,22 +79,44 @@ const searchQuery = ref('')
 const selectedTemplate = ref('전체')
 const selectedAuthor = ref('전체')
 const sortOrder = ref('최신순')
-
 const sortOptions = ['최신순', '오래된순']
+
+const imageModules = import.meta.glob('@/assets/member/*.png', { eager: true })
+const imageMap = Object.fromEntries(
+  Object.entries(imageModules).map(([path, mod]) => [path.split('/').pop(), mod.default])
+)
+
+const getProfile = (nickname) => {
+  const user = memberDummy.find(m => m.nickname === nickname)
+  return {
+    name: nickname,
+    profileImage: imageMap[user?.profileImage] || meetingMaker
+  }
+}
 
 onMounted(async () => {
   try {
     const res = await fetch('http://localhost:8080/meetings')
     const data = await res.json()
-    meetingData.value = data.filter(meeting => meeting.title?.trim() && meeting.content?.trim())
+    meetingData.value = data
+      .filter(meeting => meeting.title?.trim() && meeting.content?.trim())
+      .map(meeting => ({
+        ...meeting,
+        author: getProfile(meeting.author),
+        participants: meeting.participants.map(getProfile)
+      }))
   } catch (err) {
     console.error('❌ 회의록 불러오기 실패:', err)
-    meetingData.value = meetingDummy.meetings;
+    meetingData.value = meetingDummy.meetings.map(meeting => ({
+      ...meeting,
+      author: getProfile(meeting.author),
+      participants: meeting.participants.map(getProfile)
+    }))
   }
 })
 
 const templateOptions = computed(() => ['전체', ...new Set(meetingData.value.map(m => m.template))])
-const authorOptions = computed(() => [...new Set(meetingData.value.map(m => m.author))])
+const authorOptions = computed(() => [...new Set(meetingData.value.map(m => m.author.name))])
 const authorOptionsWithAll = computed(() => ['전체', ...authorOptions.value])
 
 const filteredMeetings = computed(() => {
@@ -109,7 +128,7 @@ const filteredMeetings = computed(() => {
     filtered = filtered.filter(m => m.template === selectedTemplate.value)
   }
   if (selectedAuthor.value !== '전체') {
-    filtered = filtered.filter(m => m.author === selectedAuthor.value)
+    filtered = filtered.filter(m => m.author.name === selectedAuthor.value)
   }
   return filtered.sort((a, b) => {
     const dateA = new Date(a.create_date)
@@ -128,8 +147,7 @@ const openTotalPages = computed(() =>
 )
 
 function goToDetail(row) {
-  const id = row.id
-  router.push(`/project/meeting/${id}`)
+  router.push(`/project/meeting/${row.id}`)
 }
 
 function onClickCreateMeeting() {
@@ -151,7 +169,6 @@ function getTypeColor(type) {
   color: #666;
   margin: 16px 0;
 }
-
 .search-filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -165,27 +182,22 @@ function getTypeColor(type) {
   border-radius: 6px;
 }
 .select {
-  /* min-width: 150px; */
   max-width: 180px;
 }
-
 .meeting-header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   margin-bottom: 16px;
 }
-
 .list-card {
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
-
 .profile-wrapper {
   display: flex;
   align-items: center;
-  gap: 1px;
+  gap: 4px;
   justify-content: center;
 }
 .profile-img {
@@ -193,20 +205,16 @@ function getTypeColor(type) {
   height: 30px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto;
 }
-
 .pagination {
   margin-top: 24px;
   display: flex;
   justify-content: center;
 }
-
 .avatar-group {
   display: flex;
   justify-content: center;
 }
-
 .avatar-overlap {
   margin-left: -8px;
   border: 2px solid white;
@@ -221,16 +229,16 @@ function getTypeColor(type) {
   color: #555;
 }
 .searchBox {
-        width: 500px;
-        height: 40px;
-        border: 1px solid #d9d9d9;
-        border-radius: 50px;
-        padding-left: 20px;
-        padding-right: 5px;
-        display: flex;
-        align-items: center;
-    }
-input:focus{
+  width: 500px;
+  height: 40px;
+  border: 1px solid #d9d9d9;
+  border-radius: 50px;
+  padding-left: 20px;
+  padding-right: 5px;
+  display: flex;
+  align-items: center;
+}
+input:focus {
   outline: none;
 }
 </style>
