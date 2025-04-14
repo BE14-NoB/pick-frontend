@@ -3,8 +3,15 @@
     <!-- 프로필 헤더 -->
     <v-row class="profile-header">
       <v-col cols="12" md="3" class="avatar-col">
-        <v-avatar size="150">
-          <img :src="userData.profileImage || defaultProfileImage" alt="Profile" />
+        <v-avatar size="150" v-if="userData.profileImage || defaultProfileImage">
+          <img
+            :src="userData.profileImage || defaultProfileImage"
+            alt="Profile"
+            @error="console.error('Profile image failed:', $event)"
+          />
+        </v-avatar>
+        <v-avatar size="150" v-else color="grey">
+          <v-icon>mdi-account</v-icon>
         </v-avatar>
       </v-col>
 
@@ -83,8 +90,8 @@
             :title="project.title"
             :subtitle="project.subtitle"
             :img-src="project.image"
-            :main-category="project.mainCategory"
-            :sub-category="project.subCategory"
+            :mainCategory="project.mainCategory"
+            :subCategory="project.subCategory"
           />
         </v-col>
       </v-row>
@@ -97,7 +104,11 @@
         <v-col v-for="(review, index) in reviews" :key="index" cols="12" sm="6" md="4">
           <v-card class="review-card">
             <v-avatar size="50" class="review-avatar">
-              <img :src="review.avatar" alt="Reviewer Avatar" />
+              <img
+                :src="review.avatar"
+                alt="Reviewer Avatar"
+                @error="console.error('Review avatar failed:', $event)"
+              />
             </v-avatar>
             <v-card-title class="review-title">{{ review.name }}</v-card-title>
             <v-progress-linear
@@ -119,7 +130,12 @@
       <v-row>
         <v-col v-for="(badge, index) in recentBadges" :key="index" cols="12" sm="6" md="4">
           <v-card class="badge-card">
-            <img :src="badge.image" height="80px" style="object-fit: contain;" />
+            <img
+              :src="badge.image"
+              height="80px"
+              style="object-fit: contain;"
+              @error="console.error('Badge image failed:', $event)"
+            />
             <v-card-text class="badge-description">{{ badge.description }}</v-card-text>
             <v-card-title class="badge-name">{{ badge.name }}</v-card-title>
           </v-card>
@@ -150,12 +166,21 @@ import projectsData from '@/json/projects.json';
 import reviewsData from '@/json/reviews.json';
 import badgesData from '@/json/badges.json';
 
+// 동적 이미지 로드
+const images = import.meta.glob('@/assets/member/*.png', { eager: true });
+const imageMap = Object.fromEntries(
+  Object.entries(images).map(([path, module]) => [
+    `/assets/member/${path.split('/').pop()}`,
+    module.default,
+  ])
+);
+
 // Auth Store에서 사용자 정보 가져오기
 const authStore = useAuthStore();
-const defaultProfileImage = '/assets/member/defaultpic.png';
+const defaultProfileImage = imageMap['/assets/member/defaultpic.png'] || '/assets/member/defaultpic.png'; // 폴백 경로
 
 const userData = ref({
-  profileImage: '/assets/member/profileimage-1.png',
+  profileImage: null, // 초기값 null, fetchUserData에서 처리
   nickname: '',
   level: 31,
   levelProgress: 20,
@@ -190,23 +215,53 @@ const defaultAwards = `
 2023 사이버공격방어대회 청소년 우승, 국가 정보원장상
 `;
 
-// JSON 데이터를 반응형으로 사용
-const recentProjects = ref(projectsData);
-const reviews = ref(reviewsData);
-const recentBadges = ref(badgesData);
+// JSON 데이터를 반응형으로 사용, 이미지 매핑 적용
+const recentProjects = ref(
+  projectsData.map(project => ({
+    ...project,
+    image: imageMap[project.image] || project.image, // 동적 이미지 또는 원본 경로
+  }))
+);
+
+const reviews = ref(
+  reviewsData.map(review => ({
+    ...review,
+    avatar: imageMap[review.avatar] || review.avatar, // 동적 아바타 또는 원본 경로
+  }))
+);
+
+const recentBadges = ref(
+  badgesData.map(badge => ({
+    ...badge,
+    image: imageMap[badge.image] || badge.image, // 동적 이미지 또는 원본 경로
+  }))
+);
 
 // 사용자 데이터 가져오기
 const fetchUserData = async () => {
   if (authStore.currentUser) {
-    userData.value = { ...authStore.currentUser };
+    userData.value = {
+      ...authStore.currentUser,
+      profileImage:
+        // 외부 URL은 그대로, 로컬 경로면 imageMap 적용
+        authStore.currentUser.profileImage?.startsWith('http')
+          ? authStore.currentUser.profileImage
+          : imageMap[authStore.currentUser.profileImage] || defaultProfileImage,
+    };
+  } else {
+    userData.value.profileImage = defaultProfileImage;
   }
 };
 
 onMounted(() => {
   fetchUserData();
-  console.log('Projects:', recentProjects.value);
-  console.log('Reviews:', reviews.value);
-  console.log('Badges:', recentBadges.value);
+  console.log('Image Map:', imageMap);
+  console.log('Profile Image:', userData.value.profileImage);
+  console.log('Default Image:', defaultProfileImage);
+  console.log('Project Images:', recentProjects.value.map(p => p.image));
+  console.log('Review Avatars:', reviews.value.map(r => r.avatar));
+  console.log('Badge Images:', recentBadges.value.map(b => b.image));
+  console.log('Auth Store User:', authStore.currentUser);
 });
 </script>
 
