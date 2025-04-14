@@ -13,7 +13,12 @@ const router = createRouter({
     {
       path: '/match',
       name: 'Match',
-      component: () => import('@/views/MatchView.vue')
+      component: () => import('@/views/matching/MatchView.vue'),
+    },
+    {
+      path: '/match/result',
+      name: 'MatchiResult',
+      component: () => import('@/views/matching/SearchResult.vue'),
     },
     {
       path: '/project-list',

@@ -1,20 +1,22 @@
 <template>
   <div class="matching-result">
-    <h1 class="title">매칭 조회 결과</h1>
-    
+    <h2 class=page-title>매칭 조회 결과</h2>
     <div class="content-container">
       <v-infinite-scroll 
         :height="600" 
-        :items="displayedResults" 
         @load="loadMore"
-        :loading="loading"
         class="scroll-container"
       >
         <template v-for="(result, index) in displayedResults" :key="index">
-          <div class="result-card">
+          <div class="result-card" @click="teamMate(index)">
             <div class="card-content">
               <div class="card-header">
-                <span class="host-info">방장: Lv.{{ result.hostLevel }} {{ result.hostName }}</span>
+                <div class="profile-img">
+
+                </div>
+                <span class="host-info">
+                  방장: Lv.{{ result.hostLevel }} {{ result.hostName }}
+                </span>
               </div>
               
               <div class="info-section">
@@ -53,18 +55,35 @@
                 </div>
               </div>
             </div>
-
-            <button class="apply-button">신청</button>
+            <button :disabled="disabledButtons[index]" @click.stop="matchingApply(index)" :class="['apply-button', { 'disabled-button': disabledButtons[index] }]">신청</button>
+            <template v-if="openedCardIndex === index">
+              <TeamMemberCard :members="result.members" />
+            </template>
           </div>
         </template>
+        <template v-slot:empty>
+          <v-alert type="warning">더 이상 조건에 맞는 매칭이 없습니다.</v-alert>
+        </template>
       </v-infinite-scroll>
-      
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
+import TeamMemberCard from '@/components/matching/TeamMemberCard.vue'
+
+const openedCardIndex = ref(false)
+const disabledButtons = ref([]);
+const teamMate = (index) => {
+  openedCardIndex.value = openedCardIndex.value === index ? false : index
+}
+const matchingApply = (index) => {
+  const confiremd = window.confirm('신청하시겠습니까')
+  if(confiremd) {
+    disabledButtons.value[index] = true;
+  }
+}
 // 전체 데이터
 const allResults = [
   {
@@ -74,7 +93,24 @@ const allResults = [
     maxMembers: 6,
     duration: 6,
     mainCategory: 'PC',
-    subCategory: '게임'
+    subCategory: '게임',
+    members: [
+    {
+    name: '봇치더코드',
+    level: 30,
+    rating: 4.4,
+  },
+  {
+    name: '체인소개발자',
+    level: 27,
+    rating: 4.7,
+  },
+  {
+    name: '코드코드체인지',
+    level: 35,
+    rating: 4.2,
+  }
+    ]
   },
   {
     hostLevel: 25,
@@ -83,7 +119,8 @@ const allResults = [
     maxMembers: 6,
     duration: 3,
     mainCategory: 'PC',
-    subCategory: '웹'
+    subCategory: '웹',
+    members: []
   },
   {
     hostLevel: 30,
@@ -92,7 +129,8 @@ const allResults = [
     maxMembers: 5,
     duration: 3,
     mainCategory: '모바일',
-    subCategory: 'ios'
+    subCategory: 'ios',
+    members: []
   },
   {
     hostLevel: 17,
@@ -101,7 +139,8 @@ const allResults = [
     maxMembers: 5,
     duration: 4,
     mainCategory: 'PC',
-    subCategory: null
+    subCategory: null,
+    members: []
   },
   {
     hostLevel: 20,
@@ -110,7 +149,9 @@ const allResults = [
     maxMembers: 7,
     duration: 6,
     mainCategory: '모바일',
-    subCategory: '게임'
+    subCategory: '게임',
+    members: [
+]
   },
   {
     hostLevel: 40,
@@ -119,7 +160,8 @@ const allResults = [
     maxMembers: 5,
     duration: 3,
     mainCategory: '모바일',
-    subCategory: '안드로이드'
+    subCategory: '안드로이드',
+    members: []
   },
   // 추가 데이터 (무한 스크롤 테스트용)
   {
@@ -129,7 +171,8 @@ const allResults = [
     maxMembers: 4,
     duration: 5,
     mainCategory: 'PC',
-    subCategory: '앱'
+    subCategory: '앱',
+    members: []
   },
   {
     hostLevel: 35,
@@ -138,7 +181,8 @@ const allResults = [
     maxMembers: 8,
     duration: 4,
     mainCategory: '모바일',
-    subCategory: '웹'
+    subCategory: '웹',
+    members: []
   },
   {
     hostLevel: 22,
@@ -147,7 +191,8 @@ const allResults = [
     maxMembers: 6,
     duration: 3,
     mainCategory: 'PC',
-    subCategory: '게임'
+    subCategory: '게임',
+    members: []
   },
   {
     hostLevel: 28,
@@ -156,40 +201,52 @@ const allResults = [
     maxMembers: 5,
     duration: 6,
     mainCategory: '모바일',
-    subCategory: 'ios'
+    subCategory: 'ios',
+    members: []
   }
 ]
 
 // 현재 표시되는 결과
 const displayedResults = ref([])
-const loading = ref(false)
 const pageSize = 5
-let currentPage = 0
+let currentPage = 0;
 
 // 초기 데이터 로드
 onMounted(() => {
-  loadMore()
+  loadMore();
 })
+async function api() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const start = currentPage * pageSize;
+      if(start >= allResults.length) {
+        resolve('empty'); // 'empty' 상태 반환
+        return;
+      }
+
+      const end = start + pageSize;
+      const newItems = allResults.slice(start, end);
+
+      console.log('currentPage', currentPage);
+      console.log('start', start);
+      console.log('end', end);
+      console.log('newItems', newItems);
+
+      displayedResults.value.push(...newItems);
+      currentPage++;
+      resolve('ok'); // 정상적으로 데이터 로드가 완료된 후 'ok' 상태 반환
+    }, 300);
+  });
+}
 
 // 추가 데이터 로드 함수
-const loadMore = () => {
-  if (loading.value) return
-  
-  loading.value = true
-  
-  // 실제 API 호출을 시뮬레이션하기 위한 지연
-  setTimeout(() => {
-    const start = currentPage * pageSize
-    const end = start + pageSize
-    const newItems = allResults.slice(start, end)
-    
-    if (newItems.length > 0) {
-      displayedResults.value = [...displayedResults.value, ...newItems]
-      currentPage++
-    }
-    
-    loading.value = false
-  }, 500)
+async function loadMore({ done }) {
+  const result = await api();
+  if (result === 'empty') {
+    done('empty');  // 더 이상 데이터가 없으면 done() 호출
+  } else {
+    done('ok');  // 데이터가 로드되었으면 'ok' 호출
+  }
 }
 </script>
 
@@ -246,7 +303,10 @@ const loadMore = () => {
 }
 
 .card-header {
+  display: flex;
+  flex-direction: row;
   font-family: 'Open Sans', sans-serif;
+  align-items: center;
   font-weight: 400;
   font-size: 18px;
   color: #000;
@@ -300,11 +360,37 @@ const loadMore = () => {
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  height: 100%;
+  height: 50%;
   min-height: 50px;
 }
 
 .apply-button:hover {
   background: #1a4ca8;
 }
+
+.apply-button:disabled,
+.disabled-button {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  pointer-events: none;
+  transition: none;
+}
+
+.apply-button:disabled:hover {
+  background-color: #ccc;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    }
+  .profile-img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #020725;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+  }
 </style> 
