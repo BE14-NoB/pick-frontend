@@ -20,6 +20,7 @@
                   rel="noopener"
                   append-icon="mdi-web"
                   variant="tonal"
+                  size="small"
                   >
                     사이트 바로가기
                   </v-btn>
@@ -29,6 +30,7 @@
                     rel="noopener"
                     append-icon="mdi-github"
                     variant="tonal"
+                    size="small"
                   >
                     깃허브 레포 바로가기
                   </v-btn>
@@ -84,7 +86,9 @@
       </main>
     </div>
   
-    <div v-else>로딩 중...</div>
+    <div v-else class="text-center my-12">
+      <v-progress-circular indeterminate color="primary" size="64" />
+    </div>
   </template>
   
   
@@ -97,6 +101,8 @@
     import { useRoute } from 'vue-router';
     import CategoryChips from '@/components/project/CategoryChip.vue';
     import ThumbNailMockup from '@/components/project/ThumbNailMockup.vue';
+    import projectDummy from '@/json/project_entry.json'
+    import reviewDummy from '@/json/project_review.json'
 
     //아바타
     const avatarUrl = new URL('@/assets/img/avatar.png', import.meta.url).href
@@ -125,6 +131,8 @@
 
       } catch (err) {
         console.error('🚨 fetch 실패', err)
+        projectData.value = projectDummy[0];
+        projectReviewData.value = reviewDummy.project_review_list;
       }
     })
 
@@ -144,7 +152,7 @@
 
 .project-intro {
   display: grid;
-  grid-template-columns: 1fr 1.4fr; /* 2등분 */
+  grid-template-columns: 1fr 3fr; /* 2등분 */
   gap: 40px;
   align-items: center;
   padding: 40px 0;
@@ -192,7 +200,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #eaeaea;
+  width: 100%;
+  /* background-color: #eaeaea; */
   border-radius: 12px;
   padding: 16px;
   min-height: 200px;
@@ -212,6 +221,7 @@
 /* 태그 스타일 예시 */
 .tag-list {
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 8px;
 }
@@ -219,7 +229,7 @@
 .tag {
   background-color: #133E86;
   color: white;
-  padding: 6px 12px;
+  /* padding: 6px 12px; */
   border-radius: 20px;
   font-size: 14px;
 }
@@ -311,6 +321,7 @@
   margin: 0 8px;
   border-radius: 12px;
   background-color: #fff;
+  cursor: pointer;
 }
 ::v-deep(.v-slide-group__content) {
   padding: 20px 16px;
