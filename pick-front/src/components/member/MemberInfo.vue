@@ -5,7 +5,7 @@
     <div class="member-info-container">
       <div class="profile-section">
         <v-avatar size="120" class="avatar">
-          <img :src="userData.profileImage || defaultProfileImage" alt="Profile" />
+          <img :src="userData.profileImage || defaultProfileImage" alt="Profile" @error="handleImageError" />
         </v-avatar>
 
         <div class="name-section">
@@ -121,7 +121,17 @@ import axios from 'axios';
 const router = useRouter();
 const authStore = useAuthStore();
 
-const defaultProfileImage = 'https://cdn.vuetifyjs.com/images/parallax/material.jpg';
+// 동적 이미지 로드
+const images = import.meta.glob('@/assets/member/*.png', { eager: true });
+const imageMap = Object.fromEntries(
+  Object.entries(images).map(([path, module]) => {
+    const fileName = path.split('/').pop();
+    return [`/assets/member/${fileName}`, module.default];
+  })
+);
+
+// 기본 프로필 이미지 설정
+const defaultProfileImage = imageMap['/assets/member/profile-image-1.png'] || '/assets/member/profile-image-1.png';
 
 const userData = ref({
   profileImage: '',
@@ -149,9 +159,19 @@ const githubUsernameDisplay = computed(() => {
   return 'Github';
 });
 
+// 이미지 로드 에러 핸들링
+const handleImageError = () => {
+  userData.value.profileImage = defaultProfileImage;
+};
+
 const fetchUserData = async () => {
   if (authStore.currentUser) {
-    userData.value = { ...authStore.currentUser };
+    userData.value = {
+      ...authStore.currentUser,
+      profileImage: authStore.currentUser.profileImage?.startsWith('http')
+        ? authStore.currentUser.profileImage
+        : imageMap[authStore.currentUser.profileImage] || defaultProfileImage,
+    };
   } else {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     if (!currentUser) {
@@ -161,8 +181,13 @@ const fetchUserData = async () => {
     }
     const user = await findUserByEmail(currentUser.email);
     if (user) {
-      userData.value = { ...user };
-      authStore.login(user);
+      userData.value = {
+        ...user,
+        profileImage: user.profileImage?.startsWith('http')
+          ? user.profileImage
+          : imageMap[user.profileImage] || defaultProfileImage,
+      };
+      authStore.login(userData.value); // authStore에 저장
     } else {
       alert('사용자 정보를 찾을 수 없습니다.');
       router.push('/member/login');
@@ -226,6 +251,9 @@ const disconnectGithub = async () => {
 
 onMounted(() => {
   fetchUserData();
+  console.log('MemberInfo Image Map:', imageMap);
+  console.log('MemberInfo Profile Image:', userData.value.profileImage);
+  console.log('MemberInfo Default Image:', defaultProfileImage);
 });
 
 const goToEdit = () => {
