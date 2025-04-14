@@ -1,6 +1,19 @@
 <template>
+    
     <div class="project-detail-page" v-if="projectData">
+      <v-btn
+        :to="'/project-list'"
+        prepend-icon="mdi-view-list"
+        variant="text"
+        size="small"
+        color="#C6C6C6"
+        style="padding: 0"
+      >
+        전체 목록 보기
+      </v-btn>
+
       <main class="main-content">
+        
         <section class="project-intro">
             <div class="left-text">
                 <div class="project-name">{{ projectData.name }}</div>
@@ -15,7 +28,7 @@
                 </div>
                 <div class="link-button">
                   <v-btn
-                  :href="projectData.project_url"
+                  to="/"
                   target="_blank"
                   rel="noopener"
                   append-icon="mdi-web"
@@ -39,7 +52,7 @@
               
             </div>
             <div class="right-image">
-                <ThumbNailMockup />
+              <ThumbNailMockup :thumbnailUrl="thumbnailUrl" />
             </div>
         </section>
         <v-divider class="my-4" style="border-color: #333;" />
@@ -99,7 +112,8 @@
     import { marked } from 'marked'
     import {ref, computed, onMounted, watch} from 'vue';
     import { useRoute } from 'vue-router';
-    import CategoryChips from '@/components/project/CategoryChip.vue';
+    import CategoryChips from '@/components/project/CategoryChip.vue'
+    import defaultImage from '@/assets/member/default-image.png'
     import ThumbNailMockup from '@/components/project/ThumbNailMockup.vue';
     import projectDummy from '@/json/project_entry.json'
     import reviewDummy from '@/json/project_review.json'
@@ -111,6 +125,20 @@
     const id = route.params.id  
     const projectData = ref(null)
     const projectReviewData = ref([]);
+
+    // 이미지 매핑
+    const images = import.meta.glob('@/assets/member/*.png', { eager: true })
+    const imageMap = Object.fromEntries(
+      Object.entries(images).map(([path, mod]) => [
+        `/assets/member/${path.split('/').pop()}`,
+        mod.default,
+      ])
+    )
+
+    const thumbnailUrl = computed(() =>
+      imageMap[projectData.value?.thumbnail_image] || defaultImage
+    )
+
 
     // 프로젝트 정보 & 후기 데이터 병렬 fetch 
     onMounted(async () => {
@@ -131,7 +159,7 @@
 
       } catch (err) {
         console.error('🚨 fetch 실패', err)
-        projectData.value = projectDummy[0];
+        projectData.value = projectDummy[id-1];
         projectReviewData.value = reviewDummy.project_review_list;
       }
     })
@@ -146,7 +174,7 @@
     background-color: #F2F2F2;
     width: 55%;
     margin: 0 auto ;
-    padding: 5% 5%;
+    padding: 1% 5% 5% 5% ;
     margin-bottom: 120px;
 }
 
@@ -180,6 +208,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  align-items: flex-start; 
 }
 .project-name{
     font-size: 30px;
@@ -222,18 +251,9 @@
 .tag-list {
   display: flex;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 8px;
 }
-
-.tag {
-  background-color: #133E86;
-  color: white;
-  /* padding: 6px 12px; */
-  border-radius: 20px;
-  font-size: 14px;
-}
-
 
 /* 마크다운 */
 .markdown-content p {

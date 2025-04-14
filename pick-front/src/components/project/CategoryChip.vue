@@ -1,32 +1,27 @@
 <template>
-    <v-card-actions class="chip-wrapper px-6 pb-4 pt-0">
-      <v-chip class="custom-chip" :ripple="false" :clickable="true" variant="flat" >
-        # {{ mainCategory }}
-      </v-chip>
-      <v-chip class="custom-chip" :ripple="false" :clickable="true" variant="flat">
-        # {{ subCategory }}
-      </v-chip>
-    </v-card-actions>
+  <v-card-actions class="chip-wrapper px-6 pb-4 pt-0">
+    <v-chip class="custom-chip" :ripple="false" :clickable="true" variant="flat">
+      # {{ mainCategory }}
+    </v-chip>
+    <v-chip class="custom-chip" :ripple="false" :clickable="true" variant="flat">
+      # {{ subCategory }}
+    </v-chip>
+  </v-card-actions>
 </template>
-
-
 
 <script setup>
 defineProps({
-    mainCategory: String,
-    subCategory: String
+  mainCategory: String,
+  subCategory: String
 })
 </script>
 
-
 <style>
-
-
 .chip-wrapper {
-  /* display: flex; */
-  /* justify-content: flex-end; */
+  display: flex;
+  justify-content: flex-start;
+  align-items:flex-start;
   gap: 8px;
-  padding: 0 16px 16px;
 }
 
 .custom-chip {
@@ -44,6 +39,4 @@ defineProps({
 .custom-chip:hover {
   background-color: #e0e0e0;
 }
-
-
 </style>

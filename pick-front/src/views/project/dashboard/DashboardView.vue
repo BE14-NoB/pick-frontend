@@ -66,6 +66,8 @@
     import MeetingWidget from '@/components/project/MeetingWidget.vue';
     import ScheduleWidget from '@/components/project/ScheduleWidget.vue';
     import MemberWidget from '@/components/project/MemberWidget.vue';
+    import gitDummy from '@/json/project_git_info.json';
+    import projectDummy from '@/json/project_entry.json';
     import {ref, onMounted, computed} from 'vue';
     import {useRoute} from 'vue-router';
     import dayjs from 'dayjs'
@@ -78,17 +80,23 @@
 
 
     const dday = computed(() => {
-    if (!project.value) return 0
-    const end = dayjs(project.value.end_date)
-    return end.diff(dayjs(), 'day')
+      if (!project.value) return 0
+      const end = dayjs(project.value.end_date).endOf('day')
+      return end.diff(dayjs(), 'day') // or +1 if needed
     })
+
     const elapsedDays = computed(() => {
-    if (!project.value) return 0
-    const start = dayjs(project.value.start_date)
-    return dayjs().diff(start, 'day')
+      if (!project.value) return 0
+      const start = dayjs(project.value.start_date).startOf('day')
+      return dayjs().diff(start, 'day')
     })
-    const startDate = computed(() => dayjs(project.value?.start_date).format('YY.MM.DD'))
-    const endDate = computed(() => dayjs(project.value?.end_date).format('YY.MM.DD'))
+
+    const startDate = computed(() =>
+      project.value?.start_date ? dayjs(project.value.start_date).format('YY.MM.DD') : ''
+    )
+    const endDate = computed(() =>
+      project.value?.end_date ? dayjs(project.value.end_date).format('YY.MM.DD') : ''
+    )
 
     const commit = computed(() => gitInfo.value?.commit || {
     branch: { "branch-list": [], count: 0 },
@@ -101,21 +109,24 @@
     // 프로젝트 정보 & 깃 정보 가져오기
     onMounted(async () => {
       try {
-        const [gitRes, projectRes] = await Promise.all([
-            fetch('http://localhost:8083/git-info'),
-            fetch(`http://localhost:8081/${id}`)
-        ])
+          const [gitRes, projectRes] = await Promise.all([
+              fetch('http://localhost:8083/git-info'),
+              fetch(`http://localhost:8081/${id}`)
+          ])
 
-        if (!gitRes.ok || !projectRes.ok) throw new Error('요청 실패')
+          if (!gitRes.ok || !projectRes.ok) throw new Error('요청 실패')
 
-        gitInfo.value = await gitRes.json()
-        project.value = await projectRes.json()
+          gitInfo.value = await gitRes.json()
+          project.value = await projectRes.json()
 
-        console.log('✅ Git Info:', gitInfo.value)
-        console.log('✅ Project Info:', project.value)
-    } catch (err) {
-        console.error('❌ 데이터 불러오기 실패:', err)
-    }
+          console.log('✅ Git Info:', gitInfo.value)
+          console.log('✅ Project Info:', project.value)
+      } catch (err) {
+          console.error('❌ 데이터 불러오기 실패:', err)
+          gitInfo.value = gitDummy['git-info'];
+          project.value = projectDummy[0];
+
+      }
     })
 
 </script>

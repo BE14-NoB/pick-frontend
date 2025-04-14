@@ -10,7 +10,7 @@
               :id="Number(card.id)"
               :title="card.name"
               :subtitle="card.introduction"
-              :imgSrc="card.imgSrc || defaultImage"
+              :imgSrc="card.thumbnail_image || defaultImage"
               :mainCategory="card.main_category"
               :subCategory="card.sub_category"
             />
@@ -46,10 +46,10 @@
         <ProjectCard
           v-for="(card, index) in paginatedData"
           :key="index"
-          :id="Number(card.id)-1"
+          :id="Number(card.id)"
           :title="card.name"
           :subtitle="card.introduction"
-          :imgSrc="defaultImage"
+          :imgSrc="card.thumbnail_image || defaultImage"
           :mainCategory="card.main_category"
           :subCategory="card.sub_category"
         />
@@ -77,6 +77,7 @@
   import { ref, computed, onMounted, watch } from 'vue'
   import projectDummy from '@/json/project_list.json'
   import ProjectCard from '@/components/common/ProjectCard.vue'
+  import projectCommonDummy from '@/json/projects.json';
   import SearchBox from '@/components/common/SearchBox.vue'
   import SearchComboBox from '@/components/common/SearchComboBox.vue'
   
@@ -87,7 +88,7 @@
   const page = ref(1)
   const itemsPerPage = 12
   
-  const defaultImage = new URL('@/assets/img/pick_title.png', import.meta.url).href
+  const defaultImage = new URL('@/assets/member/default-image.png', import.meta.url).href
   
   const carouselChunks = ref([])
   
@@ -137,17 +138,34 @@
       const res = await fetch('http://localhost:8080/project_list')
       const result = await res.json()
       if (Array.isArray(result.project_list)) {
-        cardData.value = result.project_list
+        cardData.value = result.project_list.map(project => ({
+          ...project,
+          thumbnail_image: imageMap[project.thumbnail_image] || project.thumbnail_image, // 동적 이미지 처리
+        }));
+
       } else {
         throw new Error('Invalid server response format')
       }
     } catch (err) {
       console.error('🚨 fetch 실패, 더미 데이터로 대체합니다.', err)
-      cardData.value = projectDummy.project_list
+      cardData.value = projectDummy.project_list.map(project => ({
+        ...project,
+        thumbnail_image: imageMap[project.thumbnail_image] || project.thumbnail_image, // 동적 이미지 처리
+      }));
+
     } finally {
       loading.value = false
     }
   })
+
+  // 이미지 
+  const images = import.meta.glob('@/assets/member/*.png', { eager: true });
+  const imageMap = Object.fromEntries(
+    Object.entries(images).map(([path, module]) => [
+      `/assets/member/${path.split('/').pop()}`,
+      module.default,
+    ])
+  );
 
   </script>
   
