@@ -5,8 +5,8 @@
                 contentLabel="PR 설명" @submit="$emit('submit')" @cancel="$emit('cancel')" />
         </div>
         <div class="form-right">
-            <ProjectDropdwon label="리뷰어" v-model="reviewer" :options="reviewerOptions" :disabled="true"/>
-            <ProjectDropdwon label="프로젝트" v-model="creator" :options="projectOptions" :disabled="false"/>
+            <ProjectDropdwon label="리뷰어" v-model="reviewer" :options="reviewerOptions" :disabled="false"/>
+            <ProjectDropdwon label="프로젝트" v-model="creator" :options="projectOptions" :disabled="true"/>
         </div>
     </div>
 </template>
