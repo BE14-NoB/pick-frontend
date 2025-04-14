@@ -1,6 +1,6 @@
 <template>
         <div class="page-header">
-            <h1 class="page-header-title">PICK</h1>
+            <h1 class="page-header-title">프로젝트 매칭</h1>
         </div>
         <div class="content-wrapper">
             <main class="content">
