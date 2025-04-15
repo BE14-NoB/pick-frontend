@@ -59,12 +59,34 @@
             class="meta-select readonly-select"
             chips
             readonly
-          />
+          >
+            <template #selection="{ item }">
+              <v-chip class="me-1" size="small">
+                <v-avatar start size="18">
+                  <img :src="imageMap[item.profileImage] || profile" />
+                </v-avatar>
+                {{ item.name }}
+              </v-chip>
+            </template>
+          </v-select>
+
+          <!-- <v-select
+            v-model="selectedAuthor"
+            :items="memberList"
+            item-title="name"
+            return-object
+            variant="underlined"
+            density="comfortable"
+            class="meta-select readonly-select"
+            chips
+            readonly
+          /> -->
         </div>
   
         <!-- 참여자 -->
         <div class="meta-row participants">
           <div class="meta-label">👥 참여자</div>
+
           <v-select
             v-model="selectedParticipants"
             :items="memberList"
@@ -76,7 +98,31 @@
             class="meta-select readonly-select"
             chips
             readonly
-          />
+          >
+            <template #selection="{ item }">
+              <v-chip class="me-1" size="small">
+                <v-avatar start size="18">
+                  <img :src="imageMap[item.profileImage] || profile" />
+                </v-avatar>
+                {{ item.name }}
+              </v-chip>
+            </template>
+          </v-select>
+
+
+
+          <!-- <v-select
+            v-model="selectedParticipants"
+            :items="memberList"
+            item-title="name"
+            return-object
+            multiple
+            variant="underlined"
+            density="comfortable"
+            class="meta-select readonly-select"
+            chips
+            readonly
+          /> -->
         </div>
   
         <!-- 템플릿 -->
@@ -147,6 +193,8 @@
     } catch (err) {
       console.error('❌ 회의록 불러오기 실패:', err);
       meeting.value = meetingDummy['meetings'].find(m => String(m.id) === String(id));
+      selectedAuthor.value = meeting.value.author;
+      selectedParticipants.value = meeting.value.participants;
     }
 
     loading.value = false;
