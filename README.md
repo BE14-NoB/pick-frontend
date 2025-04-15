@@ -23,13 +23,14 @@
 #### [🛠️ 주요 기능](#-주요-기능) <br>
 #### [📅 개발 사이클](#-Component) <br>
 #### [🙆‍♀️ 와이어 프레임](#-와이어-프레임) <br>
-#### [🪄 기능 명세서](#-기능-명세서) <br>
+#### [🪄 스토리 보드](#-스토리-보드) <br>
+#### [🛜 서버](#-서버) <br>
 #### [📱 테스트 케이스](#-테스트-케이스) <br>
 #### [📑 트러블 슈팅](#-트러블-슈팅) <br>
 #### [🔜 향후 확장 계획](#-향후-확장-계획) <br>
 #### [🍪 동료 평가](#-동료-평가) <br>
 
-<br>
+<br><br>
 
 ## 💡 Tech Stack
 ### 🌿 Backend
@@ -47,7 +48,7 @@
 ### 🔧 Tools
 <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"> <img src="https://img.shields.io/badge/ERD%20cloud-%230000FF.svg?style=flat&logo=erlang&logoColor=white"> <img src="https://img.shields.io/badge/DA%23-0B6121.svg?style=flat&logo=draw.io&logoColor=white"> ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-2A2A2A.svg?style=flat&logo=intellij-idea&logoColor=white) <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/> 
 
-<br>
+<br><br>
 
 ## 📢 프로젝트 개요
 ### 1. 프로젝트 주제
@@ -65,7 +66,7 @@
 
 이러한 두 플랫폼의 아쉬운 점을 보완하고, 각각의 장점만을 살려 <b>팀원 매칭부터 프로젝트 관리까지 한 번에 가능한 올인원 플랫폼, Pick</b>이 탄생했습니다. Pick은 효율적인 팀 구성과 유연한 협업, 체계적인 진행 관리를 모두 지원하여, 사이드 프로젝트의 시작부터 완성까지 모든 과정을 더 쉽고 효율적으로 만들어줍니다.
 
-<br>
+<br><br>
 
 ## 🛠️ 주요 기능
 
@@ -84,25 +85,62 @@
 <br><br>
 
 ## 📅 개발 사이클
-<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/vuetify.png" alt="vuetify"/><br>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/vuetify.png" alt="vuetify" width="800"/><br>
 Vuetify UI 라이브러리를 사용하여 모두가 통일된 컴포넌트를 재사용하여 효율적인 작업을 진행이 가능했다.
 
 
-<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-1.png" alt="components-1"/><br>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-1.png" alt="components-1" width="800"/><br>
 SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 부분은 동적으로 다시 생성하여 사용자에게 편의성을 제공함
 
 
-<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-2.png" alt="components-2"/><br>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-2.png" alt="components-2" width="800"/><br>
 공통으로 사용되는 헤더, 푸터, 드롭다운, 버튼, 사이드바 등을 컴포넌트화 시켜 재사용하여 통일성을 가지고 생산성을 높였다
 
 <br><br>
 
 ## 🙆‍♀️ 와이어 프레임
-<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/와이어 프레임 최종본.png" alt="와이어-프레임-최종본"/><br>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/와이어 프레임 최종본.png" alt="와이어-프레임-최종본" width="800"/><br>
 
 <br><br>
 
-💭 프론트 화면 구성
+## 🛜 Server
+###  Eureka 서버 + Config 서버 + GateWay + Frontend + Git REST API
+
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/gateway-server-design.png" alt="게이트웨이-서버-디자인" width="800"/><br>
+<br>
+
+
+<br><br>
+
+## 🙆‍♀️ 스토리 보드
+
+  #### 메인 페이지
+  <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/storyboard-1.png" width = "800"/><br>
+  
+  <br>
+
+  #### 매칭 페이지
+  <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/storyboard-2.png" width = "800"/><br>
+  
+  <br>
+
+  #### 대시보드
+  <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/storyboard-3.png" width = "800"/><br>
+  
+  <br>
+
+  #### 전체 프로젝트 리스트
+  <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/storyboard-4.png" width = "800"/><br>
+  
+  <br>
+
+  #### 프로젝트 디테일 페이지
+  <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/storyboard-5.png" width = "800"/><br>
+  
+  <br><br>
+
+
+## 📱 테스트 케이스
 
 ### 👤 회원
 <details>
@@ -258,732 +296,23 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 
 <br><br>
 
-## 🙆‍♀️ 기능 명세서
-  
-  🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vScA7f_mLFChQQ5SMSU5AAC6-O3h8PYJg0H-dxRvMKHrePOtW3VIgnlNMcAEWP1Xy8O8LcMe4OFuCWe/pubhtml?gid=0&single=true"> 요구사항 명세 자세히 보기 </a>
-  
-  <br>
-  
-  <img src = "" width = "900"/>
-  
-  <br><br>
-
-<br>
-<br>
-
-
-## 🗃️ 프론트 화면 구성 단계
-
-### 1. 와이어 프레임
-<img src=""/>
-<br>
-
-### 2. 스토리 보드
-<img src=""/>
-<br>
-
-<br>
-
-
-## 🛜 Server
-### 1. Eureka 서버 + Config 서버 + GateWay
-
-<img src = "" width = "900"/>
-
-### 2. Actuator
-<img src = "" width = "900"/>
-
-<br>
-
 ## 🚩
-
-## 📱 API 테스트
 ### 👤 회원
-
-<details>
-     <summary><b>회원</b></summary>
-     <details>
-          <summary>회원 가입</summary>
-          <details>
-	          <summary>성공</summary>
-	          <p alian="center">
-	          <img src="" width = "600"/>
-	          </p>
-          </details>
-          <details>
-	          <summary>실패 400 이메일 중복</summary>
-	          <p alian="center">
-	          <img src="" width = "600" />
-	          </p>
-          </details>
-     </details>
-     <details>
-	     <summary>로그인(성공 시 토큰 반환)</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-	     </p>
-     </details>
-     <details>
-	     <summary>로그아웃(토큰 제거)</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-	     </p>
-     </details>
-     <details>
-	     <summary>회원 정보 수정</summary>
-          <details>
-               <summary>수정1</summary>
-	          <p alian="center">
-	          <img src="" width = "600"/>
-	          </p>
-          </details>
-          <details>
-               <summary>수정2</summary>
-	          <p alian="center">
-	          <img src="" width = "600"/>
-	          </p>
-          </details>
-     </details>
-     <details>
-	     <summary>비밀번호 찾기</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-	     </p>
-     </details>
-     <details>
-	     <summary>이메일 찾기</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-	     </p>
-     </details>
-     <details>
-	     <summary>회원 전체 조회</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-	     </p>
-     </details>
-     <details>
-	     <summary>ID로 회원 조회</summary>
-	     <p alian="center">
-	     <img src=""/>
-	     </p>
-     </details>
-     <details>
-	     <summary>이메일 중복 체크</summary>
-          <details>
-               <summary>사용 가능 이메일</summary>
-     	     <p alian="center">
-     	     <img src="" width = "600"/>
-     	     </p>
-          </details>
-          <details>
-               <summary>사용 불가능 이메일</summary>
-     	     <p alian="center">
-     	     <img src="" width = "600"/>
-               </p>
-          </details>
-     </details>
-     <details>
-	     <summary>전화번호 중복 체크</summary>
-          <details>
-               <summary>사용 가능 전화번호</summary>
-     	     <p alian="center">
-     	     <img src="" width = "600"/>
-     	     </p>
-          </details>
-          <details>
-               <summary>사용 불가 전화번호</summary>
-     	     <p alian="center">
-     	     <img src="" width = "600"/>
-               </p>
-          </details>
-     </details>
-     <details>
-	     <summary>회원 상태 조회</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-	     </p>
-     </details>
-          <details>
-	     <summary>회원 권한 조회</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-	     </p>
-     </details>
-</details>
-
-<details>
-     <summary><b>프로필</b></summary>
-     <details>
-          <summary>회원 프로필 조회</summary>
-          <p align="center">
-          <img src="" width = "600"/>
-          </p>
-     </details>
-     <details>
-          <summary>회원 프로필 정보 수정</summary>
-          <p align="center">
-          <img src="" width = "600"/>
-          </p>
-     </details>
-</details>
-
-<details>
-     <summary><b>프로그래밍 언어</b></summary>
-     <details>
-          <summary>프로그래밍 언어 조회</summary>
-          <p align="center">
-          <img src="" width = "600"/>
-          </p>
-     </details>
-     <details>
-          <summary>프로그래밍 언어 추가</summary>
-          <details>
-               <summary>성공(권한 있음)</summary>
-               <p align="center">
-               <img src="" width = "600"/>
-               </p>
-          </details>
-          <details>
-               <summary>실패(권한 없음)</summary>
-               <p align="center">
-               <img src="" width = "600"/>
-               </p>
-          </details>   
-     </details>
-     <details>
-	     <summary>프로그래밍 언어 삭제</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-	     </p>
-     </details>
-     <details>
-	     <summary>회원별 사용 언어 조회</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-		     기능 개발 예정
-	     </p>
-     </details>
-     <details>
-	     <summary>회원별 사용언어 추가</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-		     기능 개발 예정
-	     </p>
-     </details>
-     <details>
-	     <summary>회원별 사용언어 수정</summary>
-	     <p alian="center">
-	     <img src="" width = "600"/>
-		     기능 개발 예정
-	     </p>
-     </details>
-</details>
-
 ### 🔔 미션
-<details>
-	<summary><b>도전과제</b></summary>
-	<details>
-		<summary>도전과제 목록 전체 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-	<details>
-		<summary>도전과제 추가</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-	<details>
-		<summary>도전과제 수정</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-	<details>
-		<summary>도전과제 삭제</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-	<details>
-		<summary>도전과제 진행도 증가</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-	<details>
-		<summary>회원별 도전과제 목록 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-	<details>
-		<summary>회원이 달성한 도전과제 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>			
-	<details>
-		<summary>회원이 달성하지 못한 도전과제 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-</details>
-
-<!-- 뱃지 -->
-<details>
-	<summary><b>뱃지</b></summary>
-	<details>
-		<summary>뱃지 목록 전체 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-	<details>
-		<summary>뱃지 추가</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-	<details>
-		<summary>뱃지 수정</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-	<details>
-		<summary>뱃지 삭제</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>			
-	<details>
-		<summary>뱃지 부여 및 레벨 증가</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-	<details>
-		<summary>챌린지별 뱃지 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>	
-	<details>
-		<summary>회원이 획득한 뱃지 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>	
-</details>
-
-<!-- 일일미션 -->
-<details>
-	<summary><b>일일미션</b></summary>
-	<details>
-		<summary>일일미션 목록 전체 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>	
-	<details>
-		<summary>일일미션 추가</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>	
-	<details>
-		<summary>일일미션 수정</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>		
-	<details>
-		<summary>일일미션 삭제</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>		
-	<details>
-		<summary>회원에게 일일미션 부여</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>		
-	<details>
-		<summary>회원별 일일미션 목록 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>		
-	<details>
-		<summary>회원이 수행한 일일미션 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>		
-	<details>
-		<summary>회원이 수행하지 못한 일일미션 조회</summary>
-		<p alian="center">
-		<img src="" width="600" />
-		</p>
-	</details>
-</details>
-
 ### 📜 게시글
-<!-- 게시글 -->
-<details>
-	<summary><b>게시판</b></summary>
-	<details>
-		<summary>게시글 조회</summary>
-		<p alian="center">
-		<img src=""  width="600"/>
-		</p>
-	</details>
-	<details>
-		<summary>단일 글, 댓글 사진 조회</summary>
-		<p alian="center">
-		<img src=""  width="600"/>
-		</p>
-	</details>
-	<details>
-		<summary>제목으로 검색</summary>
-		<p alian="center">
-		<img src=""  width="600"/>
-		</p>
-	</details>
-	<details>
-		<summary>카테고리 별 조회</summary>
-		<p alian="center">
-		<img src=""  width="600"/>
-		</p>
-	</details>
-	<details>
-		<summary>게시글 등록</summary>
-		<p alian="center">
-		<img src=""  width="600"/>
-		</p>
-	</details>
-	<details>
-		<summary>게시글 삭제</summary>
-		<details>
-			<summary>규제에 의한 삭제</summary>
-			<p alian="center">
-			<img src=""  width="600"/>
-			</p>
-		</details>
-		<details>
-			<summary>삭제 성공</summary>
-			<p alian="center">
-			<img src=""  width="600"/>
-			</p>
-		</details>
-		<details>
-			<summary>없는 게시글 삭제 시도</summary>
-			<p alian="center">
-			<img src=""  width="600"/>
-			</p>
-		</details>
-		<details>
-			<summary>이미 삭제된 게시글 삭제 시도</summary>
-			<p alian="center">
-			<img src=""  width="600"/>
-			</p>
-		</details>
-	</details>
-</details>
-
 ### 🤼 매칭
-<details>
-<summary><b>매칭</b></summary>
-     
-<details>
-     <summary>전체 매칭방 목록 조회</summary>
-     <p align="center">
-          <img src=""  width="600"/>
-     </p>
-</details>
-
-<details>
-     <summary>매칭방 id로 매칭방 조회</summary>
-     <p align="center">
-       <img src=""  width="600"/>
-     </p>
-</details>
-
-<details>
-     <summary>기술 카테고리 id로 매칭방 조회</summary>
-     <p align="center">
-       <img src=""  width="600"/>
-     </p>
-</details>
-
-<details>
-     <summary>매칭방 등록</summary>
-     <p align="center">
-       <img src=""  width="600"/>
-     </p>
-</details>
-
-<details>
-     <summary>매칭방 수정</summary>
-     <p align="center">
-       <img src=""  width="600"/>
-     </p>
-</details>
-
-<details>
-     <summary>매칭방 삭제</summary>
-     <p align="center">
-       <img src=""  width="600"/>
-     </p>
-</details>
-
-<details>
-     <summary>조건에 맞은 매칭방 조회</summary>
-     <p align="center">
-       <img src=""  width="600"/>
-     </p>
-</details>
-
-<details>
-     <summary>매칭방 신청</summary>
-     <p align="center">
-       <img src=""  width="600"/>
-     </p>
-</details>
-
-<details>
-     <summary>매칭방 신청 취소</summary>
-     <p align="center">
-       <img src=""  width="600"/>
-     </p>
-</details>
-
-<details>
-     <summary>신청자 수락</summary>
-     <p align="center">
-       <img src=""  width="600"/>
-     </p>
-</details>
-
-<details>
-     <summary>수락한 신청자만 조회</summary>
-     <p align="center">
-       <img src=""  width="600"/>
-     </p>
-</details>
-</details>
-
-<details>
-     <summary><b>기술 카테고리</b></summary>
-     
-<details>
-          <summary>기술 카테고리 전체 조회</summary>
-          <p align="center">
-            <img src=""  width="600"/>
-          </p>
-</details>
-
-<details>
-          <summary>기술 카테고리 id로 조회</summary>
-          <p align="center">
-            <img src=""  width="600"/>
-          </p>
-</details>
-
-<details>
-          <summary>상위 카테고리만 조회</summary>
-          <p align="center">
-            <img src=""  width="600"/>
-          </p>
-</details>
-
-<details>
-          <summary>기술 카테고리 id로 하위 카테고리 조회</summary>
-          <p align="center">
-            <img src=""  width="600"/>
-          </p>
-</details>
-
-<details>
-          <summary>기술 카테고리 등록</summary>
-          <p align="center">
-            <img src=""  width="600"/>
-          </p>
-</details>
-
-<details>
-          <summary>기술 카테고리 수정</summary>
-          <p align="center">
-            <img src=""  width="600"/>
-          </p>
-</details>
-
-<details>
-          <summary>기술 카테고리 삭제</summary>
-          <p align="center">
-            <img src=""  width="600"/>
-          </p>
-</details>
-</details>
-
 ### 🗂️ 프로젝트
-<details>
-     <summary><b>프로젝트</b></summary>
-     <details>
-          <summary>전체 프로젝트 목록 조회</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-     <details>
-          <summary>진행중인 프로젝트 목록 조회</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-     <details>
-          <summary>매칭 중인 프로젝트 목록 조회</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-     <details>
-          <summary>프로젝트 이름 키워드로 검색</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-     <details>
-          <summary>프로젝트 기술 분류 키워드로 검색</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-     <details>
-          <summary>프로젝트 이름 & 기술 분류키워드로 검색</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-     <details>
-          <summary>프로젝트 상세 조회</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-     <details>
-          <summary>참여 중인 프로젝트 정보 조회 (프로젝트 방 입장)</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-     <details>
-          <summary>프로젝트 방 생성</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-</details>
-
-
-<details>
-     <summary><b>회의록</b></summary>
-     <details>
-          <summary>프로젝트별 회의록 목록 조회</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-     <details>
-          <summary>팀원이 아닐 경우</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-     <details>
-          <summary>회의록 작성</summary>
-          <p align="center">
-            <img src="" width="600"/>
-          </p>
-     </details>
-</details>
-
 ### 🚨 신고
-<details>
-	
-<summary><b>신고</b></summary>
-	<details>
-		<summary>모든 신고 목록 조회</summary>
-		<img src="" width="600"/>
-	</details>
-	<details>
-		<summary>특정 회원 신고 목록 조회</summary>
-		<img src="" width="600" />
-	</details>
- 	<details>
-		<summary>상태별 신고 목록 조회</summary>
-		<img src="" width="600" />
-	</details>
- 	<details>
-		<summary>삭제 여부에 따른 신고 목록 조회</summary>
-		<img src="" width="600" />
-	</details>
- 	<details>
-		<summary>신고 사유 등록</summary>
-		<img src="" width="600" />
-	</details>
- 	<details>
-		<summary>신고 등록</summary>
-		<img src="" width="600" />
-	</details>
- 	<details>
-		<summary>신고 내역 삭제(soft delete)</summary>
-		<img src="" width="600" />
-	</details>
- 	<details>
-		<summary>신고 처리 상태 수정</summary>
-		<img src="" width="600" />
-	</details>
-</details>
-
-<details>
-<summary><b>규제</b></summary>
-	<details>
-		<summary>모든 규제 목록 조회</summary>
-		<img src="" width="600" />
-	</details>
- 	<details>
-		<summary>특정 회원 규제 목록 조회</summary>
-		<img src="" width="600" />
-	</details>
- 	<details>
-		<summary>삭제 여부에 따른 규제 목록 조회</summary>
-		<img src="" width="600" />
-	</details>
-  	<details>
-		<summary>규제 등록</summary>
-		<img src="" width="600" />
-	</details>
-  	<details>
-		<summary>규제 삭제(soft delete)</summary>
-		<img src="" width="600" />
-	</details>
-</details>
-
 ## 📑 API 명세서
-<details>
 
-<summary>API 명세서</summary>
-<img src = ""/>
-</details>
+<br><br>
+
+## 📑 트러블 슈팅
+
+<br><br>
 
 ## 🔜 향후 확장 계획
-`#Webhook` `#회의록 템플릿` `챗봇` `깃허브 파트너십 체결`
+`#백엔드 전체 연동` `#Webhook 적용` `#WebSocket 적용` `#보안 및 예외처리` `#리팩토링`
 
 <br>
 
