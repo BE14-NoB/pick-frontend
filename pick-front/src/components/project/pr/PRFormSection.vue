@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
 import FormEditor from '@/components/project/FormEditor.vue'
 import ProjectDropdwon from '@/components/project/ProjectDropdown.vue'
 
@@ -22,7 +21,7 @@ const content = defineModel('content')
 const reviewer = defineModel('reviewer')
 const creator = defineModel('creator')
 
-// 드롭다운 옵션은 이 컴포넌트 내부에서 정의
+// 드롭다운 옵션 정의
 const reviewerOptions = [
     { label: '석키키키', value: 'yehang218' },
     { label: '시냥주', value: 'swjang7269' },

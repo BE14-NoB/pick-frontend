@@ -72,7 +72,6 @@ defineEmits(['update:titleModel', 'update:contentModel', 'submit', 'cancel'])
     resize: none;
 }
 
-/* 버튼 그룹 스타일 */
 .button-group {
     display: flex;
     justify-content: flex-end;

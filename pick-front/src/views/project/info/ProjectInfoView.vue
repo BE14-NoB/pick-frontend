@@ -82,7 +82,7 @@
   
   onMounted(async () => {
     try {
-      const res = await fetch(`http://localhost:8080/projects/${projectId}`)
+      const res = await fetch(`http://localhost:8085/0`)
       if (!res.ok) throw new Error('데이터 없음')
       const data = await res.json()
       project.value = data
@@ -113,9 +113,11 @@
       sub_category: sub,
       thumbnail_image: thumbnailUrl.value
     }
+
+    console.log(updatedData)
   
     try {
-      await fetch(`http://localhost:8080/projects/${projectId}`, {
+      await fetch(`http://localhost:8085/0`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedData)
