@@ -1,6 +1,6 @@
 <template>
-    <div class="pending-matching">
-      <h2 class=page-title>승인 대기 프로젝트</h2>
+    <div class="recruiting-matching">
+      <h2 class=page-title>모집 중인 프로젝트</h2>
       <div class="content-container">
         <v-infinite-scroll 
         v-if="isInit"
@@ -57,26 +57,30 @@
                 </div>
               </div>
               <button 
-    @click.stop="matchingApply(index)"
-    :class="[
-  'apply-button',
-  {
-    'pending-button': result.status === '승인대기',
-    'rejected-button': result.status === '거절',
-    'cancelled-button': result.status === '취소',
-    'completed-button': result.status === '모집완료',
-  }
-]"
-  > {{getButtonText(result.status)}}
-</button>
-  
+                @click.stop="matchingApply(index)"
+                :class="[
+                'apply-button',
+                {
+                    'recruiting-button': result.status === '모집중',
+                    'cancelled-button': result.status === '취소',
+                }
+                ]"
+            > {{getButtonText(result.status)}}
+            </button>
+<DecisionModal
+  v-if="modalVisible"
+  :onClose="handleModalClose"
+  :onStart="handleStart"
+  :onCancel="() => handleCancel(selectedCardIndex)"
+  :selectedIndex="selectedCardIndex" 
+/>
               <template v-if="openedCardIndex === index">
                 <TeamMemberCard :members="result.members" />
               </template>
             </div>
           </template>
           <template v-slot:empty>
-            <v-alert type="warning">더 이상 신청한 매칭이 없습니다.</v-alert>
+            <v-alert type="warning">더 이상 모집 중인 매칭이 없습니다.</v-alert>
           </template>
         </v-infinite-scroll>
       </div>
@@ -86,40 +90,57 @@
   <script setup>
   import { ref, onMounted, nextTick, onBeforeMount } from 'vue'
   import TeamMemberCard from '@/components/matching/TeamMemberCard.vue'
-  import pendingList from '@/json/pending_list.json'
-  
+  import recruitingList from '@/json/recruiting_list.json'
+  import { useRouter } from 'vue-router'
+  import DecisionModal from '@/components/matching/DecisionModal.vue'
+
+  const router = useRouter()
   const isInit = ref(false)
   const openedCardIndex = ref(false)
   const teamMate = (index) => {
     openedCardIndex.value = openedCardIndex.value === index ? false : index
   }
-  
+  const modalVisible = ref(false)
+  const selectedCardIndex = ref(null)
 
 // 버튼 텍스트 반환 함수
 const getButtonText = (status) => {
   switch(status) {
-    case '승인대기':
-      return '승인 대기'
-    case '거절':
-      return '거절됨'
+    case '모집중':
+      return '모집 중'
     case '취소':
       return '취소됨'
-    case '모집완료':
-      return '모집 완료'
-    default:
-      return '신청'
+  }
+}
+const matchingApply = (index) => {
+  const result = displayedResults.value[index]
+  if (result.status === '모집중') {
+    selectedCardIndex.value = index
+    modalVisible.value = true
+  } else if (result.status === '모집완료') {
+    alert('이미 모집이 완료된 프로젝트입니다.')
   }
 }
 
-// 신청 처리 함수 수정
-const matchingApply = (index) => {
-  const result = displayedResults.value[index];
-  if (result.status === '승인대기') {
-    const cancel = window.confirm('신청을 취소하시겠습니까?');
-    if (cancel) {
-      // API 호출 또는 상태 업데이트 로직
-      result.status = '취소';
-    }
+const handleModalClose = () => {
+  modalVisible.value = false
+  selectedCardIndex.value = null
+}
+
+// "현재 인원으로 시작" 클릭 시
+const handleStart  = () => {
+  const confirm = window.confirm('현재 인원으로 프로젝트를 시작하시겠습니까?')
+  if(confirm)
+    router.push('/project/dashboard')
+}
+
+// "취소" 클릭 시
+const handleCancel  = (index) => {
+  const confirmCancel = window.confirm('모집을 취소하시겠습니까?')
+  if (confirmCancel) {
+    modalVisible.value = false
+    displayedResults.value[index].status = '취소'
+    selectedCardIndex.value = null
   }
 }
   // 전체 데이터
@@ -133,15 +154,15 @@ const matchingApply = (index) => {
   // 초기 데이터 로드
   onMounted(async () => {
     try {
-        const res = await fetch('http://localhost:8080/pending_list')
+        const res = await fetch('http://localhost:8080/recruiting_list')
         const result = await res.json()
-        if (Array.isArray(result.pending_list)) {
-          allResults.value = result.pending_list
+        if (Array.isArray(result.recruiting_list)) {
+          allResults.value = result.recruiting_list
         } else {
           throw new Error('Invalid server response format')
         }
       } catch (err) {
-        allResults.value = pendingList
+        allResults.value = recruitingList
       }
     
     // ✅ 반드시 done('ok') 호출
@@ -189,7 +210,7 @@ const matchingApply = (index) => {
   </script>
   
   <style scoped>
-  .pending-matching {
+  .recruiting-matching {
     padding: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -220,7 +241,6 @@ const matchingApply = (index) => {
     padding: 15px;
     height: 600px;
   }
-  
   .result-card {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -300,35 +320,29 @@ const matchingApply = (index) => {
   height: 50%;
   min-height: 50px;
 }
+.decision-button {
+  width: 200px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 50%;
+  min-height: 50px;
+}
   
 /* 승인 대기 상태 */
-.pending-button {
+.recruiting-button {
   background: #020725;  /* 검정색 */
   cursor: pointer;
 }
 
-.pending-button:hover {
+.recruiting-button:hover {
   background: #1a1a1a;
-}
-
-/* 거절 상태 */
-.rejected-button {
-  background: #EF5350;  /* 빨간색 */
-  cursor: default;
-}
-
-.rejected-button:hover {
-  background: #EF5350;
-}
-
-/* 모집 완료 상태 */
-.completed-button {
-  background: #9E9E9E;  /* 회색 */
-  cursor: default;
-}
-
-.completed-button:hover {
-  background: #9E9E9E;
 }
 
 /* 취소 상태 */
@@ -339,6 +353,14 @@ const matchingApply = (index) => {
 
 .cancelled-button:hover {
   background: #9E9E9E;
+}
+.cancel-button {
+  background: red;  /* 빨강 */
+  cursor: default;
+}
+
+.cancelled-button:hover {
+  background: #720000;
 }
 
 /* 비활성화된 버튼 스타일 */

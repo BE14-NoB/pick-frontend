@@ -1,0 +1,83 @@
+[
+    {
+      "hostLevel": 31,
+      "hostName": "꼼곰보",
+      "currentMembers": 3,
+      "maxMembers": 6,
+      "duration": 6,
+      "mainCategory": "게임",
+      "subCategory": "Unity",
+      "status": "모집중",
+      "members": [
+        {
+          "name": "꼼곰보",
+          "level": 31,
+          "rating": 4.4
+        },
+        {
+          "name": "봇치더코드",
+          "level": 30,
+          "rating": 4.4
+        },
+        {
+          "name": "체인소개발자",
+          "level": 27,
+          "rating": 4.7
+        }
+      ]
+    },
+    {
+      "hostLevel": 31,
+      "hostName": "꼼곰보",
+      "currentMembers": 4,
+      "maxMembers": 6,
+      "duration": 3,
+      "mainCategory": "웹",
+      "subCategory": "백엔드",
+      "status": "취소",
+      "members": [
+        {
+          "name": "꼼곰보",
+          "level": 31,
+          "rating": 4.4
+        },
+        {
+          "name": "개발자와향신료",
+          "level": 28,
+          "rating": 4.4
+        },
+        {
+          "name": "개발자의우울",
+          "level": 30,
+          "rating": 4.5
+        },
+        {
+          "name": "개발자의농구",
+          "level": 23,
+          "rating": 4.9
+        }
+      ]
+    },
+    {
+      "hostLevel": 31,
+      "hostName": "꼼곰보",
+      "currentMembers": 2,
+      "maxMembers": 5,
+      "duration": 3,
+      "mainCategory": "웹",
+      "subCategory": "프론트엔드",
+      "status": "모집중",
+      "members": [
+        {
+          "name": "꼼곰보",
+          "level": 31,
+          "rating": 4.4
+        },
+        {
+          "name": "진격의개발자",
+          "level": 25,
+          "rating": 4.5
+        }
+      ]
+    }
+]
