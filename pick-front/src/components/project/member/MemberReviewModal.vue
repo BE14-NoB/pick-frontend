@@ -10,15 +10,15 @@
             <div class="team-label">팀원 선택</div>
             <div
               v-for="member in members"
-              :key="member.name"
-              :class="['team-item', { disabled: member.reviewDone, selected: member.name === selectedMember?.name }]"
+              :key="member.nickname"
+              :class="['team-item', { disabled: member.reviewDone, selected: member.nickname === selectedMember?.nickname }]"
               @click="selectMember(member)"
             >
-              <v-avatar size="32" class="mr-2">
-                <img :src="profile" alt="avatar" />
+              <v-avatar size="32" class="mr-2"  cover>
+                <img :src="member.profileImage" alt="avatar" class="avatar-img"/>
               </v-avatar>
               <div style="display:flex; flex-direction: column;">
-                <div>{{ member.name }}</div>
+                <div>{{ member.nickname }}</div>
                 <div v-if="member.reviewDone" class="done-label" >후기 작성 완료</div>
               </div>
               
@@ -51,11 +51,6 @@
           </div>
           
         </v-card-text>
-        <div>
-            
-        </div>
-        
-  
         <v-card-actions class="justify-end">
           <v-btn color="gray" variant="tonal" @click="close" >작성 취소</v-btn>
           <v-btn color="primary" variant="tonal" @click="submit" :disabled="!selectedMember || !content || selectedMember.reviewDone">작성 완료</v-btn>
@@ -179,6 +174,11 @@
         gap: 8px;                   /* 별과 텍스트 간 간격 */
         margin-top: 12px;           /* 위쪽 여백 */
     }
-
+    .avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        border-radius: 50%; /* 원형 유지 */
+    }
 </style>
   
