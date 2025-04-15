@@ -1,15 +1,15 @@
 <template>
     <div class="signup-container">
       <h2 class="signup-title">회원가입</h2>
-      <v-btn
-        class="close-btn"
-        icon="mdi-close"
-        variant="text"
-        color="grey-darken-2"
-        size="large"
-        @click="closeModal"
-      ></v-btn>
-      <v-divider class="divider" />
+        <v-btn
+          class="close-btn"
+          icon="mdi-close"
+          variant="text"
+          color="grey-darken-2"
+          size="large"
+          @click="closeModal"
+        ></v-btn>
+        <!-- <v-divider class="divider" /> -->
 
       <!-- 이메일 -->
       <div class="field-row">
@@ -195,7 +195,7 @@
         <div class="check-btn-placeholder"></div>
       </div>
 
-      <v-divider class="divider" />
+      <!-- <v-divider class="divider" /> -->
       <v-btn
         class="signup-btn"
         color="purple-darken-3"
@@ -206,7 +206,7 @@
         가입하기
       </v-btn>
     
-</div>
+  </div>
 </template>
 
 <script setup>
@@ -441,9 +441,10 @@ const signup = async () => {
 }
 
 .signup-container {
-  padding: 5% 7%;
+  padding: 2%;
   align-items: center;
   align-content: center;
+  /* background-color: yellow; */
 }
 
 .signup-title {
@@ -558,8 +559,9 @@ const signup = async () => {
 
 .signup-btn {
   margin-top: 20px;
-  height: 30px;
-  font-size: 10px;
+  height: 40px;
+  font-size: 14px;
+  /* font-size: 10px; */
 }
 
 @media (max-width: 960px) {

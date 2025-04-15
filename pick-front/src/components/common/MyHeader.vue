@@ -109,7 +109,7 @@
 
     <!-- 회원가입 모달 -->
     <div v-if="isSignupModalOpen" class="modal-overlay">
-      <div class="modal-content ">
+      <div class="modal-content signup-modal">
         
         <MemberSignup @signup="handleSignup" @close="closeSignupModal" />
       </div>
@@ -496,13 +496,14 @@ const handleLogout = () => {
   background-color: white;
   max-width: fit-content;
   width: 100%;
-  padding: 20px;
+  padding: 40px 20px 30px 20px;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .signup-modal {
   max-width: 600px;
+  height: 100%;
 }
 
 .close-btn {
