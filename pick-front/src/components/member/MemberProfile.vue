@@ -82,7 +82,7 @@
 
     <!-- 최근 프로젝트 -->
     <section class="projects-section">
-      <h2>최근 프로젝트 <span class="more-link">더 보기 →</span></h2>
+      <h2>최근 프로젝트 <span class="more-link" @click="goToCompleted">더 보기 →</span></h2>
       <v-row>
         <v-col v-for="(project, index) in recentProjects" :key="index" cols="12" sm="6" md="4">
           <ProjectCard
@@ -165,7 +165,8 @@ import ProjectCard from '@/components/common/ProjectCard.vue';
 import projectsData from '@/json/projects.json';
 import reviewsData from '@/json/reviews.json';
 import badgesData from '@/json/badges.json';
-
+import { useRouter } from 'vue-router'
+const router = useRouter()
 // 동적 이미지 로드
 const images = import.meta.glob('@/assets/member/*.png', { eager: true });
 const imageMap = Object.fromEntries(
@@ -272,6 +273,10 @@ onMounted(() => {
   console.log('Badge Images:', recentBadges.value.map(b => b.image));
   console.log('Auth Store User:', authStore.currentUser);
 });
+
+const goToCompleted = () => {
+  router.push('completed')
+}
 </script>
 
 <style scoped>

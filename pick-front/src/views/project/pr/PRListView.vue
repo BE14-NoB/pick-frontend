@@ -107,8 +107,9 @@ onMounted(async () => {
         avatarUrl: pr.avatarUrl
       },
       date: new Date(pr.createdAt).toLocaleDateString('ko-KR'),
-      comments: pr.commentCount + pr.reviewCommentCount,
+      comments: pr.reviewCommentCount,
       status: pr.state,
+      merged: pr.merged,
       added: pr.added || 0,
       deleted: pr.deleted || 0
     }))
@@ -134,7 +135,7 @@ watch(selectedTab, (val) => {
 })
 
 const openPRs = computed(() => allPRs.value.filter(pr => pr.status === 'open'))
-const closedPRs = computed(() => allPRs.value.filter(pr => pr.status === 'closed'))
+const closedPRs = computed(() => allPRs.value.filter(pr => pr.status === 'closed' && pr.merged))
 
 const paginatedOpenPRs = computed(() => {
   const start = (openPage.value - 1) * itemsPerPage
