@@ -127,7 +127,7 @@ const handleImageError = (event) => {
   event.target.src = defaultProfileImage
 }
 
-// 이모지
+// 라벨 관련 이모지
 const emojiMap = {
   ':sparkles:': '✨',
   ':bug:': '🐛',
@@ -310,5 +310,4 @@ const tabs = [
   font-size: 18px;
   color: #666;
 }
-
 </style>

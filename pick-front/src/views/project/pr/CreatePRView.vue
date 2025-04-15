@@ -1,9 +1,6 @@
 <template>
     <section class="page-wrapper">
-        <!-- 브랜치 선택: 선택 불가능하게 표시 -->
         <PRBranchSelector :selected-branch="selectedBranch" :disable-select="true" />
-
-        <!-- PR 작성 폼 -->
         <PRFormSection v-model:title="prTitle" v-model:content="prContent" v-model:reviewer="selectedReviewer"
             v-model:creator="selectedProject" @cancel="goToReviewPR" @submit="createPullRequest" />
     </section>
@@ -18,7 +15,6 @@ import PRFormSection from '@/components/project/pr/PRFormSection.vue'
 
 const router = useRouter()
 
-// 브랜치 고정
 const selectedBranch = ref(router.currentRoute.value.query.branch || '')
 
 const prTitle = ref('')
@@ -77,7 +73,7 @@ async function createPullRequest() {
                 body: prContent.value || ""
             })
         });
-        
+
         if (!response.ok) {
             const errorText = await response.text();
             throw new Error(errorText);

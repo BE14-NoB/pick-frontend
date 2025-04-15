@@ -37,9 +37,9 @@
 import { ref, computed, watch, onMounted } from 'vue'
 
 const props = defineProps({
-    defaultBranch: String,         // base로 표시할 브랜치
-    selectedBranch: String,        // head 브랜치를 외부에서 고정
-    disableSelect: Boolean,         // 선택 불가능하게 만들기
+    defaultBranch: String,          // base로 표시할 브랜치
+    selectedBranch: String,         // head 브랜치(외부에서 고정)
+    disableSelect: Boolean,         // 선택 불가능하게 할지
 })
 
 const emit = defineEmits(['update:selectedBranch'])
@@ -66,7 +66,7 @@ onMounted(async () => {
             if (Array.isArray(data)) {
                 branches.value = data
             } else {
-                console.warn('⚠️ 배열이 아닌 응답이 왔어요. 기본 브랜치 목록 사용!')
+                console.warn('⚠️ 잘못된 형식의 브랜치 데이터입니다. 기본 브랜치 목록 사용!')
                 branches.value = dummyBranches
             }
         } else {
@@ -95,13 +95,11 @@ onMounted(async () => {
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* 브랜치 아이콘 */
 .branch-icon {
     color: #57606a;
     font-size: 22px;
 }
 
-/* base, head 묶음 박스 */
 .branch-box {
     display: flex;
     flex-direction: row;
@@ -115,7 +113,6 @@ onMounted(async () => {
     min-width: 250px;
 }
 
-/* base, head 라벨 */
 .branch-label {
     font-size: 13px;
     color: #57606a;
@@ -126,14 +123,12 @@ onMounted(async () => {
     border: 1px solid #d0d7de;
 }
 
-/* base 고정값 */
 .branch-value {
     font-weight: 600;
     font-size: 14px;
     color: #999999;
 }
 
-/* 가운데 화살표 */
 .branch-arrow {
     font-size: 24px;
     color: #57606a;
@@ -141,7 +136,6 @@ onMounted(async () => {
     margin: 0 4px;
 }
 
-/* v-select 커스터마이징 */
 .branch-select>>>.v-field {
     background-color: transparent;
     border: none;
@@ -166,7 +160,6 @@ onMounted(async () => {
     min-height: 0;
 }
 
-/* 경고 메시지 */
 .warning-box {
     display: flex;
     align-items: center;

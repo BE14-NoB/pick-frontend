@@ -1,42 +1,35 @@
 <template>
   <div class="commit-page">
     <div class="dropdowns">
-        <div class="dropdown-left">
-            <div class="dropdown">
-            <label>브랜치</label>
-            <v-select v-model="selectedBranch" :items="branches" density="compact" />
-            </div>
+      <div class="dropdown-left">
+        <div class="dropdown">
+          <label>브랜치</label>
+          <v-select v-model="selectedBranch" :items="branches" density="compact" />
         </div>
+      </div>
 
-        <div class="dropdown-right">
-            <div class="dropdown">
-            <label>유저</label>
-            <v-select v-model="selectedAuthor" :items="authors" density="compact" />
-            </div>
-            <div class="dropdown">
-            <label>기간</label>
-            <v-select v-model="selectedPeriod" :items="periods" density="compact" />
-            </div>
+      <div class="dropdown-right">
+        <div class="dropdown">
+          <label>유저</label>
+          <v-select v-model="selectedAuthor" :items="authors" density="compact" />
         </div>
+        <div class="dropdown">
+          <label>기간</label>
+          <v-select v-model="selectedPeriod" :items="periods" density="compact" />
+        </div>
+      </div>
     </div>
 
-    <List
-    :headers="['커밋 해시', '커밋 메시지', '작성자', '브랜치', '작성일']"
-    :items="paginatedCommits"
-    >
-    <template #author="{ value }">
-      <div class="profile-wrapper">
-        <img :src="`/src/assets/img/member_profile/${value.avatarUrl}`" class="profile-img" />
-        <span>{{ value.name }}</span>
-      </div>
-    </template>
+    <List :headers="['커밋 해시', '커밋 메시지', '작성자', '브랜치', '작성일']" :items="paginatedCommits">
+      <template #author="{ value }">
+        <div class="profile-wrapper">
+          <img :src="`/src/assets/img/member_profile/${value.avatarUrl}`" class="profile-img" />
+          <span>{{ value.name }}</span>
+        </div>
+      </template>
     </List>
 
-    <Pagination
-      class="pagination"
-      v-model:currentPage="currentPage"
-      :totalPages="totalPages"
-    />
+    <Pagination class="pagination" v-model:currentPage="currentPage" :totalPages="totalPages" />
   </div>
 </template>
 
@@ -140,19 +133,19 @@ label {
 }
 
 .profile-img {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 6px;
-  }
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 6px;
+}
 
-  .profile-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    justify-content: center;
-  }
+.profile-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
+}
 
 .pagination {
   margin-top: 24px;

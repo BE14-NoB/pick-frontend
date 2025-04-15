@@ -8,8 +8,10 @@
         <table class="list-table">
             <tbody>
                 <tr v-for="(item, index) in paginatedItems" :key="index">
+
                     <!-- 메시지 -->
                     <td class="message-cell">
+                        <!-- 60글자 초과라면 자르기 -->
                         {{ item.message.length > 60 ? item.message.slice(0, 60) + '...' : item.message }}
                     </td>
 
@@ -134,16 +136,15 @@ const fetchCommits = async () => {
 // 브랜치 변경 시마다 새로 fetch
 watch(() => props.selectedBranch, fetchCommits, { immediate: true })
 
-
-// 페이지네이션 로직
+// 페이지네이션
 import Pagination from '@/components/common/Pagination.vue'
 const itemsPerPage = 4
 const currentPage = ref(1)
-
 const totalPages = computed(() => Math.ceil(allCommits.value.length / itemsPerPage))
 const paginatedItems = computed(() =>
     allCommits.value.slice((currentPage.value - 1) * itemsPerPage, currentPage.value * itemsPerPage)
 )
+
 </script>
 
 <style scoped>
@@ -172,20 +173,17 @@ const paginatedItems = computed(() =>
     vertical-align: middle;
 }
 
-/* 메시지 */
 .message-cell {
     text-align: left;
     width: 70%;
 }
 
-/* 날짜 */
 .date-cell {
     text-align: right;
     width: 15%;
     color: #444;
 }
 
-/* 작성자 이름 + 아바타 (수평정렬 + 오른쪽 정렬) */
 .author-cell {
     text-align: right;
     width: 13%;
@@ -206,7 +204,6 @@ const paginatedItems = computed(() =>
     margin-right: 10px;
 }
 
-/* 페이지네이션 */
 .pagination {
     display: flex;
     justify-content: center;
