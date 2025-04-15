@@ -8,7 +8,7 @@
           title="회원"
           value="/member/info"
           :active="selected === '/member/info'"
-          @click="goTo('/member/info')"
+          @click="goTo('info')"
         />
         <v-list-item
           prepend-icon="mdi-bell-alert-outline"
@@ -36,7 +36,7 @@
           title="일일 미션"
           value="/dailymission"
           :active="selected === '/dailymission'"
-          @click="goTo('/dailymission')"
+          @click="goTo('dailymission')"
         />
 
         <!-- 프로젝트 토글 메뉴 -->
@@ -48,13 +48,13 @@
             title="모집 중 프로젝트"
             value="/project/recruiting"
             :active="selected === '/project/recruiting'"
-            @click="goTo('/project/recruiting')"
+            @click="goTo('recruiting')"
           />
           <v-list-item
             title="승인 대기 프로젝트"
             value="/project/pending"
             :active="selected === '/project/pending'"
-            @click="goTo('/project/pending')"
+            @click="goTo('pending')"
           />
           <v-list-item
             title="참여 중 프로젝트"

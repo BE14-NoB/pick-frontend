@@ -183,7 +183,6 @@ onMounted(async () => {
       console.error('🚨 fetch 실패, 더미 데이터로 대체합니다.', err)
       categories.value = matchingFilter.categories
       subcategoriesMap.value = matchingFilter.subcategoriesMap
-      console.log(subcategoriesMap.value);
     }
   })
 const subcategories = computed(() => {

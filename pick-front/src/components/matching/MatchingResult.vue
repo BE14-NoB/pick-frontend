@@ -122,7 +122,6 @@ onMounted(async () => {
     } catch (err) {
       allResults.value = matchingList
     }
-    console.log("매칭", allResults)
   
   // ✅ 반드시 done('ok') 호출
   loadMore({
@@ -136,7 +135,6 @@ async function api() {
   return new Promise((resolve) => {
     setTimeout(() => {
       const start = currentPage * pageSize;
-      console.log('start', start);
       if(start >= allResults.value.length) {
         resolve('empty'); // 'empty' 상태 반환
         return;
@@ -154,11 +152,9 @@ async function api() {
 
 // 추가 데이터 로드 함수
 async function loadMore({ done }) {
-  console.log("isInit", isInit.value);
   if (!isInit.value) {
     // 최초 진입 시 자동 호출된 loadMore는 무시
     isInit.value = true
-    console.log("초기 호출")
     done('ok');
     return
   }

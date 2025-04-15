@@ -1,0 +1,147 @@
+[
+    {
+      "hostLevel": 25,
+      "hostName": "카드값줘체리",
+      "currentMembers": 3,
+      "maxMembers": 6,
+      "duration": 6,
+      "mainCategory": "게임",
+      "subCategory": "Unity",
+      "status": "승인대기",
+      "members": [
+        {
+          "name": "카드값줘체리",
+          "level": 25,
+          "rating": 4.5
+        },
+        {
+          "name": "봇치더코드",
+          "level": 30,
+          "rating": 4.4
+        },
+        {
+          "name": "체인소개발자",
+          "level": 27,
+          "rating": 4.7
+        }
+      ]
+    },
+    {
+      "hostLevel": 25,
+      "hostName": "전생했더니개발자였던건에대하여",
+      "currentMembers": 4,
+      "maxMembers": 6,
+      "duration": 3,
+      "mainCategory": "웹",
+      "subCategory": "백엔드",
+      "status": "취소",
+      "members": [
+        {
+          "name": "전생했더니개발자였던건에대하여",
+          "level": 25,
+          "rating": 4.3
+        },
+        {
+          "name": "개발자와향신료",
+          "level": 28,
+          "rating": 4.4
+        },
+        {
+          "name": "개발자의우울",
+          "level": 30,
+          "rating": 4.5
+        },
+        {
+          "name": "개발자의농구",
+          "level": 23,
+          "rating": 4.9
+        }
+      ]
+    },
+    {
+      "hostLevel": 30,
+      "hostName": "코드아트온라인",
+      "currentMembers": 2,
+      "maxMembers": 5,
+      "duration": 3,
+      "mainCategory": "웹",
+      "subCategory": "프론트엔드",
+      "status": "모집완료",
+      "members": [
+        {
+          "name": "코드아트온라인",
+          "level": 30,
+          "rating": 3.8
+        },
+        {
+          "name": "진격의개발자",
+          "level": 25,
+          "rating": 4.5
+        }
+      ]
+    },
+    {
+      "hostLevel": 17,
+      "hostName": "개발자X패밀리",
+      "currentMembers": 4,
+      "maxMembers": 5,
+      "duration": 4,
+      "mainCategory": "웹",
+      "subCategory": null,
+      "status": "거절",
+      "members": [
+        {
+          "name": "개발자X패밀리",
+          "level": 17,
+          "rating": 3.9
+        },
+        {
+          "name": "코딩의상처",
+          "level": 20,
+          "rating": 3.8
+        },
+        {
+          "name": "코드라이브",
+          "level": 22,
+          "rating": 4.3
+        },
+        {
+          "name": "미래소년개발자",
+          "level": 25,
+          "rating": 4.2
+        }
+      ]
+    },
+    {
+      "hostLevel": 20,
+      "hostName": "코딩용사성공담",
+      "currentMembers": 4,
+      "maxMembers": 7,
+      "duration": 6,
+      "mainCategory": "게임",
+      "subCategory": "모바일 기반",
+      "status":"승인대기",
+      "members": [
+        {
+          "name": "코딩용사성공담",
+          "level": 20,
+          "rating": 4.1
+        },
+        {
+          "name": "수성의개발자",
+          "level": 24,
+          "rating": 3.9
+        },
+        {
+          "name": "개발자의스타일기",
+          "level": 23,
+          "rating": 4.3
+        },
+        {
+          "name": "꿈빛개발자",
+          "level": 25,
+          "rating": 4.3
+        }
+      ]
+    }
+]

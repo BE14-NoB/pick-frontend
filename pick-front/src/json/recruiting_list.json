@@ -1,0 +1,83 @@
+[
+    {
+      "hostLevel": 31,
+      "hostName": "꼼곰보",
+      "currentMembers": 3,
+      "maxMembers": 6,
+      "duration": 6,
+      "mainCategory": "게임",
+      "subCategory": "Unity",
+      "status": "모집중",
+      "members": [
+        {
+          "name": "꼼곰보",
+          "level": 31,
+          "rating": 4.4
+        },
+        {
+          "name": "머가문제니",
+          "level": 30,
+          "rating": 4.4
+        },
+        {
+          "name": "외안되",
+          "level": 27,
+          "rating": 4.7
+        }
+      ]
+    },
+    {
+      "hostLevel": 31,
+      "hostName": "꼼곰보",
+      "currentMembers": 4,
+      "maxMembers": 6,
+      "duration": 3,
+      "mainCategory": "웹",
+      "subCategory": "백엔드",
+      "status": "취소",
+      "members": [
+        {
+          "name": "꼼곰보",
+          "level": 31,
+          "rating": 4.4
+        },
+        {
+          "name": "제발",
+          "level": 28,
+          "rating": 4.4
+        },
+        {
+          "name": "되는거지",
+          "level": 30,
+          "rating": 4.5
+        },
+        {
+          "name": "아...",
+          "level": 23,
+          "rating": 4.9
+        }
+      ]
+    },
+    {
+      "hostLevel": 31,
+      "hostName": "꼼곰보",
+      "currentMembers": 2,
+      "maxMembers": 5,
+      "duration": 3,
+      "mainCategory": "웹",
+      "subCategory": "프론트엔드",
+      "status": "모집중",
+      "members": [
+        {
+          "name": "꼼곰보",
+          "level": 31,
+          "rating": 4.4
+        },
+        {
+          "name": "때려쳐",
+          "level": 25,
+          "rating": 4.5
+        }
+      ]
+    }
+]

@@ -1,6 +1,6 @@
 <template>
   <div class="layout-container">
-    <MemberSideBar />
+    <!-- <MemberSideBar /> -->
 
     <div class="member-info-container">
       <div class="profile-section">
