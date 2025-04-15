@@ -2,9 +2,9 @@
   <div class="page-layout">
     <MyHeader />
 
-    <div class="main-content">
+    <!-- <div class="main-content"> -->
       <!-- 사이드바 -->
-      <MemberSideBar class="side" />
+      <!-- <MemberSideBar class="side" /> -->
 
       <!-- 본문 -->
       <div class="content-area">
@@ -54,7 +54,7 @@
 
         <MyFooter />
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -76,16 +76,16 @@ const completedCount = computed(() =>
 </script>
 
 <style scoped>
-.page-layout {
+/* .page-layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
+} */
 
-.main-content {
+/* .main-content {
   display: flex;
   flex: 1;
-}
+} */
 
 .side {
   width: 240px;

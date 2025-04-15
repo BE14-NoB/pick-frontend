@@ -1,112 +1,111 @@
 <template>
   <div class="issue-page">
-    <!-- 탭 컴포넌트 -->
-    <ProjectTabs v-model="selectedTab" :tabs="tabs">
-      <!-- Open 탭 -->
-      <template #open>
-        <p class="desc">
-          총 <strong>{{ openIssues.length }}</strong>개의 이슈가 열려있어요! ✨
-        </p>
-        <div class="issue-header">
-          <IssueCreateButton @click="onClickCreateIssue" />
-        </div>
-        <div class="list-card">
-          <List
-            :headers="['이슈번호', '제목', '라벨', '타입', '마일스톤', '생성자']"
-            :items="paginatedOpenIssues.map(({ status, creator, avatarUrl, ...rest }) => ({
+
+    <div v-if="isLoading" class="loading-container">
+      🔄 이슈를 불러오는 중입니다...
+    </div>
+
+    <div v-else>
+      <!-- 탭 컴포넌트 -->
+      <ProjectTabs v-model="selectedTab" :tabs="tabs">
+        <!-- Open 탭 -->
+        <template #open>
+          <p class="desc">
+            총 <strong>{{ openIssues.length }}</strong>개의 이슈가 열려있어요! ✨
+          </p>
+          <div class="issue-header">
+            <IssueCreateButton @click="onClickCreateIssue" />
+          </div>
+          <div class="list-card">
+            <List :headers="['이슈번호', '제목', '라벨', '타입', '마일스톤', '생성자']" :items="paginatedOpenIssues.map(({ status, creator, avatarUrl, ...rest }) => ({
               ...rest,
               creatorDisplay: {
                 name: creator.name,
                 avatarUrl: creator.avatarUrl
               }
-            }))"
-          >
-            <!-- 라벨 색상 표시 -->
-            <template #label="{ value }">
-              <v-chip :color="getLabelColor(value)" variant="tonal" size="small">
-                {{ value }}
-              </v-chip>
-            </template>
+            }))">
+              <!-- 라벨 색상 표시 -->
+              <template #label="{ value }">
+                <v-chip v-if="value" :color="getLabelColor(value)" variant="tonal" size="small">
+                  {{ convertEmoji(value) }}
+                </v-chip>
+              </template>
 
-            <!-- 타입 색상 표시 -->
-            <template #type="{ value }">
-              <v-chip :color="getTypeColor(value)" variant="tonal" size="small">
-                {{ value }}
-              </v-chip>
-            </template>
-            
-            <template #creatorDisplay="{ value }">
-              <div class="creator-cell">
-                <img
-                  :src="`/src/assets/img/member_profile/${value.avatarUrl}`"
-                  class="profile-img"
-                  alt="creator"
-                />
-                <span class="creator-name">{{ value.name }}</span>
-              </div>
-            </template>
-          </List>
+              <!-- 타입 색상 표시 -->
+              <template #type="{ value }">
+                <v-chip :color="getTypeColor(value)" variant="tonal" size="small">
+                  {{ value }}
+                </v-chip>
+              </template>
 
-        </div>
-        <Pagination class="pagination" v-model:currentPage="openPage" :totalPages="openTotalPages" />
-      </template>
+              <template #creatorDisplay="{ value }">
+                <div class="creator-cell">
+                  <img :src="resolveAvatarUrl(value.avatarUrl)" class="profile-img" alt="creator"
+                    @error="handleImageError" />
+                  <span class="creator-name">{{ value.name }}</span>
+                </div>
+              </template>
+            </List>
 
-      <!-- Closed 탭 -->
-      <template #closed>
-        <p class="desc">
-          완료된 이슈는 총 <strong>{{ closedIssues.length }}</strong>개입니다.
-        </p>
-        <div class="list-card">
-          <List
-            :headers="['이슈번호', '제목', '라벨', '타입', '마일스톤', '생성자']"
-            :items="paginatedClosedIssues.map(({ status, creator, avatarUrl, ...rest }) => ({
+          </div>
+          <Pagination class="pagination" v-model:currentPage="openPage" :totalPages="openTotalPages" />
+        </template>
+
+        <!-- Closed 탭 -->
+        <template #closed>
+          <p class="desc">
+            완료된 이슈는 총 <strong>{{ closedIssues.length }}</strong>개입니다.
+          </p>
+          <div class="list-card">
+            <List :headers="['이슈번호', '제목', '라벨', '타입', '마일스톤', '생성자']" :items="paginatedClosedIssues.map(({ status, creator, avatarUrl, ...rest }) => ({
               ...rest,
               creatorDisplay: {
                 name: creator.name,
                 avatarUrl: creator.avatarUrl
               }
-            }))"
-          >
-            <!-- 라벨 색상 표시 -->
-            <template #label="{ value }">
-              <v-chip :color="getLabelColor(value)" variant="tonal" size="small">
-                {{ value }}
-              </v-chip>
-            </template>
+            }))">
+              <!-- 라벨 색상 표시 -->
+              <template #label="{ value }">
+                <v-chip v-if="value" :color="getLabelColor(value)" variant="tonal" size="small">
+                  {{ convertEmoji(value) }}
+                </v-chip>
+              </template>
 
-            <!-- 타입 색상 표시 -->
-            <template #type="{ value }">
-              <v-chip :color="getTypeColor(value)" variant="tonal" size="small">
-                {{ value }}
-              </v-chip>
-            </template>
+              <!-- 타입 색상 표시 -->
+              <template #type="{ value }">
+                <v-chip :color="getTypeColor(value)" variant="tonal" size="small">
+                  {{ value }}
+                </v-chip>
+              </template>
 
-            <template #creatorDisplay="{ value }">
-              <div class="creator-cell">
-                <img
-                  :src="`/src/assets/img/member_profile/${value.avatarUrl}`"
-                  class="profile-img"
-                  alt="creator"
-                />
-                <span class="creator-name">{{ value.name }}</span>
-              </div>
-            </template>
-          </List>
+              <template #creatorDisplay="{ value }">
+                <div class="creator-cell">
+                  <img :src="resolveAvatarUrl(value.avatarUrl)" class="profile-img" alt="creator"
+                    @error="handleImageError" />
+                  <span class="creator-name">{{ value.name }}</span>
+                </div>
+              </template>
+            </List>
 
-        </div>
-        <Pagination class="pagination" v-model:currentPage="closedPage" :totalPages="closedTotalPages" />
-      </template>
-    </ProjectTabs>
+          </div>
+          <Pagination class="pagination" v-model:currentPage="closedPage" :totalPages="closedTotalPages" />
+        </template>
+      </ProjectTabs>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
+import axios from 'axios'
+
 import List from '@/components/List.vue'
 import Pagination from '@/components/common/Pagination.vue'
 import IssueCreateButton from '@/components/project/IssueCreateButton.vue'
 import ProjectTabs from '@/components/project/ProjectTabs.vue'
 import issueJson from '@/json/project_issuelist.json'
+
+const isLoading = ref(true)
 
 const selectedTab = ref('open')
 const openPage = ref(1)
@@ -115,14 +114,87 @@ const itemsPerPage = 5
 
 const issueData = ref([])
 
-onMounted(() => {
-  issueData.value = issueJson.map(issue => ({
-    ...issue,
-    creator: {
-      name: issue.creator,
-      avatarUrl: issue.avatarUrl
+const defaultProfileImage = '/assets/default-avatar.png'
+
+const resolveAvatarUrl = (avatarUrl) => {
+  if (!avatarUrl) return defaultProfileImage
+  return avatarUrl.startsWith('http')
+    ? avatarUrl
+    : `/src/assets/img/member_profile/${avatarUrl}`
+}
+
+const handleImageError = (event) => {
+  event.target.src = defaultProfileImage
+}
+
+// 이모지
+const emojiMap = {
+  ':sparkles:': '✨',
+  ':bug:': '🐛',
+  ':memo:': '📝',
+  ':hammer:': '🔨',
+  ':art:': '🎨',
+  ':fire:': '🔥',
+  ':rocket:': '🚀',
+  ':zap:': '⚡',
+  ':recycle:': '♻️',
+  ':lock:': '🔒',
+  ':construction:': '🚧',
+  ':tada:': '🎉',
+  ':warning:': '⚠️',
+  ':mag:': '🔍',
+  ':page_facing_up:': '📄',
+}
+
+const convertEmoji = (text) => {
+  for (const key in emojiMap) {
+    if (text.includes(key)) {
+      return text.replaceAll(key, emojiMap[key]);
     }
-  }))
+  }
+  return text;
+}
+
+onMounted(async () => {
+  isLoading.value = true
+  try {
+    const response = await axios.get('http://localhost:8000/pick-service/api/github/issues', {
+      params: {
+        repo: 'Pick',
+        owner: 'BE14-NoB'
+      }
+    })
+
+    issueData.value = response.data.map(issue => ({
+      number: issue.number,
+      title: issue.title,
+      label: issue.labels.length > 0 ? issue.labels[0].name : '',
+      type: issue.labels.some(l => l.name === 'Feature') ? 'Feature'
+        : issue.labels.some(l => l.name === 'Task') ? 'Task'
+          : issue.labels.some(l => l.name === 'Bug') ? 'Bug'
+            : issue.labels.some(l => l.name === 'Docs') ? 'Docs'
+              : 'No type',
+      milestone: issue.milestone,
+      status: issue.issueState,
+      creator: {
+        name: issue.creator,
+        avatarUrl: issue.avatarUrl
+      }
+    }))
+
+    console.log(response);
+  } catch (error) {
+    console.error('❌ 이슈 데이터 로딩 실패:', error)
+    issueData.value = issueJson.map(issue => ({
+      ...issue,
+      creator: {
+        name: issue.creator,
+        avatarUrl: issue.avatarUrl
+      }
+    }))
+  } finally {
+    isLoading.value = false
+  }
 })
 
 watch(selectedTab, (newTab) => {
@@ -218,6 +290,7 @@ const tabs = [
   object-fit: cover;
   margin: 0;
 }
+
 .creator-name {
   font-size: 13px;
   color: #444;
@@ -228,4 +301,14 @@ const tabs = [
   display: flex;
   justify-content: center;
 }
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 18px;
+  color: #666;
+}
+
 </style>

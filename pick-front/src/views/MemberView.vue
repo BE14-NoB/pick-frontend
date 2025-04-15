@@ -1,15 +1,29 @@
 <template>
-    <div class="member-view">
-      <router-view></router-view>
+  <div class="content-wrapper">
+    <div class="side-bar">
+      <MemberSideBar/>
     </div>
-  </template>
+    <div class="content-view">
+      <router-view/>
+    </div>
+    <div class="side-bar">
+
+    </div>
+  </div>
+</template>
   
-  <script setup>
+<script setup>
+  import MemberSideBar from '@/components/MemberSideBar.vue';
+</script>
   
-  </script>
-  
-  <style scoped>
-  .member-view {
-    width: 100%;
+<style scoped>
+  .content-wrapper {
+    display: flex;
   }
-  </style>
+  .side-bar {
+    flex: 1
+  }
+  .content-view {
+    flex: 3
+  }
+</style>
