@@ -57,6 +57,7 @@
             variant="underlined"
             density="comfortable"
             class="meta-select readonly-select"
+            style="width: fit-content"
             chips
             readonly
           >
@@ -281,7 +282,7 @@
     display: flex;
     flex-direction: row;
     gap: 8px;
-    width: 100%;
+    /* width: 100%; */
   }
   .meta-label {
     font-size: 14px;

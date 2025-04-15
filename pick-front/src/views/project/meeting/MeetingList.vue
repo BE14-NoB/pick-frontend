@@ -21,41 +21,47 @@
       <v-select v-model="sortOrder" :items="sortOptions" label="정렬" density="compact" class="select" />
     </div>
 
-    <div class="list-card">
-      <List
-        :headers="['번호', '제목', '작성일', '템플릿', '작성자', '참여자']"
-        :items="paginatedMeetings.map(({ content, updatedAt, ...rest }) => rest)"
-        @row-click="goToDetail"
-      >
-        <template #template="{ value }">
-          <v-chip :color="getTypeColor(value)" variant="tonal" size="small">{{ value }}</v-chip>
-        </template>
+    <div v-if="!loading===true">
+      <div class="list-card">
+        <List
+          :headers="['번호', '제목', '작성일', '템플릿', '작성자', '참여자']"
+          :items="paginatedMeetings.map(({ content, updatedAt, ...rest }) => rest)"
+          @row-click="goToDetail"
+        >
+          <template #template="{ value }">
+            <v-chip :color="getTypeColor(value)" variant="tonal" size="small">{{ value }}</v-chip>
+          </template>
 
-        <template #author="{ value }">
-          <div class="profile-wrapper">
-            <img :src="value.profileImage" class="profile-img" />
-            <span>{{ value.name }}</span>
-          </div>
-        </template>
+          <template #author="{ value }">
+            <div class="profile-wrapper">
+              <img :src="value.profileImage" class="profile-img" />
+              <span>{{ value.name }}</span>
+            </div>
+          </template>
 
-        <template #participants="{ value }">
-          <div class="avatar-group">
-            <v-avatar
-              v-for="(participant, index) in value.slice(0, 3)"
-              :key="index"
-              size="24"
-              class="avatar-overlap"
-              :title="participant.name"
-            >
-              <img :src="participant.profileImage" />
-            </v-avatar>
-            <span v-if="value.length > 3" class="extra-count">+{{ value.length - 3 }}</span>
-          </div>
-        </template>
-      </List>
+          <template #participants="{ value }">
+            <div class="avatar-group">
+              <v-avatar
+                v-for="(participant, index) in value.slice(0, 3)"
+                :key="index"
+                size="24"
+                class="avatar-overlap"
+                :title="participant.name"
+              >
+                <img :src="participant.profileImage" />
+              </v-avatar>
+              <span v-if="value.length > 3" class="extra-count">+{{ value.length - 3 }}</span>
+            </div>
+          </template>
+        </List>
+      </div>
     </div>
-
-    <Pagination class="pagination" v-model:currentPage="openPage" :totalPages="openTotalPages" />
+    <v-row v-else justify="center" class="mt-10 mb-10">
+          <v-progress-circular indeterminate color="primary" size="48" />
+    </v-row>
+    <div  v-if="!loading">
+      <Pagination class="pagination" v-model:currentPage="openPage" :totalPages="openTotalPages" />
+    </div>
   </div>
 </template>
 
@@ -71,6 +77,8 @@ import meetingDummy from '@/json/project_meeting_db.json'
 import memberDummy from '@/json/participants.json'
 
 const router = useRouter()
+
+const loading = ref(true)
 
 const meetingData = ref([])
 const openPage = ref(1)
@@ -95,6 +103,8 @@ const getProfile = (nickname) => {
 }
 
 onMounted(async () => {
+  loading.value = true;
+
   try {
     const res = await fetch('http://localhost:8084/meetings')
     const data = await res.json()
@@ -113,6 +123,7 @@ onMounted(async () => {
       participants: meeting.participants.map(getProfile)
     }))
   }
+  loading.value = false;
 })
 
 const templateOptions = computed(() => ['전체', ...new Set(meetingData.value.map(m => m.template))])

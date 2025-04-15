@@ -39,7 +39,7 @@
         <v-select
           v-model="author"
           :items="memberList"
-          item-title="name"
+          item-title="nickname"
           return-object
           variant="underlined"
           density="comfortable"
@@ -57,9 +57,9 @@
           <template #item="{ props, item }">
             <v-list-item v-bind="props">
               <template #prepend>
-                <v-avatar size="32">
-                  <img :src="item.avatar || profile" alt="avatar" />
-                </v-avatar>
+                <!-- <v-avatar size="32">
+                  <img :src="item.profileImage || profile" alt="avatar" />
+                </v-avatar> -->
               </template>
               {{ item.name }}
             </v-list-item>
@@ -83,9 +83,9 @@
         >
           <template #selection="{ item }">
             <v-chip class="me-1" size="small">
-              <v-avatar start size="18">
+              <!-- <v-avatar start size="18">
                 <img :src="imageMap[item.profileImage] || profile" />
-              </v-avatar>
+              </v-avatar> -->
             </v-chip>
           </template>
           <template #item="{ props, item }">
@@ -162,20 +162,12 @@ const id = route.query.id // 수정 모드인지 확인용
 const title = ref('')
 const content = ref('')
 const template = ref(null)
-const author = ref(null)
+const author = ref()
 const participants = ref([])
 const createdAt = ref(dayjs().format('YYYY.MM.DD'))
 const updatedAt = ref(createdAt.value)
 
 const memberList = ref(members);
-// [
-//   { name: '꼼꼼보', avatar: profile },
-//   { name: '석키키키', avatar: profile },
-//   { name: '시냥주', avatar: profile },
-//   { name: '민선', avatar: profile },
-//   { name: 'blueSky', avatar: profile },
-//   { name: '혬헴헴', avatar: profile }
-// ]
 
 const templates = ['정기 회의', '스프린트 킥오프', '회고 회의', '코드 리뷰', '데일리 스크럼']
 
