@@ -158,11 +158,11 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
   <details>
           <summary>메인 페이지 조회</summary><br>
 	          <p alian="center">
-	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/common/main-page.gif" width = "600"/><br>
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/common/mainpage.gif" width = "600"/><br>
 	          </p>
   </details>
   <details>
-          <summary>오류 페이지지</summary><br>
+          <summary>오류 페이지</summary><br>
 	          <p alian="center">
 	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/common/TEST_오류_페이지.gif" width = "600"/><br>
 	          </p>
@@ -187,36 +187,36 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 	<details>
 		<summary>회원 정보 조회</summary><br>
 	          <p alian="center">
-	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FindInfo.gif" width = "600"/><br>
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/MemberInfo.gif" width = "600"/><br>
 	          </p>
 	</details>
 	<details>
 		<summary>회원 정보 수정</summary><br>
 	          <p alian="center">
-	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FetchInfo.gif" width = "600"/><br>
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/MemberInfo-fetch.gif" width = "600"/><br>
 	          </p>
 	</details>
 	<details>
 		<summary>프로필 페이지 조회</summary><br>
 	          <p alian="center">
-	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FetchInfo.gif" width = "600"/><br>
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/MemberProfile.gif" width = "600"/><br>
 	          </p>
 	</details>
 	<details>
 		<summary>깃허브 연결하기</summary><br>
 	          <p alian="center">
-	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/파일명.gif" width = "600"/><br>
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/info/TEST_회원_깃_인증하기.gif" width = "600"/><br>
 	          </p>
 	</details>
 	<details>
 		<summary>로그아웃</summary><br>
 	          <p alian="center">
-	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/Logout.gif" width = "600"/><br>
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/MemberLogout.gif" width = "600"/><br>
 	          </p>
 	</details>
 </details>
 
-### 🔔 일일 미션
+### 🎖️ 일일 미션
 <details>
      <summary><b>일일 미션</b></summary><br>
   <details>
@@ -356,7 +356,6 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 	</details>
 </details>
 
-### 🎖️ 일일 미션
 <br><br>
 
 ## 📑 트러블 슈팅
