@@ -1,10 +1,13 @@
 <template>
   <div class="content-wrapper">
-  <div class="side-bar">
-    <MemberSideBar/>
-  </div>
+    <div class="side-bar">
+      <MemberSideBar/>
+    </div>
     <div class="content-view">
       <router-view/>
+    </div>
+    <div class="side-bar">
+
     </div>
   </div>
 </template>
