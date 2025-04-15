@@ -101,7 +101,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { VAvatar, VBtn, VIcon, VDialog, VCard, VCardTitle, VCardText, VCardActions, VSpacer } from 'vuetify/components';
-import githubImage from '@/assets/issueMaker.png';
+import githubImage from '@/assets/gitImg.png';
 import MemberSideBar from '@/components/MemberSideBar.vue';
 import { findUserByEmail, updateUser } from '@/utils/jsonStorage';
 import axios from 'axios';
