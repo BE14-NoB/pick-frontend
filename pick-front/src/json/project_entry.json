@@ -1,26 +1,33 @@
 [
   {
     "id": 1,
-    "name": "PICK",
+    "name": "PICK new",
     "content": "사이드 프로젝트를 진행할 때는 팀원 간의 협업과 커뮤니케이션이 매우 중요하며, 모집부터 실제 실행, 완성까지 꽤 많은 시간과 노력이 필요합니다.\n\n기존에 사용되던 팀원 매칭 플랫폼인 **비사이드**는 팀 구성에 용이하지만, 이후의 협업과 프로젝트 관리 기능이 부족하다는 한계가 있습니다. **Jira**는 체계적인 프로젝트 관리를 도와주지만, 팀원 모집이나 매칭 기능은 전혀 제공하지 않아 초기 팀 구성에 어려움이 있습니다.\n\n이러한 두 플랫폼의 아쉬운 점을 보완하고, 각각의 장점만을 살려 팀원 매칭부터 프로젝트 관리까지 한 번에 가능한 올인원 플랫폼, **Pick**이 탄생했습니다.\n\n **🔑 핵심 기능**\n- 프로젝트 팀원 매칭\n- 프로젝트 관리 서비스 (회의록, 일정 관리)\n- 팀원, 프로젝트 후기",
     "is_finished": "N",
     "is_deleted": "N",
     "duration_time": "1개월",
     "maximum_participant": 5,
     "session_code": 1001,
-    "start_date": "2025-03-27",
-    "end_date":  "2025-04-15",
-    "main_category" : "웹",
-    "sub_category" : "플랫폼",
+    "start_date": "Invalid Date",
+    "end_date": "Invalid Date",
+    "main_category": "웹",
+    "sub_category": "플랫폼",
     "thumbnail_image": "/assets/member/pick_title.png",
     "introduction": "개발자를 위한 사이드 프로젝트 플랫폼",
     "project_url": "https://pick-project.com/project/1",
     "repo_url": "https://github.com/BE14-NoB/pick-frontend",
-    "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
+    "participants": [
+      "꼼꼼보",
+      "석키키키",
+      "시냥주",
+      "혬헴헴",
+      "민선",
+      "blueSky"
+    ]
   },
   {
     "id": 2,
-    "name": "To Do List", 
+    "name": "To Do List",
     "content": "사이드 프로젝트를 진행할 때는 팀원 간의 협업과 커뮤니케이션이 매우 중요하며, 모집부터 실제 실행, 완성까지 꽤 많은 시간과 노력이 필요합니다.\n\n기존에 사용되던 팀원 매칭 플랫폼인 **비사이드**는 팀 구성에 용이하지만, 이후의 협업과 프로젝트 관리 기능이 부족하다는 한계가 있습니다. **Jira**는 체계적인 프로젝트 관리를 도와주지만, 팀원 모집이나 매칭 기능은 전혀 제공하지 않아 초기 팀 구성에 어려움이 있습니다.\n\n이러한 두 플랫폼의 아쉬운 점을 보완하고, 각각의 장점만을 살려 팀원 매칭부터 프로젝트 관리까지 한 번에 가능한 올인원 플랫폼, **Pick**이 탄생했습니다.\n\n **🔑 핵심 기능**\n- 프로젝트 팀원 매칭\n- 프로젝트 관리 서비스 (회의록, 일정 관리)\n- 팀원, 프로젝트 후기",
     "is_finished": "N",
     "is_deleted": "N",
@@ -28,14 +35,21 @@
     "maximum_participant": 4,
     "session_code": 1002,
     "start_date": "2025-03-27",
-    "end_date":  "2025-04-15",
-    "main_category" : "앱",
-    "sub_category" : "생산성",
+    "end_date": "2025-04-15",
+    "main_category": "앱",
+    "sub_category": "생산성",
     "thumbnail_image": "/assets/member/project-2.png",
     "introduction": "할 일을 미루는 이들을 위한 체크리스트",
     "project_url": "https://pick-project.com/project/2",
     "repo_url": "https://github.com/BE14-NoB/pick-frontend",
-    "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
+    "participants": [
+      "꼼꼼보",
+      "석키키키",
+      "시냥주",
+      "혬헴헴",
+      "민선",
+      "blueSky"
+    ]
   },
   {
     "id": 3,
@@ -47,14 +61,21 @@
     "maximum_participant": 6,
     "session_code": 1003,
     "start_date": "2025-03-27",
-    "end_date":  "2025-04-15",
-    "main_category" :  "앱",
-    "sub_category" : "일기",
+    "end_date": "2025-04-15",
+    "main_category": "앱",
+    "sub_category": "일기",
     "thumbnail_image": "/assets/member/project-3.png",
-    "introduction":  "하루의 기록을 남겨보세요",
+    "introduction": "하루의 기록을 남겨보세요",
     "project_url": "https://pick-project.com/project/3",
     "repo_url": "https://github.com/BE14-NoB/pick-frontend",
-    "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
+    "participants": [
+      "꼼꼼보",
+      "석키키키",
+      "시냥주",
+      "혬헴헴",
+      "민선",
+      "blueSky"
+    ]
   },
   {
     "id": 4,
@@ -66,14 +87,21 @@
     "maximum_participant": 3,
     "session_code": 1004,
     "start_date": "2025-03-27",
-    "end_date":  "2025-04-15",
-    "main_category" : "게임",
-    "sub_category" : "미니게임",
+    "end_date": "2025-04-15",
+    "main_category": "게임",
+    "sub_category": "미니게임",
     "thumbnail_image": "/assets/member/project-4.png",
     "introduction": "게임 개발 모여라",
     "project_url": "https://pick-project.com/project/4",
     "repo_url": "https://github.com/BE14-NoB/pick-frontend",
-    "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
+    "participants": [
+      "꼼꼼보",
+      "석키키키",
+      "시냥주",
+      "혬헴헴",
+      "민선",
+      "blueSky"
+    ]
   },
   {
     "id": 5,
@@ -85,14 +113,21 @@
     "maximum_participant": 7,
     "session_code": 1005,
     "start_date": "2025-03-27",
-    "end_date":  "2025-04-15",
-    "main_category" : "웹",
-    "sub_category" : "검색",
+    "end_date": "2025-04-15",
+    "main_category": "웹",
+    "sub_category": "검색",
     "thumbnail_image": "/assets/member/project-5.png",
     "introduction": "근처 서점을 바로 찾아보세요",
     "project_url": "https://pick-project.com/project/5",
     "repo_url": "https://github.com/BE14-NoB/pick-frontend",
-    "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
+    "participants": [
+      "꼼꼼보",
+      "석키키키",
+      "시냥주",
+      "혬헴헴",
+      "민선",
+      "blueSky"
+    ]
   },
   {
     "id": 6,
@@ -104,13 +139,20 @@
     "maximum_participant": 5,
     "session_code": 1001,
     "start_date": "2025-03-27",
-    "end_date":  "2025-04-15",
-    "main_category" :  "앱",
-    "sub_category" : "천문",
+    "end_date": "2025-04-15",
+    "main_category": "앱",
+    "sub_category": "천문",
     "thumbnail_image": "/assets/member/project-6.png",
     "introduction": "오늘의 달은 어떤 모습일까?",
     "project_url": "https://pick-project.com/project/6",
     "repo_url": "https://github.com/BE14-NoB/pick-frontend",
-    "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
+    "participants": [
+      "꼼꼼보",
+      "석키키키",
+      "시냥주",
+      "혬헴헴",
+      "민선",
+      "blueSky"
+    ]
   }
 ]
