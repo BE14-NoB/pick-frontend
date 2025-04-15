@@ -23,8 +23,6 @@
 #### [🛠️ 주요 기능](#-주요-기능) <br>
 #### [📅 개발 사이클](#-Component) <br>
 #### [🙆‍♀️ 와이어 프레임](#-와이어-프레임) <br>
-#### [💭 프론트 화면 구성](#-Figma) <br>
-#### [🗃️ DB 모델링](#-DB-모델링) <br>
 #### [🪄 기능 명세서](#-기능-명세서) <br>
 #### [📱 테스트 케이스](#-테스트-케이스) <br>
 #### [📑 트러블 슈팅](#-트러블-슈팅) <br>
@@ -297,19 +295,7 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 
 <br>
 
-## 🚩 단위 테스트
-### - Member Service
-<img src = "" width = "600" />
-<br>
-
-### - Matching Service
-<img src = "" width = "600" />
-<br>
-
-### - Core
-#### Mission, Matching, Post, ProjectRoom, Report
-<img src = "" width = "600" />
-<br>
+## 🚩
 
 ## 📱 API 테스트
 ### 👤 회원
