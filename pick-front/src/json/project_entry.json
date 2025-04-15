@@ -15,7 +15,7 @@
     "thumbnail_image": "/assets/member/pick_title.png",
     "introduction": "개발자를 위한 사이드 프로젝트 플랫폼",
     "project_url": "https://pick-project.com/project/1",
-    "repo_url": "https://github.com/sample/project-1",
+    "repo_url": "https://github.com/BE14-NoB/pick-frontend",
     "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
   },
   {
@@ -34,7 +34,7 @@
     "thumbnail_image": "/assets/member/project-2.png",
     "introduction": "할 일을 미루는 이들을 위한 체크리스트",
     "project_url": "https://pick-project.com/project/2",
-    "repo_url": "https://github.com/sample/project-2",
+    "repo_url": "https://github.com/BE14-NoB/pick-frontend",
     "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
   },
   {
@@ -53,7 +53,7 @@
     "thumbnail_image": "/assets/member/project-3.png",
     "introduction":  "하루의 기록을 남겨보세요",
     "project_url": "https://pick-project.com/project/3",
-    "repo_url": "https://github.com/sample/project-3",
+    "repo_url": "https://github.com/BE14-NoB/pick-frontend",
     "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
   },
   {
@@ -72,7 +72,7 @@
     "thumbnail_image": "/assets/member/project-4.png",
     "introduction": "게임 개발 모여라",
     "project_url": "https://pick-project.com/project/4",
-    "repo_url": "https://github.com/sample/project-4",
+    "repo_url": "https://github.com/BE14-NoB/pick-frontend",
     "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
   },
   {
@@ -91,7 +91,7 @@
     "thumbnail_image": "/assets/member/project-5.png",
     "introduction": "근처 서점을 바로 찾아보세요",
     "project_url": "https://pick-project.com/project/5",
-    "repo_url": "https://github.com/sample/project-5",
+    "repo_url": "https://github.com/BE14-NoB/pick-frontend",
     "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
   },
   {
@@ -110,7 +110,7 @@
     "thumbnail_image": "/assets/member/project-6.png",
     "introduction": "오늘의 달은 어떤 모습일까?",
     "project_url": "https://pick-project.com/project/6",
-    "repo_url": "https://github.com/sample/project-6",
+    "repo_url": "https://github.com/BE14-NoB/pick-frontend",
     "participants" : ["꼼꼼보", "석키키키", "시냥주", "혬헴헴", "민선", "blueSky" ]
   }
 ]
