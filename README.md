@@ -47,7 +47,7 @@
 <img src="https://img.shields.io/badge/Eureka-430098?style=flat-square&logo=Eureka&logoColor=white"/> <img     src="https://img.shields.io/badge/gateway-147EFB?style=flat-square&logo=gateway&logoColor=white"/>
 
 ### 🔧 Tools
-<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"> <img src="https://img.shields.io/badge/ERD%20cloud-%230000FF.svg?style=flat&logo=erlang&logoColor=white"> <img src="https://img.shields.io/badge/DA%23-0B6121.svg?style=flat&logo=draw.io&logoColor=white"> ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-2A2A2A.svg?style=flat&logo=intellij-idea&logoColor=white) <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white"/> <img src="https://img.shields.io/badge/ERD%20cloud-%230000FF.svg?style=flat&logo=erlang&logoColor=white"> <img src="https://img.shields.io/badge/DA%23-0B6121.svg?style=flat&logo=draw.io&logoColor=white"> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"> <img src="https://img.shields.io/badge/IntelliJIDEA-2A2A2A.svg?style=flat&logo=intellij-idea&logoColor=white"/> <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/>
 
 <br><br>
 
@@ -90,7 +90,7 @@
 ### 1. Vuetify UI 라이브러리로 통일성 있는 UI 구현
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/vuetify.png" alt="vuetify" width="800"/><br>
 
-Pick 프로젝트는 Vuetify UI 라이브러리를 활용해 프론트엔드 UI를 구축했습니다. Vuetify는 Material Design 기반의 풍부한 컴포넌트 세트를 제공하여, 버튼, 카드, 다이얼로그 등 잘 설계된 UI 요소를 빠르게 적용할 수 있었습니다. 이를 통해 팀원들은 디자인 작업에 소요되는 시간을 줄이고, 전체 플랫폼에 걸쳐 일관된 색상, 타이포그래피, 레이아웃을 유지할 수 있었습니다.</p>
+Pick 프로젝트는 <strong>Vuetify UI 라이브러리</strong>를 활용해 프론트엔드 UI를 구축했습니다. Vuetify는 Material Design 기반의 풍부한 컴포넌트 세트를 제공하여, 버튼, 카드, 다이얼로그 등 잘 설계된 UI 요소를 빠르게 적용할 수 있었습니다. 이를 통해 팀원들은 디자인 작업에 소요되는 시간을 줄이고, 전체 플랫폼에 걸쳐 일관된 색상, 타이포그래피, 레이아웃을 유지할 수 있었습니다.</p>
 
 <ul>
   <li><strong>개발 속도 향상</strong>: 사전 정의된 컴포넌트로 UI 개발 시간 단축.</li>
@@ -101,7 +101,7 @@ Pick 프로젝트는 Vuetify UI 라이브러리를 활용해 프론트엔드 UI�
 ### 2. SPA 구조로 부드러운 사용자 경험 제공
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-1.png"  width="800"/><br>
 
-Pick은 SPA(Single Page Application) 아키텍처를 기반으로 설계했습니다. 헤더와 사이드바 같은 공통 레이아웃은 고정된 상태로 유지되며, 동적 콘텐츠 영역(이미지에서 색상으로 표시된 부분)만 Vue Router를 통해 동적으로 변경됩니다. 이 방식은 페이지 전체를 새로고침하지 않고 필요한 부분만 업데이트해 빠르고 부드러운 화면 전환을 가능하게 합니다. 또한, 컴포넌트 재사용성을 높여 코드 중복을 줄이고 유지보수를 용이하게 했습니다. 예를 들어, 프로젝트 목록과 매칭 페이지는 동일한 카드 컴포넌트를 활용해 일관된 UI를 제공합니다.</p>
+Pick은 SPA(Single Page Application) 아키텍처를 기반으로 설계했습니다. 헤더와 사이드바 같은 공통 레이아웃은 고정된 상태로 유지되며, 동적 콘텐츠 영역(이미지에서 색상으로 표시된 부분)만 Vue Router를 통해 동적으로 변경됩니다. 이 방식은 페이지 전체를 새로고침하지 않고 <strong>필요한 부분만 업데이트</strong>해 빠르고 부드러운 화면 전환을 가능하게 합니다. 또한, 컴포넌트 재사용성을 높여 코드 중복을 줄이고 <strong>유지보수를 용이하게</strong> 했습니다. 예를 들어, 프로젝트 목록과 매칭 페이지는 동일한 카드 컴포넌트를 활용해 일관된 UI를 제공합니다.</p>
 
 <ul>
   <li><strong>향상된 UX</strong>: 페이지 전환 시 깜빡임 없이 부드러운 경험 제공.</li>
@@ -431,8 +431,7 @@ Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반
   </tr>
   <tr>
     <td>김석희</td>
-    <td>
-</td>
+    <td>회원 관련 페이지의 화면을 모두 제작하셨을 뿐만 아니라 발표도 완성도 있게 수행해주셨습니다. 화면 구성 외에도 데이터 중복 확인, 입력 데이터 연동, 로컬 저장 등 신경써야 할 부분을 모두 꼼꼼하게 처리해주셨습니다. 성연님 덕분에 신경쓰지 못한 내용들이 모두 알차게 들어갔습니다. 고생많으셨습니다🙂</td>
   </tr>
   <tr>
     <td>이청민</td>
@@ -493,8 +492,7 @@ Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반
   </tr>
   <tr>
     <td>김석희</td>
-    <td>
-</td>
+    <td>코드를 항상 꼼꼼하게 봐주셔서 개념적으로 약한 부분에 대해 한번 더 공부하고 갈 수 있어 너무 좋았습니다. 청민님 덕분에 개발한 기능들에 대해 제대로 생각해보고, 고민할 수 있는 시간을 가질 수 있었습니다. 본인이 담당하지 않은 기능들에 대해서도 공부하고 생각하시는 모습을 보고 많이 배웠습니다🔥</td>
   </tr>
   <tr>
     <td>장시원</td>
@@ -522,8 +520,7 @@ Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반
   </tr>
   <tr>
     <td>김석희</td>
-    <td>
-</td>
+    <td>개념이나 기획 방향에 대해 물어보면 항상 논리적으로 본인의 생각을 말씀해주셔서 기능을 정리하고 개발하는데 많은 도움이 되었습니다. 또한, 회의가 조금 산으로 가는 것 같으면 적절히 끊어주셔서 팀적으로 회의 시간을 좀 더 유용하게 활용할 수 있었습니다. 구현해야 하는 페이지와 기능이 많아 힘드셨을텐데 포기하지 않고 끝까지 노력하시는 모습이 굉장히 인상적이었습니다😯</td>
   </tr>
 <tr>
     <td>이청민</td>
@@ -550,8 +547,7 @@ Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반
     <td></td>
 <tr>
     <td>김석희</td>
-    <td>
-</td>
+    <td>만약 민선님이 없었다면 이렇게 좋은 결과물이 나오지 않았을거라고 생각합니다. 프론트 개발에 필요한 라이브러리나 기능들을 찾아 공유해주셨을 뿐만 아니라, 본인이 맡은 페이지에 대해서 정말 완벽하게 구현해주셨습니다. 정말 하나를 말하면 100, 200을 해오는 분이셨습니다. 기능 하나하나가 다 유의미하게 작동했으며, 시간 부족으로 미뤘던 기능들도 어느 순간 모두 구현을 해두셨습니다. 모든 기능에 최선을 다하는 모습을 보며 굉장히 많은 것을 배울 수 있었습니다. 민선님도.. 제 보석함 한자리하실래요...?🙊</td>
   </tr>
 <tr>
    <td>이청민</td>
@@ -579,7 +575,7 @@ Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반
   </tr>
   <tr>
     <td>김석희</td>
-    <td></td>
+    <td>맨날 잘 못한다고 겸손한 말씀을 하시지만, 어떤 어려운 일을 맡겨도 기간 내에 척척 해오시는 멋진 분이십니다. 팀원들을 잘 챙겨주시고, 웃으면서 대해주셔서 팀의 분위기를 항상 좋게 만들어주셨습니다. PPT 제작이나 피그마 정리 등 귀찮을 법한 일을 먼저 나서서 제작해주셨는데, 그 덕분에 프로젝트를 마무리 하는 동안 여유가 많이 생겼었습니다. 항상 혜민님과 함께 하면 마음이 든든해지는 느낌이 있는데, 제 보석함의 한자리를 차지하고 있는 이유가 정말 분명하게 있는 분이십니다. 혜민님 최고👍</td>
   </tr>
   <tr>	
     <td>이청민</td>
