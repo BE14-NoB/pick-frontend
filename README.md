@@ -35,10 +35,10 @@
 
 ## 💡 Tech Stack
 ### 🌿 Backend
-<img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/JPA-0769GE?style=flat-square&logo=JPA&logoColor=white"/> <img src="https://img.shields.io/badge/Hibernate-61DAFB?style=flat-square&logo=Hibernate&logoColor=white"/> <img src="https://img.shields.io/badge/gradle-0769AD?style=flat-square&logo=gradle&logoColor=white"/> <img src="https://img.shields.io/badge/security-F7DF1E?style=flat-square&logo=security&logoColor=white"/>
+<img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/SpringSecurity-6DB33F?style=flat-square&logo=springsecurity&logoColor=white"/> <img src="https://img.shields.io/badge/JPA-0769GE?style=flat-square&logo=JPA&logoColor=white"/> <img src="https://img.shields.io/badge/Hibernate-61DAFB?style=flat-square&logo=Hibernate&logoColor=white"/> <img src="https://img.shields.io/badge/gradle-0769AD?style=flat-square&logo=gradle&logoColor=white"/>
 
 ### 🗝️ Frontend
-<img src="https://img.shields.io/badge/javascript-blue?logo=javascript"/>
+<img src="https://img.shields.io/badge/javascript-blue?logo=javascript"/> <img src="https://img.shields.io/badge/Vue.js-4FC08D?logo=vuedotjs&logoColor=white"/>
 
 ### 🗂️ DB
 ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=flat&logo=mariadb&logoColor=white) <img src="https://img.shields.io/badge/MyBatis-FFCA28?style=flat-square&logo=MyBatis&logoColor=white"/>
