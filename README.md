@@ -10,9 +10,9 @@
 
 ## 👨‍💻 DEVELOPERS
 
-|<img src="https://github.com/user-attachments/assets/96ccc0c2-83b7-492c-9315-75ac3cc51009" width="100" height = "100"> |<img src="https://github.com/user-attachments/assets/edc7debb-83c4-43fd-b39b-fc928318163a" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/2c0ab92a-c6c3-4d29-afba-73c8c5b3b6aa" width="100" height = "100">|<img src="https://github.com/user-attachments/assets/202b8b37-2b11-4228-8c95-f26eca6dbef3" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/1b342174-3c7d-4e68-8aa2-773e017e7ad2" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/daa3e58c-512a-4b01-a289-c84feed2c0b9" width="100" height = "100">|
-| :------------------------------------: | :-------------------------------------: | :-----------------------------------: | :--------------------------------------: | :-----------------------------------: | :------------------------------------------: |
-| [고성연](https://github.com/Gombo2) | [김석희](https://github.com/yehang218) | [이청민](https://github.com/Bluesky3125) | [장시원](https://github.com/swjang7269) | [정민선](https://github.com/minsun24) | [최혜민](https://github.com/HMYIEN) |
+| <img src="https://github.com/user-attachments/assets/96ccc0c2-83b7-492c-9315-75ac3cc51009" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/edc7debb-83c4-43fd-b39b-fc928318163a" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/2c0ab92a-c6c3-4d29-afba-73c8c5b3b6aa" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/202b8b37-2b11-4228-8c95-f26eca6dbef3" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/1b342174-3c7d-4e68-8aa2-773e017e7ad2" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/daa3e58c-512a-4b01-a289-c84feed2c0b9" width="100" height = "100"> |
+| :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+|                                          [고성연](https://github.com/Gombo2)                                           |                                         [김석희](https://github.com/yehang218)                                         |                                        [이청민](https://github.com/Bluesky3125)                                        |                                        [장시원](https://github.com/swjang7269)                                         |                                         [정민선](https://github.com/minsun24)                                          |                                          [최혜민](https://github.com/HMYIEN)                                           |
 
 <br>
 
@@ -182,7 +182,7 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 	          </p>
 	</details>
 	<details>
-		<summary>회원 정보 수정</summary><br>
+		<summary>프로필 페이지 조회</summary><br>
 	          <p alian="center">
 	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FetchInfo.gif" width = "600"/><br>
 	          </p>
@@ -222,25 +222,13 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 		</p>
 	</details>
 	<details>
-		<summary>모집 게시판 조회</summary>
+		<summary>단일 게시글 조회</summary>
 		<p alian="center">
 		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/post/post-게시판 사이드바-단일 게시글 조회.gif"  width="600"/>
 		</p>
 	</details>
 	<details>
-		<summary>Q&A 게시판 조회</summary>
-		<p alian="center">
-		<img src=""  width="600"/>
-		</p>
-	</details>
-	<details>
-		<summary>단일 게시글글 조회</summary>
-		<p alian="center">
-		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/post/post-게시판 사이드바-단일 게시글 조회.gif"  width="600"/>
-		</p>
-	</details>
-	<details>
-		<summary>게시글 쓰기</summary>
+		<summary>게시글 쓰기 페이지</summary>
 		<p alian="center">
 		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/post/post-글쓰기창 진입.gif"  width="600"/>
 		</p>
@@ -313,6 +301,15 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 </details>
 
 ### 🗂️ 프로젝트
+ <details>
+          <summary>프로젝트</summary><br>
+	      <details>
+          <summary</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/프로젝트매칭페이지.gif" width = "600"/><br>
+	          </p>
+  </details>  
+  </details>
 
 ### 🎖️ 일일 미션
 <br><br>
