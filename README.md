@@ -302,14 +302,44 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 
 ### 🗂️ 프로젝트
  <details>
-          <summary>프로젝트</summary><br>
-	      <details>
-          <summary</summary><br>
-	          <p alian="center">
-	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/프로젝트매칭페이지.gif" width = "600"/><br>
-	          </p>
-  </details>  
-  </details>
+	<summary><b>프로젝트</b></summary>
+	<details>
+		<summary>커밋 목록 조회</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/project/commit/TEST_커밋 목록 조회.gif.gif"  width="600"/>
+		</p>
+	</details>
+	<details>
+		<summary>깃 이슈 생성 취소하기</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/project/issue/TEST_깃_이슈_생성_취소하기.gif"  width="600"/>
+		</p>
+	</details>
+	<details>
+		<summary>깃 이슈 생성하기</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/project/issue/TEST_깃_이슈_생성하기.gif"  width="600"/>
+		</p>
+	</details>
+  <details>
+		<summary>깃 이슈 목록 조회</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/project/issue/TEST_깃_이슈_생성하기.gif"  width="600"/>
+		</p>
+	</details>
+  <details>
+		<summary>깃 PR 목록 조회</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/project/pr/TEST_PR 목록 조회.gif" width="600"/>
+		</p>
+	</details>
+  <details>
+		<summary>깃 PR 생성하기</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/project/pr/TEST_깃_PR_생성하기.gif"  width="600"/>
+		</p>
+	</details>
+</details>
 
 ### 🎖️ 일일 미션
 <br><br>
