@@ -82,6 +82,15 @@
 
   const authStore = useAuthStore(); 
   console.log(authStore);
+  // 회원 정보 초기화
+  const memberInfo = reactive({
+    email: '',
+    nickname: '',
+    phone: '',
+    birthday: '',
+    profileImage: '',
+  });
+  
 
   const loading = ref(true);
 
@@ -113,10 +122,11 @@
   function handleSubmitReview({ to, content }) {
     console.log('✅ 후기 제출:', to, content)
     // 여기서 실제 저장 처리 or API 호출
-    }
+   }
 
-    onMounted(async () => {
+  onMounted(async () => {
     loading.value = true;
+    const userData = route.state?.userData;
 
     const currentUser = authStore.user?.name;
 

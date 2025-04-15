@@ -49,43 +49,43 @@ import { useRouter } from 'vue-router'
 const meetingItems = [
   {
     id: 1,
-    tag: '스프린트',
-    title: '프론트엔드 UI/UX 설계 회의',
+    tag: "정기 회의",
+    title: "[백엔드] 사용자 인증 로직 개선 논의",
     date: '25.03.31',
     primary: true,
   },
   {
     id: 2,
-    tag: '스프린트',
-    title: '백엔드 DB 스키마 리뷰',
+    tag: "스프린트 킥오프",
+    title: "[백엔드] ERD 구조 확정 및 수정 포인트 점검",
     date: '25.03.31',
     primary: true,
   },
   {
     id: 3,
-    tag: '스프린트',
-    title: '프로젝트 일정 점검',
+    tag:  "정기 회의",
+    title: "[프론트엔드] 메인 페이지 구조 정의",
     date: '25.03.31',
     primary: true,
   },
   {
     id: 4,
-    tag: '스프린트',
-    title: '이슈 트래킹 정례 회의',
+    tag: "정기 회의",
+    title: "[디자인] UI 스타일 가이드 정리",
     date: '25.03.31',
     primary: true,
   },
   {
     id: 5,
-    tag: '스프린트',
-    title: '백엔드 DB 스키마 리뷰',
+    tag:  "코드 리뷰",
+    title: "[프론트엔드] 라우팅 구조 설계 리뷰",
     date: '25.03.31',
     primary: true,
   },
   {
     id: 6,
-    tag: '스프린트',
-    title: 'API 명세 정리 회의',
+    tag: "코드 리뷰",
+    title: "[공통] Git 브랜치 전략 통일",
     date: '25.03.31',
     primary: true,
   }
@@ -200,6 +200,10 @@ function isPrimary(meeting, index) {
   color: #333;
   font-weight: 500;
   margin-top: 8px;
+  /* 👇 말줄임 처리 추가 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .date {
