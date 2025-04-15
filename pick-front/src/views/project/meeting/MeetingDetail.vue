@@ -50,25 +50,26 @@
         <div class="meta-row author">
           <div class="meta-label">👩‍💻 작성자</div>
           <v-select
-            v-model="selectedAuthor"
-            :items="memberList"
-            item-title="name"
-            return-object
-            variant="underlined"
-            density="comfortable"
-            class="meta-select readonly-select"
-            chips
-            readonly
-          >
-            <template #selection="{ item }">
-              <v-chip class="me-1" size="small">
-                <v-avatar start size="18">
-                  <img :src="imageMap[item.profileImage] || profile" />
-                </v-avatar>
-                {{ item.name }}
-              </v-chip>
-            </template>
-          </v-select>
+          v-model="selectedAuthor"
+          :items="memberList"
+          item-title="nickname"
+          return-object
+          variant="underlined"
+          density="comfortable"
+          class="meta-select readonly-select"
+          chips
+          readonly
+        >
+          <template #selection="{ item }">
+            <v-chip class="me-1" size="small" color="primary" variant="tonal">
+              <v-avatar start size="18">
+                <img :src="imageMap[item.profileImage] || profile" />
+              </v-avatar>
+              {{ item.name }}
+            </v-chip>
+          </template>
+        </v-select>
+
 
           <!-- <v-select
             v-model="selectedAuthor"
@@ -90,7 +91,7 @@
           <v-select
             v-model="selectedParticipants"
             :items="memberList"
-            item-title="name"
+            item-title="nickname"
             return-object
             multiple
             variant="underlined"
@@ -150,99 +151,85 @@
   </template>
   
   <script setup>
-  import { ref, onMounted, computed } from 'vue'
-  import { useRoute, useRouter } from 'vue-router'
-  import { marked } from 'marked'
-  import meetingDummy from '@/json/project_meeting_db.json'
-  import memberDummy from '@/json/participants.json'
-  import profile from '@/assets/img/avatar.png'
-  
-  const route = useRoute()
-  const router = useRouter()
-  const meeting = ref(null)
-  
-  const memberList = ref(memberDummy);
-  
-  const templates = ['정기 회의', '스프린트 킥오프', '회고 회의', '코드 리뷰', '데일리 스크럼']
-  const loading = ref(true)
-  const selectedAuthor = ref(null)
-  const selectedParticipants = ref([])
-  
-  onMounted(async () => {
-    loading.value = true;
-    const id = route.params.id;
+import { ref, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { marked } from 'marked'
+import meetingDummy from '@/json/project_meeting_db.json'
+import memberDummy from '@/json/participants.json'
+import profile from '@/assets/img/avatar.png'
 
-    try {
-      const res = await fetch('http://localhost:8084/meetings');
-      const data = await res.json();
+const route = useRoute()
+const router = useRouter()
+const meeting = ref(null)
 
-      // 🔥 여기에서 string 비교로 안전하게 고쳐줌
-      const target = data.find(m => String(m.id) === String(id));
+const memberList = ref(memberDummy)
+const templates = ['정기 회의', '스프린트 킥오프', '회고 회의', '코드 리뷰', '데일리 스크럼']
+const loading = ref(true)
+const selectedAuthor = ref(null)
+const selectedParticipants = ref([])
 
-      if (!target) {
-        console.warn('📂 회의록 정보를 찾을 수 없습니다.');
-        loading.value = false;
-        return;
-      }
+onMounted(async () => {
+  loading.value = true
+  const id = route.params.id
 
-      meeting.value = target;
+  try {
+    const res = await fetch('http://localhost:8084/meetings')
+    const data = await res.json()
+    const target = data.find(m => String(m.id) === String(id))
 
-      // 💡 memberList는 ref이기 때문에 .value 꼭 써야 함
-      selectedAuthor.value = memberList.value.find(m => m.name === target.author);
-      selectedParticipants.value = memberList.value.filter(m => target.participants.includes(m.name));
-    } catch (err) {
-      console.error('❌ 회의록 불러오기 실패:', err);
-      meeting.value = meetingDummy['meetings'].find(m => String(m.id) === String(id));
-      selectedAuthor.value = meeting.value.author;
-      selectedParticipants.value = meeting.value.participants;
+    if (!target) {
+      console.warn('📂 회의록 정보를 찾을 수 없습니다.')
+      loading.value = false
+      return
     }
 
-    loading.value = false;
-  });
+    meeting.value = target
 
-  
-  const renderedMarkdown = computed(() =>
-    meeting.value?.content ? marked(meeting.value.content) : ''
-  )
-  
-  
-  // ✅ 이미지 파일 자동 매핑
-  const imageModules = import.meta.glob('@/assets/img/member_profile/*.png', { eager: true })
-  const imageMap = Object.fromEntries(
-    Object.entries(imageModules).map(([path, mod]) => [path.split('/').pop(), mod.default])
-  )
+    // 매핑 시 nickname 기준으로 연결해야 칩이 잘 뜸
+    selectedAuthor.value = memberList.value.find(m => m.nickname === target.author)
+    selectedParticipants.value = memberList.value.filter(m => target.participants.includes(m.nickname))
+  } catch (err) {
+    console.error('❌ 회의록 불러오기 실패:', err)
+    const fallback = meetingDummy['meetings'].find(m => String(m.id) === String(id))
+    meeting.value = fallback
 
-  // 회의록 수정 
-  const goToEdit = () => {
-    router.push({
-      path: '/project/create-meeting',
-      query: { id: meeting.value.id }
-    })
+    selectedAuthor.value = memberList.value.find(m => m.nickname === fallback.author)
+    selectedParticipants.value = memberList.value.filter(m => fallback.participants.includes(m.nickname))
   }
 
-  // 회의록 삭제
-  const deleteMeeting = async () => {
-      const confirmDelete = confirm('이 회의록을 정말 삭제하시겠습니까?');
-      if (!confirmDelete) return;
+  loading.value = false
+})
 
-      try {
-        const res = await fetch(`http://localhost:8084/meetings/${meeting.value.id}`, {
-          method: 'DELETE',
-        });
+const renderedMarkdown = computed(() =>
+  meeting.value?.content ? marked(meeting.value.content) : ''
+)
 
-        if (!res.ok) throw new Error('삭제 실패');
+const imageModules = import.meta.glob('@/assets/img/member_profile/*.png', { eager: true })
+const imageMap = Object.fromEntries(
+  Object.entries(imageModules).map(([path, mod]) => [path.split('/').pop(), mod.default])
+)
 
-        alert('회의록이 삭제되었습니다.');
-        router.push('/project/meeting'); // 목록 페이지 등으로 리디렉션
-      } catch (err) {
-        console.error('❌ 삭제 중 오류:', err);
-        alert('삭제에 실패했습니다.');
-      }
-  };
+const goToEdit = () => {
+  router.push({ path: '/project/create-meeting', query: { id: meeting.value.id } })
+}
 
+const deleteMeeting = async () => {
+  const confirmDelete = confirm('이 회의록을 정말 삭제하시겠습니까?')
+  if (!confirmDelete) return
 
+  try {
+    const res = await fetch(`http://localhost:8084/meetings/${meeting.value.id}`, { method: 'DELETE' })
+    if (!res.ok) throw new Error('삭제 실패')
 
+    alert('회의록이 삭제되었습니다.')
+    router.push('/project/meeting')
+  } catch (err) {
+    console.error('❌ 삭제 중 오류:', err)
+    alert('삭제에 실패했습니다.')
+  }
+}
 </script>
+
   
   <style scoped>
   .note-editor {
@@ -281,7 +268,7 @@
     display: flex;
     flex-direction: row;
     gap: 8px;
-    width: 100%;
+    /* width: 100%; */
   }
   .meta-label {
     font-size: 14px;
