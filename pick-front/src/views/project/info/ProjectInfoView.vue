@@ -71,6 +71,8 @@
   const showPassword = ref(false)
   const techStack = ref('')
   const thumbnailUrl = ref('')
+  const formattedStartDate = ref('');
+  const formattedEndDate = ref('');
   const isEditing = ref(false)
   
   onMounted(async () => {

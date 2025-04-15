@@ -12,8 +12,8 @@
     "end_date": "2025-04-15",
     "main_category": "웹",
     "sub_category": "플랫폼",
-    "thumbnail_image": "",
-    "introduction": "개발자를 위한 사이드 프로젝트 플랫폼",
+    "thumbnail_image": "http://localhost:5173/src/assets/img/pick_title.png",
+    "introduction": "개발자를 위한 사이드 프로젝트 플랫폼(수정중)",
     "project_url": "https://pick-project.com/project/1",
     "repo_url": "https://github.com/BE14-NoB/pick-frontend",
     "participants": [
