@@ -90,26 +90,21 @@
 Vuetify UI 라이브러리를 사용하여 모두가 통일된 컴포넌트를 재사용하여 효율적인 작업을 진행이 가능했다.
 
 
-<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-1.png" alt="components-1" width="800"/><br>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-1.png"  width="800"/><br>
 SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 부분은 동적으로 다시 생성하여 사용자에게 편의성을 제공함
 
 
-<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-2.png" alt="components-2" width="800"/><br>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-2.png" width="800"/><br>
 공통으로 사용되는 헤더, 푸터, 드롭다운, 버튼, 사이드바 등을 컴포넌트화 시켜 재사용하여 통일성을 가지고 생산성을 높였다
+
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/package.png" width="800"/><br>
+
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/used-library.png" width="800"/><br>
 
 <br><br>
 
 ## 🙆‍♀️ 와이어 프레임
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/와이어 프레임 최종본.png" alt="와이어-프레임-최종본" width="800"/><br>
-
-<br><br>
-
-## 🛜 Server
-###  Eureka 서버 + Config 서버 + GateWay + Frontend + Git REST API
-
-<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/gateway-sever-design.png" alt="게이트웨이-서버-디자인" width="800"/><br>
-<br>
-
 
 <br><br>
 
@@ -147,6 +142,15 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 <br>
 
 <img src = "https://github.com/user-attachments/assets/ab620c8f-d9fb-4b72-8005-a0856019b3e4" width = "800"/>
+
+<br><br>
+
+## 🛜 Server
+###  Eureka 서버 + Config 서버 + GateWay + Frontend + Git REST API
+
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/gateway-sever-design.png" alt="게이트웨이-서버-디자인" width="800"/><br>
+<br>
+
 
 <br><br>
 
@@ -359,7 +363,7 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 <br><br>
 
 ## 📑 트러블 슈팅
-
+`#GIT REST API 연동` `#v-infinite-scroll 무한 로딩` `#개발중 AI 도구 활용`
 <br><br>
 
 ## 🔜 향후 확장 계획
