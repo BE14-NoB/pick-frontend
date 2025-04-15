@@ -90,7 +90,6 @@
 ### 1. Vuetify UI 라이브러리로 통일성 있는 UI 구현
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/vuetify.png" alt="vuetify" width="800"/><br>
 
-<p><strong>설명</strong>:<br>
 Pick 프로젝트는 Vuetify UI 라이브러리를 활용해 프론트엔드 UI를 구축했습니다. Vuetify는 Material Design 기반의 풍부한 컴포넌트 세트를 제공하여, 버튼, 카드, 다이얼로그 등 잘 설계된 UI 요소를 빠르게 적용할 수 있었습니다. 이를 통해 팀원들은 디자인 작업에 소요되는 시간을 줄이고, 전체 플랫폼에 걸쳐 일관된 색상, 타이포그래피, 레이아웃을 유지할 수 있었습니다.</p>
 
 <ul>
@@ -101,7 +100,7 @@ Pick 프로젝트는 Vuetify UI 라이브러리를 활용해 프론트엔드 UI�
 
 ### 2. SPA 구조로 부드러운 사용자 경험 제공
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-1.png"  width="800"/><br>
-<p><strong>설명</strong>:<br>
+
 Pick은 SPA(Single Page Application) 아키텍처를 기반으로 설계했습니다. 헤더와 사이드바 같은 공통 레이아웃은 고정된 상태로 유지되며, 동적 콘텐츠 영역(이미지에서 색상으로 표시된 부분)만 Vue Router를 통해 동적으로 변경됩니다. 이 방식은 페이지 전체를 새로고침하지 않고 필요한 부분만 업데이트해 빠르고 부드러운 화면 전환을 가능하게 합니다. 또한, 컴포넌트 재사용성을 높여 코드 중복을 줄이고 유지보수를 용이하게 했습니다. 예를 들어, 프로젝트 목록과 매칭 페이지는 동일한 카드 컴포넌트를 활용해 일관된 UI를 제공합니다.</p>
 
 <ul>
@@ -113,7 +112,6 @@ Pick은 SPA(Single Page Application) 아키텍처를 기반으로 설계했습�
 ### 3. 공통 컴포넌트로 재사용성과 생산성 극대화
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/components-2.png" width="800"/><br>
 
-<p><strong>설명</strong>:<br>
 프로젝트 전반에 걸쳐 자주 사용되는 UI 요소를 공통 컴포넌트로 모듈화하여 재사용성을 높였습니다. 주요 공통 컴포넌트로는 <strong>헤더</strong>(네비게이션 메뉴 포함), <strong>푸터</strong>(사이트 정보 표시), <strong>탭창</strong>(콘텐츠 간 전환), <strong>검색 컴포넌트</strong>(게시글 및 프로젝트 검색), <strong>글 목록 컴포넌트</strong>(게시판 및 매칭 목록), <strong>글쓰기 영역</strong>(제목과 내용 입력 UI), <strong>프로젝트 카드</strong>(프로젝트 정보 요약) 등이 있습니다. 이러한 컴포넌트는 각 페이지에서 반복적으로 활용되어 UI 개발의 효율성을 높이고, 일관된 디자인을 유지했습니다.</p>
 
 <ul>
@@ -125,7 +123,6 @@ Pick은 SPA(Single Page Application) 아키텍처를 기반으로 설계했습�
 ### 4. 체계적인 폴더 구조로 코드 관리 효율화
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/package.png" width="800"/><br>
 
-<p><strong>설명</strong>:<br>
 프로젝트의 코드 관리를 체계화하기 위해 명확한 폴더 구조를 설계했습니다. 최상위 디렉토리는 <strong>Components</strong>(공통 컴포넌트), <strong>Views</strong>(페이지별 뷰), <strong>Router</strong>(라우팅 설정), <strong>Stores</strong>(상태 관리), <strong>Utils</strong>(유틸리티 함수), <strong>JSON</strong>(정적 데이터), <strong>Assets</strong>(이미지 및 폰트)로 나뉘었습니다. 각 디렉토리 내부는 다시 기능별로 세분화하여 <strong>미션</strong>, <strong>매칭</strong>, <strong>회원</strong>, <strong>게시글</strong>, <strong>프로젝트</strong> 폴더로 구성했습니다. 프로젝트 폴더는 추가로 <strong>대시보드</strong>, <strong>완료된 프로젝트</strong>, <strong>프로젝트 정보</strong>, <strong>이슈</strong>, <strong>회의록</strong>, <strong>PR</strong>, <strong>리뷰</strong> 등 세부 기능별로 패키지를 나누어 관리했습니다. 이 구조는 코드의 역할과 위치를 명확히 하여 협업과 유지보수를 간소화했습니다.</p>
 
 <ul>
@@ -137,7 +134,6 @@ Pick은 SPA(Single Page Application) 아키텍처를 기반으로 설계했습�
 ### 5. 특화된 라이브러리로 기능 구현 강화
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/used-library.png" width="800"/><br>
 
-<p><strong>설명</strong>:<br>
 Pick은 특정 기능의 품질을 높이기 위해 세 가지 특화된 라이브러리를 활용했습니다:<br>
 - <strong>Marked.js</strong>: 마크다운 파서를 사용해 회의록 작성 페이지에서 사용자가 마크다운 문법으로 작성한 내용을 실시간으로 HTML로 변환하여 표시합니다. 이를 통해 직관적이고 풍부한 텍스트 편집 경험을 제공했습니다.<br>
 - <strong>Chart.js</strong>: 대시보드의 REPO 모니터링 영역에서 사용되었습니다. 커밋 횟수, 이슈 상태, PR 진행 상황 등을 시각화한 차트(막대, 꺾은선 등)를 구현해 프로젝트 진행 상황을 한눈에 파악할 수 있게 했습니다.<br>
@@ -199,7 +195,6 @@ Pick은 특정 기능의 품질을 높이기 위해 세 가지 특화된 라이�
 ### Spring Gateway와 Eureka로 효율적인 MSA 구현
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/gateway-sever-design.png" alt="게이트웨이-서버-디자인" width="800"/><br>
 
-<p><strong>설명</strong>:<br>
 Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반으로 설계되었습니다. <strong>Spring Gateway</strong>는 모든 클라이언트 요청을 프론트가 받아 넘겨주어 중앙에서 관리하며, 인가 처리(권한 검증)를 담당합니다. <strong>Eureka</strong> 서비스 레지스트리는 동적으로 마이크로서비스를 탐색하고 로드밸런싱을 수행합니다. <strong>Member 도메인</strong>은 JWT 토큰 생성 및 인증(사용자 신원 확인)을 처리하며, <strong>Config Server</strong>는 환경 설정을 중앙화해 일관성을 유지합니다. 서비스는 Member 도메인(회원 관리)과 <strong>Core 도메인</strong>(매칭, 프로젝트, 신고, 게시판)으로 나뉘어 관리되며, 각 도메인은 <strong>MariaDB</strong>에서 데이터를 조회합니다. 또한, <strong>Git REST API</strong>를 추가해 Spring Gateway를 통해 외부 GitHub API를 호출, 커밋, 이슈, PR 데이터를 동적으로 통합했습니다.</p>
 
 <ul>
