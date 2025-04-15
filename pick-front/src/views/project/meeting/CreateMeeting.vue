@@ -73,7 +73,7 @@
         <v-select
           v-model="participants"
           :items="memberList"
-          item-title="name"
+          item-title="nickname"
           return-object
           variant="underlined"
           density="comfortable"
@@ -84,7 +84,7 @@
           <template #selection="{ item }">
             <v-chip class="me-1" size="small">
               <v-avatar start size="18">
-                <img :src="item.avatar" />
+                <img :src="imageMap[item.profileImage] || profile" />
               </v-avatar>
             </v-chip>
           </template>
@@ -167,14 +167,15 @@ const participants = ref([])
 const createdAt = ref(dayjs().format('YYYY.MM.DD'))
 const updatedAt = ref(createdAt.value)
 
-const memberList = [
-  { name: '꼼꼼보', avatar: profile },
-  { name: '석키키키', avatar: profile },
-  { name: '시냥주', avatar: profile },
-  { name: '민선', avatar: profile },
-  { name: 'blueSky', avatar: profile },
-  { name: '혬헴헴', avatar: profile }
-]
+const memberList = ref(members);
+// [
+//   { name: '꼼꼼보', avatar: profile },
+//   { name: '석키키키', avatar: profile },
+//   { name: '시냥주', avatar: profile },
+//   { name: '민선', avatar: profile },
+//   { name: 'blueSky', avatar: profile },
+//   { name: '혬헴헴', avatar: profile }
+// ]
 
 const templates = ['정기 회의', '스프린트 킥오프', '회고 회의', '코드 리뷰', '데일리 스크럼']
 
@@ -203,6 +204,17 @@ const showCommandList = ref(false)
 const commandKeyword = ref('')
 const selectedIndex = ref(0)
 const commandMode = ref('')
+
+const imageModules = import.meta.glob('@/assets/img/member_profile/*.png', { eager: true })
+const imageMap = Object.fromEntries(
+  Object.entries(imageModules).map(([path, mod]) => {
+    const fileName = path.split('/').pop()
+    return [fileName, mod.default]
+  })
+)
+
+
+
 
 const filteredCommands = computed(() => {
   const list = commandMode.value === '/' ? commands : emojis
@@ -263,7 +275,7 @@ const renderedMarkdown = computed(() => marked(content.value))
 onMounted(async () => {
   if (!id) return // 신규 작성이면 skip
   try {
-    const res = await fetch('http://localhost:8080/meetings')
+    const res = await fetch('http://localhost:8084/meetings')
     const data = await res.json()
     const existing = data.find(m => m.id === id)
     if (existing) {
