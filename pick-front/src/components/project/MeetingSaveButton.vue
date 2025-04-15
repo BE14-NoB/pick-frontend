@@ -47,8 +47,8 @@
       updatedAt: now,
       content: props.content,
       template: props.template,
-      author: props.author?.name,
-      participants: props.participants.map(p => p.name)
+      author: props.author?.nickname,
+      participants: props.participants.map(p => p.nickname)
     }
   
     const isEdit = !!props.id
