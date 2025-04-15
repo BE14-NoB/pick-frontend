@@ -14,15 +14,13 @@ export default {
     methods: {
         // 🚩 우선 임시로 데이터 넘기기 (백에서 조회해서 가져와야 함)
         goToMemberInfo() {
-            this.$router.push({
-                path: '/member/info',
-                query: {
-                    profileImage: 'https://avatars.githubusercontent.com/u/106304305?v=4',
-                    name: 'Gombo2',
-                    githubLink: 'https://github.com/Gombo2',
-                    githubId: 'Gombo2'
-                }
-            });
+            const query = new URLSearchParams({
+                profileImage: 'https://avatars.githubusercontent.com/u/106304305?v=4',
+                githubLink: 'https://github.com/Gombo2',
+                githubId: 'Gombo2'
+            }).toString();
+
+            window.location.href = `/member/info?${query}`;
         }
     }
 };
