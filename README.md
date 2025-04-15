@@ -24,6 +24,7 @@
 #### [📅 개발 사이클](#-Component) <br>
 #### [🙆‍♀️ 와이어 프레임](#-와이어-프레임) <br>
 #### [🪄 스토리 보드](#-스토리-보드) <br>
+#### [📰 기능 명세서](#-기능-명세서-) <br>
 #### [🛜 서버](#-서버) <br>
 #### [📱 테스트 케이스](#-테스트-케이스) <br>
 #### [📑 트러블 슈팅](#-트러블-슈팅) <br>
@@ -106,7 +107,7 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 ## 🛜 Server
 ###  Eureka 서버 + Config 서버 + GateWay + Frontend + Git REST API
 
-<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/gateway-server-design.png" alt="게이트웨이-서버-디자인" width="800"/><br>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/gateway-sever-design.png" alt="게이트웨이-서버-디자인" width="800"/><br>
 <br>
 
 
@@ -139,8 +140,19 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
   
   <br><br>
 
+## 📰 기능 명세서
+
+🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vScA7f_mLFChQQ5SMSU5AAC6-O3h8PYJg0H-dxRvMKHrePOtW3VIgnlNMcAEWP1Xy8O8LcMe4OFuCWe/pubhtml?gid=0&single=true"> 기능 명세서 자세히 보기 </a>
+
+<br>
+
+<img src = "https://github.com/user-attachments/assets/ab620c8f-d9fb-4b72-8005-a0856019b3e4" width = "800"/>
+
+<br><br>
 
 ## 📱 테스트 케이스
+
+### 📄 메인 페이지
 
 ### 👤 회원
 <details>
@@ -170,9 +182,15 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 	          </p>
 	</details>
 	<details>
-		<summary>프로필 페이지</summary><br>
+		<summary>회원 정보 수정</summary><br>
 	          <p alian="center">
-	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FindProfile.gif" width = "600"/><br>
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FetchInfo.gif" width = "600"/><br>
+	          </p>
+	</details>
+	<details>
+		<summary>깃허브 연결하기</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/파일명.gif" width = "600"/><br>
 	          </p>
 	</details>
 	<details>
@@ -294,17 +312,9 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
   </details>
 </details>
 
-<br><br>
-
-## 🚩
-### 👤 회원
-### 🔔 미션
-### 📜 게시글
-### 🤼 매칭
 ### 🗂️ 프로젝트
-### 🚨 신고
-## 📑 API 명세서
 
+### 🎖️ 일일 미션
 <br><br>
 
 ## 📑 트러블 슈팅
