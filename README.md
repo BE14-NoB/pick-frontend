@@ -10,9 +10,9 @@
 
 ## 👨‍💻 DEVELOPERS
 
-|<img src="https://github.com/user-attachments/assets/96ccc0c2-83b7-492c-9315-75ac3cc51009" width="100" height = "100"> |<img src="https://github.com/user-attachments/assets/edc7debb-83c4-43fd-b39b-fc928318163a" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/2c0ab92a-c6c3-4d29-afba-73c8c5b3b6aa" width="100" height = "100">|<img src="https://github.com/user-attachments/assets/202b8b37-2b11-4228-8c95-f26eca6dbef3" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/1b342174-3c7d-4e68-8aa2-773e017e7ad2" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/daa3e58c-512a-4b01-a289-c84feed2c0b9" width="100" height = "100">|
-| :------------------------------------: | :-------------------------------------: | :-----------------------------------: | :--------------------------------------: | :-----------------------------------: | :------------------------------------------: |
-| [고성연](https://github.com/Gombo2) | [김석희](https://github.com/yehang218) | [이청민](https://github.com/Bluesky3125) | [장시원](https://github.com/swjang7269) | [정민선](https://github.com/minsun24) | [최혜민](https://github.com/HMYIEN) |
+| <img src="https://github.com/user-attachments/assets/96ccc0c2-83b7-492c-9315-75ac3cc51009" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/edc7debb-83c4-43fd-b39b-fc928318163a" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/2c0ab92a-c6c3-4d29-afba-73c8c5b3b6aa" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/202b8b37-2b11-4228-8c95-f26eca6dbef3" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/1b342174-3c7d-4e68-8aa2-773e017e7ad2" width="100" height = "100"> | <img src="https://github.com/user-attachments/assets/daa3e58c-512a-4b01-a289-c84feed2c0b9" width="100" height = "100"> |
+| :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+|                                          [고성연](https://github.com/Gombo2)                                           |                                         [김석희](https://github.com/yehang218)                                         |                                        [이청민](https://github.com/Bluesky3125)                                        |                                        [장시원](https://github.com/swjang7269)                                         |                                         [정민선](https://github.com/minsun24)                                          |                                          [최혜민](https://github.com/HMYIEN)                                           |
 
 <br>
 
@@ -24,6 +24,7 @@
 #### [📅 개발 사이클](#-Component) <br>
 #### [🙆‍♀️ 와이어 프레임](#-와이어-프레임) <br>
 #### [🪄 스토리 보드](#-스토리-보드) <br>
+#### [📰 기능 명세서](#-기능-명세서-) <br>
 #### [🛜 서버](#-서버) <br>
 #### [📱 테스트 케이스](#-테스트-케이스) <br>
 #### [📑 트러블 슈팅](#-트러블-슈팅) <br>
@@ -106,7 +107,7 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 ## 🛜 Server
 ###  Eureka 서버 + Config 서버 + GateWay + Frontend + Git REST API
 
-<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/gateway-server-design.png" alt="게이트웨이-서버-디자인" width="800"/><br>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/gateway-sever-design.png" alt="게이트웨이-서버-디자인" width="800"/><br>
 <br>
 
 
@@ -139,8 +140,19 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
   
   <br><br>
 
+## 📰 기능 명세서
+
+🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vScA7f_mLFChQQ5SMSU5AAC6-O3h8PYJg0H-dxRvMKHrePOtW3VIgnlNMcAEWP1Xy8O8LcMe4OFuCWe/pubhtml?gid=0&single=true"> 기능 명세서 자세히 보기 </a>
+
+<br>
+
+<img src = "https://github.com/user-attachments/assets/ab620c8f-d9fb-4b72-8005-a0856019b3e4" width = "800"/>
+
+<br><br>
 
 ## 📱 테스트 케이스
+
+### 📄 메인 페이지
 
 ### 👤 회원
 <details>
@@ -170,9 +182,15 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 	          </p>
 	</details>
 	<details>
-		<summary>프로필 페이지</summary><br>
+		<summary>프로필 페이지 조회</summary><br>
 	          <p alian="center">
-	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FindProfile.gif" width = "600"/><br>
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/FetchInfo.gif" width = "600"/><br>
+	          </p>
+	</details>
+	<details>
+		<summary>깃허브 연결하기</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/member/파일명.gif" width = "600"/><br>
 	          </p>
 	</details>
 	<details>
@@ -204,25 +222,13 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 		</p>
 	</details>
 	<details>
-		<summary>모집 게시판 조회</summary>
+		<summary>단일 게시글 조회</summary>
 		<p alian="center">
 		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/post/post-게시판 사이드바-단일 게시글 조회.gif"  width="600"/>
 		</p>
 	</details>
 	<details>
-		<summary>Q&A 게시판 조회</summary>
-		<p alian="center">
-		<img src=""  width="600"/>
-		</p>
-	</details>
-	<details>
-		<summary>단일 게시글글 조회</summary>
-		<p alian="center">
-		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/post/post-게시판 사이드바-단일 게시글 조회.gif"  width="600"/>
-		</p>
-	</details>
-	<details>
-		<summary>게시글 쓰기</summary>
+		<summary>게시글 쓰기 페이지</summary>
 		<p alian="center">
 		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/post/post-글쓰기창 진입.gif"  width="600"/>
 		</p>
@@ -294,17 +300,18 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
   </details>
 </details>
 
-<br><br>
-
-## 🚩
-### 👤 회원
-### 🔔 미션
-### 📜 게시글
-### 🤼 매칭
 ### 🗂️ 프로젝트
-### 🚨 신고
-## 📑 API 명세서
+ <details>
+          <summary>프로젝트</summary><br>
+	      <details>
+          <summary</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/matching/프로젝트매칭페이지.gif" width = "600"/><br>
+	          </p>
+  </details>  
+  </details>
 
+### 🎖️ 일일 미션
 <br><br>
 
 ## 📑 트러블 슈팅
