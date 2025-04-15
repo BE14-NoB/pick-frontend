@@ -148,6 +148,10 @@ const router = createRouter({
           path: 'dailymission',
           component: () => import('@/components/dailymission/views/DailyMission.vue')
         },
+        {
+          path: 'completed',
+          component: () => import('@/components/matching/CompletedProject.vue')
+        }
       ],
     },
     {
