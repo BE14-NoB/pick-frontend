@@ -152,7 +152,22 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
 
 ## 📱 테스트 케이스
 
-### 📄 메인 페이지
+### 📄 공통 부분
+<details>
+     <summary><b>공통 부분</b></summary><br>
+  <details>
+          <summary>메인 페이지 조회</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/common/main-page.gif" width = "600"/><br>
+	          </p>
+  </details>
+  <details>
+          <summary>오류 페이지지</summary><br>
+	          <p alian="center">
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/common/TEST_오류_페이지.gif" width = "600"/><br>
+	          </p>
+  </details>
+</details>
 
 ### 👤 회원
 <details>
@@ -207,7 +222,7 @@ SPA(Single Page Application)기반으로 바뀔 부분을 제외한 나머지 �
   <details>
           <summary>일일 미션 조회</summary><br>
 	          <p alian="center">
-	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/본인 도메인 패키지명/GIF 파일명" width = "600"/><br>
+	          <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/dailymission/TEST_로그인 시 로그인 일일미션 달성 완료.gif" width = "600"/><br>
 	          </p>
   </details>
 </details>
