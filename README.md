@@ -196,9 +196,17 @@ Pick은 특정 기능의 품질을 높이기 위해 세 가지 특화된 라이�
 ## 🛜 Server
 ###  Eureka 서버 + Config 서버 + GateWay + Frontend + Git REST API
 
+### Spring Gateway와 Eureka로 효율적인 MSA 구현
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/gateway-sever-design.png" alt="게이트웨이-서버-디자인" width="800"/><br>
-<br>
 
+<p><strong>설명</strong>:<br>
+Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반으로 설계되었습니다. <strong>Spring Gateway</strong>는 모든 클라이언트 요청을 프론트가 받아 넘겨주어 중앙에서 관리하며, 인가 처리(권한 검증)를 담당합니다. <strong>Eureka</strong> 서비스 레지스트리는 동적으로 마이크로서비스를 탐색하고 로드밸런싱을 수행합니다. <strong>Member 도메인</strong>은 JWT 토큰 생성 및 인증(사용자 신원 확인)을 처리하며, <strong>Config Server</strong>는 환경 설정을 중앙화해 일관성을 유지합니다. 서비스는 Member 도메인(회원 관리)과 <strong>Core 도메인</strong>(매칭, 프로젝트, 신고, 게시판)으로 나뉘어 관리되며, 각 도메인은 <strong>MariaDB</strong>에서 데이터를 조회합니다. 또한, <strong>Git REST API</strong>를 추가해 Spring Gateway를 통해 외부 GitHub API를 호출, 커밋, 이슈, PR 데이터를 동적으로 통합했습니다.</p>
+
+<ul>
+  <li><strong>확장성</strong>: MSA 구조로 도메인별 독립적 배포 및 유지보수 가능.</li>
+  <li><strong>효율적 인증/인가</strong>: Member 도메인에서 인증, Gateway에서 인가로 역할 분리.</li>
+  <li><strong>외부 API 통합</strong>: Git REST API로 프로젝트 데이터를 실시간 연동.</li>
+</ul>
 
 <br><br>
 
