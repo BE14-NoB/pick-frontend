@@ -35,7 +35,7 @@
           prepend-icon="mdi-format-list-checks"
           title="일일 미션"
           value="/dailymission"
-          :active="selected === '/dailymission'"
+          :active="selected === '/member/dailymission'"
           @click="goTo('dailymission')"
         />
 
@@ -46,14 +46,14 @@
           </template>
           <v-list-item
             title="모집 중 프로젝트"
-            value="/project/recruiting"
-            :active="selected === '/project/recruiting'"
+            value="recruiting"
+            :active="selected === '/member/recruiting'"
             @click="goTo('recruiting')"
           />
           <v-list-item
             title="승인 대기 프로젝트"
             value="/project/pending"
-            :active="selected === '/project/pending'"
+            :active="selected === '/member/pending'"
             @click="goTo('pending')"
           />
           <v-list-item
@@ -65,8 +65,8 @@
           <v-list-item
             title="참여 완료 프로젝트"
             value="/project/completed"
-            :active="selected === '/project/completed'"
-            @click="goTo('/project/completed')"
+            :active="selected === '/member/completed'"
+            @click="goTo('completed')"
           />
         </v-list-group>
 
@@ -100,13 +100,19 @@
   const selected = ref(route.path)
   const opened = ref([])
 
+  const projectOpenPaths = [
+    '/pending',
+    '/recruiting',
+    '/completed'
+  ]
   watch(route, (newRoute) => {
     selected.value = newRoute.path
-    if (newRoute.path.startsWith('/project')) {
-      opened.value = ['프로젝트']
-    } else {
-      opened.value = []
-    }
+
+    const shouldOpenProject = projectOpenPaths.some((path) =>
+    newRoute.path.includes(path)
+  )
+
+  opened.value = shouldOpenProject ? ['프로젝트'] : []
   })
 
   const goTo = (path) => {
