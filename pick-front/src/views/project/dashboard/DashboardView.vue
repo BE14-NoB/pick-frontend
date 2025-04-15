@@ -31,7 +31,8 @@
                 <v-card class="dday-button" flat>
                 <div class="d-flex justify-space-between align-center px-4 py-1">
                     <div class="text-h5 font-weight-bold">
-                    <span v-if="dday >= 0">D - {{ dday }}</span>
+                    <span v-if="dday > 0">D - {{ dday }}</span>
+                    <span v-else-if="dday === 0">D-Day</span>
                     <span v-else>+ {{ Math.abs(dday) }}days</span>
                     </div>
                     <div class="text-right">

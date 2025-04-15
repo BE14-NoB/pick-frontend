@@ -18,7 +18,16 @@
         <v-menu location="bottom">
           <template v-slot:activator="{ props }">
             <div class="profile-img-wrapper">
-              <v-img :width="40" :height="40" :src="profileImage" class="profile-img" v-bind="props" @error="handleImageError" />
+              <v-img
+                :width="40"
+                :height="40"
+                :src="profileImage"
+                class="profile-img"
+                cover
+                v-bind="props"
+                @error="handleImageError"
+              />
+
             </div>
           </template>
           <v-list class="profile-dropdown">
@@ -26,7 +35,7 @@
             <v-list-item class="profile-info">
               <div class="profile-header">
                 <div class="profile-left">
-                  <v-img :width="60" :height="60" :src="profileImage" class="profile-img-large" @error="handleImageError" />
+                  <v-img :width="60" :height="60" :src="profileImage" class="profile-img-large" @error="handleImageError"  cover/>
                   <div class="nickname">{{ authStore.currentUser.nickname }}</div>
                 </div>
                 <div class="profile-right">
@@ -95,14 +104,13 @@
         <v-btn class="close-btn" icon="mdi-close" variant="text" color="grey-darken-2" size="large"
           @click="closeLoginModal"></v-btn>
         <MemberLogin @login="handleLogin" />
-      </div>
+      </div> 
     </div>
 
     <!-- 회원가입 모달 -->
     <div v-if="isSignupModalOpen" class="modal-overlay">
       <div class="modal-content signup-modal">
-        <v-btn class="close-btn" icon="mdi-close" variant="text" color="grey-darken-2" size="large"
-          @click="closeSignupModal"></v-btn>
+        
         <MemberSignup @signup="handleSignup" @close="closeSignupModal" />
       </div>
     </div>
@@ -361,6 +369,7 @@ const handleLogout = () => {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+  object-fit: cover;
 }
 
 /* 드롭다운 스타일 */
@@ -398,6 +407,7 @@ const handleLogout = () => {
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #e0e0e0;
+  
 }
 
 .nickname {
@@ -484,15 +494,16 @@ const handleLogout = () => {
 .modal-content {
   position: relative;
   background-color: white;
-  max-width: 500px;
+  max-width: fit-content;
   width: 100%;
-  padding: 20px;
+  padding: 40px 20px 30px 20px;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .signup-modal {
   max-width: 600px;
+  height: 100%;
 }
 
 .close-btn {
