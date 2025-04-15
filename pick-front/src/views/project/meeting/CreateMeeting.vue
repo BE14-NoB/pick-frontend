@@ -206,8 +206,6 @@ const imageMap = Object.fromEntries(
 )
 
 
-
-
 const filteredCommands = computed(() => {
   const list = commandMode.value === '/' ? commands : emojis
   return list.filter(cmd => cmd.name.includes(commandKeyword.value))
