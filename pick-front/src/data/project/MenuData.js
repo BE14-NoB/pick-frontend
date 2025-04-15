@@ -1,6 +1,6 @@
-// src/project/data/MenuData.js
 export const menuItems = [
-    // 사이드바용 메뉴
+
+    // 프로젝트 사이드바용 메뉴
     {
         to: '/project/dashboard',
         label: '대시보드',
@@ -51,8 +51,7 @@ export const menuItems = [
     },
 
 
-
-    // 페이지별 정보
+    // 페이지별 제목과 내용
     {
         to: '/project/info',
         label: 'INFO',

@@ -8,10 +8,8 @@
             <button class="create-pr-button" @click="$emit('click-create-pr')">PR 생성하기</button>
         </div>
 
-        <!-- 본문: 좌우 분할 -->
         <div v-if="isLoading" class="loading-wrapper">🔄 변경 내역을 불러오는 중입니다...</div>
         <div v-else class="content-split">
-            <!-- 왼쪽: 파일 리스트 -->
             <div class="file-list">
                 <div v-for="file in files" :key="file.path" class="file-item"
                     :class="{ active: file.path === selectedFile?.path }" @click="selectedFile = file">
@@ -22,7 +20,6 @@
                 </div>
             </div>
 
-            <!-- 오른쪽: Diff2HTML 기반 미리보기 -->
             <div class="file-diff-preview">
                 <template v-if="renderedDiff && selectedFile?.diff?.trim()">
                     <div v-html="renderedDiff" class="diff2html-wrapper" />
@@ -38,6 +35,8 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
 import axios from 'axios'
+import * as Diff2Html from 'diff2html'
+import 'diff2html/bundles/css/diff2html.min.css'
 
 const props = defineProps({
     selectedBranch: {
@@ -48,10 +47,7 @@ const props = defineProps({
 
 const isLoading = ref(false)
 
-// diff
-import * as Diff2Html from 'diff2html'
-import 'diff2html/bundles/css/diff2html.min.css'
-
+// API 연동 실패시 사용하는 더미 데이터
 const dummyFiles = ref([
     {
         path: 'src/Login.vue',
@@ -96,12 +92,12 @@ const fileLabel = {
 
 const selectedRepo = ref('Pick')
 const selectedOwner = ref('BE14-NoB')
-const files = ref([])  // 파일 목록
+const files = ref([])
 const addedLines = ref(0)
 const removedLines = ref(0)
 const selectedFile = ref(null)
 
-// 변경 줄 수 계산
+// 변경된 줄 수 계산
 function calculateLineChanges(files) {
     let totalAdded = 0
     let totalRemoved = 0
@@ -129,10 +125,12 @@ const fetchFileDiffs = async () => {
     }
 
     isLoading.value = true
+
+    // 10초가 지나면 요청 강제 취소
     const controller = new AbortController()
     const timeout = setTimeout(() => {
-        controller.abort() // ❌ 요청 강제 취소
-    }, 10000) // 10초
+        controller.abort()
+    }, 10000)
 
     try {
         const res = await axios.get('http://localhost:8000/pick-service/api/github/branchDiff', {
@@ -147,7 +145,7 @@ const fetchFileDiffs = async () => {
 
         files.value = res.data.files
         selectedFile.value = files.value[0]
-        
+
         const result = calculateLineChanges(files.value)
         addedLines.value = result.added
         removedLines.value = result.removed
@@ -168,8 +166,8 @@ const fetchFileDiffs = async () => {
 
 // 파일 이름 줄이기
 const formatFilePath = (path) => {
-  if (path.length <= 40) return path
-  return '...' + path.slice(-40) // 뒤에서 40자만
+    if (path.length <= 40) return path
+    return '...' + path.slice(-40) // 뒤에서 40자만
 }
 
 watch(() => props.selectedBranch, (newVal) => {
@@ -179,7 +177,6 @@ watch(() => props.selectedBranch, (newVal) => {
 })
 
 
-// ✅ diff2html 렌더링
 const renderedDiff = computed(() => {
     const diffText = selectedFile.value?.diff?.trim()
 
@@ -212,6 +209,7 @@ onMounted(() => {
 
 </script>
 
+
 <style scoped>
 .file-changes-wrapper {
     max-width: 1200px;
@@ -232,7 +230,6 @@ onMounted(() => {
     font-size: 1.2rem;
     color: #666;
 }
-
 
 .create-pr-button {
     background-color: #1e1e1e;
