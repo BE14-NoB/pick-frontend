@@ -177,7 +177,7 @@
     .avatar-img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* ✅ 핵심! */
+        object-fit: cover; 
         border-radius: 50%; /* 원형 유지 */
     }
 </style>
