@@ -82,15 +82,6 @@
 
   const authStore = useAuthStore(); 
   console.log(authStore);
-  // 회원 정보 초기화
-  const memberInfo = reactive({
-    email: '',
-    nickname: '',
-    phone: '',
-    birthday: '',
-    profileImage: '',
-  });
-  
 
   const loading = ref(true);
 
@@ -126,10 +117,7 @@
 
   onMounted(async () => {
     loading.value = true;
-    const userData = route.state?.userData;
-
-    const currentUser = authStore.user?.name;
-
+    
     try {
       // 병렬로 participants + reviews 불러오기
       const [participantsRes, reviewsRes] = await Promise.all([
