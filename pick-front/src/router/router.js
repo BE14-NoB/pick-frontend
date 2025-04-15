@@ -136,18 +136,19 @@ const router = createRouter({
           path: 'signup',
           component: () => import('@/components/member/MemberSignUp.vue'),
         },
+        {
+          path: 'recruiting',
+          component: () => import('@/components/matching/RecruitingMatching.vue')
+        },
+        {
+          path: 'pending',
+          component: () => import('@/components/matching/PendingMatching.vue')
+        },
+        {
+          path: 'dailymission',
+          component: () => import('@/components/dailymission/views/DailyMission.vue')
+        },
       ],
-    },
-    // 회원가입
-    // {
-    //   path: 'signup',
-    //   name: 'SignUp',
-    //   component: SignUp
-    // },
-    {
-      path: '/dailymission',
-      name: 'DailyMission',
-      component: () => import('@/components/dailymission/views/DailyMission.vue')
     },
     {
       path: '/github/success',
