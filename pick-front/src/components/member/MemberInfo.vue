@@ -231,6 +231,7 @@ const disconnectGithub = async () => {
     userData.value.githubId = null;
     userData.value.githubAccessToken = '';
     userData.value.githubLink = '';
+    userData.value.profileImage = defaultProfileImage;
 
     await updateUser(userData.value.email, {
       githubId: null,
@@ -244,11 +245,10 @@ const disconnectGithub = async () => {
 };
 
 const fetchGitData = (() => {
-  const { profileImage, name, githubLink, githubId } = router.currentRoute.value.query;
+  const { profileImage, githubLink, githubId } = router.currentRoute.value.query;
 
-  if (profileImage && name && githubLink && githubId) {
+  if (profileImage && githubLink && githubId) {
     userData.value.profileImage = profileImage
-    userData.value.name = name;
     userData.value.githubLink = githubLink;
     userData.value.githubId = githubId;
   }
