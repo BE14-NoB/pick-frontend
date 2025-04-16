@@ -419,6 +419,18 @@ Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반
 
 ## 📑 트러블 슈팅
 `#GIT REST API 연동` `#v-infinite-scroll 무한 로딩` `#개발중 AI 도구 활용`
+
+### 2. v-infinite-scroll로 안정적인 무한 스크롤 구현
+
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/v-scroll.png"  width="800"/>
+
+<code>v-infinite-scroll</code>를 활용하여 무한 스크롤 기능을 구현하는 과정에서, 더 이상 읽어올 데이터가 없음에도 <code>load</code> 함수가 반복 호출되어 로딩 애니메이션이 지속되는 문제가 발생했습니다. 이는 사용자 경험 저하와 불필요한 연산을 유발했습니다. 이를 해결하기 위해 데이터 흐름을 명시적으로 제어하도록 리팩토링했습니다. 데이터 가져오기 함수가 <code>Promise</code> 객체를 반환하도록 수정하여, 데이터가 성공적으로 로드된 경우(<code>ok</code>)와 더 이상 데이터가 없는 경우(<code>empty</code>)를 구분해 처리 흐름을 개선했습니다. 또한, 비동기 데이터 로딩으로 인해 초기 렌더링 시 스크롤이 임계점에 도달하여 <code>load</code> 함수가 불필요하게 호출되는 문제를 해결하기 위해 초기화 플래그(<code>isInit</code>)를 도입했습니다. 이를 통해 첫 번째 호출은 무시하고, 초기 데이터를 동기적으로 로드한 후 정상적으로 렌더링되도록 제어했습니다.</p>
+
+<ul>
+  <li><strong>사용자 경험 개선</strong>: 불필요한 로딩 애니메이션 제거로 부드러운 스크롤 경험 제공.</li>
+  <li><strong>성능 최적화</strong>: 데이터 상태를 명확히 구분해 불필요한 연산 감소.</li>
+  <li><strong>안정성 강화</strong>: 초기화 플래그 도입으로 비동기 로딩 시 오류 방지.</li>
+</ul>
 <br><br>
 
 ## 🔜 향후 확장 계획
