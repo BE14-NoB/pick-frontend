@@ -38,7 +38,7 @@
 <img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/SpringSecurity-6DB33F?style=flat-square&logo=springsecurity&logoColor=white"/> <img src="https://img.shields.io/badge/JPA-0769GE?style=flat-square&logo=JPA&logoColor=white"/> <img src="https://img.shields.io/badge/Hibernate-61DAFB?style=flat-square&logo=Hibernate&logoColor=white"/> <img src="https://img.shields.io/badge/gradle-0769AD?style=flat-square&logo=gradle&logoColor=white"/>
 
 ### 🗝️ Frontend
-<img src="https://img.shields.io/badge/javascript-blue?logo=javascript"/> <img src="https://img.shields.io/badge/Vue.js-4FC08D?logo=vuedotjs&logoColor=white"/>
+<img src="https://img.shields.io/badge/javascript-blue?logo=javascript"/> <img src="https://img.shields.io/badge/Vue.js-4FC08D?logo=vuedotjs&logoColor=white"/> <img src="https://img.shields.io/badge/Chart.js-FF6384?logo=chartdotjs&logoColor=white"/> <img src="https://img.shields.io/badge/marked.js-000000?logo=markdown"/> <img src="https://img.shields.io/badge/diff2html-008000?logo=diff2html"/>
 
 ### 🗂️ DB
 ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=flat&logo=mariadb&logoColor=white) <img src="https://img.shields.io/badge/MyBatis-FFCA28?style=flat-square&logo=MyBatis&logoColor=white"/>
@@ -528,7 +528,7 @@ GitHub의 <strong>Webhook</strong>을 연동하여 프로젝트 대시보드에 
   </tr>
   <tr>
     <td>정민선</td>
-    <td>백엔드에 이어 회원 관련 도메인을 담당하셨는데, 플랫폼에서 핵심인 로그인, 회원가입 기능을 완성해 주셨다. 또한 상태 관리 라이브러리(Pinia)를 적용하여 회원 정보를 전역적으로 사용할 수 있도록 구현해 주셔서 다른 페이지에서도 쉽게 회원 정보에 접근할 수 있었다. 항상 전체적인 흐름을 고려하시면서 다른 팀원들이 놓치고 있던 부분을 보완할 수 있도록 해주셔서 서비스의 완성도를 높일 수 있었다. 많은 작업을 진행하면서 발표까지 맡아주셔서 부담이 많으셨을 텐데 상세한 부분까지 구체적으로 놓치지 않고 전달해 주셔서 감사했다.</td>
+    <td>백엔드에 이어 회원 관련 도메인을 담당하셨는데, 플랫폼에서 핵심인 로그인, 회원가입 기능을 완성해 주셨습니다. 또한 상태 관리 라이브러리(Pinia)를 적용하여 회원 정보를 전역적으로 사용할 수 있도록 구현해 주셔서 다른 페이지에서도 쉽게 회원 정보에 접근할 수 있었습니다. 항상 전체적인 흐름을 고려하시면서 다른 팀원들이 놓치고 있던 부분을 보완할 수 있도록 해주셔서 서비스의 완성도를 높일 수 있었던 것 같습니다. 많은 작업을 진행하면서 발표까지 맡아주셔서 부담이 많으셨을 텐데 상세한 부분까지 구체적으로 놓치지 않고 전달해 주셔서 감사했습니다!</td>
   </tr>
   <tr>
     <td>최혜민</td>
@@ -557,7 +557,7 @@ GitHub의 <strong>Webhook</strong>을 연동하여 프로젝트 대시보드에 
   </tr>
   <tr>
     <td>정민선</td>
-    <td>우리 서비스의 핵심 기능인 Github api 연동을 성공적으로 완성해주셨다. 짧은 시간 안에 가능할까 했던 기능들을 혼자 담당하셔서 어려운 부분이 많으셨을 텐데, 끈기있게 해결해내시는 모습이 정말 든든하고 존경스러웠다. 또한 프로젝트 관련 페이지에 공통적으로 사용되는 레이아웃이나 메뉴 데이터 등을 미리 정리해주셔서 다른 팀원들이 개발하기가 편리했다. PR 생성 시 파일의 변경사항을 보여주는 diff 페이지를 설계했던 그대로 구현하신 걸 보면, 데이터를 시각적으로 깔끔하게 다루는 작업에도 능숙하신 것 같다. 일정 관리, 개발을 진행하시는 모습을 보며 많이 배웠다.
+    <td>우리 서비스의 핵심 기능인 Github api 연동을 성공적으로 완성해주셨습니다. 짧은 시간 안에 가능할까 했던 기능들을 혼자 담당하셔서 어려운 부분이 많으셨을 텐데, 끈기있게 해결해내시는 모습이 정말 든든하고 존경스러웠습니다. 또한 프로젝트 관련 페이지에 공통적으로 사용되는 레이아웃이나 메뉴 데이터 등을 미리 정리해주셔서 다른 팀원들이 개발하기가 편리했습니다. PR 생성 시 파일의 변경사항을 보여주는 diff 페이지를 설계했던 그대로 구현하신 걸 보면, 데이터를 시각적으로 깔끔하게 다루는 작업에도 능숙하신 것 같습니다. 항상 긍정적인 에너지로 일정 관리, 개발을 진행하시는 모습을 보며 많이 배웠습니다.
 </td>
   </tr>
   <tr>
@@ -674,6 +674,6 @@ GitHub의 <strong>Webhook</strong>을 연동하여 프로젝트 대시보드에 
   </tr>
   <tr>
     <td>정민선</td>
-    <td> </td>
+    <td>목록 리스트, 사이드바 등 페이지 뿐만 아니라 프로젝트에서 공통으로 사용되는 컴포넌트들을 다수 담당해주셨는데, 컴포넌트 구조를 보기 쉽게 구현해주셔서 편리하게 사용할 수 있었습니다. UI/UX 를 설계했던 그대로! 구현해내시는 것을 보면, 데이터를 다루고 깔끔하게 시각화하시는 데 능숙하신 것 같습니다. 발표자료나 문서화를 미리 준비하고 정리하시는 철두철미한 모습을 보고 많이 배웠습니다. 항상 즐거운 분위기를 만들어주셔서 감사했습니다. 덕분에 적극적으로 의견을 낼 수 있었던 것 같습니다! </td>
   </tr>
 </table>
