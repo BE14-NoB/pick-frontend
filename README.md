@@ -389,10 +389,22 @@ Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반
 ### 🗂️ 프로젝트
  <details>
 	<summary><b>프로젝트</b></summary>
-  <details>
-		<summary>커밋 목록 조회</summary>
+  	<details>
+		<summary>프로젝트 리스트 및 상세페이지 조회</summary>
 		<p alian="center">
-		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/project/commit/TEST_커밋 목록 조회.gif.gif"  width="600"/>
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/common/TEST_프로젝트_리스트_상세페이지_조회.gif"  width="600"/>
+		</p>
+	</details>
+	 <details>
+		<summary>대시보드 조회</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/project/dashboard/TEST_대시보드_조회.gif"  width="600"/>
+		</p>
+	</details>
+	<details>
+		<summary>대시보드 조회</summary>
+		<p alian="center">
+		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/project/meeting/TEST_회의록_조회_작성_수정_삭제.gif"  width="600"/>
 		</p>
 	</details>
 	<details>
