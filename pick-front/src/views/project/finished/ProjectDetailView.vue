@@ -56,7 +56,7 @@
             <div class="member" v-for="(member, index) in participants" :key="index">
               <v-avatar size="60">
                 <v-img
-                 :src="member.profileImg"
+                  :src="member.profileImg"
                   :alt="member.name"
                   class="avatar-img"
                 />

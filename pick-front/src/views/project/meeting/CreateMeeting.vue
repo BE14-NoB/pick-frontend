@@ -1,6 +1,5 @@
 <template>
   <div class="note-editor">
-
     <div class="meeting-header">
       <span style="color:#4c4c4c">
         마크다운✍️을 활용해서 회의록을 작성하실 수 있습니다.
@@ -17,7 +16,6 @@
       />
     </div>
     
-    <!-- <v-btn class="mt-4" color="primary" @click="saveNote">저장</v-btn> -->
     <!-- 제목 -->
     <input
       v-model="title"
@@ -57,9 +55,6 @@
           <template #item="{ props, item }">
             <v-list-item v-bind="props">
               <template #prepend>
-                <!-- <v-avatar size="32">
-                  <img :src="item.profileImage || profile" alt="avatar" />
-                </v-avatar> -->
               </template>
               {{ item.name }}
             </v-list-item>
@@ -83,9 +78,6 @@
         >
           <template #selection="{ item }">
             <v-chip class="me-1" size="small">
-              <!-- <v-avatar start size="18">
-                <img :src="imageMap[item.profileImage] || profile" />
-              </v-avatar> -->
             </v-chip>
           </template>
           <template #item="{ props, item }">
@@ -95,7 +87,6 @@
                   <img :src="item.raw.avatar" />
                 </v-avatar>
               </template>
-              <!-- <v-list-item-title>{{ item.raw.name }}</v-list-item-title> -->
             </v-list-item>
           </template>
         </v-select>
@@ -143,7 +134,6 @@
     <!-- 미리보기 -->
     <div class="note-preview" v-html="renderedMarkdown" />
 
-    
   </div>
 </template>
 
@@ -205,7 +195,6 @@ const imageMap = Object.fromEntries(
   })
 )
 
-
 const filteredCommands = computed(() => {
   const list = commandMode.value === '/' ? commands : emojis
   return list.filter(cmd => cmd.name.includes(commandKeyword.value))
@@ -262,6 +251,7 @@ function handleEnter(e) {
 
 const renderedMarkdown = computed(() => marked(content.value))
 
+// 회의록 신규 작성 및 수정
 onMounted(async () => {
   if (!id) return // 신규 작성이면 skip
   try {

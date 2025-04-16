@@ -7,15 +7,14 @@
           <v-text-field v-model="project.introduction" label="한 줄 소개" class="col-span-2" :readonly="!isEditing" />
           <v-textarea v-model="project.content" label="프로젝트 설명" rows="6" class="col-span-2" :readonly="!isEditing" />
   
-          <v-text-field v-model="formattedStartDate" label="시작일" :readonly="!isEditing" />
-          <v-text-field v-model="formattedEndDate" label="종료일" :readonly="!isEditing" />
+          <v-text-field v-model="formattedStartDate" label="시작일" :readonly="true" />
+          <v-text-field v-model="formattedEndDate" label="종료일" :readonly="true" />
   
           <v-text-field
             v-model.number="project.maximum_participant"
             label="최대 인원"
             type="number"
-            :readonly="!isEditing"
-          />
+            :readonly="true" />
   
           <v-text-field
             v-model="project.session_code"
@@ -23,17 +22,13 @@
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPassword = !showPassword"
             :type="showPassword ? 'text' : 'password'"
-            :readonly="!isEditing"
-          />
+            :readonly="true" />
   
           <v-select
             v-model="techStack"
             label="기술 분류"
             :items="['PC - WEB', 'MOBILE - APP', 'SERVER - API']"
-            :disabled="!isEditing"
-          />
-  
-         
+            :readonly="true" />
         </v-form>
   
         <!-- 오른쪽: 썸네일 + 링크 -->
@@ -76,8 +71,8 @@
   const showPassword = ref(false)
   const techStack = ref('')
   const thumbnailUrl = ref('')
-  const formattedStartDate = ref('')
-  const formattedEndDate = ref('')
+  const formattedStartDate = ref('');
+  const formattedEndDate = ref('');
   const isEditing = ref(false)
   
   onMounted(async () => {
@@ -107,10 +102,6 @@
   
     const updatedData = {
       ...project.value,
-      start_date: dayjs(formattedStartDate.value).format('YYYY-MM-DD'),
-      end_date: dayjs(formattedEndDate.value).format('YYYY-MM-DD'),
-      main_category: main,
-      sub_category: sub,
       thumbnail_image: thumbnailUrl.value
     }
 

@@ -75,7 +75,7 @@
 
     const route = useRoute()
     // const id = route.params.id  
-    const id = 1-1;       //
+    const id =0;       //
     const gitInfo = ref(null)
     const project = ref(null)
 
@@ -129,6 +129,8 @@
 
       }
     })
+
+    console.log(projectDummy[0])
 
 </script>
 

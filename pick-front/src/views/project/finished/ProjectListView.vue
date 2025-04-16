@@ -21,20 +21,7 @@
   
     <div class="project-page" >
 
-      <!-- 검색 + 필터 + 정렬 -->
-      <!-- <div class="search-filter-bar" style="width: 100%;">
-        <div class="searchBox" style="width:50%;">
-          <SearchComboBox hidden/>
-          <input v-model="searchQuery" placeholder="제목 검색..." type="text" style="width:70%; height:25px;" />
-          <button @click="search" style="width:25px; height:25px;">
-              <img src="@/assets/post/icons8-search.svg" alt="돋보기 아이콘" width="25px" height="25px">
-          </button>
-        </div>
-
-        <v-select v-model="selectedTemplate" :items="templateOptions" label="템플릿" density="compact" class="select" />
-        <v-select v-model="selectedAuthor" :items="authorOptionsWithAll" label="작성자" density="compact" class="select" />
-        <v-select v-model="sortOrder" :items="sortOptions" label="정렬" density="compact" class="select" />
-      </div> -->
+      <!-- ## TODO 검색 + 필터 + 정렬 -->
   
       <!-- 로딩 상태일 때만 보여줄 스피너 -->
       <v-container v-if="loading" class="text-center my-12">
