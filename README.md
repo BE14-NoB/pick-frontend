@@ -21,11 +21,11 @@
 #### [📢 프로젝트 개요](#-프로젝트-개요) <br>
 #### [🛠️ 주요 기능](#-주요-기능) <br>
 #### [📅 개발 사이클](#-Component) <br>
-#### [🙆‍♀️ 와이어 프레임](#-와이어-프레임) <br>
+#### [🧵 와이어 프레임](#-와이어-프레임) <br>
 #### [🪄 스토리 보드](#-스토리-보드) <br>
 #### [📰 WBS](#-WBS) <br>
-#### [📰 기능 명세서](#-기능-명세서-) <br>
-#### [🛜 서버](#-서버) <br>
+#### [🙆‍♀️ 기능 명세서](#-기능-명세서-) <br>
+#### [🛜 Server](#-Server) <br>
 #### [📱 테스트 케이스](#-테스트-케이스) <br>
 #### [📑 트러블 슈팅](#-트러블-슈팅) <br>
 #### [🔜 향후 확장 계획](#-향후-확장-계획) <br>
@@ -147,7 +147,7 @@ Pick은 특정 기능의 품질을 높이기 위해 세 가지 특화된 라이�
 
 <br><br>
 
-## 🙆‍♀️ 와이어 프레임
+## 🧵 와이어 프레임
 
 🔗 <a href="https://www.figma.com/design/DFoNxHc5dAtUaaUI5UnRhN/PICK---%EC%99%80%EC%9D%B4%EC%96%B4%ED%94%84%EB%A0%88%EC%9E%84?node-id=1-2643&t=zbqKVZG0o1h8KwfQ-1"> 와이어 프레임 자세히 보기 </a>
 
@@ -157,7 +157,7 @@ Pick은 특정 기능의 품질을 높이기 위해 세 가지 특화된 라이�
 
 <br><br>
 
-## 🙆‍♀️ 스토리 보드
+## 🪄 스토리 보드
 
   #### 메인 페이지
   <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/storyboard-1.png" width = "800"/><br>
@@ -186,10 +186,16 @@ Pick은 특정 기능의 품질을 높이기 위해 세 가지 특화된 라이�
 
 ## 📰 WBS
 
-🔗 <a href="https://docs.google.com/spreadsheets/d/1Orhd5Z6flkKWVZvUv9VNGWs3aHXmbjyqs_pLi1Ch_wM/edit?gid=2031264111#gid=2031264111&single=true"> WBS 자세히 보기 </a>
+🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vScA7f_mLFChQQ5SMSU5AAC6-O3h8PYJg0H-dxRvMKHrePOtW3VIgnlNMcAEWP1Xy8O8LcMe4OFuCWe/pubhtml?gid=2031264111&single=true"> WBS 자세히 보기 </a>
+
+<br>
+
+<img src ="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/WBS.png" width ="800" />
+
+<br><br>
 
 
-## 📰 기능 명세서
+## 🙆‍♀️ 기능 명세서
 
 🔗 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vScA7f_mLFChQQ5SMSU5AAC6-O3h8PYJg0H-dxRvMKHrePOtW3VIgnlNMcAEWP1Xy8O8LcMe4OFuCWe/pubhtml?gid=0&single=true"> 기능 명세서 자세히 보기 </a>
 
@@ -444,7 +450,7 @@ Pick 프로젝트는 백엔드 통신에서 <strong>JWT 토큰</strong> 기반�
 
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/v-scroll.png"  width="800"/>
 
-<code>v-infinite-scroll</code>를 활용하여 무한 스크롤 기능을 구현하는 과정에서, 더 이상 읽어올 데이터가 없음에도 <code>load</code> 함수가 반복 호출되어 로딩 애니메이션이 지속되는 문제가 발생했습니다. 이는 사용자 경험 저하와 불필요한 연산을 유발했습니다. 이를 해결하기 위해 데이터 흐름을 명시적으로 제어하도록 리팩토링했습니다. 데이터 가져오기 함수가 <code>Promise</code> 객체를 반환하도록 수정하여, 데이터가 성공적으로 로드된 경우(<code>ok</code>)와 더 이상 데이터가 없는 경우(<code>empty</code>)를 구분해 처리 흐름을 개선했습니다. 또한, 비동기 데이터 로딩으로 인해 초기 렌더링 시 스크롤이 임계점에 도달하여 <code>load</code> 함수가 불필요하게 호출되는 문제를 해결하기 위해 초기화 플래그(<code>isInit</code>)를 도입했습니다. 이를 통해 첫 번째 호출은 무시하고, 초기 데이터를 동기적으로 로드한 후 정상적으로 렌더링되도록 제어했습니다.</p>
+<code>v-infinite-scroll</code>를 활용하여 무한 스크롤 기능을 구현하는 과정에서, 더 이상 읽어올 데이터가 없음에도 <code>load</code> 함수가 반복 호출되어 로딩 애니메이션이 지속되는 문제가 발생했습니다. 이는 사용자 경험 저하와 불필요한 연산을 유발했습니다. 이를 해결하기 위해 <strong>데이터 흐름을 명시적으로 제어</strong>하도록 리팩토링했습니다. 데이터 가져오기 함수가 <code>Promise</code> 객체를 반환하도록 수정하여, 데이터가 성공적으로 로드된 경우(<code>ok</code>)와 더 이상 데이터가 없는 경우(<code>empty</code>)를 구분해 처리 흐름을 개선했습니다. 또한, 비동기 데이터 로딩으로 인해 초기 렌더링 시 스크롤이 임계점에 도달하여 <code>load</code> 함수가 불필요하게 호출되는 문제를 해결하기 위해 초기화 플래그(<code>isInit</code>)를 도입했습니다. 이를 통해 첫 번째 호출은 무시하고, 초기 데이터를 동기적으로 로드한 후 정상적으로 렌더링되도록 제어했습니다.</p>
 
 <ul>
   <li><strong>사용자 경험 개선</strong>: 불필요한 로딩 애니메이션 제거로 부드러운 스크롤 경험 제공.</li>
@@ -453,7 +459,7 @@ Pick 프로젝트는 백엔드 통신에서 <strong>JWT 토큰</strong> 기반�
 </ul>
 
 ### 3. 개발중 AI 도구 활용
-<code>AI 도구</code>를 활용하여 프론트 개발에 관한 질문을 처리하는 과정에서 적절한 프롬포트 없이 사진과 설명만 주는 경우 원하는 결과가 나오지 않거나, 각각 코드를 작성하고 스타일을 적용하여 화면을 확인해본 결과 각각 스타일이 달라 페이지의 통일성이 없는것을 확인하였습니다. 이는 사용자 경험 저하와 불필요한 작업이 추가되어 비효율적인 것을 깨달았고, 모두가 공통적인 결과를 얻기 위해 프롬포트 양식을 작성하여 프롬포트 기반으로 어느정도 동일한 결과값을 받을수 있도록 진행하였습니다. </p>
+<code>AI 도구</code>를 활용하여 프론트 개발에 관한 질문을 처리하는 과정에서 적절한 프롬포트 없이 사진과 설명만 주는 경우 원하는 결과가 나오지 않거나, 각각 코드를 작성하고 스타일을 적용하여 화면을 확인해본 결과 각각 스타일이 달라 페이지의 통일성이 없는것을 확인하였습니다. 이는 사용자 경험 저하와 불필요한 작업이 추가되어 비효율적인 것을 깨달았고, 모두가 공통적인 결과를 얻기 위해 <strong>프롬포트 양식을 작성</strong>하여 프롬포트 기반으로 어느정도 동일한 결과값을 받을수 있도록 진행하였습니다. </p>
 
 <br><br>
 
