@@ -251,6 +251,7 @@ function handleEnter(e) {
 
 const renderedMarkdown = computed(() => marked(content.value))
 
+// 회의록 신규 작성 및 수정
 onMounted(async () => {
   if (!id) return // 신규 작성이면 skip
   try {

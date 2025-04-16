@@ -28,7 +28,6 @@
             삭제하기
           </v-btn>
         </div>
-       
       </div>
   
       <!-- 제목 -->
@@ -69,19 +68,6 @@
             </v-chip>
           </template>
         </v-select>
-
-
-          <!-- <v-select
-            v-model="selectedAuthor"
-            :items="memberList"
-            item-title="name"
-            return-object
-            variant="underlined"
-            density="comfortable"
-            class="meta-select readonly-select"
-            chips
-            readonly
-          /> -->
         </div>
   
         <!-- 참여자 -->
@@ -109,21 +95,6 @@
               </v-chip>
             </template>
           </v-select>
-
-
-
-          <!-- <v-select
-            v-model="selectedParticipants"
-            :items="memberList"
-            item-title="name"
-            return-object
-            multiple
-            variant="underlined"
-            density="comfortable"
-            class="meta-select readonly-select"
-            chips
-            readonly
-          /> -->
         </div>
   
         <!-- 템플릿 -->
@@ -148,9 +119,9 @@
     <div v-else>
       <p>📂 회의록 정보를 찾을 수 없습니다.</p>
     </div>
-  </template>
+</template>
   
-  <script setup>
+<script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
@@ -209,10 +180,12 @@ const imageMap = Object.fromEntries(
   Object.entries(imageModules).map(([path, mod]) => [path.split('/').pop(), mod.default])
 )
 
+// 회의록 수정 
 const goToEdit = () => {
   router.push({ path: '/project/create-meeting', query: { id: meeting.value.id } })
 }
 
+// 회의록 삭제
 const deleteMeeting = async () => {
   const confirmDelete = confirm('이 회의록을 정말 삭제하시겠습니까?')
   if (!confirmDelete) return
@@ -230,8 +203,7 @@ const deleteMeeting = async () => {
 }
 </script>
 
-  
-  <style scoped>
+<style scoped>
   .note-editor {
     display: flex;
     flex-direction: column;
@@ -315,6 +287,5 @@ const deleteMeeting = async () => {
   color: #888;
 }
 
-
-  </style>
+</style>
   
