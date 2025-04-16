@@ -420,6 +420,20 @@ Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반
 ## 📑 트러블 슈팅
 `#GIT REST API 연동` `#v-infinite-scroll 무한 로딩` `#개발중 AI 도구 활용`
 
+### 1. GIT REST API 연동 관련 문제
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/api-2.png"  width="800"/>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/api-1.png"  width="800"/>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/api-3.png"  width="800"/>
+<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/api-4.png"  width="800"/>
+
+Pick 프로젝트는 백엔드 통신에서 <strong>JWT 토큰</strong> 기반의 <strong>Stateless</strong> 인증 및 인가 처리를 사용했으나, <strong>Git REST API</strong> 연동 시 <strong>OAuth 2.0</strong> 기반의 세션 방식과 리다이렉트가 필요해 무결성 유지에 문제가 발생했습니다. 기존 JWT 방식은 상태를 저장하지 않아 가볍고 확장 가능했지만, GitHub의 OAuth 2.0은 세션 기반으로 동작하며 리다이렉트 후 액세스 토큰을 처리해야 했습니다. 이를 해결하기 위해 다른 도메인은 JWT 방식을 유지하고, Git REST API 연동에만 <strong>Spring Gateway</strong>에서 OAuth 2.0 설정을 추가했습니다. Gateway에 OAuth 2.0 클라이언트 ID, 액세스 토큰, 리다이렉트 경로를 설정하여 GitHub에서 개인 액세스 토큰을 받아 <strong>MariaDB</strong>에 저장하도록 구현했습니다. 이를 통해 컨트롤러에서 GitHub API 요청(커밋, 이슈, PR 데이터 조회 등)을 안정적으로 처리할 수 있었습니다. 또한, <strong>SecurityFilterChain</strong> 설정에서 <code>SessionCreationPolicy.IF_REQUIRED</code>로 조정하여 세션 기반 OAuth 2.0과 JWT를 병행하며 무결성을 유지했습니다.</p>
+
+<ul>
+  <li><strong>인증 방식 통합</strong>: JWT와 OAuth 2.0을 도메인별로 분리 적용해 무결성 유지.</li>
+  <li><strong>효율적 토큰 관리</strong>: Gateway를 통해 GitHub 액세스 토큰을 DB에 저장, API 호출 간소화.</li>
+  <li><strong>안정성 강화</strong>: 세션 및 리다이렉트 처리로 Git REST API 연동의 안정성 확보.</li>
+</ul>
+
 ### 2. v-infinite-scroll로 안정적인 무한 스크롤 구현
 
 <img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/v-scroll.png"  width="800"/>
@@ -431,6 +445,10 @@ Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반
   <li><strong>성능 최적화</strong>: 데이터 상태를 명확히 구분해 불필요한 연산 감소.</li>
   <li><strong>안정성 강화</strong>: 초기화 플래그 도입으로 비동기 로딩 시 오류 방지.</li>
 </ul>
+
+### 3. 개발중 AI 도구 활용
+<code>AI 도구</code>를 활용하여 프론트 개발에 관한 질문을 처리하는 과정에서 적절한 프롬포트 없이 사진과 설명만 주는 경우 원하는 결과가 나오지 않거나, 각각 코드를 작성하고 스타일을 적용하여 화면을 확인해본 결과 각각 스타일이 달라 페이지의 통일성이 없는것을 확인하였습니다. 이는 사용자 경험 저하와 불필요한 작업이 추가되어 비효율적인 것을 깨달았고, 모두가 공통적인 결과를 얻기 위해 프롬포트 양식을 작성하여 프롬포트 기반으로 어느정도 동일한 결과값을 받을수 있도록 진행하였습니다. </p>
+
 <br><br>
 
 ## 🔜 향후 확장 계획
