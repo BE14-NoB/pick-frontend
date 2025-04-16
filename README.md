@@ -402,7 +402,7 @@ Pick의 서버 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반
 		</p>
 	</details>
 	<details>
-		<summary>대시보드 조회</summary>
+		<summary>회의록 조회 / 작성 / 수정</summary>
 		<p alian="center">
 		<img src="https://github.com/BE14-NoB/pick-frontend/blob/main/resources/test_result/project/meeting/TEST_회의록_조회_작성_수정_삭제.gif"  width="600"/>
 		</p>
